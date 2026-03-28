@@ -1,24 +1,10 @@
 [
   {
-    "objectID": "exams/index.html",
-    "href": "exams/index.html",
-    "title": "Exams",
+    "objectID": "lectures/index.html",
+    "href": "lectures/index.html",
+    "title": "index",
     "section": "",
-    "text": "Midterm (coming soon)\nFinal (coming soon)"
-  },
-  {
-    "objectID": "assignments/index.html",
-    "href": "assignments/index.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "Assignment 01 (coming soon)"
-  },
-  {
-    "objectID": "assignments_index_Version2.html",
-    "href": "assignments_index_Version2.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "Assignment 01 (coming soon)"
+    "text": "Part 1 — Review of Linear Algebra"
   },
   {
     "objectID": "index.html",
@@ -33,5 +19,138 @@
     "title": "HomePage",
     "section": "Course materials",
     "text": "Course materials\n\nLecture Notes\nAssignments\nExams"
+  },
+  {
+    "objectID": "assignments_index_Version2.html",
+    "href": "assignments_index_Version2.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Assignment 01 (coming soon)"
+  },
+  {
+    "objectID": "assignments/index.html",
+    "href": "assignments/index.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Assignment 01 (coming soon)"
+  },
+  {
+    "objectID": "exams/index.html",
+    "href": "exams/index.html",
+    "title": "Exams",
+    "section": "",
+    "text": "Midterm (coming soon)\nFinal (coming soon)"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html",
+    "href": "lectures/01-linear-algebra-review.html",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "",
+    "text": "The lecture reviews three linear algebra topics:"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#vectors",
+    "href": "lectures/01-linear-algebra-review.html#vectors",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.1 Vectors",
+    "text": "1.1 Vectors\nA vector (more specifically, a column vector) is a quantity whose entries are stacked vertically.\nExamples:\n\\[\na = \\begin{pmatrix}1 \\\\ 2 \\\\ 0.5\\end{pmatrix},\n\\qquad\nu = \\begin{pmatrix}u_1 \\\\ u_2 \\\\ u_3\\end{pmatrix},\n\\qquad\nu = (u_1, \\ldots, u_p)^T \\in \\mathbb{R}^p.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#linear-dependence",
+    "href": "lectures/01-linear-algebra-review.html#linear-dependence",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.2 Linear dependence",
+    "text": "1.2 Linear dependence\nLet \\(x_1, \\ldots, x_k\\) be vectors in \\(\\mathbb{R}^p\\).\nWe say that \\(x_1, \\ldots, x_k\\) are linearly dependent if there exist scalars \\(\\lambda_1, \\ldots, \\lambda_k\\), not all zero, such that\n\\[\n\\lambda_1 x_1 + \\cdots + \\lambda_k x_k = 0.\n\\]\nEquivalently, if one coefficient is nonzero, then one vector can be written as a linear combination of the others. For example, if \\(\\lambda_1 \\neq 0\\), then\n\\[\nx_1 = -\\frac{1}{\\lambda_1} \\sum_{i=2}^k \\lambda_i x_i.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#linear-independence",
+    "href": "lectures/01-linear-algebra-review.html#linear-independence",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.3 Linear independence",
+    "text": "1.3 Linear independence\nWe say that \\(x_1, \\ldots, x_k\\) are linearly independent if they are not linearly dependent.\nEquivalently, \\(x_1, \\ldots, x_k\\) are linearly independent if\n\\[\n\\lambda_1 x_1 + \\cdots + \\lambda_k x_k = 0\n\\]\nimplies\n\\[\n\\lambda_1 = \\cdots = \\lambda_k = 0.\n\\]\n\n1.3.1 Example\nLet\n\\[\nx_1 = \\begin{pmatrix}1 \\\\ 1\\end{pmatrix},\n\\qquad\nx_2 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}.\n\\]\nSuppose\n\\[\n\\lambda_1 x_1 + \\lambda_2 x_2 = 0.\n\\]\nThen\n\\[\n\\lambda_1 \\begin{pmatrix}1 \\\\ 1\\end{pmatrix}\n+ \\lambda_2 \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}\n= \\begin{pmatrix}0 \\\\ 0\\end{pmatrix},\n\\]\nso\n\\[\n\\begin{pmatrix}\n\\lambda_1 + \\lambda_2 \\\\\n\\lambda_1\n\\end{pmatrix}\n=\n\\begin{pmatrix}0 \\\\ 0\\end{pmatrix}.\n\\]\nTherefore \\(\\lambda_1 = 0\\) and \\(\\lambda_2 = 0\\). Hence \\(x_1\\) and \\(x_2\\) are linearly independent."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#orthogonality",
+    "href": "lectures/01-linear-algebra-review.html#orthogonality",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.4 Orthogonality",
+    "text": "1.4 Orthogonality\nTwo vectors \\(x, y \\in \\mathbb{R}^p\\) are orthogonal if their inner product is zero:\n\\[\n\\langle x, y \\rangle = x^T y = y^T x = \\sum_i x_i y_i = 0.\n\\]\nExample:\n\\[\ny_1 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix},\n\\qquad\ny_2 = \\begin{pmatrix}0 \\\\ 0.5\\end{pmatrix}.\n\\]\nThese are orthogonal because \\(y_1^T y_2 = 0\\)."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#fact-orthogonal-vectors-are-linearly-independent",
+    "href": "lectures/01-linear-algebra-review.html#fact-orthogonal-vectors-are-linearly-independent",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.5 Fact: orthogonal vectors are linearly independent",
+    "text": "1.5 Fact: orthogonal vectors are linearly independent\nClaim. If \\(x_1\\) and \\(x_2\\) are orthogonal nonzero vectors, then they are linearly independent.\n\n1.5.1 Proof\nAssume, for contradiction, that \\(x_1\\) and \\(x_2\\) are linearly dependent. Then there exist scalars \\(\\lambda_1, \\lambda_2\\), not both zero, such that\n\\[\n\\lambda_1 x_1 + \\lambda_2 x_2 = 0.\n\\]\nLeft-multiply by \\(x_1^T\\):\n\\[\n\\lambda_1 x_1^T x_1 + \\lambda_2 x_1^T x_2 = 0.\n\\]\nBecause \\(x_1\\) and \\(x_2\\) are orthogonal, \\(x_1^T x_2 = 0\\), so\n\\[\n\\lambda_1 x_1^T x_1 = 0.\n\\]\nSince \\(x_1 \\neq 0\\), we have \\(x_1^T x_1 &gt; 0\\), hence \\(\\lambda_1 = 0\\).\nSimilarly, left-multiplying by \\(x_2^T\\) gives \\(\\lambda_2 = 0\\).\nThis contradicts the assumption that \\(\\lambda_1\\) and \\(\\lambda_2\\) are not both zero. Therefore \\(x_1\\) and \\(x_2\\) are linearly independent."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#converse-does-not-hold",
+    "href": "lectures/01-linear-algebra-review.html#converse-does-not-hold",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.6 Converse does not hold",
+    "text": "1.6 Converse does not hold\nLinear independence does not imply orthogonality.\nExample:\n\\[\nx_1 = \\begin{pmatrix}1 \\\\ 1\\end{pmatrix},\n\\qquad\nx_2 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}.\n\\]\nThese vectors are linearly independent, but they are not orthogonal because\n\\[\nx_1^T x_2 = 1.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#norm",
+    "href": "lectures/01-linear-algebra-review.html#norm",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.7 Norm",
+    "text": "1.7 Norm\nLet\n\\[\na = \\begin{pmatrix}a_1 \\\\ \\vdots \\\\ a_p\\end{pmatrix} \\in \\mathbb{R}^p.\n\\]\nIts Euclidean norm is\n\\[\n\\|a\\| = \\sqrt{a^T a} = \\sqrt{\\langle a, a \\rangle} = \\sqrt{\\sum_{i=1}^p a_i^2}.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#orthogonal-matrices",
+    "href": "lectures/01-linear-algebra-review.html#orthogonal-matrices",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "1.8 Orthogonal matrices",
+    "text": "1.8 Orthogonal matrices\nA square matrix\n\\[\nQ = (q_1, \\ldots, q_n)\n\\]\nis an orthogonal matrix if\n\\[\nQ^TQ = QQ^T = I_n,\n\\]\nwhere each column \\(q_i \\in \\mathbb{R}^n\\) and \\(\\|q_i\\| = 1\\).\nExamples:\n\\[\nQ_1 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix},\n\\qquad\nQ_2 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix}.\n\\]\n\n1.8.1 Practice prompt\nGenerate a matrix \\(X \\in \\mathbb{R}^{10 \\times 2}\\). Let\n\\[\nY_1 = XQ_1.\n\\]\nDraw \\(X\\) and \\(Y_1\\) in \\(\\mathbb{R}^2\\) using different colors, and interpret the transformation as a rotation."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#definition",
+    "href": "lectures/01-linear-algebra-review.html#definition",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "2.1 Definition",
+    "text": "2.1 Definition\nFor a matrix \\(A \\in \\mathbb{R}^{n \\times p}\\), the rank of \\(A\\) is the maximum number of linearly independent rows of \\(A\\). Equivalently, it is the maximum number of linearly independent columns of \\(A\\)."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#example-1",
+    "href": "lectures/01-linear-algebra-review.html#example-1",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "2.2 Example",
+    "text": "2.2 Example\nConsider\n\\[\nA =\n\\begin{pmatrix}\n1 & 1 & 0 \\\\\n1 & 1 & 0 \\\\\n1 & 0 & 2\n\\end{pmatrix}.\n\\]\nThe first two rows are the same, so they are not linearly independent as a set of three rows. The matrix has rank\n\\[\n\\operatorname{rank}(A) = 2.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#properties-of-rank",
+    "href": "lectures/01-linear-algebra-review.html#properties-of-rank",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "2.3 Properties of rank",
+    "text": "2.3 Properties of rank\n\n\\(0 \\leq \\operatorname{rank}(A) \\leq \\min(n,p)\\).\n\\(\\operatorname{rank}(A) = \\operatorname{rank}(A^T)\\).\n\\(\\operatorname{rank}(A + B) \\leq \\operatorname{rank}(A) + \\operatorname{rank}(B)\\).\n\\(\\operatorname{rank}(AB) \\leq \\min\\bigl(\\operatorname{rank}(A), \\operatorname{rank}(B)\\bigr)\\).\n\\[\n\\operatorname{rank}(A^TA) = \\operatorname{rank}(AA^T) = \\operatorname{rank}(A).\n\\]\nFor any matrix \\(A\\), if \\(B\\) and \\(C\\) are conformable and nonsingular, then \\[\n\\operatorname{rank}(BAC) = \\operatorname{rank}(A).\n\\] In particular, if \\(A\\) is \\(n \\times p\\), then \\(B\\) is \\(n \\times n\\) and \\(C\\) is \\(p \\times p\\)."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#proof-sketch-for-property-6",
+    "href": "lectures/01-linear-algebra-review.html#proof-sketch-for-property-6",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "2.4 Proof sketch for property 6",
+    "text": "2.4 Proof sketch for property 6\nThe handwritten notes give the following partial argument:\n\\[\n\\operatorname{rank}(A) \\ge \\operatorname{rank}(AC) \\ge \\operatorname{rank}(ACC^{-1}) = \\operatorname{rank}(A),\n\\]\nwhich implies\n\\[\n\\operatorname{rank}(A) = \\operatorname{rank}(AC).\n\\]\nApplying the same idea to left multiplication by \\(B\\) yields\n\\[\n\\operatorname{rank}(BA) = \\operatorname{rank}(A),\n\\]\nand therefore\n\\[\n\\operatorname{rank}(BAC) = \\operatorname{rank}(A).\n\\]\nThe original notes end with: Please complete the proof."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#definition-1",
+    "href": "lectures/01-linear-algebra-review.html#definition-1",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "3.1 Definition",
+    "text": "3.1 Definition\nA vector space is a set of vectors that is closed under:\n\nvector addition, and\nscalar multiplication."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#column-space",
+    "href": "lectures/01-linear-algebra-review.html#column-space",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "3.2 Column space",
+    "text": "3.2 Column space\nLet \\(A\\) be an \\(n \\times p\\) matrix with columns\n\\[\nA = (a_1, \\ldots, a_p), \\qquad a_i \\in \\mathbb{R}^n.\n\\]\nThe column space of \\(A\\), denoted \\(C(A)\\), is the vector space generated by the columns of \\(A\\):\n\\[\nC(A) = \\left\\{ y : y = \\sum_{i=1}^p c_i a_i \\text{ for scalars } c_i,\\ i=1,\\ldots,p \\right\\}.\n\\]\nEquivalently,\n\\[\ny \\in C(A) \\iff \\exists c \\in \\mathbb{R}^p \\text{ such that } y = Ac.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#matrix-vector-form",
+    "href": "lectures/01-linear-algebra-review.html#matrix-vector-form",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "3.3 Matrix-vector form",
+    "text": "3.3 Matrix-vector form\nIf\n\\[\nc = \\begin{pmatrix}c_1 \\\\ \\vdots \\\\ c_p\\end{pmatrix},\n\\]\nthen\n\\[\ny = Ac\n= (a_1, \\ldots, a_p)\n\\begin{pmatrix}c_1 \\\\ \\vdots \\\\ c_p\\end{pmatrix}\n= c_1 a_1 + \\cdots + c_p a_p.\n\\]\nThis verifies that multiplying \\(A\\) by a coefficient vector \\(c\\) produces a linear combination of the columns of \\(A\\)."
   }
 ]
