@@ -1,0 +1,6 @@
+---
+title: "index"
+format: html
+---
+
+- [Part 1 — Review of Linear Algebra](01-linear-algebra-review.qmd)
