@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "exams/index.html",
+    "href": "exams/index.html",
+    "title": "Exams",
+    "section": "",
+    "text": "Midterm (coming soon)\nFinal (coming soon)"
+  },
+  {
+    "objectID": "assignments/index.html",
+    "href": "assignments/index.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Assignment 01 (coming soon)"
+  },
+  {
+    "objectID": "assignments_index_Version2.html",
+    "href": "assignments_index_Version2.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Assignment 01 (coming soon)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "HomePage",
+    "section": "",
+    "text": "Welcome to the STAT200C course website."
+  },
+  {
+    "objectID": "index.html#course-materials",
+    "href": "index.html#course-materials",
+    "title": "HomePage",
+    "section": "Course materials",
+    "text": "Course materials\n\nLecture Notes\nAssignments\nExams"
+  }
+]
