@@ -15,8 +15,10 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 The lecture reviews three linear algebra topics:
 
 1.  vectors and linear independence,
-2.  rank, and
-3.  vector spaces.
+2.  rank, 
+3.  vector spaces,
+4.  column spaces, and
+5.  eigenvalues and trace.
 
 # Vectors and linear independence
 
@@ -151,7 +153,7 @@ Similarly, left-multiplying by $x_2^T$ gives $\lambda_2 = 0$.
 
 This contradicts the assumption that $\lambda_1$ and $\lambda_2$ are not both zero. Therefore $x_1$ and $x_2$ are linearly independent.
 
-## Converse does not hold
+### Converse does not hold
 
 Linear independence does **not** imply orthogonality.
 
@@ -215,15 +217,6 @@ Q_2 =
 \end{pmatrix}.
 $$
 
-### Practice prompt
-
-Generate a matrix $X \in \mathbb{R}^{10 \times 2}$. Let
-
-$$
-Y_1 = XQ_1.
-$$
-
-Draw $X$ and $Y_1$ in $\mathbb{R}^2$ using different colors, and interpret the transformation as a rotation.
 
 # Rank
 
@@ -300,7 +293,19 @@ A **vector space** is a set of vectors that is closed under:
 -   vector addition, and
 -   scalar multiplication.
 
-## Column space
+Examples:
+
+1. the set of all vectors in $\mathbb{R}^p$ is a vector space.
+
+2. the set of all vectors in $\mathbb{R}^p$ with zero in the last entry is a vector space.
+
+3. the set of all vectors in $\mathbb{R}^p$ with the sum of the entries equal to zero is a vector space.
+
+4. the set of all vectors in $\mathbb{R}^p$ with zero in the last entry or zero in the second-to-last entry is **not** a vector space, because it is not closed under vector addition.
+
+Next, we will see that the column space of a matrix is a vector space.
+
+# Column space
 
 Let $A$ be an $n \times p$ matrix with columns
 
@@ -319,23 +324,377 @@ Equivalently,
 $$
 y \in C(A) \iff \exists c \in \mathbb{R}^p \text{ such that } y = Ac.
 $$
+So (1) $\mathcal{C}(A)$ is the set of all linear combinations of the columns of $A$, 
+(2) multiplying $A$ by a coefficient vector $c$ produces a linear combination of the columns of $A$.
 
-## Matrix-vector form
 
-If
-
-$$
-c = \begin{pmatrix}c_1 \\ \vdots \\ c_p\end{pmatrix},
-$$
-
-then
+## Example. 
+Consider
 
 $$
-y = Ac
-= (a_1, \ldots, a_p)
-\begin{pmatrix}c_1 \\ \vdots \\ c_p\end{pmatrix}
-= c_1 a_1 + \cdots + c_p a_p.
+A =
+\begin{bmatrix}
+1 & 1 \\
+1 & 1 \\
+1 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_1 & a_2
+\end{bmatrix},
+\qquad
+a_1 =
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix},
+\qquad
+a_2 =
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}.
 $$
 
-This verifies that multiplying $A$ by a coefficient vector $c$ produces a linear combination of the columns of $A$.
+Since
 
+$$
+a_1 = 1 \cdot a_1 + 0 \cdot a_2,
+$$
+
+we have $a_1 \in \mathcal{C}(A)$.
+
+Similarly,
+
+$$
+a_2 = 0 \cdot a_1 + 1 \cdot a_2,
+$$
+
+so $a_2 \in \mathcal{C}(A)$.
+
+Question:
+
+$$
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}
+\in \mathcal{C}(A)?
+$$
+
+Yes, because
+
+$$
+a_1 - a_2
+=
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix}
+-
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}.
+$$
+
+Therefore,
+
+$$
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}
+\in \mathcal{C}(A).
+$$
+
+Question:
+$$
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
+\in \mathcal{C}(A)?
+$$
+
+If it were, then we could find scalars $c_1, c_2$ such that
+
+$$
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
+=
+c_1
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix}
++
+c_2
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+c_1 + c_2\\
+c_1 + c_2\\
+c_1
+\end{bmatrix}.
+$$
+
+Matching coordinates gives
+
+$$
+1 = c_1 + c_2,\qquad
+0 = c_1 + c_2,\qquad
+0 = c_1,
+$$
+
+which has no solution. Hence
+
+$$
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
+\notin \mathcal{C}(A).
+$$
+
+In this example, $\mathcal{C}(A)$ is a subspace of $\mathbb{R}^3$.
+
+## A proposition about column spaces
+
+### Proposition
+
+For conformable matrices $A$, $B$, and $C$,
+
+$$
+A = BC
+\quad \Longleftrightarrow \quad
+\mathcal{C}(A) \subseteq \mathcal{C}(B).
+$$
+
+### Proof of the forward direction
+
+Assume $A = BC$.
+
+Take any $x \in \mathcal{C}(A)$. By definition of column space, there exists a vector $d$ such that
+
+$$
+x = Ad.
+$$
+
+Since $A = BC$,
+
+$$
+x = Ad = BCd.
+$$
+
+But $Cd$ is just another vector, so $x$ has the form $B(\text{something})$. Therefore $x \in \mathcal{C}(B)$.
+
+Hence every vector in $\mathcal{C}(A)$ is also in $\mathcal{C}(B)$, so
+
+$$
+\mathcal{C}(A) \subseteq \mathcal{C}(B).
+$$
+
+### Proof of the reverse direction
+
+Now assume
+
+$$
+\mathcal{C}(A) \subseteq \mathcal{C}(B).
+$$
+
+Write
+
+$$
+A = (a_1, \ldots, a_p).
+$$
+
+Each column $a_i$ belongs to $\mathcal{C}(A)$, so by assumption each $a_i \in \mathcal{C}(B)$. Therefore, for each $i$ there exists a vector $c_i$ such that
+
+$$
+a_i = Bc_i.
+$$
+
+Collect these vectors into a matrix
+
+$$
+C = (c_1, \ldots, c_p).
+$$
+
+Then
+
+$$
+A = (a_1, \ldots, a_p)
+   = (Bc_1, \ldots, Bc_p)
+   = B(c_1, \ldots, c_p)
+   = BC.
+$$
+
+So there exists a matrix $C$ such that $A = BC$.
+
+### Example
+
+Consider again
+
+$$
+A =
+\begin{bmatrix}
+1 & 1 \\
+1 & 1 \\
+1 & 0
+\end{bmatrix}
+\in \mathbb{R}^{3 \times 2},
+\qquad
+B = I_3
+=
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\operatorname{rank}(A) = 2,
+\qquad
+\operatorname{rank}(B) = 3.
+$$
+
+Since $B = I_3$, clearly $\mathcal{C}(A) \subseteq \mathcal{C}(B) = \mathbb{R}^3$, and the proposition implies that there exists a matrix $C$ such that $A = BC$.
+
+## Theorem
+
+$$
+\mathcal{C}(A) = \mathcal{C}(AA^T),
+\qquad
+\mathcal{C}(A^T) = \mathcal{C}(A^TA).
+$$
+
+
+Practice: show that $\mathcal{C}(AA^T) \subseteq \mathcal{C}(A)$.
+
+
+
+# Eigenvalues and trace
+
+## Definitions: eigenvector, eigenvalue, and trace
+
+Let $A \in \mathbb{R}^{n \times n}$.
+
+1. A nonzero vector $x \in \mathbb{R}^n$ is called an **eigenvector** of $A$ if
+
+$$
+Ax = \lambda x
+$$
+
+for some scalar $\lambda$. The scalar $\lambda$ is the **eigenvalue of $A$ corresponding to the eigenvector $x$**.
+
+
+2. The **trace** of $A$ is the sum of the diagonal entries of $A$:
+$$
+\operatorname{tr}(A) = \sum_{i=1}^n A_{ii}.
+$$
+
+Facts
+
+If the eigenvalues of $A$ are $\lambda_1, \ldots, \lambda_n$, then
+
+$$
+\det(A) = |A| = \prod_{i=1}^n \lambda_i,
+$$
+
+and
+
+$$
+\operatorname{tr}(A) = \sum_{i=1}^n \lambda_i.
+$$
+
+## Properties of trace
+
+1. 
+$$
+\operatorname{tr}(A + B) = \operatorname{tr}(A) + \operatorname{tr}(B).
+$$
+
+2.
+$$
+\operatorname{tr}(AB) = \operatorname{tr}(BA).
+$$
+
+A useful example from the notes is
+
+$$
+\operatorname{tr}(Axx^T)
+= \operatorname{tr}(x^TAx)
+= x^TAx.
+$$
+
+3.
+$$
+\operatorname{tr}(A^s) = \sum_{i=1}^n \lambda_i^s.
+$$
+
+Also,
+
+$$
+\det(A) = \prod_{i=1}^n \lambda_i.
+$$
+
+4. If $P$ is nonsingular (invertible), then
+
+$$
+\operatorname{tr}(P^{-1}AP) = \operatorname{tr}(A).
+$$
+
+5. If $C$ is orthogonal, then
+
+$$
+\operatorname{tr}(C^TAC) = \operatorname{tr}(A).
+$$
+
+
+## Summary
+
+These lecture notes cover:
+
+- the definition of linear independence and orthogonality
+- the definition of rank and its properties
+- the definition of vector spaces
+- the definition of column space
+- a worked example for testing whether specific vectors belong to $\mathcal{C}(A)$
+- the equivalence
+  $$
+  A = BC \iff \mathcal{C}(A) \subseteq \mathcal{C}(B)
+  $$
+- rank and the identities
+  $$
+  \mathcal{C}(A) = \mathcal{C}(AA^T), \qquad
+  \mathcal{C}(A^T) = \mathcal{C}(A^TA)
+  $$
+- eigenvalues and basic trace identities
+- symmetric matrices and spectral decomposition
+- a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data

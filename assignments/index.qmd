@@ -2,4 +2,4 @@
 title: "Assignments"
 ---
 
-- Assignment 01 (coming soon)
+- [STAT200C Assignment 0: Due on Monday, April 6, 2026](stat200c_assignment0.qmd)

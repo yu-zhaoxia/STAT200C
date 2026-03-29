@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zhaoxia Yu">
 
-<title>Exams – STAT200C — Theory of Linear Models</title>
+<title>STAT200C Assignment 0 – STAT200C — Theory of Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -100,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../exams/index.html" aria-current="page"> 
+    <a class="nav-link" href="../exams/index.html"> 
 <span class="menu-text">Exams</span></a>
   </li>  
 </ul>
@@ -114,21 +144,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-1-matrix-operations" id="toc-part-1-matrix-operations" class="nav-link active" data-scroll-target="#part-1-matrix-operations">Part 1: Matrix Operations</a></li>
+  <li><a href="#part-2-rank-inverses" id="toc-part-2-rank-inverses" class="nav-link" data-scroll-target="#part-2-rank-inverses">Part 2: Rank &amp; Inverses</a></li>
+  <li><a href="#part-3-projections-design-matrices" id="toc-part-3-projections-design-matrices" class="nav-link" data-scroll-target="#part-3-projections-design-matrices">Part 3: Projections &amp; Design Matrices</a></li>
+  <li><a href="#part-4-eigenvalues-spectral-theory" id="toc-part-4-eigenvalues-spectral-theory" class="nav-link" data-scroll-target="#part-4-eigenvalues-spectral-theory">Part 4: Eigenvalues &amp; Spectral Theory</a></li>
+  <li><a href="#optional-problem" id="toc-optional-problem" class="nav-link" data-scroll-target="#optional-problem">Optional Problem</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exams</h1>
+<h1 class="title">STAT200C Assignment 0</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zhaoxia Yu </p>
+          </div>
+  </div>
     
   
     
@@ -139,12 +185,123 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li>Midterm (coming soon)</li>
-<li>Final (coming soon)</li>
-</ul>
+<p>To obtain numerical answers, you may use R for the following problems: 4b, 7, 8, and 9.</p>
+<section id="part-1-matrix-operations" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-matrix-operations">Part 1: Matrix Operations</h2>
+<ol type="1">
+<li><strong>Matrix Multiplication &amp; Transpose</strong></li>
+</ol>
+<p>Let <span class="math display">\[
+A = \begin{pmatrix} 1 &amp; 3 \\ -2 &amp; 0 \end{pmatrix}, \quad
+B = \begin{pmatrix} 4 &amp; -1 \\ 2 &amp; 5 \end{pmatrix}, \quad
+C = \begin{pmatrix} 1 &amp; 0 &amp; 2 \\ -3 &amp; 4 &amp; 1 \end{pmatrix}.
+\]</span></p>
+<ol type="a">
+<li><p>Compute <span class="math inline">\(AB\)</span> and <span class="math inline">\(BA\)</span>. Are they equal?</p></li>
+<li><p>Compute <span class="math inline">\(A^\top B\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(BC\)</span>. What is the dimension?</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{a}_1^\top, \mathbf{a}_2^\top\)</span> be rows of <span class="math inline">\(A\)</span>, and <span class="math inline">\(\mathbf{b}_1, \mathbf{b}_2\)</span> columns of <span class="math inline">\(B\)</span>. Verify: <span class="math display">\[
+AB =
+\begin{pmatrix}
+\mathbf{a}_1^\top \mathbf{b}_1 &amp; \mathbf{a}_1^\top \mathbf{b}_2 \\
+\mathbf{a}_2^\top \mathbf{b}_1 &amp; \mathbf{a}_2^\top \mathbf{b}_2
+\end{pmatrix}.
+\]</span></p></li>
+</ol>
+<hr>
+<ol start="2" type="1">
+<li><strong>Trace &amp; Frobenius Norm</strong></li>
+</ol>
+<p>Compute <span class="math inline">\(\mathrm{tr}(AB)\)</span> and <span class="math inline">\(\|A\|_F\)</span>, where the Frobenius norm is of a matrix <span class="math inline">\(D\)</span> is defined as <span class="math display">\[
+\|D\|_F = \sqrt{\sum_{i,j} D_{ij}^2}.
+\]</span></p>
+<hr>
+</section>
+<section id="part-2-rank-inverses" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-rank-inverses">Part 2: Rank &amp; Inverses</h2>
+<ol start="3" type="1">
+<li><strong>Matrix Rank</strong></li>
+</ol>
+<p><span class="math display">\[
+M = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}, \quad
+N = \begin{pmatrix} 1 &amp; 0 &amp; -1 \\ 0 &amp; 2 &amp; 4 \\ 3 &amp; 1 &amp; 1 \end{pmatrix}
+\]</span></p>
+<p>Find ranks and justify.</p>
+<hr>
+<ol start="4" type="1">
+<li><strong>Inverse &amp; Linear Independence</strong></li>
+</ol>
+<ol type="a">
+<li>Find inverse of <span class="math display">\[
+P = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}.
+\]</span> if it exists.</li>
+<li>Can you find the inverse of the following matrix? If not, find a generalized inverse using R. <span class="math display">\[
+Q = \begin{pmatrix}
+2/3 &amp; -1/3 &amp; -1/3 \\
+-1/3 &amp; 2/3 &amp; -1/3 \\
+-1/3 &amp; -1/3 &amp; 2/3
+\end{pmatrix}.
+\]</span></li>
+</ol>
+<hr>
+</section>
+<section id="part-3-projections-design-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-projections-design-matrices">Part 3: Projections &amp; Design Matrices</h2>
+<ol start="5" type="1">
+<li><strong>Projection Matrix</strong></li>
+</ol>
+<p>Consider <span class="math display">\[
+X = \begin{pmatrix} 1 &amp; 0 \\ 1 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}.
+\]</span></p>
+<p>The projection matrix onto the column space of <span class="math inline">\(X\)</span> is given by <span class="math display">\[
+H = X(X^\top X)^{-1}X^\top.
+\]</span></p>
+<ol type="a">
+<li><p>Find <span class="math inline">\(H\)</span> and verify that <span class="math inline">\(H^2 = H\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(\mathbf{H} \mathbf{y}\)</span> for <span class="math inline">\(\mathbf{y} = (3, 1, 4)^\top\)</span>. What does this represent in linear regression?</p></li>
+</ol>
+<ol start="6" type="1">
+<li><strong>Design Matrix Operations</strong></li>
+</ol>
+<p>Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(n \times p\)</span> design matrix with rows <span class="math inline">\(\mathbf{x}_1^\top, \dots, \mathbf{x}_n^\top\)</span> (each a <span class="math inline">\(p\)</span>-dimensional row vector) and columns <span class="math inline">\(\mathbf{X}_1, \dots, \mathbf{X}_p\)</span> (each an <span class="math inline">\(n\)</span>-dimensional column vector).</p>
+<ol type="a">
+<li><p>Show that <span class="math inline">\(X^\top X\)</span> can be written as: <span class="math display">\[
+    X^\top X = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\top.
+    \]</span> Interpret the entries of <span class="math inline">\(X^\top X\)</span>: What does the <span class="math inline">\((j,k)\)</span>-th element represent statistically?</p></li>
+<li><p>Show that <span class="math inline">\(XX^\top\)</span> has <span class="math inline">\((i,j)\)</span>-th entry equal to <span class="math inline">\(\mathbf{x}_i^\top \mathbf{x}_j\)</span>. How does <span class="math inline">\(XX^\top\)</span> relate to the Euclidean distances between observations <span class="math inline">\(\mathbf{x}_i\)</span> and <span class="math inline">\(\mathbf{x}_j\)</span>?</p></li>
+</ol>
+<p>(c). Assume <span class="math inline">\(X\)</span> has full column rank. Show that the hat matrix <span class="math inline">\(H = X(X^\top X)^{-1}X^\top\)</span> is symmetric (<span class="math inline">\(H = H^\top\)</span>) and idempotent (<span class="math inline">\(H^2 = H\)</span>). For a new observation <span class="math inline">\(\mathbf{x}_\text{new}\)</span>, how does <span class="math inline">\(H\)</span> compute the predicted value <span class="math inline">\(\hat{y}_\text{new}\)</span>?</p>
+<hr>
+</section>
+<section id="part-4-eigenvalues-spectral-theory" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-eigenvalues-spectral-theory">Part 4: Eigenvalues &amp; Spectral Theory</h2>
+<ol start="7" type="1">
+<li><strong>Eigen-Decomposition</strong></li>
+</ol>
+<p><span class="math display">\[
+R = \begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}
+\]</span></p>
+<ol type="a">
+<li><p>Verify that <span class="math inline">\(R\)</span> can be written as <span class="math inline">\(Q \Lambda Q^\top\)</span> (spectral decomposition).</p></li>
+<li><p>What is <span class="math inline">\(R^k\)</span> for integer <span class="math inline">\(k \geq 1\)</span>?</p></li>
+</ol>
+<hr>
+<ol start="8" type="1">
+<li><strong>Positive Definiteness</strong></li>
+</ol>
+<p><span class="math display">\[
+S = \begin{pmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{pmatrix}
+\]</span> Is <span class="math inline">\(S\)</span> positive definite? Justify your answer using eigenvalues.</p>
+</section>
+<section id="optional-problem" class="level2">
+<h2 class="anchored" data-anchor-id="optional-problem">Optional Problem</h2>
+<ol start="9" type="1">
+<li><strong>SVD</strong></li>
+</ol>
+<p>Explain how SVD generalizes eigenvalue decomposition for non-square matrices. Compute the SVD of <span class="math display">\[A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}.\]</span></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -237,7 +394,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/yu-zhaoxia\.github\.io\/STAT200C\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

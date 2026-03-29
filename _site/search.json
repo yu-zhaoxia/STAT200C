@@ -1,5 +1,75 @@
 [
   {
+    "objectID": "lectures/index.html",
+    "href": "lectures/index.html",
+    "title": "index",
+    "section": "",
+    "text": "Part 0 — Preliminary: Matrix Manipulations\nPart 1 — Review of Linear Algebra"
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html",
+    "href": "lectures/00-matrix-preliminary.html",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "",
+    "text": "These notes give a short preliminary review of basic matrix manipulations:\n\ndimensions of matrices, including row and column vectors;\ninner product: one row times one column;\nmatrix multiplication;\n\\(A^2\\) for a square matrix;\nwhy \\(AB\\) and \\(BA\\) are generally different."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#overview",
+    "href": "lectures/00-matrix-preliminary.html#overview",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "",
+    "text": "These notes give a short preliminary review of basic matrix manipulations:\n\ndimensions of matrices, including row and column vectors;\ninner product: one row times one column;\nmatrix multiplication;\n\\(A^2\\) for a square matrix;\nwhy \\(AB\\) and \\(BA\\) are generally different."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#dimensions-of-a-matrix",
+    "href": "lectures/00-matrix-preliminary.html#dimensions-of-a-matrix",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "2 Dimensions of a matrix",
+    "text": "2 Dimensions of a matrix\nA matrix with \\(m\\) rows and \\(n\\) columns has dimension \\(m \\times n\\).\nWe write\n\\[\nA \\in \\mathbb{R}^{m \\times n}.\n\\]\nThis means that \\(A\\) has \\(m\\) horizontal rows and \\(n\\) vertical columns.\nFor example,\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\in \\mathbb{R}^{2 \\times 3}.\n\\]\nIt has 2 rows and 3 columns.\n\n2.1 Column vector\nA column vector is a matrix with one column. Its dimension is \\(m \\times 1\\).\n\\[\nx =\n\\begin{bmatrix}\nx_1 \\\\\nx_2 \\\\\nx_3\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 1}.\n\\]\n\n\n2.2 Row vector\nA row vector is a matrix with one row. Its dimension is \\(1 \\times n\\).\n\\[\ny =\n\\begin{bmatrix}\ny_1 & y_2 & y_3\n\\end{bmatrix}\n\\in \\mathbb{R}^{1 \\times 3}.\n\\]\n\n\n2.3 Compatibility reminder\nWhen multiplying matrices, the inside dimensions must match.\nIf\n\\[\nA \\in \\mathbb{R}^{m \\times n}, \\qquad B \\in \\mathbb{R}^{n \\times p},\n\\]\nthen the product \\(AB\\) is defined and has dimension\n\\[\nAB \\in \\mathbb{R}^{m \\times p}.\n\\]\nA useful memory rule is:\n\\[\n(m \\times n)(n \\times p) = m \\times p.\n\\]"
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#inner-product-one-row-times-one-column",
+    "href": "lectures/00-matrix-preliminary.html#inner-product-one-row-times-one-column",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "3 Inner product: one row times one column",
+    "text": "3 Inner product: one row times one column\nThe simplest matrix product is a row vector times a column vector.\nLet\n\\[\nr =\n\\begin{bmatrix}\nr_1 & r_2 & \\cdots & r_n\n\\end{bmatrix}\n\\in \\mathbb{R}^{1 \\times n},\n\\]\nand\n\\[\nc =\n\\begin{bmatrix}\nc_1 \\\\\nc_2 \\\\\n\\vdots \\\\\nc_n\n\\end{bmatrix}\n\\in \\mathbb{R}^{n \\times 1}.\n\\]\nThen\n\\[\nrc = r_1c_1 + r_2c_2 + \\cdots + r_nc_n.\n\\]\nThis is the inner product (or dot product), and the result is a \\(1 \\times 1\\) matrix, that is, a scalar.\n\n3.1 Example\n\\[\n\\begin{bmatrix}\n1 & 2 & 3\n\\end{bmatrix}\n\\begin{bmatrix}\n4 \\\\\n5 \\\\\n6\n\\end{bmatrix}\n= 1\\cdot 4 + 2\\cdot 5 + 3\\cdot 6 = 32.\n\\]\n\n\n3.2 Unit vectors\nA unit vector is a vector of length 1. Check the following vectors:\n\\[\nu_1 =\n\\begin{bmatrix}\n1 \\\\\n0 \\\\\n0\n\\end{bmatrix},\n\\qquad\nu_2 = \\begin{bmatrix}\\frac{1}{\\sqrt{3}} \\\\ \\frac{1}{\\sqrt{3}} \\\\ \\frac{1}{\\sqrt{3}}\\end{bmatrix}.\n\\qquad\nu_3 = \\begin{bmatrix}\\frac{1}{\\sqrt{2}} \\\\ \\frac{1}{\\sqrt{2}} \\\\ 0\\end{bmatrix}.\n\\]\nThey all have length 1, so they are all unit vectors."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#matrix-multiplication",
+    "href": "lectures/00-matrix-preliminary.html#matrix-multiplication",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "4 Matrix multiplication",
+    "text": "4 Matrix multiplication\nSuppose\n\\[\nA \\in \\mathbb{R}^{m \\times n}, \\qquad B \\in \\mathbb{R}^{n \\times p}.\n\\]\nThen the product \\(AB\\) is an \\(m \\times p\\) matrix. Its \\((i,j)\\)-entry is obtained by taking:\n\nrow \\(i\\) of \\(A\\), and\ncolumn \\(j\\) of \\(B\\),\n\nand forming their inner product.\nIn symbols,\n\\[\n(AB)_{ij} = \\sum_{k=1}^n a_{ik}b_{kj}.\n\\]\n\n4.1 Example\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n3 & 4\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n5 & 6 \\\\\n7 & 8\n\\end{bmatrix}.\n\\]\nThen\n\\[\nAB =\n\\begin{bmatrix}\n1\\cdot 5 + 2\\cdot 7 & 1\\cdot 6 + 2\\cdot 8 \\\\\n3\\cdot 5 + 4\\cdot 7 & 3\\cdot 6 + 4\\cdot 8\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n19 & 22 \\\\\n43 & 50\n\\end{bmatrix}.\n\\]\n\n\n4.2 How to read matrix multiplication\nEach entry of \\(AB\\) comes from one row of \\(A\\) and one column of \\(B\\).\nFor example, the upper-left entry is\n\\[\n(AB)_{11}\n=\n\\begin{bmatrix}\n1 & 2\n\\end{bmatrix}\n\\begin{bmatrix}\n5 \\\\\n7\n\\end{bmatrix}\n= 19.\n\\]\n\n\n4.3 Visual example with colored row and column\nThe row from \\(A\\) is highlighted in blue, and the matching column from \\(B\\) is highlighted in red.\n\\[\nA =\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2} \\\\\n3 & 4\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n\\textcolor{red}{5} & 6 \\\\\n\\textcolor{red}{7} & 8\n\\end{bmatrix}.\n\\]\nUsing the blue row of \\(A\\) and the red column of \\(B\\),\n\\[\n(AB)_{11}\n=\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2}\n\\end{bmatrix}\n\\begin{bmatrix}\n\\textcolor{red}{5} \\\\\n\\textcolor{red}{7}\n\\end{bmatrix}\n=\n\\textcolor{blue}{1}\\textcolor{red}{5}\n+\n\\textcolor{blue}{2}\\textcolor{red}{7}\n= 19.\n\\]\nLikewise, for the upper-right entry, use the same first row of \\(A\\) and the second column of \\(B\\):\n\\[\n(AB)_{12}\n=\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2}\n\\end{bmatrix}\n\\begin{bmatrix}\n6 \\\\\n8\n\\end{bmatrix}\n= 22.\n\\]\nThis is the basic mechanism of matrix multiplication: row times column, entry by entry."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#a2-for-a-square-matrix",
+    "href": "lectures/00-matrix-preliminary.html#a2-for-a-square-matrix",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "5 \\(A^2\\) for a square matrix",
+    "text": "5 \\(A^2\\) for a square matrix\nThe expression \\(A^2\\) means\n\\[\nA^2 = AA.\n\\]\nThis is only defined when \\(A\\) is a square matrix, meaning\n\\[\nA \\in \\mathbb{R}^{n \\times n}.\n\\]\n\n5.1 Example\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}.\n\\]\nThen\n\\[\nA^2\n=\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1\\cdot 1 + 2\\cdot 0 & 1\\cdot 2 + 2\\cdot 3 \\\\\n0\\cdot 1 + 3\\cdot 0 & 0\\cdot 2 + 3\\cdot 3\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 8 \\\\\n0 & 9\n\\end{bmatrix}.\n\\]\nSo \\(A^2\\) is not obtained by squaring each entry separately. It is obtained by multiplying \\(A\\) by itself using the usual rules of matrix multiplication."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#ab-and-ba-are-different",
+    "href": "lectures/00-matrix-preliminary.html#ab-and-ba-are-different",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "6 \\(AB\\) and \\(BA\\) are different",
+    "text": "6 \\(AB\\) and \\(BA\\) are different\nIn general,\n\\[\nAB \\neq BA.\n\\]\nMatrix multiplication is usually not commutative.\n\n6.1 Example 1: both products are defined, but they are different\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}.\n\\]\nThen\n\\[\nAB\n=\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n8 & 2 \\\\\n3 & 1\n\\end{bmatrix},\n\\]\nwhile\n\\[\nBA\n=\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n2 & 4 \\\\\n3 & 7\n\\end{bmatrix}.\n\\]\nTherefore,\n\\[\nAB \\neq BA.\n\\]\n\n\n6.2 Example 2: both products are defined, but they have different dimensions\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\in \\mathbb{R}^{2 \\times 3},\n\\qquad\nB =\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 2}.\n\\]\nThen \\(AB\\) is defined because\n\\[\n(2 \\times 3)(3 \\times 2) = 2 \\times 2.\n\\]\nIndeed,\n\\[\nAB =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n4 & 5 \\\\\n10 & 11\n\\end{bmatrix}.\n\\]\nAlso, \\(BA\\) is defined because\n\\[\n(3 \\times 2)(2 \\times 3) = 3 \\times 3.\n\\]\nComputing it gives\n\\[\nBA =\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6 \\\\\n5 & 7 & 9\n\\end{bmatrix}.\n\\]\nSo \\(AB\\) and \\(BA\\) differ not only in value but even in size.\n\n\n6.3 Optional contrast: one order may be impossible\nIf\n\\[\nA \\in \\mathbb{R}^{2 \\times 3}, \\qquad B \\in \\mathbb{R}^{2 \\times 2},\n\\]\nthen \\(BA\\) is defined:\n\\[\n(2 \\times 2)(2 \\times 3) = 2 \\times 3,\n\\]\nbut \\(AB\\) is not defined because the inside dimensions do not match:\n\\[\n(2 \\times 3)(2 \\times 2).\n\\]\nSo order matters in two ways:\n\nthe products can have different values;\none order may be defined while the other is not."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#useful-references",
+    "href": "lectures/00-matrix-preliminary.html#useful-references",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "7 Useful references",
+    "text": "7 Useful references\nThese notes can be supplemented by the following materials from MIT 18.065:\n\nLearning from Data, Lecture 1.1: Multiplication of \\(Ax\\)\nLearning from Data, Lecture 1.2: Matrix-Matrix Multiplication \\(AB\\)"
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#summary",
+    "href": "lectures/00-matrix-preliminary.html#summary",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "8 Summary",
+    "text": "8 Summary\nThe main points are:\n\na matrix in \\(\\mathbb{R}^{m \\times n}\\) has \\(m\\) rows and \\(n\\) columns;\na row times a column gives an inner product;\nmatrix multiplication is built from row-by-column inner products;\n\\(A^2\\) means \\(AA\\), so \\(A\\) must be square;\nin general, \\(AB\\) and \\(BA\\) are different."
+  },
+  {
     "objectID": "exams/index.html",
     "href": "exams/index.html",
     "title": "Exams",
@@ -11,7 +81,7 @@
     "href": "assignments/index.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment 01 (coming soon)"
+    "text": "STAT200C Assignment 0: Due on Monday, April 6, 2026"
   },
   {
     "objectID": "assignments_index_Version2.html",
@@ -33,6 +103,13 @@
     "title": "HomePage",
     "section": "Course materials",
     "text": "Course materials\n\nLecture Notes\nAssignments\nExams"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html",
+    "href": "lectures/01-linear-algebra-review.html",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "",
+    "text": "The lecture reviews three linear algebra topics:"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#vectors",
@@ -67,28 +144,21 @@
     "href": "lectures/01-linear-algebra-review.html#fact-orthogonal-vectors-are-linearly-independent",
     "title": "A Brief Review of Linear Algebra",
     "section": "1.5 Fact: orthogonal vectors are linearly independent",
-    "text": "1.5 Fact: orthogonal vectors are linearly independent\nClaim. If \\(x_1\\) and \\(x_2\\) are orthogonal nonzero vectors, then they are linearly independent.\n\n1.5.1 Proof\nAssume, for contradiction, that \\(x_1\\) and \\(x_2\\) are linearly dependent. Then there exist scalars \\(\\lambda_1, \\lambda_2\\), not both zero, such that\n\\[\n\\lambda_1 x_1 + \\lambda_2 x_2 = 0.\n\\]\nLeft-multiply by \\(x_1^T\\):\n\\[\n\\lambda_1 x_1^T x_1 + \\lambda_2 x_1^T x_2 = 0.\n\\]\nBecause \\(x_1\\) and \\(x_2\\) are orthogonal, \\(x_1^T x_2 = 0\\), so\n\\[\n\\lambda_1 x_1^T x_1 = 0.\n\\]\nSince \\(x_1 \\neq 0\\), we have \\(x_1^T x_1 &gt; 0\\), hence \\(\\lambda_1 = 0\\).\nSimilarly, left-multiplying by \\(x_2^T\\) gives \\(\\lambda_2 = 0\\).\nThis contradicts the assumption that \\(\\lambda_1\\) and \\(\\lambda_2\\) are not both zero. Therefore \\(x_1\\) and \\(x_2\\) are linearly independent."
-  },
-  {
-    "objectID": "lectures/01-linear-algebra-review.html#converse-does-not-hold",
-    "href": "lectures/01-linear-algebra-review.html#converse-does-not-hold",
-    "title": "A Brief Review of Linear Algebra",
-    "section": "1.6 Converse does not hold",
-    "text": "1.6 Converse does not hold\nLinear independence does not imply orthogonality.\nExample:\n\\[\nx_1 = \\begin{pmatrix}1 \\\\ 1\\end{pmatrix},\n\\qquad\nx_2 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}.\n\\]\nThese vectors are linearly independent, but they are not orthogonal because\n\\[\nx_1^T x_2 = 1.\n\\]"
+    "text": "1.5 Fact: orthogonal vectors are linearly independent\nClaim. If \\(x_1\\) and \\(x_2\\) are orthogonal nonzero vectors, then they are linearly independent.\n\n1.5.1 Proof\nAssume, for contradiction, that \\(x_1\\) and \\(x_2\\) are linearly dependent. Then there exist scalars \\(\\lambda_1, \\lambda_2\\), not both zero, such that\n\\[\n\\lambda_1 x_1 + \\lambda_2 x_2 = 0.\n\\]\nLeft-multiply by \\(x_1^T\\):\n\\[\n\\lambda_1 x_1^T x_1 + \\lambda_2 x_1^T x_2 = 0.\n\\]\nBecause \\(x_1\\) and \\(x_2\\) are orthogonal, \\(x_1^T x_2 = 0\\), so\n\\[\n\\lambda_1 x_1^T x_1 = 0.\n\\]\nSince \\(x_1 \\neq 0\\), we have \\(x_1^T x_1 &gt; 0\\), hence \\(\\lambda_1 = 0\\).\nSimilarly, left-multiplying by \\(x_2^T\\) gives \\(\\lambda_2 = 0\\).\nThis contradicts the assumption that \\(\\lambda_1\\) and \\(\\lambda_2\\) are not both zero. Therefore \\(x_1\\) and \\(x_2\\) are linearly independent.\n\n\n1.5.2 Converse does not hold\nLinear independence does not imply orthogonality.\nExample:\n\\[\nx_1 = \\begin{pmatrix}1 \\\\ 1\\end{pmatrix},\n\\qquad\nx_2 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}.\n\\]\nThese vectors are linearly independent, but they are not orthogonal because\n\\[\nx_1^T x_2 = 1.\n\\]"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#norm",
     "href": "lectures/01-linear-algebra-review.html#norm",
     "title": "A Brief Review of Linear Algebra",
-    "section": "1.7 Norm",
-    "text": "1.7 Norm\nLet\n\\[\na = \\begin{pmatrix}a_1 \\\\ \\vdots \\\\ a_p\\end{pmatrix} \\in \\mathbb{R}^p.\n\\]\nIts Euclidean norm is\n\\[\n\\|a\\| = \\sqrt{a^T a} = \\sqrt{\\langle a, a \\rangle} = \\sqrt{\\sum_{i=1}^p a_i^2}.\n\\]"
+    "section": "1.6 Norm",
+    "text": "1.6 Norm\nLet\n\\[\na = \\begin{pmatrix}a_1 \\\\ \\vdots \\\\ a_p\\end{pmatrix} \\in \\mathbb{R}^p.\n\\]\nIts Euclidean norm is\n\\[\n\\|a\\| = \\sqrt{a^T a} = \\sqrt{\\langle a, a \\rangle} = \\sqrt{\\sum_{i=1}^p a_i^2}.\n\\]"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#orthogonal-matrices",
     "href": "lectures/01-linear-algebra-review.html#orthogonal-matrices",
     "title": "A Brief Review of Linear Algebra",
-    "section": "1.8 Orthogonal matrices",
-    "text": "1.8 Orthogonal matrices\nA square matrix\n\\[\nQ = (q_1, \\ldots, q_n)\n\\]\nis an orthogonal matrix if\n\\[\nQ^TQ = QQ^T = I_n,\n\\]\nwhere each column \\(q_i \\in \\mathbb{R}^n\\) and \\(\\|q_i\\| = 1\\).\nExamples:\n\\[\nQ_1 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix},\n\\qquad\nQ_2 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix}.\n\\]\n\n1.8.1 Practice prompt\nGenerate a matrix \\(X \\in \\mathbb{R}^{10 \\times 2}\\). Let\n\\[\nY_1 = XQ_1.\n\\]\nDraw \\(X\\) and \\(Y_1\\) in \\(\\mathbb{R}^2\\) using different colors, and interpret the transformation as a rotation."
+    "section": "1.7 Orthogonal matrices",
+    "text": "1.7 Orthogonal matrices\nA square matrix\n\\[\nQ = (q_1, \\ldots, q_n)\n\\]\nis an orthogonal matrix if\n\\[\nQ^TQ = QQ^T = I_n,\n\\]\nwhere each column \\(q_i \\in \\mathbb{R}^n\\) and \\(\\|q_i\\| = 1\\).\nExamples:\n\\[\nQ_1 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix},\n\\qquad\nQ_2 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix}.\n\\]"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#definition",
@@ -123,34 +193,90 @@
     "href": "lectures/01-linear-algebra-review.html#definition-1",
     "title": "A Brief Review of Linear Algebra",
     "section": "3.1 Definition",
-    "text": "3.1 Definition\nA vector space is a set of vectors that is closed under:\n\nvector addition, and\nscalar multiplication."
+    "text": "3.1 Definition\nA vector space is a set of vectors that is closed under:\n\nvector addition, and\nscalar multiplication.\n\nExamples:\n\nthe set of all vectors in \\(\\mathbb{R}^p\\) is a vector space.\nthe set of all vectors in \\(\\mathbb{R}^p\\) with zero in the last entry is a vector space.\nthe set of all vectors in \\(\\mathbb{R}^p\\) with the sum of the entries equal to zero is a vector space.\nthe set of all vectors in \\(\\mathbb{R}^p\\) with zero in the last entry or zero in the second-to-last entry is not a vector space, because it is not closed under vector addition.\n\nNext, we will see that the column space of a matrix is a vector space."
   },
   {
-    "objectID": "lectures/01-linear-algebra-review.html#column-space",
-    "href": "lectures/01-linear-algebra-review.html#column-space",
+    "objectID": "lectures/01-linear-algebra-review.html#example.",
+    "href": "lectures/01-linear-algebra-review.html#example.",
     "title": "A Brief Review of Linear Algebra",
-    "section": "3.2 Column space",
-    "text": "3.2 Column space\nLet \\(A\\) be an \\(n \\times p\\) matrix with columns\n\\[\nA = (a_1, \\ldots, a_p), \\qquad a_i \\in \\mathbb{R}^n.\n\\]\nThe column space of \\(A\\), denoted \\(C(A)\\), is the vector space generated by the columns of \\(A\\):\n\\[\nC(A) = \\left\\{ y : y = \\sum_{i=1}^p c_i a_i \\text{ for scalars } c_i,\\ i=1,\\ldots,p \\right\\}.\n\\]\nEquivalently,\n\\[\ny \\in C(A) \\iff \\exists c \\in \\mathbb{R}^p \\text{ such that } y = Ac.\n\\]"
+    "section": "4.1 Example.",
+    "text": "4.1 Example.\nConsider\n\\[\nA =\n\\begin{bmatrix}\n1 & 1 \\\\\n1 & 1 \\\\\n1 & 0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\na_1 & a_2\n\\end{bmatrix},\n\\qquad\na_1 =\n\\begin{bmatrix}\n1\\\\\n1\\\\\n1\n\\end{bmatrix},\n\\qquad\na_2 =\n\\begin{bmatrix}\n1\\\\\n1\\\\\n0\n\\end{bmatrix}.\n\\]\nSince\n\\[\na_1 = 1 \\cdot a_1 + 0 \\cdot a_2,\n\\]\nwe have \\(a_1 \\in \\mathcal{C}(A)\\).\nSimilarly,\n\\[\na_2 = 0 \\cdot a_1 + 1 \\cdot a_2,\n\\]\nso \\(a_2 \\in \\mathcal{C}(A)\\).\nQuestion:\n\\[\n\\begin{bmatrix}\n0\\\\\n0\\\\\n1\n\\end{bmatrix}\n\\in \\mathcal{C}(A)?\n\\]\nYes, because\n\\[\na_1 - a_2\n=\n\\begin{bmatrix}\n1\\\\\n1\\\\\n1\n\\end{bmatrix}\n-\n\\begin{bmatrix}\n1\\\\\n1\\\\\n0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0\\\\\n0\\\\\n1\n\\end{bmatrix}.\n\\]\nTherefore,\n\\[\n\\begin{bmatrix}\n0\\\\\n0\\\\\n1\n\\end{bmatrix}\n\\in \\mathcal{C}(A).\n\\]\nQuestion: \\[\n\\begin{bmatrix}\n1\\\\\n0\\\\\n0\n\\end{bmatrix}\n\\in \\mathcal{C}(A)?\n\\]\nIf it were, then we could find scalars \\(c_1, c_2\\) such that\n\\[\n\\begin{bmatrix}\n1\\\\\n0\\\\\n0\n\\end{bmatrix}\n=\nc_1\n\\begin{bmatrix}\n1\\\\\n1\\\\\n1\n\\end{bmatrix}\n+\nc_2\n\\begin{bmatrix}\n1\\\\\n1\\\\\n0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nc_1 + c_2\\\\\nc_1 + c_2\\\\\nc_1\n\\end{bmatrix}.\n\\]\nMatching coordinates gives\n\\[\n1 = c_1 + c_2,\\qquad\n0 = c_1 + c_2,\\qquad\n0 = c_1,\n\\]\nwhich has no solution. Hence\n\\[\n\\begin{bmatrix}\n1\\\\\n0\\\\\n0\n\\end{bmatrix}\n\\notin \\mathcal{C}(A).\n\\]\nIn this example, \\(\\mathcal{C}(A)\\) is a subspace of \\(\\mathbb{R}^3\\)."
   },
   {
-    "objectID": "lectures/01-linear-algebra-review.html#matrix-vector-form",
-    "href": "lectures/01-linear-algebra-review.html#matrix-vector-form",
+    "objectID": "lectures/01-linear-algebra-review.html#a-proposition-about-column-spaces",
+    "href": "lectures/01-linear-algebra-review.html#a-proposition-about-column-spaces",
     "title": "A Brief Review of Linear Algebra",
-    "section": "3.3 Matrix-vector form",
-    "text": "3.3 Matrix-vector form\nIf\n\\[\nc = \\begin{pmatrix}c_1 \\\\ \\vdots \\\\ c_p\\end{pmatrix},\n\\]\nthen\n\\[\ny = Ac\n= (a_1, \\ldots, a_p)\n\\begin{pmatrix}c_1 \\\\ \\vdots \\\\ c_p\\end{pmatrix}\n= c_1 a_1 + \\cdots + c_p a_p.\n\\]\nThis verifies that multiplying \\(A\\) by a coefficient vector \\(c\\) produces a linear combination of the columns of \\(A\\)."
+    "section": "4.2 A proposition about column spaces",
+    "text": "4.2 A proposition about column spaces\n\n4.2.1 Proposition\nFor conformable matrices \\(A\\), \\(B\\), and \\(C\\),\n\\[\nA = BC\n\\quad \\Longleftrightarrow \\quad\n\\mathcal{C}(A) \\subseteq \\mathcal{C}(B).\n\\]\n\n\n4.2.2 Proof of the forward direction\nAssume \\(A = BC\\).\nTake any \\(x \\in \\mathcal{C}(A)\\). By definition of column space, there exists a vector \\(d\\) such that\n\\[\nx = Ad.\n\\]\nSince \\(A = BC\\),\n\\[\nx = Ad = BCd.\n\\]\nBut \\(Cd\\) is just another vector, so \\(x\\) has the form \\(B(\\text{something})\\). Therefore \\(x \\in \\mathcal{C}(B)\\).\nHence every vector in \\(\\mathcal{C}(A)\\) is also in \\(\\mathcal{C}(B)\\), so\n\\[\n\\mathcal{C}(A) \\subseteq \\mathcal{C}(B).\n\\]\n\n\n4.2.3 Proof of the reverse direction\nNow assume\n\\[\n\\mathcal{C}(A) \\subseteq \\mathcal{C}(B).\n\\]\nWrite\n\\[\nA = (a_1, \\ldots, a_p).\n\\]\nEach column \\(a_i\\) belongs to \\(\\mathcal{C}(A)\\), so by assumption each \\(a_i \\in \\mathcal{C}(B)\\). Therefore, for each \\(i\\) there exists a vector \\(c_i\\) such that\n\\[\na_i = Bc_i.\n\\]\nCollect these vectors into a matrix\n\\[\nC = (c_1, \\ldots, c_p).\n\\]\nThen\n\\[\nA = (a_1, \\ldots, a_p)\n   = (Bc_1, \\ldots, Bc_p)\n   = B(c_1, \\ldots, c_p)\n   = BC.\n\\]\nSo there exists a matrix \\(C\\) such that \\(A = BC\\).\n\n\n4.2.4 Example\nConsider again\n\\[\nA =\n\\begin{bmatrix}\n1 & 1 \\\\\n1 & 1 \\\\\n1 & 0\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 2},\n\\qquad\nB = I_3\n=\n\\begin{bmatrix}\n1 & 0 & 0\\\\\n0 & 1 & 0\\\\\n0 & 0 & 1\n\\end{bmatrix}.\n\\]\nThen\n\\[\n\\operatorname{rank}(A) = 2,\n\\qquad\n\\operatorname{rank}(B) = 3.\n\\]\nSince \\(B = I_3\\), clearly \\(\\mathcal{C}(A) \\subseteq \\mathcal{C}(B) = \\mathbb{R}^3\\), and the proposition implies that there exists a matrix \\(C\\) such that \\(A = BC\\)."
   },
   {
-    "objectID": "lectures/01-linear-algebra-review.html",
-    "href": "lectures/01-linear-algebra-review.html",
+    "objectID": "lectures/01-linear-algebra-review.html#theorem",
+    "href": "lectures/01-linear-algebra-review.html#theorem",
     "title": "A Brief Review of Linear Algebra",
+    "section": "4.3 Theorem",
+    "text": "4.3 Theorem\n\\[\n\\mathcal{C}(A) = \\mathcal{C}(AA^T),\n\\qquad\n\\mathcal{C}(A^T) = \\mathcal{C}(A^TA).\n\\]\nPractice: show that \\(\\mathcal{C}(AA^T) \\subseteq \\mathcal{C}(A)\\)."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#definitions-eigenvector-eigenvalue-and-trace",
+    "href": "lectures/01-linear-algebra-review.html#definitions-eigenvector-eigenvalue-and-trace",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "5.1 Definitions: eigenvector, eigenvalue, and trace",
+    "text": "5.1 Definitions: eigenvector, eigenvalue, and trace\nLet \\(A \\in \\mathbb{R}^{n \\times n}\\).\n\nA nonzero vector \\(x \\in \\mathbb{R}^n\\) is called an eigenvector of \\(A\\) if\n\n\\[\nAx = \\lambda x\n\\]\nfor some scalar \\(\\lambda\\). The scalar \\(\\lambda\\) is the eigenvalue of \\(A\\) corresponding to the eigenvector \\(x\\).\n\nThe trace of \\(A\\) is the sum of the diagonal entries of \\(A\\): \\[\n\\operatorname{tr}(A) = \\sum_{i=1}^n A_{ii}.\n\\]\n\nFacts\nIf the eigenvalues of \\(A\\) are \\(\\lambda_1, \\ldots, \\lambda_n\\), then\n\\[\n\\det(A) = |A| = \\prod_{i=1}^n \\lambda_i,\n\\]\nand\n\\[\n\\operatorname{tr}(A) = \\sum_{i=1}^n \\lambda_i.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#properties-of-trace",
+    "href": "lectures/01-linear-algebra-review.html#properties-of-trace",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "5.2 Properties of trace",
+    "text": "5.2 Properties of trace\n\n\\[\n\\operatorname{tr}(A + B) = \\operatorname{tr}(A) + \\operatorname{tr}(B).\n\\]\n\\[\n\\operatorname{tr}(AB) = \\operatorname{tr}(BA).\n\\]\n\nA useful example from the notes is\n\\[\n\\operatorname{tr}(Axx^T)\n= \\operatorname{tr}(x^TAx)\n= x^TAx.\n\\]\n\n\\[\n\\operatorname{tr}(A^s) = \\sum_{i=1}^n \\lambda_i^s.\n\\]\n\nAlso,\n\\[\n\\det(A) = \\prod_{i=1}^n \\lambda_i.\n\\]\n\nIf \\(P\\) is nonsingular (invertible), then\n\n\\[\n\\operatorname{tr}(P^{-1}AP) = \\operatorname{tr}(A).\n\\]\n\nIf \\(C\\) is orthogonal, then\n\n\\[\n\\operatorname{tr}(C^TAC) = \\operatorname{tr}(A).\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#summary",
+    "href": "lectures/01-linear-algebra-review.html#summary",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "5.3 Summary",
+    "text": "5.3 Summary\nThese lecture notes cover:\n\nthe definition of linear independence and orthogonality\nthe definition of rank and its properties\nthe definition of vector spaces\nthe definition of column space\na worked example for testing whether specific vectors belong to \\(\\mathcal{C}(A)\\)\nthe equivalence \\[\nA = BC \\iff \\mathcal{C}(A) \\subseteq \\mathcal{C}(B)\n\\]\nrank and the identities \\[\n\\mathcal{C}(A) = \\mathcal{C}(AA^T), \\qquad\n\\mathcal{C}(A^T) = \\mathcal{C}(A^TA)\n\\]\neigenvalues and basic trace identities\nsymmetric matrices and spectral decomposition\na full spectral-decomposition example using rotation, rescaling, and recovery of simulated data"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html",
+    "href": "assignments/stat200c_assignment0.html",
+    "title": "STAT200C Assignment 0",
     "section": "",
-    "text": "The lecture reviews three linear algebra topics:"
+    "text": "To obtain numerical answers, you may use R for the following problems: 4b, 7, 8, and 9."
   },
   {
-    "objectID": "lectures/index.html",
-    "href": "lectures/index.html",
-    "title": "index",
-    "section": "",
-    "text": "Part 1 — Review of Linear Algebra"
+    "objectID": "assignments/stat200c_assignment0.html#part-1-matrix-operations",
+    "href": "assignments/stat200c_assignment0.html#part-1-matrix-operations",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 1: Matrix Operations",
+    "text": "Part 1: Matrix Operations\n\nMatrix Multiplication & Transpose\n\nLet \\[\nA = \\begin{pmatrix} 1 & 3 \\\\ -2 & 0 \\end{pmatrix}, \\quad\nB = \\begin{pmatrix} 4 & -1 \\\\ 2 & 5 \\end{pmatrix}, \\quad\nC = \\begin{pmatrix} 1 & 0 & 2 \\\\ -3 & 4 & 1 \\end{pmatrix}.\n\\]\n\nCompute \\(AB\\) and \\(BA\\). Are they equal?\nCompute \\(A^\\top B\\).\nCompute \\(BC\\). What is the dimension?\nLet \\(\\mathbf{a}_1^\\top, \\mathbf{a}_2^\\top\\) be rows of \\(A\\), and \\(\\mathbf{b}_1, \\mathbf{b}_2\\) columns of \\(B\\). Verify: \\[\nAB =\n\\begin{pmatrix}\n\\mathbf{a}_1^\\top \\mathbf{b}_1 & \\mathbf{a}_1^\\top \\mathbf{b}_2 \\\\\n\\mathbf{a}_2^\\top \\mathbf{b}_1 & \\mathbf{a}_2^\\top \\mathbf{b}_2\n\\end{pmatrix}.\n\\]\n\n\n\nTrace & Frobenius Norm\n\nCompute \\(\\mathrm{tr}(AB)\\) and \\(\\|A\\|_F\\), where the Frobenius norm is of a matrix \\(D\\) is defined as \\[\n\\|D\\|_F = \\sqrt{\\sum_{i,j} D_{ij}^2}.\n\\]"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-2-rank-inverses",
+    "href": "assignments/stat200c_assignment0.html#part-2-rank-inverses",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 2: Rank & Inverses",
+    "text": "Part 2: Rank & Inverses\n\nMatrix Rank\n\n\\[\nM = \\begin{pmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 0 & 1 & 0 \\end{pmatrix}, \\quad\nN = \\begin{pmatrix} 1 & 0 & -1 \\\\ 0 & 2 & 4 \\\\ 3 & 1 & 1 \\end{pmatrix}\n\\]\nFind ranks and justify.\n\n\nInverse & Linear Independence\n\n\nFind inverse of \\[\nP = \\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}.\n\\] if it exists.\nCan you find the inverse of the following matrix? If not, find a generalized inverse using R. \\[\nQ = \\begin{pmatrix}\n2/3 & -1/3 & -1/3 \\\\\n-1/3 & 2/3 & -1/3 \\\\\n-1/3 & -1/3 & 2/3\n\\end{pmatrix}.\n\\]"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-3-projections-design-matrices",
+    "href": "assignments/stat200c_assignment0.html#part-3-projections-design-matrices",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 3: Projections & Design Matrices",
+    "text": "Part 3: Projections & Design Matrices\n\nProjection Matrix\n\nConsider \\[\nX = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\\\ 1 & 2 \\end{pmatrix}.\n\\]\nThe projection matrix onto the column space of \\(X\\) is given by \\[\nH = X(X^\\top X)^{-1}X^\\top.\n\\]\n\nFind \\(H\\) and verify that \\(H^2 = H\\).\nCompute \\(\\mathbf{H} \\mathbf{y}\\) for \\(\\mathbf{y} = (3, 1, 4)^\\top\\). What does this represent in linear regression?\n\n\nDesign Matrix Operations\n\nLet \\(X\\) be an \\(n \\times p\\) design matrix with rows \\(\\mathbf{x}_1^\\top, \\dots, \\mathbf{x}_n^\\top\\) (each a \\(p\\)-dimensional row vector) and columns \\(\\mathbf{X}_1, \\dots, \\mathbf{X}_p\\) (each an \\(n\\)-dimensional column vector).\n\nShow that \\(X^\\top X\\) can be written as: \\[\n    X^\\top X = \\sum_{i=1}^n \\mathbf{x}_i \\mathbf{x}_i^\\top.\n    \\] Interpret the entries of \\(X^\\top X\\): What does the \\((j,k)\\)-th element represent statistically?\nShow that \\(XX^\\top\\) has \\((i,j)\\)-th entry equal to \\(\\mathbf{x}_i^\\top \\mathbf{x}_j\\). How does \\(XX^\\top\\) relate to the Euclidean distances between observations \\(\\mathbf{x}_i\\) and \\(\\mathbf{x}_j\\)?\n\n(c). Assume \\(X\\) has full column rank. Show that the hat matrix \\(H = X(X^\\top X)^{-1}X^\\top\\) is symmetric (\\(H = H^\\top\\)) and idempotent (\\(H^2 = H\\)). For a new observation \\(\\mathbf{x}_\\text{new}\\), how does \\(H\\) compute the predicted value \\(\\hat{y}_\\text{new}\\)?"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-4-eigenvalues-spectral-theory",
+    "href": "assignments/stat200c_assignment0.html#part-4-eigenvalues-spectral-theory",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 4: Eigenvalues & Spectral Theory",
+    "text": "Part 4: Eigenvalues & Spectral Theory\n\nEigen-Decomposition\n\n\\[\nR = \\begin{pmatrix} 3 & 1 \\\\ 1 & 3 \\end{pmatrix}\n\\]\n\nVerify that \\(R\\) can be written as \\(Q \\Lambda Q^\\top\\) (spectral decomposition).\nWhat is \\(R^k\\) for integer \\(k \\geq 1\\)?\n\n\n\nPositive Definiteness\n\n\\[\nS = \\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}\n\\] Is \\(S\\) positive definite? Justify your answer using eigenvalues."
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#optional-problem",
+    "href": "assignments/stat200c_assignment0.html#optional-problem",
+    "title": "STAT200C Assignment 0",
+    "section": "Optional Problem",
+    "text": "Optional Problem\n\nSVD\n\nExplain how SVD generalizes eigenvalue decomposition for non-square matrices. Compute the SVD of \\[A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\\\ 1 & 0 \\end{pmatrix}.\\]"
   }
 ]

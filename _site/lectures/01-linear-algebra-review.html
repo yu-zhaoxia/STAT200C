@@ -160,13 +160,10 @@ window.Quarto = {
   <li><a href="#fact-orthogonal-vectors-are-linearly-independent" id="toc-fact-orthogonal-vectors-are-linearly-independent" class="nav-link" data-scroll-target="#fact-orthogonal-vectors-are-linearly-independent"><span class="header-section-number">1.5</span> Fact: orthogonal vectors are linearly independent</a>
   <ul class="collapse">
   <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof"><span class="header-section-number">1.5.1</span> Proof</a></li>
+  <li><a href="#converse-does-not-hold" id="toc-converse-does-not-hold" class="nav-link" data-scroll-target="#converse-does-not-hold"><span class="header-section-number">1.5.2</span> Converse does not hold</a></li>
   </ul></li>
-  <li><a href="#converse-does-not-hold" id="toc-converse-does-not-hold" class="nav-link" data-scroll-target="#converse-does-not-hold"><span class="header-section-number">1.6</span> Converse does not hold</a></li>
-  <li><a href="#norm" id="toc-norm" class="nav-link" data-scroll-target="#norm"><span class="header-section-number">1.7</span> Norm</a></li>
-  <li><a href="#orthogonal-matrices" id="toc-orthogonal-matrices" class="nav-link" data-scroll-target="#orthogonal-matrices"><span class="header-section-number">1.8</span> Orthogonal matrices</a>
-  <ul class="collapse">
-  <li><a href="#practice-prompt" id="toc-practice-prompt" class="nav-link" data-scroll-target="#practice-prompt"><span class="header-section-number">1.8.1</span> Practice prompt</a></li>
-  </ul></li>
+  <li><a href="#norm" id="toc-norm" class="nav-link" data-scroll-target="#norm"><span class="header-section-number">1.6</span> Norm</a></li>
+  <li><a href="#orthogonal-matrices" id="toc-orthogonal-matrices" class="nav-link" data-scroll-target="#orthogonal-matrices"><span class="header-section-number">1.7</span> Orthogonal matrices</a></li>
   </ul></li>
   <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank"><span class="header-section-number">2</span> Rank</a>
   <ul class="collapse">
@@ -178,8 +175,24 @@ window.Quarto = {
   <li><a href="#vector-spaces" id="toc-vector-spaces" class="nav-link" data-scroll-target="#vector-spaces"><span class="header-section-number">3</span> Vector spaces</a>
   <ul class="collapse">
   <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1"><span class="header-section-number">3.1</span> Definition</a></li>
-  <li><a href="#column-space" id="toc-column-space" class="nav-link" data-scroll-target="#column-space"><span class="header-section-number">3.2</span> Column space</a></li>
-  <li><a href="#matrix-vector-form" id="toc-matrix-vector-form" class="nav-link" data-scroll-target="#matrix-vector-form"><span class="header-section-number">3.3</span> Matrix-vector form</a></li>
+  </ul></li>
+  <li><a href="#column-space" id="toc-column-space" class="nav-link" data-scroll-target="#column-space"><span class="header-section-number">4</span> Column space</a>
+  <ul class="collapse">
+  <li><a href="#example." id="toc-example." class="nav-link" data-scroll-target="#example."><span class="header-section-number">4.1</span> Example.</a></li>
+  <li><a href="#a-proposition-about-column-spaces" id="toc-a-proposition-about-column-spaces" class="nav-link" data-scroll-target="#a-proposition-about-column-spaces"><span class="header-section-number">4.2</span> A proposition about column spaces</a>
+  <ul class="collapse">
+  <li><a href="#proposition" id="toc-proposition" class="nav-link" data-scroll-target="#proposition"><span class="header-section-number">4.2.1</span> Proposition</a></li>
+  <li><a href="#proof-of-the-forward-direction" id="toc-proof-of-the-forward-direction" class="nav-link" data-scroll-target="#proof-of-the-forward-direction"><span class="header-section-number">4.2.2</span> Proof of the forward direction</a></li>
+  <li><a href="#proof-of-the-reverse-direction" id="toc-proof-of-the-reverse-direction" class="nav-link" data-scroll-target="#proof-of-the-reverse-direction"><span class="header-section-number">4.2.3</span> Proof of the reverse direction</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2"><span class="header-section-number">4.2.4</span> Example</a></li>
+  </ul></li>
+  <li><a href="#theorem" id="toc-theorem" class="nav-link" data-scroll-target="#theorem"><span class="header-section-number">4.3</span> Theorem</a></li>
+  </ul></li>
+  <li><a href="#eigenvalues-and-trace" id="toc-eigenvalues-and-trace" class="nav-link" data-scroll-target="#eigenvalues-and-trace"><span class="header-section-number">5</span> Eigenvalues and trace</a>
+  <ul class="collapse">
+  <li><a href="#definitions-eigenvector-eigenvalue-and-trace" id="toc-definitions-eigenvector-eigenvalue-and-trace" class="nav-link" data-scroll-target="#definitions-eigenvector-eigenvalue-and-trace"><span class="header-section-number">5.1</span> Definitions: eigenvector, eigenvalue, and trace</a></li>
+  <li><a href="#properties-of-trace" id="toc-properties-of-trace" class="nav-link" data-scroll-target="#properties-of-trace"><span class="header-section-number">5.2</span> Properties of trace</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.3</span> Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -209,8 +222,10 @@ window.Quarto = {
 <p>The lecture reviews three linear algebra topics:</p>
 <ol type="1">
 <li>vectors and linear independence,</li>
-<li>rank, and</li>
-<li>vector spaces.</li>
+<li>rank,</li>
+<li>vector spaces,</li>
+<li>column spaces, and</li>
+<li>eigenvalues and trace.</li>
 </ol>
 <section id="vectors-and-linear-independence" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Vectors and linear independence</h1>
@@ -314,9 +329,8 @@ y_2 = \begin{pmatrix}0 \\ 0.5\end{pmatrix}.
 <p>Similarly, left-multiplying by <span class="math inline">\(x_2^T\)</span> gives <span class="math inline">\(\lambda_2 = 0\)</span>.</p>
 <p>This contradicts the assumption that <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are not both zero. Therefore <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are linearly independent.</p>
 </section>
-</section>
-<section id="converse-does-not-hold" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="converse-does-not-hold"><span class="header-section-number">1.6</span> Converse does not hold</h2>
+<section id="converse-does-not-hold" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="converse-does-not-hold"><span class="header-section-number">1.5.2</span> Converse does not hold</h3>
 <p>Linear independence does <strong>not</strong> imply orthogonality.</p>
 <p>Example:</p>
 <p><span class="math display">\[
@@ -329,8 +343,9 @@ x_2 = \begin{pmatrix}1 \\ 0\end{pmatrix}.
 x_1^T x_2 = 1.
 \]</span></p>
 </section>
-<section id="norm" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="norm"><span class="header-section-number">1.7</span> Norm</h2>
+</section>
+<section id="norm" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="norm"><span class="header-section-number">1.6</span> Norm</h2>
 <p>Let</p>
 <p><span class="math display">\[
 a = \begin{pmatrix}a_1 \\ \vdots \\ a_p\end{pmatrix} \in \mathbb{R}^p.
@@ -340,8 +355,8 @@ a = \begin{pmatrix}a_1 \\ \vdots \\ a_p\end{pmatrix} \in \mathbb{R}^p.
 \|a\| = \sqrt{a^T a} = \sqrt{\langle a, a \rangle} = \sqrt{\sum_{i=1}^p a_i^2}.
 \]</span></p>
 </section>
-<section id="orthogonal-matrices" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="orthogonal-matrices"><span class="header-section-number">1.8</span> Orthogonal matrices</h2>
+<section id="orthogonal-matrices" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="orthogonal-matrices"><span class="header-section-number">1.7</span> Orthogonal matrices</h2>
 <p>A square matrix</p>
 <p><span class="math display">\[
 Q = (q_1, \ldots, q_n)
@@ -365,14 +380,6 @@ Q_2 =
 \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}}
 \end{pmatrix}.
 \]</span></p>
-<section id="practice-prompt" class="level3" data-number="1.8.1">
-<h3 data-number="1.8.1" class="anchored" data-anchor-id="practice-prompt"><span class="header-section-number">1.8.1</span> Practice prompt</h3>
-<p>Generate a matrix <span class="math inline">\(X \in \mathbb{R}^{10 \times 2}\)</span>. Let</p>
-<p><span class="math display">\[
-Y_1 = XQ_1.
-\]</span></p>
-<p>Draw <span class="math inline">\(X\)</span> and <span class="math inline">\(Y_1\)</span> in <span class="math inline">\(\mathbb{R}^2\)</span> using different colors, and interpret the transformation as a rotation.</p>
-</section>
 </section>
 </section>
 <section id="rank" class="level1" data-number="2">
@@ -442,9 +449,18 @@ A =
 <li>vector addition, and</li>
 <li>scalar multiplication.</li>
 </ul>
+<p>Examples:</p>
+<ol type="1">
+<li><p>the set of all vectors in <span class="math inline">\(\mathbb{R}^p\)</span> is a vector space.</p></li>
+<li><p>the set of all vectors in <span class="math inline">\(\mathbb{R}^p\)</span> with zero in the last entry is a vector space.</p></li>
+<li><p>the set of all vectors in <span class="math inline">\(\mathbb{R}^p\)</span> with the sum of the entries equal to zero is a vector space.</p></li>
+<li><p>the set of all vectors in <span class="math inline">\(\mathbb{R}^p\)</span> with zero in the last entry or zero in the second-to-last entry is <strong>not</strong> a vector space, because it is not closed under vector addition.</p></li>
+</ol>
+<p>Next, we will see that the column space of a matrix is a vector space.</p>
 </section>
-<section id="column-space" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="column-space"><span class="header-section-number">3.2</span> Column space</h2>
+</section>
+<section id="column-space" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Column space</h1>
 <p>Let <span class="math inline">\(A\)</span> be an <span class="math inline">\(n \times p\)</span> matrix with columns</p>
 <p><span class="math display">\[
 A = (a_1, \ldots, a_p), \qquad a_i \in \mathbb{R}^n.
@@ -456,22 +472,318 @@ C(A) = \left\{ y : y = \sum_{i=1}^p c_i a_i \text{ for scalars } c_i,\ i=1,\ldot
 <p>Equivalently,</p>
 <p><span class="math display">\[
 y \in C(A) \iff \exists c \in \mathbb{R}^p \text{ such that } y = Ac.
+\]</span> So (1) <span class="math inline">\(\mathcal{C}(A)\)</span> is the set of all linear combinations of the columns of <span class="math inline">\(A\)</span>, (2) multiplying <span class="math inline">\(A\)</span> by a coefficient vector <span class="math inline">\(c\)</span> produces a linear combination of the columns of <span class="math inline">\(A\)</span>.</p>
+<section id="example." class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="example."><span class="header-section-number">4.1</span> Example.</h2>
+<p>Consider</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; 1 \\
+1 &amp; 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_1 &amp; a_2
+\end{bmatrix},
+\qquad
+a_1 =
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix},
+\qquad
+a_2 =
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+a_1 = 1 \cdot a_1 + 0 \cdot a_2,
+\]</span></p>
+<p>we have <span class="math inline">\(a_1 \in \mathcal{C}(A)\)</span>.</p>
+<p>Similarly,</p>
+<p><span class="math display">\[
+a_2 = 0 \cdot a_1 + 1 \cdot a_2,
+\]</span></p>
+<p>so <span class="math inline">\(a_2 \in \mathcal{C}(A)\)</span>.</p>
+<p>Question:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}
+\in \mathcal{C}(A)?
+\]</span></p>
+<p>Yes, because</p>
+<p><span class="math display">\[
+a_1 - a_2
+=
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix}
+-
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}
+\in \mathcal{C}(A).
+\]</span></p>
+<p>Question: <span class="math display">\[
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
+\in \mathcal{C}(A)?
+\]</span></p>
+<p>If it were, then we could find scalars <span class="math inline">\(c_1, c_2\)</span> such that</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
+=
+c_1
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix}
++
+c_2
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+c_1 + c_2\\
+c_1 + c_2\\
+c_1
+\end{bmatrix}.
+\]</span></p>
+<p>Matching coordinates gives</p>
+<p><span class="math display">\[
+1 = c_1 + c_2,\qquad
+0 = c_1 + c_2,\qquad
+0 = c_1,
+\]</span></p>
+<p>which has no solution. Hence</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
+\notin \mathcal{C}(A).
+\]</span></p>
+<p>In this example, <span class="math inline">\(\mathcal{C}(A)\)</span> is a subspace of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+</section>
+<section id="a-proposition-about-column-spaces" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="a-proposition-about-column-spaces"><span class="header-section-number">4.2</span> A proposition about column spaces</h2>
+<section id="proposition" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="proposition"><span class="header-section-number">4.2.1</span> Proposition</h3>
+<p>For conformable matrices <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>,</p>
+<p><span class="math display">\[
+A = BC
+\quad \Longleftrightarrow \quad
+\mathcal{C}(A) \subseteq \mathcal{C}(B).
 \]</span></p>
 </section>
-<section id="matrix-vector-form" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="matrix-vector-form"><span class="header-section-number">3.3</span> Matrix-vector form</h2>
-<p>If</p>
+<section id="proof-of-the-forward-direction" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="proof-of-the-forward-direction"><span class="header-section-number">4.2.2</span> Proof of the forward direction</h3>
+<p>Assume <span class="math inline">\(A = BC\)</span>.</p>
+<p>Take any <span class="math inline">\(x \in \mathcal{C}(A)\)</span>. By definition of column space, there exists a vector <span class="math inline">\(d\)</span> such that</p>
 <p><span class="math display">\[
-c = \begin{pmatrix}c_1 \\ \vdots \\ c_p\end{pmatrix},
+x = Ad.
 \]</span></p>
-<p>then</p>
+<p>Since <span class="math inline">\(A = BC\)</span>,</p>
 <p><span class="math display">\[
-y = Ac
-= (a_1, \ldots, a_p)
-\begin{pmatrix}c_1 \\ \vdots \\ c_p\end{pmatrix}
-= c_1 a_1 + \cdots + c_p a_p.
+x = Ad = BCd.
 \]</span></p>
-<p>This verifies that multiplying <span class="math inline">\(A\)</span> by a coefficient vector <span class="math inline">\(c\)</span> produces a linear combination of the columns of <span class="math inline">\(A\)</span>.</p>
+<p>But <span class="math inline">\(Cd\)</span> is just another vector, so <span class="math inline">\(x\)</span> has the form <span class="math inline">\(B(\text{something})\)</span>. Therefore <span class="math inline">\(x \in \mathcal{C}(B)\)</span>.</p>
+<p>Hence every vector in <span class="math inline">\(\mathcal{C}(A)\)</span> is also in <span class="math inline">\(\mathcal{C}(B)\)</span>, so</p>
+<p><span class="math display">\[
+\mathcal{C}(A) \subseteq \mathcal{C}(B).
+\]</span></p>
+</section>
+<section id="proof-of-the-reverse-direction" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="proof-of-the-reverse-direction"><span class="header-section-number">4.2.3</span> Proof of the reverse direction</h3>
+<p>Now assume</p>
+<p><span class="math display">\[
+\mathcal{C}(A) \subseteq \mathcal{C}(B).
+\]</span></p>
+<p>Write</p>
+<p><span class="math display">\[
+A = (a_1, \ldots, a_p).
+\]</span></p>
+<p>Each column <span class="math inline">\(a_i\)</span> belongs to <span class="math inline">\(\mathcal{C}(A)\)</span>, so by assumption each <span class="math inline">\(a_i \in \mathcal{C}(B)\)</span>. Therefore, for each <span class="math inline">\(i\)</span> there exists a vector <span class="math inline">\(c_i\)</span> such that</p>
+<p><span class="math display">\[
+a_i = Bc_i.
+\]</span></p>
+<p>Collect these vectors into a matrix</p>
+<p><span class="math display">\[
+C = (c_1, \ldots, c_p).
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+A = (a_1, \ldots, a_p)
+   = (Bc_1, \ldots, Bc_p)
+   = B(c_1, \ldots, c_p)
+   = BC.
+\]</span></p>
+<p>So there exists a matrix <span class="math inline">\(C\)</span> such that <span class="math inline">\(A = BC\)</span>.</p>
+</section>
+<section id="example-2" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="example-2"><span class="header-section-number">4.2.4</span> Example</h3>
+<p>Consider again</p>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; 1 \\
+1 &amp; 0
+\end{bmatrix}
+\in \mathbb{R}^{3 \times 2},
+\qquad
+B = I_3
+=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\operatorname{rank}(A) = 2,
+\qquad
+\operatorname{rank}(B) = 3.
+\]</span></p>
+<p>Since <span class="math inline">\(B = I_3\)</span>, clearly <span class="math inline">\(\mathcal{C}(A) \subseteq \mathcal{C}(B) = \mathbb{R}^3\)</span>, and the proposition implies that there exists a matrix <span class="math inline">\(C\)</span> such that <span class="math inline">\(A = BC\)</span>.</p>
+</section>
+</section>
+<section id="theorem" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="theorem"><span class="header-section-number">4.3</span> Theorem</h2>
+<p><span class="math display">\[
+\mathcal{C}(A) = \mathcal{C}(AA^T),
+\qquad
+\mathcal{C}(A^T) = \mathcal{C}(A^TA).
+\]</span></p>
+<p>Practice: show that <span class="math inline">\(\mathcal{C}(AA^T) \subseteq \mathcal{C}(A)\)</span>.</p>
+</section>
+</section>
+<section id="eigenvalues-and-trace" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Eigenvalues and trace</h1>
+<section id="definitions-eigenvector-eigenvalue-and-trace" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="definitions-eigenvector-eigenvalue-and-trace"><span class="header-section-number">5.1</span> Definitions: eigenvector, eigenvalue, and trace</h2>
+<p>Let <span class="math inline">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<ol type="1">
+<li>A nonzero vector <span class="math inline">\(x \in \mathbb{R}^n\)</span> is called an <strong>eigenvector</strong> of <span class="math inline">\(A\)</span> if</li>
+</ol>
+<p><span class="math display">\[
+Ax = \lambda x
+\]</span></p>
+<p>for some scalar <span class="math inline">\(\lambda\)</span>. The scalar <span class="math inline">\(\lambda\)</span> is the <strong>eigenvalue of <span class="math inline">\(A\)</span> corresponding to the eigenvector <span class="math inline">\(x\)</span></strong>.</p>
+<ol start="2" type="1">
+<li>The <strong>trace</strong> of <span class="math inline">\(A\)</span> is the sum of the diagonal entries of <span class="math inline">\(A\)</span>: <span class="math display">\[
+\operatorname{tr}(A) = \sum_{i=1}^n A_{ii}.
+\]</span></li>
+</ol>
+<p>Facts</p>
+<p>If the eigenvalues of <span class="math inline">\(A\)</span> are <span class="math inline">\(\lambda_1, \ldots, \lambda_n\)</span>, then</p>
+<p><span class="math display">\[
+\det(A) = |A| = \prod_{i=1}^n \lambda_i,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\operatorname{tr}(A) = \sum_{i=1}^n \lambda_i.
+\]</span></p>
+</section>
+<section id="properties-of-trace" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="properties-of-trace"><span class="header-section-number">5.2</span> Properties of trace</h2>
+<ol type="1">
+<li><p><span class="math display">\[
+\operatorname{tr}(A + B) = \operatorname{tr}(A) + \operatorname{tr}(B).
+\]</span></p></li>
+<li><p><span class="math display">\[
+\operatorname{tr}(AB) = \operatorname{tr}(BA).
+\]</span></p></li>
+</ol>
+<p>A useful example from the notes is</p>
+<p><span class="math display">\[
+\operatorname{tr}(Axx^T)
+= \operatorname{tr}(x^TAx)
+= x^TAx.
+\]</span></p>
+<ol start="3" type="1">
+<li><span class="math display">\[
+\operatorname{tr}(A^s) = \sum_{i=1}^n \lambda_i^s.
+\]</span></li>
+</ol>
+<p>Also,</p>
+<p><span class="math display">\[
+\det(A) = \prod_{i=1}^n \lambda_i.
+\]</span></p>
+<ol start="4" type="1">
+<li>If <span class="math inline">\(P\)</span> is nonsingular (invertible), then</li>
+</ol>
+<p><span class="math display">\[
+\operatorname{tr}(P^{-1}AP) = \operatorname{tr}(A).
+\]</span></p>
+<ol start="5" type="1">
+<li>If <span class="math inline">\(C\)</span> is orthogonal, then</li>
+</ol>
+<p><span class="math display">\[
+\operatorname{tr}(C^TAC) = \operatorname{tr}(A).
+\]</span></p>
+</section>
+<section id="summary" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.3</span> Summary</h2>
+<p>These lecture notes cover:</p>
+<ul>
+<li>the definition of linear independence and orthogonality</li>
+<li>the definition of rank and its properties</li>
+<li>the definition of vector spaces</li>
+<li>the definition of column space</li>
+<li>a worked example for testing whether specific vectors belong to <span class="math inline">\(\mathcal{C}(A)\)</span></li>
+<li>the equivalence <span class="math display">\[
+A = BC \iff \mathcal{C}(A) \subseteq \mathcal{C}(B)
+\]</span></li>
+<li>rank and the identities <span class="math display">\[
+\mathcal{C}(A) = \mathcal{C}(AA^T), \qquad
+\mathcal{C}(A^T) = \mathcal{C}(A^TA)
+\]</span></li>
+<li>eigenvalues and basic trace identities</li>
+<li>symmetric matrices and spectral decomposition</li>
+<li>a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data</li>
+</ul>
 
 
 </section>
@@ -568,7 +880,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/yu-zhaoxia\.github\.io\/STAT200C\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

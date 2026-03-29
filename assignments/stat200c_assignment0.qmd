@@ -1,0 +1,149 @@
+
+---
+title: "STAT200C Assignment 0"
+author: "Zhaoxia Yu"
+format:
+  html:
+    toc: true
+    number-sections: false
+execute:
+  echo: false
+---
+
+To obtain numerical answers, you may use R for the following problems: 4b, 7, 8, and 9.
+
+
+## Part 1: Matrix Operations
+
+1. **Matrix Multiplication & Transpose**
+
+Let
+$$
+A = \begin{pmatrix} 1 & 3 \\ -2 & 0 \end{pmatrix}, \quad
+B = \begin{pmatrix} 4 & -1 \\ 2 & 5 \end{pmatrix}, \quad
+C = \begin{pmatrix} 1 & 0 & 2 \\ -3 & 4 & 1 \end{pmatrix}.
+$$
+
+(a) Compute $AB$ and $BA$. Are they equal?
+
+(b) Compute $A^\top B$.
+
+(c) Compute $BC$. What is the dimension?
+
+(d) Let $\mathbf{a}_1^\top, \mathbf{a}_2^\top$ be rows of $A$, and $\mathbf{b}_1, \mathbf{b}_2$ columns of $B$. Verify:
+$$
+AB =
+\begin{pmatrix}
+\mathbf{a}_1^\top \mathbf{b}_1 & \mathbf{a}_1^\top \mathbf{b}_2 \\
+\mathbf{a}_2^\top \mathbf{b}_1 & \mathbf{a}_2^\top \mathbf{b}_2
+\end{pmatrix}.
+$$
+
+---
+
+2. **Trace & Frobenius Norm**
+
+Compute $\mathrm{tr}(AB)$ and $\|A\|_F$, where the Frobenius norm is of a matrix $D$ is defined as
+$$
+\|D\|_F = \sqrt{\sum_{i,j} D_{ij}^2}.
+$$
+
+---
+
+## Part 2: Rank & Inverses
+
+3. **Matrix Rank**
+
+$$
+M = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 0 & 1 & 0 \end{pmatrix}, \quad
+N = \begin{pmatrix} 1 & 0 & -1 \\ 0 & 2 & 4 \\ 3 & 1 & 1 \end{pmatrix}
+$$
+
+Find ranks and justify.
+
+---
+
+4. **Inverse & Linear Independence**
+
+(a) Find inverse of
+$$
+P = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}.
+$$
+if it exists. 
+(b) Can you find the inverse of the following matrix? If not, find a generalized inverse using R.
+$$
+Q = \begin{pmatrix} 
+2/3 & -1/3 & -1/3 \\
+-1/3 & 2/3 & -1/3 \\
+-1/3 & -1/3 & 2/3
+\end{pmatrix}.
+$$
+
+---
+
+## Part 3: Projections & Design Matrices
+
+5. **Projection Matrix**
+
+Consider
+$$
+X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}.
+$$
+
+The projection matrix onto the column space of $X$ is given by
+$$
+H = X(X^\top X)^{-1}X^\top.
+$$
+
+(a) Find $H$ and verify that $H^2 = H$.
+
+(b) Compute $\mathbf{H} \mathbf{y}$ for $\mathbf{y} = (3, 1, 4)^\top$. What does this represent in linear regression?
+
+
+6. **Design Matrix Operations**
+
+Let $X$ be an $n \times p$ design matrix with rows $\mathbf{x}_1^\top, \dots, \mathbf{x}_n^\top$ (each a $p$-dimensional row vector) and columns $\mathbf{X}_1, \dots, \mathbf{X}_p$ (each an $n$-dimensional column vector).
+
+
+(a) Show that $X^\top X$ can be written as:
+        $$
+        X^\top X = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\top.
+        $$
+        Interpret the entries of $X^\top X$: What does the $(j,k)$-th element represent statistically?
+        
+(b) Show that $XX^\top$ has $(i,j)$-th entry equal to $\mathbf{x}_i^\top \mathbf{x}_j$. How does $XX^\top$ relate to the Euclidean distances between observations $\mathbf{x}_i$ and $\mathbf{x}_j$?
+        
+(c). Assume $X$ has full column rank. Show that the hat matrix $H = X(X^\top X)^{-1}X^\top$ is symmetric ($H = H^\top$) and idempotent ($H^2 = H$). For a new observation $\mathbf{x}_\text{new}$, how does $H$ compute the predicted value $\hat{y}_\text{new}$?
+
+---
+
+## Part 4: Eigenvalues & Spectral Theory
+
+7. **Eigen-Decomposition**
+
+
+$$
+R = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}
+$$
+
+
+(a) Verify that $R$ can be written as $Q \Lambda Q^\top$ (spectral decomposition). 
+
+(b) What is $R^k$ for integer $k \geq 1$?
+
+---
+
+8. **Positive Definiteness**
+
+$$
+S = \begin{pmatrix} 2 & -1 \\ -1 & 2 \end{pmatrix}
+$$
+Is $S$ positive definite? Justify your answer using eigenvalues.
+
+## Optional Problem
+
+9. **SVD**
+
+Explain how SVD generalizes eigenvalue decomposition for non-square matrices. Compute the SVD of 
+$$A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}.$$
+
