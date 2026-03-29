@@ -3,4 +3,5 @@ title: "index"
 format: html
 ---
 
+- [Part 0 — Preliminary: Matrix Manipulations](00-matrix-preliminary.qmd)
 - [Part 1 — Review of Linear Algebra](01-linear-algebra-review.qmd)

@@ -1,0 +1,534 @@
+---
+title: "Preliminary: Matrix Manipulations"
+subtitle: "Dimensions, Inner Products, and Matrix Multiplication"
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: false
+---
+
+## Overview
+
+These notes give a short preliminary review of basic matrix manipulations:
+
+-  dimensions of matrices, including row and column vectors;
+-  inner product: one row times one column;
+-  matrix multiplication;
+-  $A^2$ for a square matrix;
+-  why $AB$ and $BA$ are generally different.
+
+## Dimensions of a matrix
+
+A matrix with $m$ rows and $n$ columns has dimension $m \times n$.\
+We write
+
+$$
+A \in \mathbb{R}^{m \times n}.
+$$
+
+This means that $A$ has $m$ horizontal rows and $n$ vertical columns.
+
+For example,
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+\in \mathbb{R}^{2 \times 3}.
+$$
+
+It has 2 rows and 3 columns.
+
+### Column vector
+
+A **column vector** is a matrix with one column. Its dimension is $m \times 1$.
+
+$$
+x =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix}
+\in \mathbb{R}^{3 \times 1}.
+$$
+
+### Row vector
+
+A **row vector** is a matrix with one row. Its dimension is $1 \times n$.
+
+$$
+y =
+\begin{bmatrix}
+y_1 & y_2 & y_3
+\end{bmatrix}
+\in \mathbb{R}^{1 \times 3}.
+$$
+
+### Compatibility reminder
+
+When multiplying matrices, the **inside dimensions must match**.
+
+If
+
+$$
+A \in \mathbb{R}^{m \times n}, \qquad B \in \mathbb{R}^{n \times p},
+$$
+
+then the product $AB$ is defined and has dimension
+
+$$
+AB \in \mathbb{R}^{m \times p}.
+$$
+
+A useful memory rule is:
+
+$$
+(m \times n)(n \times p) = m \times p.
+$$
+
+## Inner product: one row times one column
+
+The simplest matrix product is a **row vector times a column vector**.
+
+Let
+
+$$
+r =
+\begin{bmatrix}
+r_1 & r_2 & \cdots & r_n
+\end{bmatrix}
+\in \mathbb{R}^{1 \times n},
+$$
+
+and
+
+$$
+c =
+\begin{bmatrix}
+c_1 \\
+c_2 \\
+\vdots \\
+c_n
+\end{bmatrix}
+\in \mathbb{R}^{n \times 1}.
+$$
+
+Then
+
+$$
+rc = r_1c_1 + r_2c_2 + \cdots + r_nc_n.
+$$
+
+This is the **inner product** (or dot product), and the result is a $1 \times 1$ matrix, that is, a scalar.
+
+### Example
+
+$$
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}
+\begin{bmatrix}
+4 \\
+5 \\
+6
+\end{bmatrix}
+= 1\cdot 4 + 2\cdot 5 + 3\cdot 6 = 32.
+$$
+
+### Unit vectors
+
+A unit vector is a vector of length 1. Check the following vectors:
+
+$$
+u_1 =
+\begin{bmatrix}
+1 \\
+0 \\
+0
+\end{bmatrix},
+\qquad
+u_2 = \begin{bmatrix}\frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{3}}\end{bmatrix}.
+\qquad
+u_3 = \begin{bmatrix}\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \\ 0\end{bmatrix}.
+$$
+
+They all have length 1, so they are all unit vectors.
+
+
+## Matrix multiplication
+
+Suppose
+
+$$
+A \in \mathbb{R}^{m \times n}, \qquad B \in \mathbb{R}^{n \times p}.
+$$
+
+Then the product $AB$ is an $m \times p$ matrix. Its $(i,j)$-entry is obtained by taking:
+
+-   row $i$ of $A$, and
+-   column $j$ of $B$,
+
+and forming their inner product.
+
+In symbols,
+
+$$
+(AB)_{ij} = \sum_{k=1}^n a_{ik}b_{kj}.
+$$
+
+### Example
+
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+5 & 6 \\
+7 & 8
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+AB =
+\begin{bmatrix}
+1\cdot 5 + 2\cdot 7 & 1\cdot 6 + 2\cdot 8 \\
+3\cdot 5 + 4\cdot 7 & 3\cdot 6 + 4\cdot 8
+\end{bmatrix}
+=
+\begin{bmatrix}
+19 & 22 \\
+43 & 50
+\end{bmatrix}.
+$$
+
+### How to read matrix multiplication
+
+Each entry of $AB$ comes from **one row of** $A$ and **one column of** $B$.
+
+For example, the upper-left entry is
+
+$$
+(AB)_{11}
+=
+\begin{bmatrix}
+1 & 2
+\end{bmatrix}
+\begin{bmatrix}
+5 \\
+7
+\end{bmatrix}
+= 19.
+$$
+
+### Visual example with colored row and column
+
+The row from $A$ is highlighted in blue, and the matching column from $B$ is highlighted in red.
+
+$$
+A =
+\begin{bmatrix}
+\textcolor{blue}{1} & \textcolor{blue}{2} \\
+3 & 4
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+\textcolor{red}{5} & 6 \\
+\textcolor{red}{7} & 8
+\end{bmatrix}.
+$$
+
+Using the blue row of $A$ and the red column of $B$,
+
+$$
+(AB)_{11}
+=
+\begin{bmatrix}
+\textcolor{blue}{1} & \textcolor{blue}{2}
+\end{bmatrix}
+\begin{bmatrix}
+\textcolor{red}{5} \\
+\textcolor{red}{7}
+\end{bmatrix}
+=
+\textcolor{blue}{1}\textcolor{red}{5}
++
+\textcolor{blue}{2}\textcolor{red}{7}
+= 19.
+$$
+
+Likewise, for the upper-right entry, use the same first row of $A$ and the second column of $B$:
+
+$$
+(AB)_{12}
+=
+\begin{bmatrix}
+\textcolor{blue}{1} & \textcolor{blue}{2}
+\end{bmatrix}
+\begin{bmatrix}
+6 \\
+8
+\end{bmatrix}
+= 22.
+$$
+
+This is the basic mechanism of matrix multiplication: **row times column, entry by entry**.
+
+## $A^2$ for a square matrix
+
+The expression $A^2$ means
+
+$$
+A^2 = AA.
+$$
+
+This is only defined when $A$ is a **square matrix**, meaning
+
+$$
+A \in \mathbb{R}^{n \times n}.
+$$
+
+### Example
+
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 3
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+A^2
+=
+\begin{bmatrix}
+1 & 2 \\
+0 & 3
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 \\
+0 & 3
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\cdot 1 + 2\cdot 0 & 1\cdot 2 + 2\cdot 3 \\
+0\cdot 1 + 3\cdot 0 & 0\cdot 2 + 3\cdot 3
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 8 \\
+0 & 9
+\end{bmatrix}.
+$$
+
+So $A^2$ is not obtained by squaring each entry separately.
+It is obtained by multiplying $A$ by itself using the usual rules of matrix multiplication.
+
+## $AB$ and $BA$ are different
+
+In general,
+
+$$
+AB \neq BA.
+$$
+
+Matrix multiplication is usually **not commutative**.
+
+### Example 1: both products are defined, but they are different
+
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+2 & 0 \\
+3 & 1
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+AB
+=
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 & 0 \\
+3 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+8 & 2 \\
+3 & 1
+\end{bmatrix},
+$$
+
+while
+
+$$
+BA
+=
+\begin{bmatrix}
+2 & 0 \\
+3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 4 \\
+3 & 7
+\end{bmatrix}.
+$$
+
+Therefore,
+
+$$
+AB \neq BA.
+$$
+
+### Example 2: both products are defined, but they have different dimensions
+
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+\in \mathbb{R}^{2 \times 3},
+\qquad
+B =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1
+\end{bmatrix}
+\in \mathbb{R}^{3 \times 2}.
+$$
+
+Then $AB$ is defined because
+
+$$
+(2 \times 3)(3 \times 2) = 2 \times 2.
+$$
+
+Indeed,
+
+$$
+AB =
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 & 5 \\
+10 & 11
+\end{bmatrix}.
+$$
+
+Also, $BA$ is defined because
+
+$$
+(3 \times 2)(2 \times 3) = 3 \times 3.
+$$
+
+Computing it gives
+
+$$
+BA =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+5 & 7 & 9
+\end{bmatrix}.
+$$
+
+So $AB$ and $BA$ differ not only in value but even in size.
+
+### Optional contrast: one order may be impossible
+
+If
+
+$$
+A \in \mathbb{R}^{2 \times 3}, \qquad B \in \mathbb{R}^{2 \times 2},
+$$
+
+then $BA$ is defined:
+
+$$
+(2 \times 2)(2 \times 3) = 2 \times 3,
+$$
+
+but $AB$ is not defined because the inside dimensions do not match:
+
+$$
+(2 \times 3)(2 \times 2).
+$$
+
+So order matters in two ways:
+
+-   the products can have different values;
+-   one order may be defined while the other is not.
+
+## Useful references
+
+These notes can be supplemented by the following materials from MIT 18.065:
+
+-   [Learning from Data, Lecture 1.1: Multiplication of $Ax$](https://math.mit.edu/%7Egs/learningfromdata/dsla1-1.pdf)
+-   [Learning from Data, Lecture 1.2: Matrix-Matrix Multiplication $AB$ ](https://math.mit.edu/%7Egs/learningfromdata/dsla1-2.pdf)
+
+## Summary
+
+The main points are:
+
+-   a matrix in $\mathbb{R}^{m \times n}$ has $m$ rows and $n$ columns;
+-   a row times a column gives an inner product;
+-   matrix multiplication is built from row-by-column inner products;
+-   $A^2$ means $AA$, so $A$ must be square;
+-   in general, $AB$ and $BA$ are different.
