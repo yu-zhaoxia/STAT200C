@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://yu-zhaoxia.github.io/STAT200C/lectures/index.html</loc>
-    <lastmod>2026-03-29T01:21:11.523Z</lastmod>
+    <lastmod>2026-03-29T21:49:32.311Z</lastmod>
   </url>
   <url>
     <loc>https://yu-zhaoxia.github.io/STAT200C/lectures/00-matrix-preliminary.html</loc>
@@ -13,8 +13,12 @@
     <lastmod>2026-03-28T19:53:25.209Z</lastmod>
   </url>
   <url>
+    <loc>https://yu-zhaoxia.github.io/STAT200C/assignments/stat200c_assignment0.html</loc>
+    <lastmod>2026-03-29T21:47:40.686Z</lastmod>
+  </url>
+  <url>
     <loc>https://yu-zhaoxia.github.io/STAT200C/assignments/index.html</loc>
-    <lastmod>2026-03-28T19:52:08.204Z</lastmod>
+    <lastmod>2026-03-29T21:50:30.368Z</lastmod>
   </url>
   <url>
     <loc>https://yu-zhaoxia.github.io/STAT200C/assignments_index_Version2.html</loc>
