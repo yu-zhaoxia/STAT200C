@@ -144,28 +144,21 @@
     "href": "lectures/01-linear-algebra-review.html#fact-orthogonal-vectors-are-linearly-independent",
     "title": "A Brief Review of Linear Algebra",
     "section": "1.5 Fact: orthogonal vectors are linearly independent",
-    "text": "1.5 Fact: orthogonal vectors are linearly independent\nClaim. If \\(x_1\\) and \\(x_2\\) are orthogonal nonzero vectors, then they are linearly independent.\n\n1.5.1 Proof\nAssume, for contradiction, that \\(x_1\\) and \\(x_2\\) are linearly dependent. Then there exist scalars \\(\\lambda_1, \\lambda_2\\), not both zero, such that\n\\[\n\\lambda_1 x_1 + \\lambda_2 x_2 = 0.\n\\]\nLeft-multiply by \\(x_1^T\\):\n\\[\n\\lambda_1 x_1^T x_1 + \\lambda_2 x_1^T x_2 = 0.\n\\]\nBecause \\(x_1\\) and \\(x_2\\) are orthogonal, \\(x_1^T x_2 = 0\\), so\n\\[\n\\lambda_1 x_1^T x_1 = 0.\n\\]\nSince \\(x_1 \\neq 0\\), we have \\(x_1^T x_1 &gt; 0\\), hence \\(\\lambda_1 = 0\\).\nSimilarly, left-multiplying by \\(x_2^T\\) gives \\(\\lambda_2 = 0\\).\nThis contradicts the assumption that \\(\\lambda_1\\) and \\(\\lambda_2\\) are not both zero. Therefore \\(x_1\\) and \\(x_2\\) are linearly independent."
-  },
-  {
-    "objectID": "lectures/01-linear-algebra-review.html#converse-does-not-hold",
-    "href": "lectures/01-linear-algebra-review.html#converse-does-not-hold",
-    "title": "A Brief Review of Linear Algebra",
-    "section": "1.6 Converse does not hold",
-    "text": "1.6 Converse does not hold\nLinear independence does not imply orthogonality.\nExample:\n\\[\nx_1 = \\begin{pmatrix}1 \\\\ 1\\end{pmatrix},\n\\qquad\nx_2 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}.\n\\]\nThese vectors are linearly independent, but they are not orthogonal because\n\\[\nx_1^T x_2 = 1.\n\\]"
+    "text": "1.5 Fact: orthogonal vectors are linearly independent\nClaim. If \\(x_1\\) and \\(x_2\\) are orthogonal nonzero vectors, then they are linearly independent.\n\n1.5.1 Proof\nAssume, for contradiction, that \\(x_1\\) and \\(x_2\\) are linearly dependent. Then there exist scalars \\(\\lambda_1, \\lambda_2\\), not both zero, such that\n\\[\n\\lambda_1 x_1 + \\lambda_2 x_2 = 0.\n\\]\nLeft-multiply by \\(x_1^T\\):\n\\[\n\\lambda_1 x_1^T x_1 + \\lambda_2 x_1^T x_2 = 0.\n\\]\nBecause \\(x_1\\) and \\(x_2\\) are orthogonal, \\(x_1^T x_2 = 0\\), so\n\\[\n\\lambda_1 x_1^T x_1 = 0.\n\\]\nSince \\(x_1 \\neq 0\\), we have \\(x_1^T x_1 &gt; 0\\), hence \\(\\lambda_1 = 0\\).\nSimilarly, left-multiplying by \\(x_2^T\\) gives \\(\\lambda_2 = 0\\).\nThis contradicts the assumption that \\(\\lambda_1\\) and \\(\\lambda_2\\) are not both zero. Therefore \\(x_1\\) and \\(x_2\\) are linearly independent.\n\n\n1.5.2 Converse does not hold\nLinear independence does not imply orthogonality.\nExample:\n\\[\nx_1 = \\begin{pmatrix}1 \\\\ 1\\end{pmatrix},\n\\qquad\nx_2 = \\begin{pmatrix}1 \\\\ 0\\end{pmatrix}.\n\\]\nThese vectors are linearly independent, but they are not orthogonal because\n\\[\nx_1^T x_2 = 1.\n\\]"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#norm",
     "href": "lectures/01-linear-algebra-review.html#norm",
     "title": "A Brief Review of Linear Algebra",
-    "section": "1.7 Norm",
-    "text": "1.7 Norm\nLet\n\\[\na = \\begin{pmatrix}a_1 \\\\ \\vdots \\\\ a_p\\end{pmatrix} \\in \\mathbb{R}^p.\n\\]\nIts Euclidean norm is\n\\[\n\\|a\\| = \\sqrt{a^T a} = \\sqrt{\\langle a, a \\rangle} = \\sqrt{\\sum_{i=1}^p a_i^2}.\n\\]"
+    "section": "1.6 Norm",
+    "text": "1.6 Norm\nLet\n\\[\na = \\begin{pmatrix}a_1 \\\\ \\vdots \\\\ a_p\\end{pmatrix} \\in \\mathbb{R}^p.\n\\]\nIts Euclidean norm is\n\\[\n\\|a\\| = \\sqrt{a^T a} = \\sqrt{\\langle a, a \\rangle} = \\sqrt{\\sum_{i=1}^p a_i^2}.\n\\]"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#orthogonal-matrices",
     "href": "lectures/01-linear-algebra-review.html#orthogonal-matrices",
     "title": "A Brief Review of Linear Algebra",
-    "section": "1.8 Orthogonal matrices",
-    "text": "1.8 Orthogonal matrices\nA square matrix\n\\[\nQ = (q_1, \\ldots, q_n)\n\\]\nis an orthogonal matrix if\n\\[\nQ^TQ = QQ^T = I_n,\n\\]\nwhere each column \\(q_i \\in \\mathbb{R}^n\\) and \\(\\|q_i\\| = 1\\).\nExamples:\n\\[\nQ_1 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix},\n\\qquad\nQ_2 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix}.\n\\]\n\n1.8.1 Practice prompt\nGenerate a matrix \\(X \\in \\mathbb{R}^{10 \\times 2}\\). Let\n\\[\nY_1 = XQ_1.\n\\]\nDraw \\(X\\) and \\(Y_1\\) in \\(\\mathbb{R}^2\\) using different colors, and interpret the transformation as a rotation."
+    "section": "1.7 Orthogonal matrices",
+    "text": "1.7 Orthogonal matrices\nA square matrix\n\\[\nQ = (q_1, \\ldots, q_n)\n\\]\nis an orthogonal matrix if\n\\[\nQ^TQ = QQ^T = I_n,\n\\]\nwhere each column \\(q_i \\in \\mathbb{R}^n\\) and \\(\\|q_i\\| = 1\\).\nExamples:\n\\[\nQ_1 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix},\n\\qquad\nQ_2 =\n\\begin{pmatrix}\n\\tfrac{1}{\\sqrt{2}} & -\\tfrac{1}{\\sqrt{2}} \\\\\n\\tfrac{1}{\\sqrt{2}} & \\tfrac{1}{\\sqrt{2}}\n\\end{pmatrix}.\n\\]"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html#definition",
@@ -200,20 +193,48 @@
     "href": "lectures/01-linear-algebra-review.html#definition-1",
     "title": "A Brief Review of Linear Algebra",
     "section": "3.1 Definition",
-    "text": "3.1 Definition\nA vector space is a set of vectors that is closed under:\n\nvector addition, and\nscalar multiplication."
+    "text": "3.1 Definition\nA vector space is a set of vectors that is closed under:\n\nvector addition, and\nscalar multiplication.\n\nExamples:\n\nthe set of all vectors in \\(\\mathbb{R}^p\\) is a vector space.\nthe set of all vectors in \\(\\mathbb{R}^p\\) with zero in the last entry is a vector space.\nthe set of all vectors in \\(\\mathbb{R}^p\\) with the sum of the entries equal to zero is a vector space.\nthe set of all vectors in \\(\\mathbb{R}^p\\) with zero in the last entry or zero in the second-to-last entry is not a vector space, because it is not closed under vector addition.\n\nNext, we will see that the column space of a matrix is a vector space."
   },
   {
-    "objectID": "lectures/01-linear-algebra-review.html#column-space",
-    "href": "lectures/01-linear-algebra-review.html#column-space",
+    "objectID": "lectures/01-linear-algebra-review.html#example.",
+    "href": "lectures/01-linear-algebra-review.html#example.",
     "title": "A Brief Review of Linear Algebra",
-    "section": "3.2 Column space",
-    "text": "3.2 Column space\nLet \\(A\\) be an \\(n \\times p\\) matrix with columns\n\\[\nA = (a_1, \\ldots, a_p), \\qquad a_i \\in \\mathbb{R}^n.\n\\]\nThe column space of \\(A\\), denoted \\(C(A)\\), is the vector space generated by the columns of \\(A\\):\n\\[\nC(A) = \\left\\{ y : y = \\sum_{i=1}^p c_i a_i \\text{ for scalars } c_i,\\ i=1,\\ldots,p \\right\\}.\n\\]\nEquivalently,\n\\[\ny \\in C(A) \\iff \\exists c \\in \\mathbb{R}^p \\text{ such that } y = Ac.\n\\]"
+    "section": "4.1 Example.",
+    "text": "4.1 Example.\nConsider\n\\[\nA =\n\\begin{bmatrix}\n1 & 1 \\\\\n1 & 1 \\\\\n1 & 0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\na_1 & a_2\n\\end{bmatrix},\n\\qquad\na_1 =\n\\begin{bmatrix}\n1\\\\\n1\\\\\n1\n\\end{bmatrix},\n\\qquad\na_2 =\n\\begin{bmatrix}\n1\\\\\n1\\\\\n0\n\\end{bmatrix}.\n\\]\nSince\n\\[\na_1 = 1 \\cdot a_1 + 0 \\cdot a_2,\n\\]\nwe have \\(a_1 \\in \\mathcal{C}(A)\\).\nSimilarly,\n\\[\na_2 = 0 \\cdot a_1 + 1 \\cdot a_2,\n\\]\nso \\(a_2 \\in \\mathcal{C}(A)\\).\nQuestion:\n\\[\n\\begin{bmatrix}\n0\\\\\n0\\\\\n1\n\\end{bmatrix}\n\\in \\mathcal{C}(A)?\n\\]\nYes, because\n\\[\na_1 - a_2\n=\n\\begin{bmatrix}\n1\\\\\n1\\\\\n1\n\\end{bmatrix}\n-\n\\begin{bmatrix}\n1\\\\\n1\\\\\n0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0\\\\\n0\\\\\n1\n\\end{bmatrix}.\n\\]\nTherefore,\n\\[\n\\begin{bmatrix}\n0\\\\\n0\\\\\n1\n\\end{bmatrix}\n\\in \\mathcal{C}(A).\n\\]\nQuestion: \\[\n\\begin{bmatrix}\n1\\\\\n0\\\\\n0\n\\end{bmatrix}\n\\in \\mathcal{C}(A)?\n\\]\nIf it were, then we could find scalars \\(c_1, c_2\\) such that\n\\[\n\\begin{bmatrix}\n1\\\\\n0\\\\\n0\n\\end{bmatrix}\n=\nc_1\n\\begin{bmatrix}\n1\\\\\n1\\\\\n1\n\\end{bmatrix}\n+\nc_2\n\\begin{bmatrix}\n1\\\\\n1\\\\\n0\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nc_1 + c_2\\\\\nc_1 + c_2\\\\\nc_1\n\\end{bmatrix}.\n\\]\nMatching coordinates gives\n\\[\n1 = c_1 + c_2,\\qquad\n0 = c_1 + c_2,\\qquad\n0 = c_1,\n\\]\nwhich has no solution. Hence\n\\[\n\\begin{bmatrix}\n1\\\\\n0\\\\\n0\n\\end{bmatrix}\n\\notin \\mathcal{C}(A).\n\\]\nIn this example, \\(\\mathcal{C}(A)\\) is a subspace of \\(\\mathbb{R}^3\\)."
   },
   {
-    "objectID": "lectures/01-linear-algebra-review.html#matrix-vector-form",
-    "href": "lectures/01-linear-algebra-review.html#matrix-vector-form",
+    "objectID": "lectures/01-linear-algebra-review.html#a-proposition-about-column-spaces",
+    "href": "lectures/01-linear-algebra-review.html#a-proposition-about-column-spaces",
     "title": "A Brief Review of Linear Algebra",
-    "section": "3.3 Matrix-vector form",
-    "text": "3.3 Matrix-vector form\nIf\n\\[\nc = \\begin{pmatrix}c_1 \\\\ \\vdots \\\\ c_p\\end{pmatrix},\n\\]\nthen\n\\[\ny = Ac\n= (a_1, \\ldots, a_p)\n\\begin{pmatrix}c_1 \\\\ \\vdots \\\\ c_p\\end{pmatrix}\n= c_1 a_1 + \\cdots + c_p a_p.\n\\]\nThis verifies that multiplying \\(A\\) by a coefficient vector \\(c\\) produces a linear combination of the columns of \\(A\\)."
+    "section": "4.2 A proposition about column spaces",
+    "text": "4.2 A proposition about column spaces\n\n4.2.1 Proposition\nFor conformable matrices \\(A\\), \\(B\\), and \\(C\\),\n\\[\nA = BC\n\\quad \\Longleftrightarrow \\quad\n\\mathcal{C}(A) \\subseteq \\mathcal{C}(B).\n\\]\n\n\n4.2.2 Proof of the forward direction\nAssume \\(A = BC\\).\nTake any \\(x \\in \\mathcal{C}(A)\\). By definition of column space, there exists a vector \\(d\\) such that\n\\[\nx = Ad.\n\\]\nSince \\(A = BC\\),\n\\[\nx = Ad = BCd.\n\\]\nBut \\(Cd\\) is just another vector, so \\(x\\) has the form \\(B(\\text{something})\\). Therefore \\(x \\in \\mathcal{C}(B)\\).\nHence every vector in \\(\\mathcal{C}(A)\\) is also in \\(\\mathcal{C}(B)\\), so\n\\[\n\\mathcal{C}(A) \\subseteq \\mathcal{C}(B).\n\\]\n\n\n4.2.3 Proof of the reverse direction\nNow assume\n\\[\n\\mathcal{C}(A) \\subseteq \\mathcal{C}(B).\n\\]\nWrite\n\\[\nA = (a_1, \\ldots, a_p).\n\\]\nEach column \\(a_i\\) belongs to \\(\\mathcal{C}(A)\\), so by assumption each \\(a_i \\in \\mathcal{C}(B)\\). Therefore, for each \\(i\\) there exists a vector \\(c_i\\) such that\n\\[\na_i = Bc_i.\n\\]\nCollect these vectors into a matrix\n\\[\nC = (c_1, \\ldots, c_p).\n\\]\nThen\n\\[\nA = (a_1, \\ldots, a_p)\n   = (Bc_1, \\ldots, Bc_p)\n   = B(c_1, \\ldots, c_p)\n   = BC.\n\\]\nSo there exists a matrix \\(C\\) such that \\(A = BC\\).\n\n\n4.2.4 Example\nConsider again\n\\[\nA =\n\\begin{bmatrix}\n1 & 1 \\\\\n1 & 1 \\\\\n1 & 0\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 2},\n\\qquad\nB = I_3\n=\n\\begin{bmatrix}\n1 & 0 & 0\\\\\n0 & 1 & 0\\\\\n0 & 0 & 1\n\\end{bmatrix}.\n\\]\nThen\n\\[\n\\operatorname{rank}(A) = 2,\n\\qquad\n\\operatorname{rank}(B) = 3.\n\\]\nSince \\(B = I_3\\), clearly \\(\\mathcal{C}(A) \\subseteq \\mathcal{C}(B) = \\mathbb{R}^3\\), and the proposition implies that there exists a matrix \\(C\\) such that \\(A = BC\\)."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#theorem",
+    "href": "lectures/01-linear-algebra-review.html#theorem",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "4.3 Theorem",
+    "text": "4.3 Theorem\n\\[\n\\mathcal{C}(A) = \\mathcal{C}(AA^T),\n\\qquad\n\\mathcal{C}(A^T) = \\mathcal{C}(A^TA).\n\\]\nPractice: show that \\(\\mathcal{C}(AA^T) \\subseteq \\mathcal{C}(A)\\)."
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#definitions-eigenvector-eigenvalue-and-trace",
+    "href": "lectures/01-linear-algebra-review.html#definitions-eigenvector-eigenvalue-and-trace",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "5.1 Definitions: eigenvector, eigenvalue, and trace",
+    "text": "5.1 Definitions: eigenvector, eigenvalue, and trace\nLet \\(A \\in \\mathbb{R}^{n \\times n}\\).\n\nA nonzero vector \\(x \\in \\mathbb{R}^n\\) is called an eigenvector of \\(A\\) if\n\n\\[\nAx = \\lambda x\n\\]\nfor some scalar \\(\\lambda\\). The scalar \\(\\lambda\\) is the eigenvalue of \\(A\\) corresponding to the eigenvector \\(x\\).\n\nThe trace of \\(A\\) is the sum of the diagonal entries of \\(A\\): \\[\n\\operatorname{tr}(A) = \\sum_{i=1}^n A_{ii}.\n\\]\n\nFacts\nIf the eigenvalues of \\(A\\) are \\(\\lambda_1, \\ldots, \\lambda_n\\), then\n\\[\n\\det(A) = |A| = \\prod_{i=1}^n \\lambda_i,\n\\]\nand\n\\[\n\\operatorname{tr}(A) = \\sum_{i=1}^n \\lambda_i.\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#properties-of-trace",
+    "href": "lectures/01-linear-algebra-review.html#properties-of-trace",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "5.2 Properties of trace",
+    "text": "5.2 Properties of trace\n\n\\[\n\\operatorname{tr}(A + B) = \\operatorname{tr}(A) + \\operatorname{tr}(B).\n\\]\n\\[\n\\operatorname{tr}(AB) = \\operatorname{tr}(BA).\n\\]\n\nA useful example from the notes is\n\\[\n\\operatorname{tr}(Axx^T)\n= \\operatorname{tr}(x^TAx)\n= x^TAx.\n\\]\n\n\\[\n\\operatorname{tr}(A^s) = \\sum_{i=1}^n \\lambda_i^s.\n\\]\n\nAlso,\n\\[\n\\det(A) = \\prod_{i=1}^n \\lambda_i.\n\\]\n\nIf \\(P\\) is nonsingular (invertible), then\n\n\\[\n\\operatorname{tr}(P^{-1}AP) = \\operatorname{tr}(A).\n\\]\n\nIf \\(C\\) is orthogonal, then\n\n\\[\n\\operatorname{tr}(C^TAC) = \\operatorname{tr}(A).\n\\]"
+  },
+  {
+    "objectID": "lectures/01-linear-algebra-review.html#summary",
+    "href": "lectures/01-linear-algebra-review.html#summary",
+    "title": "A Brief Review of Linear Algebra",
+    "section": "5.3 Summary",
+    "text": "5.3 Summary\nThese lecture notes cover:\n\nthe definition of linear independence and orthogonality\nthe definition of rank and its properties\nthe definition of vector spaces\nthe definition of column space\na worked example for testing whether specific vectors belong to \\(\\mathcal{C}(A)\\)\nthe equivalence \\[\nA = BC \\iff \\mathcal{C}(A) \\subseteq \\mathcal{C}(B)\n\\]\nrank and the identities \\[\n\\mathcal{C}(A) = \\mathcal{C}(AA^T), \\qquad\n\\mathcal{C}(A^T) = \\mathcal{C}(A^TA)\n\\]\neigenvalues and basic trace identities\nsymmetric matrices and spectral decomposition\na full spectral-decomposition example using rotation, rescaling, and recovery of simulated data"
   }
 ]
