@@ -192,7 +192,15 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#definitions-eigenvector-eigenvalue-and-trace" id="toc-definitions-eigenvector-eigenvalue-and-trace" class="nav-link" data-scroll-target="#definitions-eigenvector-eigenvalue-and-trace"><span class="header-section-number">5.1</span> Definitions: eigenvector, eigenvalue, and trace</a></li>
   <li><a href="#properties-of-trace" id="toc-properties-of-trace" class="nav-link" data-scroll-target="#properties-of-trace"><span class="header-section-number">5.2</span> Properties of trace</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.3</span> Summary</a></li>
+  </ul></li>
+  <li><a href="#special-square-matrices" id="toc-special-square-matrices" class="nav-link" data-scroll-target="#special-square-matrices"><span class="header-section-number">6</span> Special Square Matrices</a>
+  <ul class="collapse">
+  <li><a href="#symmetric-matrices" id="toc-symmetric-matrices" class="nav-link" data-scroll-target="#symmetric-matrices"><span class="header-section-number">6.1</span> Symmetric Matrices</a>
+  <ul class="collapse">
+  <li><a href="#theorem-spectral-decomposition-of-symmetric-matrices" id="toc-theorem-spectral-decomposition-of-symmetric-matrices" class="nav-link" data-scroll-target="#theorem-spectral-decomposition-of-symmetric-matrices"><span class="header-section-number">6.1.1</span> Theorem: Spectral Decomposition of Symmetric Matrices</a></li>
+  <li><a href="#theorem-svd" id="toc-theorem-svd" class="nav-link" data-scroll-target="#theorem-svd"><span class="header-section-number">6.1.2</span> Theorem: SVD</a></li>
+  </ul></li>
+  <li><a href="#positive-definite-and-positive-semidefinite-matrices" id="toc-positive-definite-and-positive-semidefinite-matrices" class="nav-link" data-scroll-target="#positive-definite-and-positive-semidefinite-matrices"><span class="header-section-number">6.2</span> Positive Definite and Positive-Semidefinite Matrices</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -763,27 +771,81 @@ Ax = \lambda x
 <p><span class="math display">\[
 \operatorname{tr}(C^TAC) = \operatorname{tr}(A).
 \]</span></p>
+<p>Proof of (2): (skip the proof in class) Let <span class="math inline">\(A_{n\times p}\)</span> and <span class="math inline">\(B_{p\times n}\)</span>. Then <span class="math display">\[(AB)_{ii}=\sum_{k=1}^p a_{ik}b_{ki} \Rightarrow trace(AB)= \sum_{i=1}^n \sum_{k=1}^p a_{ik}b_{ki}\]</span> <span class="math display">\[(BA)_{jj}=\sum_{k=1}^n b_{jk}a_{kj} \Rightarrow trace(BA)= \sum_{j=1}^p \sum_{k=1}^n b_{jk}a_{kj} = \sum_{i=1}^n \sum_{k=1}^p a_{ik}b_{ki}\]</span></p>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix} 1\\ \vdots \\ 1 \end{pmatrix}, B=(1,\cdots,1)\)</span>. <span class="math inline">\(tr(AB)=tr(BA)=n\)</span>.</p>
+<p>Proof of (3): (skip the proof in class) By the definition of eigenvalues, <span class="math inline">\(\lambda_i\)</span>’s are the <span class="math inline">\(n\)</span> roots to <span class="math inline">\(det(\lambda I_n-A)=0\)</span>. In other words, <span class="math inline">\(det(\lambda I_n-A)=\prod (\lambda-\lambda_i)=\lambda^n -\lambda^{n-1}(\lambda_1+\cdots+\lambda_n) + \cdots + (-1)^n\lambda_1\cdots \lambda_n\)</span>.</p>
+<p>Note that <span class="math display">\[det(\lambda I_n -A) = |\begin{pmatrix}
+\lambda-a_{11} &amp; -a_{12} &amp; \cdots &amp; -a_{1n}\\
+-a_{21} &amp; \lambda-a_{22} &amp; \cdots &amp; -a_{2n}\\
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\\
+\cdots &amp; \cdots &amp; \cdots &amp; \lambda -a_{nn}
+\end{pmatrix}|\]</span> So we have<br>
+<span class="math display">\[\lambda^n -\lambda^{n-1}(\lambda_1+\cdots+\lambda_n) + \cdots + (-1)^n\lambda_1\cdots \lambda_n=
+|\begin{pmatrix}
+\lambda-a_{11} &amp; -a_{12} &amp; \cdots &amp; -a_{1n}\\
+-a_{21} &amp; \lambda-a_{22} &amp; \cdots &amp; -a_{2n}\\
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\\
+\cdots &amp; \cdots &amp; \cdots &amp; \lambda -a_{nn}
+\end{pmatrix}|\]</span></p>
+<p>Use Cofactor Expansions and commpare the coefficient of <span class="math inline">\(\lambda^{n-1}\)</span> of both sides, we can conclude that <span class="math display">\[-(\lambda_1+\cdots+\lambda_n)=-(a_{11}+\cdots+a_{nn}),\]</span> indicating that <span class="math inline">\(tr(A)=\sum \lambda_i\)</span>.</p>
+<p>Let <span class="math inline">\(\lambda=0\)</span> and compare both sides we have <span class="math display">\[(-1)^n\lambda_1\cdots\lambda_n=det(-A)=(-1)^n det(A),\]</span> indicating that <span class="math inline">\(det(A)=\prod \lambda_i\)</span>.</p>
+<p>Proof of (4): (show the proof in class) <span class="math inline">\(tr(P^{-1}AP)=tr(APP^{-1})=tr(A)\)</span>.</p>
 </section>
-<section id="summary" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.3</span> Summary</h2>
-<p>These lecture notes cover:</p>
-<ul>
-<li>the definition of linear independence and orthogonality</li>
-<li>the definition of rank and its properties</li>
-<li>the definition of vector spaces</li>
-<li>the definition of column space</li>
-<li>a worked example for testing whether specific vectors belong to <span class="math inline">\(\mathcal{C}(A)\)</span></li>
-<li>the equivalence <span class="math display">\[
-A = BC \iff \mathcal{C}(A) \subseteq \mathcal{C}(B)
-\]</span></li>
-<li>rank and the identities <span class="math display">\[
-\mathcal{C}(A) = \mathcal{C}(AA^T), \qquad
-\mathcal{C}(A^T) = \mathcal{C}(A^TA)
-\]</span></li>
-<li>eigenvalues and basic trace identities</li>
-<li>symmetric matrices and spectral decomposition</li>
-<li>a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data</li>
-</ul>
+</section>
+<section id="special-square-matrices" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Special Square Matrices</h1>
+<section id="symmetric-matrices" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="symmetric-matrices"><span class="header-section-number">6.1</span> Symmetric Matrices</h2>
+<p>A matrix <span class="math inline">\(A\)</span> is <strong>symmetric</strong> if <span class="math inline">\(A = A^T\)</span>.</p>
+<section id="theorem-spectral-decomposition-of-symmetric-matrices" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="theorem-spectral-decomposition-of-symmetric-matrices"><span class="header-section-number">6.1.1</span> Theorem: Spectral Decomposition of Symmetric Matrices</h3>
+<ol type="1">
+<li><p>If <span class="math inline">\(A_{n\times n}\)</span> is a symmetrix matrix, then there exists an orthogonal matrix <span class="math inline">\(\Gamma=(\gamma_1,\cdots,\gamma_n)\)</span> and a diagonal matrix <span class="math inline">\(\Lambda=diag(\lambda_1,\cdots,\lambda_n\)</span> such that <span class="math inline">\(A=\Gamma \Lambda \Gamma^T\)</span>. This factorization is known as the <strong>spectral decomposition</strong> of a symmetric matrix.</p></li>
+<li><p><span class="math inline">\(A=\sum_{i=1}^n \lambda_i \gamma_i \gamma_i^T\)</span>.</p></li>
+<li><p><span class="math inline">\(A\Gamma=\Gamma \Lambda\)</span>, which implies that <span class="math inline">\(A\gamma_i = \lambda_i \gamma_i\)</span>. Thus, <span class="math inline">\(\lambda_i's\)</span> are eigenvalues and <span class="math inline">\(\gamma_i's\)</span> are the correponing eigenvectors.</p></li>
+<li><p><span class="math inline">\(rank(A)\)</span> is equal to the number of non-zero eigenvalues.</p></li>
+<li><p><span class="math inline">\(tr(A^s)=\sum \lambda_i^s\)</span></p></li>
+<li><p>If <span class="math inline">\(A\)</span> is also non-singular, then <span class="math inline">\(tr(A^{-1})=\sum \lambda_i^{-1}\)</span></p></li>
+</ol>
+<p>Proof of (1): The proof is lengthy and requires basic knowledge of eigenvalues and eigenvectors. We omit the proof.</p>
+<p>Proof of (4): Recall that for any matrix <span class="math inline">\(A\)</span> and conformable and nonsingular <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> we have <span class="math inline">\(rank(BAC)=rank(A)\)</span>. Therefore, <span class="math inline">\(rank(A)=rank(\Gamma\Lambda \Gamma^T)=rank(\Lambda)=\sum I(\lambda_i\not=0)\)</span></p>
+<p>Proof of (5): <span class="math inline">\(tr(A^s)=tr((\Gamma\Lambda \Gamma^T)\cdots (\Gamma\Lambda \Gamma^T))=tr(\Gamma(\Lambda)^s\Gamma^T)=\sum \lambda_i^s\)</span></p>
+<p>Proof of (6): When <span class="math inline">\(A\)</span> is nonsingular, the eigenvalues of <span class="math inline">\(A^{-1}\)</span> is <span class="math inline">\(\lambda_i^{-1}\)</span>. Thus, there exists <span class="math inline">\(\Gamma\)</span> such that <span class="math inline">\(A^{-1}=\Gamma(\Lambda)^{-1}\Gamma^T\)</span> and the result follows immediately.</p>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix}2.2 &amp; 0.4 \\ 0.4 &amp; 2.8\end{pmatrix}=
+\begin{pmatrix}1/\sqrt{5} &amp; 2/\sqrt{5} \\ 2/\sqrt{5} &amp; -1/\sqrt{5}\end{pmatrix}
+\begin{pmatrix}3 &amp; 0 \\ 0 &amp; 2\end{pmatrix} \begin{pmatrix} 1/\sqrt{5} &amp; 2/\sqrt{5} \\ 2/\sqrt{5} &amp; -1/\sqrt{5} \end{pmatrix}\)</span></p>
+</section>
+<section id="theorem-svd" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="theorem-svd"><span class="header-section-number">6.1.2</span> Theorem: SVD</h3>
+<p>Singular value decomposition: If <span class="math inline">\(A\)</span> is an <span class="math inline">\(n\times p\)</span> matrix of rank <span class="math inline">\(r\)</span>, then <span class="math inline">\(A\)</span> can be written as <span class="math display">\[A_{n\times p}=U_{n\times r}L_{r\times r}V^T_{r\times p}\]</span> where <span class="math inline">\(U(n\times r)\)</span> and <span class="math inline">\(V(p\times r)\)</span> are column orthogonal matrices (<span class="math inline">\(U^TU=V^TV=I_r\)</span> and <span class="math inline">\(L\)</span> is a diagonal matrix).</p>
+<p>Note:<span class="math inline">\(AA^T=UL^2U^T\)</span>, and <span class="math inline">\(A^TA=VL^2V^T\)</span>.</p>
+</section>
+</section>
+<section id="positive-definite-and-positive-semidefinite-matrices" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="positive-definite-and-positive-semidefinite-matrices"><span class="header-section-number">6.2</span> Positive Definite and Positive-Semidefinite Matrices</h2>
+<!--
+## Summary
+
+These lecture notes cover:
+
+- the definition of linear independence and orthogonality
+- the definition of rank and its properties
+- the definition of vector spaces
+- the definition of column space
+- a worked example for testing whether specific vectors belong to $\mathcal{C}(A)$
+- the equivalence
+  $$
+  A = BC \iff \mathcal{C}(A) \subseteq \mathcal{C}(B)
+  $$
+- rank and the identities
+  $$
+  \mathcal{C}(A) = \mathcal{C}(AA^T), \qquad
+  \mathcal{C}(A^T) = \mathcal{C}(A^TA)
+  $$
+- eigenvalues and basic trace identities
+- symmetric matrices and spectral decomposition
+- a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data
+-->
 
 
 </section>
