@@ -12,7 +12,7 @@ lang: en
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
 
-The lecture reviews three linear algebra topics:
+The lecture covers the following linear algebra topics:
 
 1.  vectors and linear independence
 2.  rank
@@ -725,7 +725,7 @@ A matrix $A$ is **symmetric** if $A = A^T$.
 
 ### Theorem: Spectral Decomposition of Symmetric Matrices
 1. If $A_{n\times n}$ is a symmetrix matrix, then 
-there exists an orthogonal matrix $\Gamma=(\gamma_1,\cdots,\gamma_n)$ and a diagonal matrix $\Lambda=diag(\lambda_1,\cdots,\lambda_n$ such that $A=\Gamma \Lambda \Gamma^T$. This factorization is known as the **spectral decomposition** of a symmetric matrix.
+there exists an orthogonal matrix $\Gamma=(\gamma_1,\cdots,\gamma_n)$ and a diagonal matrix $\Lambda=diag(\lambda_1,\cdots,\lambda_n)$ such that $A=\Gamma \Lambda \Gamma^T$. This factorization is known as the **spectral decomposition** of a symmetric matrix.
 
 
 2. $A=\sum_{i=1}^n \lambda_i \gamma_i \gamma_i^T$.

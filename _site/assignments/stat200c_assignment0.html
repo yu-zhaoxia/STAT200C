@@ -265,13 +265,10 @@ H = X(X^\top X)^{-1}X^\top.
 </ol>
 <p>Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(n \times p\)</span> design matrix with rows <span class="math inline">\(\mathbf{x}_1^\top, \dots, \mathbf{x}_n^\top\)</span> (each a <span class="math inline">\(p\)</span>-dimensional row vector) and columns <span class="math inline">\(\mathbf{X}_1, \dots, \mathbf{X}_p\)</span> (each an <span class="math inline">\(n\)</span>-dimensional column vector).</p>
 <ol type="a">
-<li><p>Show that <span class="math inline">\(X^\top X\)</span> can be written as: <span class="math display">\[
-    X^\top X = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\top.
-    \]</span> Interpret the entries of <span class="math inline">\(X^\top X\)</span>: What does the <span class="math inline">\((j,k)\)</span>-th element represent statistically?</p></li>
+<li><p>Show that <span class="math inline">\(X^\top X\)</span> can be written as: <span class="math display">\[X^\top X = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\top.\]</span> Interpret the entries of <span class="math inline">\(X^\top X\)</span>: What does the <span class="math inline">\((j,k)\)</span>-th element represent statistically?</p></li>
 <li><p>Show that <span class="math inline">\(XX^\top\)</span> has <span class="math inline">\((i,j)\)</span>-th entry equal to <span class="math inline">\(\mathbf{x}_i^\top \mathbf{x}_j\)</span>. How does <span class="math inline">\(XX^\top\)</span> relate to the Euclidean distances between observations <span class="math inline">\(\mathbf{x}_i\)</span> and <span class="math inline">\(\mathbf{x}_j\)</span>?</p></li>
+<li><p>Assume that <span class="math inline">\(X\)</span> has full column rank. Show that the hat matrix <span class="math display">\[H = X(X^\top X)^{-1}X^\top\]</span> is symmetric (<span class="math inline">\(H = H^\top\)</span>) and idempotent (<span class="math inline">\(H^2 = H\)</span>). For the training data, explain how <span class="math inline">\(H\)</span> computes the fitted values <span class="math inline">\(\hat{\mathbf y}\)</span>.</p></li>
 </ol>
-<p>(c). Assume <span class="math inline">\(X\)</span> has full column rank. Show that the hat matrix <span class="math inline">\(H = X(X^\top X)^{-1}X^\top\)</span> is symmetric (<span class="math inline">\(H = H^\top\)</span>) and idempotent (<span class="math inline">\(H^2 = H\)</span>). For a new observation <span class="math inline">\(\mathbf{x}_\text{new}\)</span>, how does <span class="math inline">\(H\)</span> compute the predicted value <span class="math inline">\(\hat{y}_\text{new}\)</span>?</p>
-<hr>
 </section>
 <section id="part-4-eigenvalues-spectral-theory" class="level2">
 <h2 class="anchored" data-anchor-id="part-4-eigenvalues-spectral-theory">Part 4: Eigenvalues &amp; Spectral Theory</h2>
@@ -394,7 +391,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/yu-zhaoxia\.github\.io\/STAT200C\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 
 <ul>
 <li><p><a href="../assignments/stat200c_assignment0.html">STAT200C Assignment 0: Due on Friday, April 10, 2026</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment1.html">STAT200C Assignment 0: Due date TBA</a></p></li>
+<li><p><a href="../assignments/stat200c_assignment1.html">STAT200C Assignment 1: Due date TBA</a></p></li>
 </ul>
 
 
@@ -237,7 +237,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/yu-zhaoxia\.github\.io\/STAT200C\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

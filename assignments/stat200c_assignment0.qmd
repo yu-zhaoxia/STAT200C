@@ -106,16 +106,15 @@ Let $X$ be an $n \times p$ design matrix with rows $\mathbf{x}_1^\top, \dots, \m
 
 
 (a) Show that $X^\top X$ can be written as:
-        $$
-        X^\top X = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\top.
-        $$
+        $$X^\top X = \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^\top.$$
         Interpret the entries of $X^\top X$: What does the $(j,k)$-th element represent statistically?
         
 (b) Show that $XX^\top$ has $(i,j)$-th entry equal to $\mathbf{x}_i^\top \mathbf{x}_j$. How does $XX^\top$ relate to the Euclidean distances between observations $\mathbf{x}_i$ and $\mathbf{x}_j$?
         
-(c). Assume $X$ has full column rank. Show that the hat matrix $H = X(X^\top X)^{-1}X^\top$ is symmetric ($H = H^\top$) and idempotent ($H^2 = H$). For a new observation $\mathbf{x}_\text{new}$, how does $H$ compute the predicted value $\hat{y}_\text{new}$?
-
----
+(c) Assume that $X$ has full column rank. Show that the hat matrix
+$$H = X(X^\top X)^{-1}X^\top$$
+is symmetric ($H = H^\top$) and idempotent ($H^2 = H$). For the training data, explain how $H$ computes the fitted values
+$\hat{\mathbf y}$.
 
 ## Part 4: Eigenvalues & Spectral Theory
 
