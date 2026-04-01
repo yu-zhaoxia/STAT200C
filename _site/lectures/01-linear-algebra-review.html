@@ -192,8 +192,33 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#definitions-eigenvector-eigenvalue-and-trace" id="toc-definitions-eigenvector-eigenvalue-and-trace" class="nav-link" data-scroll-target="#definitions-eigenvector-eigenvalue-and-trace"><span class="header-section-number">5.1</span> Definitions: eigenvector, eigenvalue, and trace</a></li>
   <li><a href="#properties-of-trace" id="toc-properties-of-trace" class="nav-link" data-scroll-target="#properties-of-trace"><span class="header-section-number">5.2</span> Properties of trace</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.3</span> Summary</a></li>
   </ul></li>
+  <li><a href="#special-square-matrices" id="toc-special-square-matrices" class="nav-link" data-scroll-target="#special-square-matrices"><span class="header-section-number">6</span> Special Square Matrices</a>
+  <ul class="collapse">
+  <li><a href="#symmetric-matrices" id="toc-symmetric-matrices" class="nav-link" data-scroll-target="#symmetric-matrices"><span class="header-section-number">6.1</span> Symmetric Matrices</a>
+  <ul class="collapse">
+  <li><a href="#theorem-spectral-decomposition-of-symmetric-matrices" id="toc-theorem-spectral-decomposition-of-symmetric-matrices" class="nav-link" data-scroll-target="#theorem-spectral-decomposition-of-symmetric-matrices"><span class="header-section-number">6.1.1</span> Theorem: Spectral Decomposition of Symmetric Matrices</a></li>
+  <li><a href="#theorem-svd" id="toc-theorem-svd" class="nav-link" data-scroll-target="#theorem-svd"><span class="header-section-number">6.1.2</span> Theorem: SVD</a></li>
+  </ul></li>
+  <li><a href="#positive-definite-and-positive-semidefinite" id="toc-positive-definite-and-positive-semidefinite" class="nav-link" data-scroll-target="#positive-definite-and-positive-semidefinite"><span class="header-section-number">6.2</span> Positive Definite and Positive-Semidefinite</a>
+  <ul class="collapse">
+  <li><a href="#quadratic-forms" id="toc-quadratic-forms" class="nav-link" data-scroll-target="#quadratic-forms"><span class="header-section-number">6.2.1</span> Quadratic Forms</a></li>
+  <li><a href="#theorem-diagonalization-of-quadratic-forms" id="toc-theorem-diagonalization-of-quadratic-forms" class="nav-link" data-scroll-target="#theorem-diagonalization-of-quadratic-forms"><span class="header-section-number">6.2.2</span> Theorem: Diagonalization of Quadratic Forms</a></li>
+  <li><a href="#definition-positive-definite-and-positive-semi-definite" id="toc-definition-positive-definite-and-positive-semi-definite" class="nav-link" data-scroll-target="#definition-positive-definite-and-positive-semi-definite"><span class="header-section-number">6.2.3</span> Definition: Positive Definite and Positive Semi-definite</a></li>
+  <li><a href="#properties-of-psd-matrices." id="toc-properties-of-psd-matrices." class="nav-link" data-scroll-target="#properties-of-psd-matrices."><span class="header-section-number">6.2.4</span> Properties of PSD matrices.</a></li>
+  <li><a href="#properties-of-pd-matrices." id="toc-properties-of-pd-matrices." class="nav-link" data-scroll-target="#properties-of-pd-matrices."><span class="header-section-number">6.2.5</span> Properties of PD Matrices.</a></li>
+  <li><a href="#lemma-gram-factorization-gram-representation" id="toc-lemma-gram-factorization-gram-representation" class="nav-link" data-scroll-target="#lemma-gram-factorization-gram-representation"><span class="header-section-number">6.2.6</span> Lemma: Gram factorization / Gram representation</a></li>
+  <li><a href="#lemma-eigenvalues-of-ab-and-ba" id="toc-lemma-eigenvalues-of-ab-and-ba" class="nav-link" data-scroll-target="#lemma-eigenvalues-of-ab-and-ba"><span class="header-section-number">6.2.7</span> Lemma: Eigenvalues of <span class="math inline">\(AB\)</span> and <span class="math inline">\(BA\)</span></a></li>
+  <li><a href="#theorem-maximization-of-quadratic-forms" id="toc-theorem-maximization-of-quadratic-forms" class="nav-link" data-scroll-target="#theorem-maximization-of-quadratic-forms"><span class="header-section-number">6.2.8</span> Theorem: Maximization of Quadratic Forms</a></li>
+  <li><a href="#key-lemma-for-scheffés-method-maximization-of-linear-contrasts" id="toc-key-lemma-for-scheffés-method-maximization-of-linear-contrasts" class="nav-link" data-scroll-target="#key-lemma-for-scheffés-method-maximization-of-linear-contrasts"><span class="header-section-number">6.2.9</span> Key Lemma for Scheffé’s Method (Maximization of Linear Contrasts)</a></li>
+  </ul></li>
+  <li><a href="#idempotent-matrices-and-projection-matrices" id="toc-idempotent-matrices-and-projection-matrices" class="nav-link" data-scroll-target="#idempotent-matrices-and-projection-matrices"><span class="header-section-number">6.3</span> Idempotent matrices and projection matrices</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-projection-matrices" id="toc-properties-of-projection-matrices" class="nav-link" data-scroll-target="#properties-of-projection-matrices"><span class="header-section-number">6.3.1</span> Properties of projection matrices:</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#inverse-and-generalized-inverse" id="toc-inverse-and-generalized-inverse" class="nav-link" data-scroll-target="#inverse-and-generalized-inverse"><span class="header-section-number">7</span> Inverse and Generalized Inverse</a></li>
+  <li><a href="#matrix-differentiation" id="toc-matrix-differentiation" class="nav-link" data-scroll-target="#matrix-differentiation"><span class="header-section-number">8</span> Matrix Differentiation</a></li>
   </ul>
 </nav>
     </div>
@@ -221,11 +246,14 @@ window.Quarto = {
 
 <p>The lecture reviews three linear algebra topics:</p>
 <ol type="1">
-<li>vectors and linear independence,</li>
-<li>rank,</li>
-<li>vector spaces,</li>
-<li>column spaces, and</li>
-<li>eigenvalues and trace.</li>
+<li>vectors and linear independence</li>
+<li>rank</li>
+<li>vector spaces</li>
+<li>column spaces</li>
+<li>eigenvalues and trace</li>
+<li>Special square matrices: symmetric, positive definite, and positive semidefinite matrices</li>
+<li>Inverse and generalized inverse</li>
+<li>Matrix differentiation</li>
 </ol>
 <section id="vectors-and-linear-independence" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Vectors and linear independence</h1>
@@ -763,30 +791,259 @@ Ax = \lambda x
 <p><span class="math display">\[
 \operatorname{tr}(C^TAC) = \operatorname{tr}(A).
 \]</span></p>
+<p>Proof of (2): (skip the proof in class) Let <span class="math inline">\(A_{n\times p}\)</span> and <span class="math inline">\(B_{p\times n}\)</span>. Then <span class="math display">\[(AB)_{ii}=\sum_{k=1}^p a_{ik}b_{ki} \Rightarrow trace(AB)= \sum_{i=1}^n \sum_{k=1}^p a_{ik}b_{ki}\]</span> <span class="math display">\[(BA)_{jj}=\sum_{k=1}^n b_{jk}a_{kj} \Rightarrow trace(BA)= \sum_{j=1}^p \sum_{k=1}^n b_{jk}a_{kj} = \sum_{i=1}^n \sum_{k=1}^p a_{ik}b_{ki}\]</span></p>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix} 1\\ \vdots \\ 1 \end{pmatrix}, B=(1,\cdots,1)\)</span>. <span class="math inline">\(tr(AB)=tr(BA)=n\)</span>.</p>
+<p>Proof of (3): (skip the proof in class) By the definition of eigenvalues, <span class="math inline">\(\lambda_i\)</span>’s are the <span class="math inline">\(n\)</span> roots to <span class="math inline">\(det(\lambda I_n-A)=0\)</span>. In other words, <span class="math inline">\(det(\lambda I_n-A)=\prod (\lambda-\lambda_i)=\lambda^n -\lambda^{n-1}(\lambda_1+\cdots+\lambda_n) + \cdots + (-1)^n\lambda_1\cdots \lambda_n\)</span>.</p>
+<p>Note that <span class="math display">\[det(\lambda I_n -A) = |\begin{pmatrix}
+\lambda-a_{11} &amp; -a_{12} &amp; \cdots &amp; -a_{1n}\\
+-a_{21} &amp; \lambda-a_{22} &amp; \cdots &amp; -a_{2n}\\
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\\
+\cdots &amp; \cdots &amp; \cdots &amp; \lambda -a_{nn}
+\end{pmatrix}|\]</span> So we have<br>
+<span class="math display">\[\lambda^n -\lambda^{n-1}(\lambda_1+\cdots+\lambda_n) + \cdots + (-1)^n\lambda_1\cdots \lambda_n=
+|\begin{pmatrix}
+\lambda-a_{11} &amp; -a_{12} &amp; \cdots &amp; -a_{1n}\\
+-a_{21} &amp; \lambda-a_{22} &amp; \cdots &amp; -a_{2n}\\
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots\\
+\cdots &amp; \cdots &amp; \cdots &amp; \lambda -a_{nn}
+\end{pmatrix}|\]</span></p>
+<p>Use Cofactor Expansions and commpare the coefficient of <span class="math inline">\(\lambda^{n-1}\)</span> of both sides, we can conclude that <span class="math display">\[-(\lambda_1+\cdots+\lambda_n)=-(a_{11}+\cdots+a_{nn}),\]</span> indicating that <span class="math inline">\(tr(A)=\sum \lambda_i\)</span>.</p>
+<p>Let <span class="math inline">\(\lambda=0\)</span> and compare both sides we have <span class="math display">\[(-1)^n\lambda_1\cdots\lambda_n=det(-A)=(-1)^n det(A),\]</span> indicating that <span class="math inline">\(det(A)=\prod \lambda_i\)</span>.</p>
+<p>Proof of (4): (show the proof in class) <span class="math inline">\(tr(P^{-1}AP)=tr(APP^{-1})=tr(A)\)</span>.</p>
 </section>
-<section id="summary" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.3</span> Summary</h2>
-<p>These lecture notes cover:</p>
+</section>
+<section id="special-square-matrices" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Special Square Matrices</h1>
+<section id="symmetric-matrices" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="symmetric-matrices"><span class="header-section-number">6.1</span> Symmetric Matrices</h2>
+<p>A matrix <span class="math inline">\(A\)</span> is <strong>symmetric</strong> if <span class="math inline">\(A = A^T\)</span>.</p>
+<section id="theorem-spectral-decomposition-of-symmetric-matrices" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="theorem-spectral-decomposition-of-symmetric-matrices"><span class="header-section-number">6.1.1</span> Theorem: Spectral Decomposition of Symmetric Matrices</h3>
+<ol type="1">
+<li><p>If <span class="math inline">\(A_{n\times n}\)</span> is a symmetrix matrix, then there exists an orthogonal matrix <span class="math inline">\(\Gamma=(\gamma_1,\cdots,\gamma_n)\)</span> and a diagonal matrix <span class="math inline">\(\Lambda=diag(\lambda_1,\cdots,\lambda_n\)</span> such that <span class="math inline">\(A=\Gamma \Lambda \Gamma^T\)</span>. This factorization is known as the <strong>spectral decomposition</strong> of a symmetric matrix.</p></li>
+<li><p><span class="math inline">\(A=\sum_{i=1}^n \lambda_i \gamma_i \gamma_i^T\)</span>.</p></li>
+<li><p><span class="math inline">\(A\Gamma=\Gamma \Lambda\)</span>, which implies that <span class="math inline">\(A\gamma_i = \lambda_i \gamma_i\)</span>. Thus, <span class="math inline">\(\lambda_i's\)</span> are eigenvalues and <span class="math inline">\(\gamma_i's\)</span> are the correponing eigenvectors.</p></li>
+<li><p><span class="math inline">\(rank(A)\)</span> is equal to the number of non-zero eigenvalues.</p></li>
+<li><p><span class="math inline">\(tr(A^s)=\sum \lambda_i^s\)</span></p></li>
+<li><p>If <span class="math inline">\(A\)</span> is also non-singular, then <span class="math inline">\(tr(A^{-1})=\sum \lambda_i^{-1}\)</span></p></li>
+</ol>
+<p>Proof of (1): The proof is lengthy and requires basic knowledge of eigenvalues and eigenvectors. We omit the proof.</p>
+<p>Proof of (4): Recall that for any matrix <span class="math inline">\(A\)</span> and conformable and nonsingular <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> we have <span class="math inline">\(rank(BAC)=rank(A)\)</span>. Therefore, <span class="math inline">\(rank(A)=rank(\Gamma\Lambda \Gamma^T)=rank(\Lambda)=\sum I(\lambda_i\not=0)\)</span></p>
+<p>Proof of (5): <span class="math inline">\(tr(A^s)=tr((\Gamma\Lambda \Gamma^T)\cdots (\Gamma\Lambda \Gamma^T))=tr(\Gamma(\Lambda)^s\Gamma^T)=\sum \lambda_i^s\)</span></p>
+<p>Proof of (6): When <span class="math inline">\(A\)</span> is nonsingular, the eigenvalues of <span class="math inline">\(A^{-1}\)</span> is <span class="math inline">\(\lambda_i^{-1}\)</span>. Thus, there exists <span class="math inline">\(\Gamma\)</span> such that <span class="math inline">\(A^{-1}=\Gamma(\Lambda)^{-1}\Gamma^T\)</span> and the result follows immediately.</p>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix}2.2 &amp; 0.4 \\ 0.4 &amp; 2.8\end{pmatrix}=
+\begin{pmatrix}1/\sqrt{5} &amp; 2/\sqrt{5} \\ 2/\sqrt{5} &amp; -1/\sqrt{5}\end{pmatrix}
+\begin{pmatrix}3 &amp; 0 \\ 0 &amp; 2\end{pmatrix} \begin{pmatrix} 1/\sqrt{5} &amp; 2/\sqrt{5} \\ 2/\sqrt{5} &amp; -1/\sqrt{5} \end{pmatrix}\)</span></p>
+</section>
+<section id="theorem-svd" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="theorem-svd"><span class="header-section-number">6.1.2</span> Theorem: SVD</h3>
+<p>Singular value decomposition: If <span class="math inline">\(A\)</span> is an <span class="math inline">\(n\times p\)</span> matrix of rank <span class="math inline">\(r\)</span>, then <span class="math inline">\(A\)</span> can be written as <span class="math display">\[A_{n\times p}=U_{n\times r}L_{r\times r}V^T_{r\times p}\]</span> where <span class="math inline">\(U(n\times r)\)</span> and <span class="math inline">\(V(p\times r)\)</span> are column orthogonal matrices (<span class="math inline">\(U^TU=V^TV=I_r\)</span> and <span class="math inline">\(L\)</span> is a diagonal matrix).</p>
+<p>Note:<span class="math inline">\(AA^T=UL^2U^T\)</span>, and <span class="math inline">\(A^TA=VL^2V^T\)</span>.</p>
+</section>
+</section>
+<section id="positive-definite-and-positive-semidefinite" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="positive-definite-and-positive-semidefinite"><span class="header-section-number">6.2</span> Positive Definite and Positive-Semidefinite</h2>
+<section id="quadratic-forms" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="quadratic-forms"><span class="header-section-number">6.2.1</span> Quadratic Forms</h3>
+<p>A <strong>quadratic form</strong> of a vector <span class="math inline">\(x\)</span> is a function of the form <span class="math display">\[Q(x)=x^TAx=\sum_{i=1}^p\sum_{j=1}^pa_{ij}x_ix_j\]</span> where <span class="math inline">\(A\)</span> is a symmetric matrix; that is <span class="math display">\[Q(x)=a_{11}x_1^2+\cdots+a_{pp}x_p^2+2a_{12}x_1x_2+\cdots+2a_{p-1,p}x_{p-1}x_p\]</span></p>
+<p>Examples.</p>
+<ol type="1">
+<li><p><span class="math inline">\(A=\begin{pmatrix}1 &amp; 1\\ 1 &amp; 1\end{pmatrix}, x^TAx=x_1^2+2x_1x_2+x_2^2\)</span>. Note that for any <span class="math inline">\(x\not= 0\)</span>, <span class="math inline">\(x^TAx\ge 0\)</span>.</p></li>
+<li><p><span class="math inline">\(A=\begin{pmatrix}1 &amp; -1/2\\ -1/2 &amp; 1\end{pmatrix}, x^TAx=x_1^2-x_1x_2+x_2^2=(x_1-x_2/2)^2+3x_2^2/4\)</span>. Note that for any <span class="math inline">\(x\not= 0\)</span>, <span class="math inline">\(x^TAx&gt; 0\)</span>.</p></li>
+<li><p><span class="math inline">\(A=\begin{pmatrix}1 &amp; -2\\ -2 &amp; 1\end{pmatrix}, x^TAx=x_1^2-4x_1x_2+x_2^2=(x_1-x_2)^2-2x_1x_2\)</span>.</p></li>
+</ol>
+</section>
+<section id="theorem-diagonalization-of-quadratic-forms" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="theorem-diagonalization-of-quadratic-forms"><span class="header-section-number">6.2.2</span> Theorem: Diagonalization of Quadratic Forms</h3>
+<p>For any symmetric matrix <span class="math inline">\(A\)</span>, there exists an orthogonal transformation <span class="math inline">\(y=\Gamma^T x\)</span> such that <span class="math display">\[x^TAx=\sum \lambda_iy_i^2\]</span></p>
+<p>Proof: Consider the spectral decomposition of <span class="math inline">\(A=\Gamma \Lambda \Gamma^T\)</span> and the transformation <span class="math inline">\(y=\Gamma^Tx\)</span> Then <span class="math display">\[x^TAx=x^T\Gamma^T\Lambda\Gamma x=y^T\Lambda y=\sum \lambda_i y_i^2\]</span></p>
+</section>
+<section id="definition-positive-definite-and-positive-semi-definite" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="definition-positive-definite-and-positive-semi-definite"><span class="header-section-number">6.2.3</span> Definition: Positive Definite and Positive Semi-definite</h3>
 <ul>
-<li>the definition of linear independence and orthogonality</li>
-<li>the definition of rank and its properties</li>
-<li>the definition of vector spaces</li>
-<li>the definition of column space</li>
-<li>a worked example for testing whether specific vectors belong to <span class="math inline">\(\mathcal{C}(A)\)</span></li>
-<li>the equivalence <span class="math display">\[
-A = BC \iff \mathcal{C}(A) \subseteq \mathcal{C}(B)
-\]</span></li>
-<li>rank and the identities <span class="math display">\[
-\mathcal{C}(A) = \mathcal{C}(AA^T), \qquad
-\mathcal{C}(A^T) = \mathcal{C}(A^TA)
-\]</span></li>
-<li>eigenvalues and basic trace identities</li>
-<li>symmetric matrices and spectral decomposition</li>
-<li>a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data</li>
+<li><p><span class="math inline">\(Q(x)\)</span> is called a <strong>positive definite</strong> (p.d.) quadratic form if <span class="math inline">\(Q(x)&gt;0\)</span> for all <span class="math inline">\(x\not=0\)</span>; it is call <strong>positive semi-definite</strong> (p.s.d.) if <span class="math inline">\(Q(x)\ge 0\)</span> for all <span class="math inline">\(x\not=0\)</span>.</p></li>
+<li><p>A symmetric matrix <span class="math inline">\(A\)</span> is called p.d. (or p.s.d.) if <span class="math inline">\(Q(x)\)</span> is p.d. (or p.s.d.). We use the notation <span class="math inline">\(&gt;0\)</span> for positive definite and <span class="math inline">\(\ge 0\)</span> for positive semi-definite.</p></li>
 </ul>
-
-
 </section>
+<section id="properties-of-psd-matrices." class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="properties-of-psd-matrices."><span class="header-section-number">6.2.4</span> Properties of PSD matrices.</h3>
+<p>Let <span class="math inline">\(A_{p\times p}\)</span> be p.s.d. Then 1) <span class="math inline">\(\lambda_i\ge 0\)</span> for <span class="math inline">\(i=1,\cdots,p\)</span>. The result implies that if <span class="math inline">\(A\ge 0\)</span>, then <span class="math inline">\(tr(A)\ge 0\)</span>. Proof: <span class="math inline">\(A\ge 0\)</span> implies that <span class="math inline">\(0\le x^TAx=x^T\Gamma\Lambda\Gamma^Tx=\lambda_1y_1^2+\cdots+\lambda_p y_p^2\)</span> (Thm 1.5). Take <span class="math inline">\(y_1=1, y_2=0,\cdots, y_p=0\)</span> we have <span class="math inline">\(\lambda_1\ge0\)</span>, etc.</p>
+<ol start="2" type="1">
+<li>There exists a unique p.s.d matrix <span class="math inline">\(B\)</span> such that <span class="math inline">\(A=B^2\)</span>. Proof of existence. Consider the spetral decomposition of A: <span class="math inline">\(A=\Gamma \Lambda \Gamma^T\)</span>. Let <span class="math inline">\(B=\Gamma \Lambda^{1/2} \Gamma^T\)</span>. <span class="math inline">\(B\)</span> is called the square root matrix of <span class="math inline">\(A\)</span>.</li>
+</ol>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix}1 &amp; 1\\ 1 &amp; 1\end{pmatrix}, A^{1/2}=\begin{pmatrix}1/\sqrt{2} &amp; 1/\sqrt{2}\\ 1/\sqrt{2} &amp; 1/\sqrt{2}\end{pmatrix}\)</span></p>
+<ol start="3" type="1">
+<li><p>Let <span class="math inline">\(C\)</span> be any <span class="math inline">\(p\times n\)</span> matrix. We have <span class="math inline">\(C^TAC\ge 0\)</span>. Proof: Since <span class="math inline">\(A\ge 0\)</span>, for any <span class="math inline">\(n\)</span>-vector <span class="math inline">\(x\not= 0\)</span>, <span class="math display">\[x^TC^TACx=(Cx)^TA(Cx)\ge 0\]</span> so <span class="math inline">\(C^TAC\ge 0\)</span>.</p></li>
+<li><p><span class="math inline">\(a_{ii}\ge 0\)</span>. Proof: take <span class="math inline">\(x=(1,0,...,0)^T\)</span>, because <span class="math inline">\(A\)</span> is p.s.d., then <span class="math inline">\(x^TAx\ge 0\)</span>. But <span class="math inline">\(a_{11}=x^TAx\)</span>. So <span class="math inline">\(a_{11}\ge 0\)</span>. Similarly, <span class="math inline">\(a_{ii}\ge 0\)</span> for <span class="math inline">\(i=1,\cdots,p\)</span>.</p></li>
+</ol>
+</section>
+<section id="properties-of-pd-matrices." class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="properties-of-pd-matrices."><span class="header-section-number">6.2.5</span> Properties of PD Matrices.</h3>
+<p>Let <span class="math inline">\(A\)</span> be p.d. Then the following properties hold:</p>
+<ol type="1">
+<li><span class="math inline">\(rank(CAC^T)=rank(C).\)</span></li>
+</ol>
+<p>Proof: <span class="math inline">\(rank(CAC^T)=rank(CBBC^T)=rank(CB(CB)^T)=rank(CB)=rank(C)\)</span>. The last step is true because we know that for any <span class="math inline">\(A\)</span>, when <span class="math inline">\(P\)</span> and<span class="math inline">\(Q\)</span> are conformable and nonsingular, <span class="math inline">\(rank(PAQ)=rank(A)=rank(PA)=rank(AQ)\)</span>.</p>
+<ol start="2" type="1">
+<li>If <span class="math inline">\(C(n\times p)\)</span> has rank <span class="math inline">\(n\)</span>, then <span class="math inline">\(CAC^T\)</span> is p.d.</li>
+</ol>
+<p>Proof: <span class="math inline">\(x^TCAC^Tx=y^TAy\ge0\)</span> with equality iff <span class="math inline">\(y=0\)</span> iff <span class="math inline">\(C^Tx=0\)</span> iff <span class="math inline">\(x=0\)</span> (since the columns of <span class="math inline">\(C^T\)</span> are linearly independent). Hence <span class="math inline">\(x^TCAC^Tx&gt;0\)</span> for all <span class="math inline">\(x\not=0\)</span>.</p>
+<ol start="3" type="1">
+<li>If <span class="math inline">\(B (n\times p)\)</span> of rank <span class="math inline">\(p\)</span>, then <span class="math inline">\(B^TB\)</span> is p.d.</li>
+</ol>
+<p>Proof: <span class="math inline">\(x^TB^TBx=y^Ty\ge 0\)</span> with equality iff <span class="math inline">\(Bx=0\)</span> iff <span class="math inline">\(x=0\)</span> (since the columns of <span class="math inline">\(B\)</span> are linearly independent)</p>
+<ol start="4" type="1">
+<li>The diagonal elements of a p.d. matrix are all positive.</li>
+</ol>
+<p>Proof: For i=1, take <span class="math inline">\(x=(1,0,...,0)^T\)</span>, then <span class="math inline">\(x^TAx=a_{11}&gt; 0\)</span>. Similarly, you can prove for other <span class="math inline">\(i\)</span>’s.</p>
+<ol start="5" type="1">
+<li><span class="math inline">\(x^TAx=0\)</span> iff <span class="math inline">\(x=0\)</span>. Proof: <span class="math inline">\(A\)</span> can be written as <span class="math inline">\(B^2\)</span>. Thus <span class="math inline">\(x^TAx=(Bx)^T(Bx)\)</span>, equal to 0 iff <span class="math inline">\(Bx=0\)</span>, iff <span class="math inline">\(x=0\)</span>.</li>
+</ol>
+<p>Practice Problems:</p>
+<ul>
+<li><p>Let <span class="math inline">\(A_{p\times p}\)</span> be a positive definite matrix and let <span class="math inline">\(B_{k\times p}\)</span> be a matrix of rank <span class="math inline">\(k\le p\)</span>. Then <span class="math inline">\(BAB^T\)</span> is positive definite.</p></li>
+<li><p>Let <span class="math inline">\(A_{p\times p}\)</span> be a positive defnite matrix and let <span class="math inline">\(B_{k\times p}\)</span> a matrix. If <span class="math inline">\(k&gt;p\)</span> or if <span class="math inline">\(rank(B)=r&lt;p\)</span>, then <span class="math inline">\(BAB^T\)</span> is positive semidefinite.</p></li>
+</ul>
+</section>
+<section id="lemma-gram-factorization-gram-representation" class="level3" data-number="6.2.6">
+<h3 data-number="6.2.6" class="anchored" data-anchor-id="lemma-gram-factorization-gram-representation"><span class="header-section-number">6.2.6</span> Lemma: Gram factorization / Gram representation</h3>
+<p>A symmetric matrix <span class="math inline">\(A\)</span> is p.d. if and only if there exists a nonsingular matrix <span class="math inline">\(P\)</span> such that <span class="math inline">\(A=P^TP\)</span>.</p>
+<p>proof: $: $ By the spectral decomposition, <span class="math inline">\(A=\Gamma \Lambda \Gamma^T\)</span>, where <span class="math inline">\(\Gamma\)</span> is orthogonal and <span class="math inline">\(\Lambda=\)</span> is diagonal. Because <span class="math inline">\(A\)</span> is p.d., <span class="math inline">\(\Gamma^TA\Gamma=\Lambda\)</span> is also p.d.. Thus, we can write <span class="math inline">\(\Lambda\)</span> to <span class="math inline">\(\Lambda^{1/2}\Lambda^{1/2}\)</span>, which leads to <span class="math inline">\(A=P^TP\)</span>.</p>
+<p>$: $ Since <span class="math inline">\(P\)</span> is nonsingular, its columns are linearly independent. Therefore, for any <span class="math inline">\(x\not=0\)</span>, <span class="math inline">\(Px\not=0\)</span>, and <span class="math inline">\(x^TAx=x^TP^TPx=(Px)^T (Px)&gt;0\)</span>, i.e., <span class="math inline">\(A\)</span> is positive definite.</p>
+<p>Remarks:</p>
+<ol type="1">
+<li><p>The result is known as the Gram factorization of a p.d. matrix, and <span class="math inline">\(P\)</span> is called the Gram representation of <span class="math inline">\(A\)</span>. Note that the Gram representation is not unique. For example, if <span class="math inline">\(P\)</span> is a Gram representation of <span class="math inline">\(A\)</span>, then so is <span class="math inline">\(CP\)</span> for any orthogonal matrix <span class="math inline">\(C\)</span>.</p></li>
+<li><p>Related factorizations:</p></li>
+</ol>
+<ul>
+<li><p>Cholesky factorization: If <span class="math inline">\(A\)</span> is p.d., then there exists a unique lower triangular matrix <span class="math inline">\(L\)</span> with positive diagonal entries such that <span class="math inline">\(A=LL^T\)</span>.</p></li>
+<li><p>Square root factorization: If <span class="math inline">\(A\)</span> is p.d., then there exists a unique p.d. matrix <span class="math inline">\(B\)</span> such that <span class="math inline">\(A=B^2\)</span>.</p></li>
+</ul>
+</section>
+<section id="lemma-eigenvalues-of-ab-and-ba" class="level3" data-number="6.2.7">
+<h3 data-number="6.2.7" class="anchored" data-anchor-id="lemma-eigenvalues-of-ab-and-ba"><span class="header-section-number">6.2.7</span> Lemma: Eigenvalues of <span class="math inline">\(AB\)</span> and <span class="math inline">\(BA\)</span></h3>
+<p>For conformable matrices, the nonzero eigenvalues of <span class="math inline">\(AB\)</span> are the same as those of <span class="math inline">\(BA\)</span>. The eigenvalues are identical for square matrices.</p>
+<p>Proof: Let <span class="math inline">\(\lambda\)</span> be a nonzero eigenvalue of <span class="math inline">\(AB\)</span>. Then there exists <span class="math inline">\(u (u\not=0)\)</span> such that <span class="math inline">\(ABu=\lambda u\)</span>; that is, <span class="math inline">\(BABu=\lambda Bu\)</span>. Hence <span class="math inline">\(BAv=\lambda v\)</span>, where <span class="math inline">\(v=Bu\not=0\)</span> (as <span class="math inline">\(ABu\not=0\)</span>), and <span class="math inline">\(\lambda\)</span> is an eigenvalue of <span class="math inline">\(BA\)</span>. The argument reverses by interchanging the roles of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. For square matrices <span class="math inline">\(AB\)</span> and <span class="math inline">\(BA\)</span> have the same number of zero eigenvalues.</p>
+</section>
+<section id="theorem-maximization-of-quadratic-forms" class="level3" data-number="6.2.8">
+<h3 data-number="6.2.8" class="anchored" data-anchor-id="theorem-maximization-of-quadratic-forms"><span class="header-section-number">6.2.8</span> Theorem: Maximization of Quadratic Forms</h3>
+<p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be two symmetric matrices. Suppose that <span class="math inline">\(B&gt;0\)</span>. Then the maximum (minimum) of <span class="math inline">\(x^TAx\)</span> given <span class="math inline">\(x^TBx=1\)</span> is attained when <span class="math inline">\(x\)</span> is the eigenvector of <span class="math inline">\(B^{-1}A\)</span> corresponding to the largest (smallest) eigenvalue of <span class="math inline">\(B^{-1}A\)</span>. Thus, if <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_p\)</span> are the largest and the smallest eigenvalue of <span class="math inline">\(B^{-1}A\)</span>, respectively, then subject to the constrain <span class="math inline">\(x^TBx=1\)</span>, <span class="math display">\[max_x x^TAx=\lambda_{max} (B^{-1}A), min_x x^TAx = \lambda_{min}(B^{-1}A)\]</span></p>
+<p>This is a homework problem. Hint: consider <span class="math inline">\(y=B^{1/2}x\)</span>.</p>
+<!--
+Proof: Let $B^{1/2}$ denote the square root matrix of $B$.
+
+Note, (1) in general a matrix can have many square root matrices; (2) a p.d. matrix has only one square root matrix, which is also p.d.; (3) a real matrix may fail to have a real square root matrix.
+
+Let $y=B^{1/2}x$. The the maximum $x^TAx$ subject to $x^TBx=1$ can be written as
+$$max yB^{-1/2}AB^{-1/2}y$$ subject to $y^Ty=1$.
+Let $B^{-1/2}AB^{-1/2}=\Gamma \Lambda \Gamma^T$ be a spectral decomposition of the symmetric matrix $B^{-1/2}AB^{-1/2}$. Let $z=\Gamma^Ty$. Then $z^Tz=y^T\Gamma\Gamma^Ty=y^Ty$ so that the above maximization problem can be written
+$$max_z z^T\Lambda z=max \sum \lambda_i z_i^2$$ subject to $z^Tz=1$.
+Further, this bound is attained for $z=(1,0,\cdots,0)^T$, that is for $y=\gamma_{(1)}$, and for $x=B^{-1/2}\gamma_{(1)}$. By the corollary, $B^{-1}A$ and $B^{-1/2}AB^{-1/2}$ have the same eigenvalues and $x=B^{-1/2}\gamma_{(1)}$ is an eigenvector of $B^{-1}A$ corresponding to $\lambda_1$. Thus is theorem is provided for maximization.
+-->
+<p>The above theorem can also be written as <span class="math display">\[max_{x\not=0} \frac{x^TAx}{x^TBx}=\lambda_{max} (B^{-1}A), min_{x\not=0} \frac{x^TAx}{x^TBx}=\lambda_{min} (B^{-1}A)\]</span></p>
+<p>A useful result from the theorem: Let <span class="math inline">\(B=I\)</span>, then <span class="math display">\[
+\begin{align*}
+\max_{x,\;x\ne 0}\left\{ \frac{x^T A x}{x^T x}\right\} &amp;= \lambda_{\max}\\
+\min_{x,\;x\ne 0}\left\{ \frac{x^T A x}{x^T x}\right\} &amp;= \lambda_{\min}
+\end{align*}
+\]</span></p>
+<p>where <span class="math inline">\(\lambda_{min}\)</span> and <span class="math inline">\(\lambda_{max}\)</span> are the minimum and maximum eigenvalues of <span class="math inline">\(A\)</span>, respectively. These values occur when <span class="math inline">\(x\)</span> is the eigenvector corresponding to the eigenvalues <span class="math inline">\(\lambda_{min}\)</span> and <span class="math inline">\(\lambda_{max}\)</span>, respectively.</p>
+</section>
+<section id="key-lemma-for-scheffés-method-maximization-of-linear-contrasts" class="level3" data-number="6.2.9">
+<h3 data-number="6.2.9" class="anchored" data-anchor-id="key-lemma-for-scheffés-method-maximization-of-linear-contrasts"><span class="header-section-number">6.2.9</span> Key Lemma for Scheffé’s Method (Maximization of Linear Contrasts)</h3>
+<p>If <span class="math inline">\(L\)</span> is p.d., then for any <span class="math inline">\(b\)</span>, <span class="math display">\[max_{h,h\not=0}\left\{\frac{(h^Tb)^2}{h^TLh}\right\}=b^TL^{-1}b\]</span></p>
+<p>Proof: The theorem can be proved by using the previous theorem because we can rewrite <span class="math inline">\((h^Tb)^2\)</span> to <span class="math inline">\(h^Tbb^Th\)</span>.</p>
+<p>Thus, the maximum is <span class="math display">\[\lambda_{max}(L^{-1}bb^T)=\lambda_{max}(b^TL^{-1}b)=b^TL^{-1}b\]</span> The last step is true because <span class="math inline">\(b^TL^{-1}b\)</span> is a scalar; the second to the last step is true because the nonzero eigenvalues of <span class="math inline">\(AB\)</span> are the same as those of <span class="math inline">\(BA\)</span>.</p>
+</section>
+</section>
+<section id="idempotent-matrices-and-projection-matrices" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="idempotent-matrices-and-projection-matrices"><span class="header-section-number">6.3</span> Idempotent matrices and projection matrices</h2>
+<p>Definition. A matrix <span class="math inline">\(P\)</span> is <strong>idempotent</strong> if <span class="math inline">\(P^2=P\)</span>.</p>
+<p>Note. If <span class="math inline">\(P\)</span> is idempotent, so is <span class="math inline">\(I-P\)</span>.</p>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix}1 &amp; 1\\ 0 &amp; 0\end{pmatrix}, A^2=A\)</span>. Verify that $()</p>
+<p>Definition. A symmetric and idempotent matrix is called a <strong>projection</strong> matrix.</p>
+<p>Example. <span class="math inline">\(A=\begin{pmatrix}1/2 &amp; 1/2\\ 1/2 &amp; 1/2\end{pmatrix}, A=A^T, A^2=A\)</span>.</p>
+<section id="properties-of-projection-matrices" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="properties-of-projection-matrices"><span class="header-section-number">6.3.1</span> Properties of projection matrices:</h3>
+<ol type="1">
+<li><p>If <span class="math inline">\(P\)</span> is symmetric, then <span class="math inline">\(P\)</span> is idempotent with rank <span class="math inline">\(r\)</span> if and only if it has <span class="math inline">\(r\)</span> eigenvalues equal to 1 and <span class="math inline">\(n-r\)</span> eigenvalues equal to zero.</p></li>
+<li><p>If <span class="math inline">\(P\)</span> is a projection matrix, then <span class="math inline">\(tr(P)=rank(P)\)</span>.</p></li>
+<li><p>Projection matrices are positive-semidefinite.</p></li>
+<li><p>If <span class="math inline">\(P_i (i=1,2)\)</span> is a projection matrix and <span class="math inline">\(P_1-P_2\)</span> is p.s.d., then</p></li>
+</ol>
+<ul>
+<li><span class="math inline">\(P_1P_2=P_2P_1=P_2\)</span> (note, both <span class="math inline">\(P_1P_2\)</span> and <span class="math inline">\(P_2P_1\)</span> are projection matrices).</li>
+<li><span class="math inline">\(P_1-P_2\)</span> is a projection matrix.</li>
+</ul>
+<p>Proof of (1): Let <span class="math inline">\(\lambda\)</span> be an eigenvalue of <span class="math inline">\(P\)</span>, then we have <span class="math inline">\(Px=\lambda x\)</span>, where <span class="math inline">\(x\)</span> is the corresponding eigenvector. Since <span class="math inline">\(P^2=P\)</span>, we have <span class="math inline">\(\lambda x= Px=P(Px)=\lambda Px= \lambda^2 x\)</span>, which implies that <span class="math inline">\(\lambda\)</span> equals either zero or 1. For a symmetric matrix, its rank equals the number of nonzero eigenvalues. Thus <span class="math inline">\(rank(P)\)</span> equals the number of 1’s.</p>
+<p>On the other hand, suppose <span class="math inline">\(P\)</span> has <span class="math inline">\(r\)</span> eigenvalues equal to 1 and <span class="math inline">\(n-r\)</span> eigenvalues equal to 0. Without loss of generality, we assume that the first <span class="math inline">\(r\)</span> eigenvalues are 1. By the spectral decomposition of the symmetric matrix <span class="math inline">\(P\)</span>, we have <span class="math inline">\(P=\Gamma \Lambda \Gamma^T\)</span>, where the first <span class="math inline">\(r\)</span> diagonal elements of <span class="math inline">\(\Lambda\)</span> are 1 and all the other elements are zero. It is obvious that <span class="math inline">\(\Lambda^2=\Lambda\)</span>. Thus <span class="math inline">\(P^2=\Gamma \Lambda \Gamma^T\Gamma \Lambda \Gamma^T=\Gamma \Lambda \Gamma=P\)</span>.</p>
+<p>Proof of (2): Based on (1), <span class="math inline">\(P\)</span> has <span class="math inline">\(rank(P)\)</span> eigenvalues equal to 1 and <span class="math inline">\(n-rank(P)\)</span> eigenvalues equal to 0. We also know that <span class="math inline">\(tr(P)=\sum \lambda_i=rank(P)\)</span>.</p>
+<p>Proof of (3): <span class="math inline">\(x^TPx=X^TPPx=(Px)^T(Px)\ge 0\)</span>.</p>
+<p>Proof of (4): Clearly the following are true:</p>
+<p><span class="math display">\[\begin{eqnarray*}
+((I-P_1)y)^T P_2 ((I-P_1)y) &amp; \ge &amp; 0\\
+((I-P_1)y)^T P_1 ((I-P_1)y) &amp; = &amp; 0
+\end{eqnarray*}\]</span></p>
+<p>which implies that <span class="math inline">\([(I-P_1)y]^T(P_1-P_2)[(I-P_1)y] \le 0\)</span>. However, we also know that <span class="math inline">\(P_1-P_2\ge 0\)</span>. Therefore, it must be true that <span class="math display">\[[(I-P_1)y]^T(P_2-P_1)[(I-P_1)y] = 0\]</span> which implies that <span class="math display">\[\begin{eqnarray*}
+(I-P_1)P_2(I-P_1)=0\\
+&amp;\Rightarrow &amp; (I-P_1)P_2 P_2 (I-P_1)=0\\
+&amp;\Rightarrow &amp; (I-P_1)P_2=0\\
+&amp;\Rightarrow &amp; P_2=P_1P_2
+\end{eqnarray*}\]</span></p>
+<p>A projection matrix must be a symmetric matrix. Therefore <span class="math display">\[P_2=(P_2)^T=(P_1P_2)^T=(P_2)^T(P_1)^T=P_2P_1\]</span></p>
+<p>Last, <span class="math inline">\((P_1-P_2)^2=P_1-2P_1P_2+P_2=P_1-2P_2+P_2=P_1-P_2\)</span>.</p>
+</section>
+</section>
+</section>
+<section id="inverse-and-generalized-inverse" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Inverse and Generalized Inverse</h1>
+<p>Definition. A full-rank square matrix is called a nonsingular matrix. A nonsingular matrix <span class="math inline">\(A\)</span> has a unique inverse, denoted by <span class="math inline">\(A^{-1}\)</span>: <span class="math display">\[AA^{-1}=A^{-1}A=I.\]</span></p>
+<p>Some properties of <span class="math inline">\(A^{-1}\)</span>: - It is unique - <span class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span> - <span class="math inline">\((A^T)^{-1}=(A^{-1})^T\)</span></p>
+<p>Definition. For a matrix <span class="math inline">\(A_{n\times p}\)</span>, <span class="math inline">\(A^{-}\)</span> is call a <strong>g-inverse</strong> (generalized inverse) of <span class="math inline">\(A\)</span> if <span class="math display">\[AA^{-}A=A\]</span></p>
+<p>A generalized inverse always exists although in general it is not unique.</p>
+</section>
+<section id="matrix-differentiation" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Matrix Differentiation</h1>
+<p>Definition. We define the derivative of <span class="math inline">\(f(X)\)</span> with respect to <span class="math inline">\(X_{n\times p}\)</span> as <span class="math display">\[\frac{\partial f(X)}{\partial X}=\left(\frac{\partial f(X)}{\partial x_{ij}} \right)_{n\times p}\]</span></p>
+<p>The following results are useful:</p>
+<ul>
+<li><span class="math display">\[\frac{\partial a^Tx}{\partial x}=a\]</span></li>
+<li><span class="math display">\[\frac{\partial x^Tx}{\partial x}=2x, \frac{\partial x^TAx}{\partial x}=(A+A^T)x, \frac{\partial x^TAy}{\partial x}=Ay\]</span></li>
+</ul>
+<p>Proof of (2): <span class="math display">\[\begin{eqnarray*}
+\frac{\partial x^TAx}{ \partial x_k}
+&amp;=&amp; \frac{\partial}{\partial x_k}\left( \sum_{i}\sum_{j} a_{ij}x_{i}x_{j}\right) \\
+&amp;=&amp; \frac{\partial}{\partial x_k} (a_{kk}x_k^2 + \sum_{j\not=k}a_{kj}x_kx_j +\sum_{i\not=k} a_{ik} x_i x_k )\\
+&amp;=&amp;2a_{kk}x_k + \sum_{j\not=k}a_{kj}x_j + \sum_{i\not=k}a_{ik}x_i\\
+&amp;=&amp;\sum_i a_{ki}x_i + \sum_i a_{ik}x_i\\
+&amp;=&amp; (Ax)_k + (A^Tx)_k\\
+&amp;=&amp; ((A+A^T)x)_k
+\end{eqnarray*}\]</span></p>
+<!--
+## Summary
+
+These lecture notes cover:
+
+- the definition of linear independence and orthogonality
+- the definition of rank and its properties
+- the definition of vector spaces
+- the definition of column space
+- a worked example for testing whether specific vectors belong to $\mathcal{C}(A)$
+- the equivalence
+  $$
+  A = BC \iff \mathcal{C}(A) \subseteq \mathcal{C}(B)
+  $$
+- rank and the identities
+  $$
+  \mathcal{C}(A) = \mathcal{C}(AA^T), \qquad
+  \mathcal{C}(A^T) = \mathcal{C}(A^TA)
+  $$
+- eigenvalues and basic trace identities
+- symmetric matrices and spectral decomposition
+- a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data
+-->
+
+
 </section>
 
 </main> <!-- /main -->
@@ -880,7 +1137,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/yu-zhaoxia\.github\.io\/STAT200C\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

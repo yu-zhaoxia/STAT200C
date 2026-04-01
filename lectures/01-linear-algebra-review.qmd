@@ -14,11 +14,14 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 The lecture reviews three linear algebra topics:
 
-1.  vectors and linear independence,
-2.  rank, 
-3.  vector spaces,
-4.  column spaces, and
-5.  eigenvalues and trace.
+1.  vectors and linear independence
+2.  rank
+3.  vector spaces
+4.  column spaces
+5.  eigenvalues and trace
+6.  Special square matrices: symmetric, positive definite, and positive semidefinite matrices
+7.  Inverse and generalized inverse
+8.  Matrix differentiation
 
 # Vectors and linear independence
 
@@ -677,6 +680,322 @@ $$
 $$
 
 
+Proof of (2): (skip the proof in class) Let $A_{n\times p}$ and $B_{p\times n}$. Then
+$$(AB)_{ii}=\sum_{k=1}^p a_{ik}b_{ki} \Rightarrow trace(AB)= \sum_{i=1}^n \sum_{k=1}^p a_{ik}b_{ki}$$
+$$(BA)_{jj}=\sum_{k=1}^n b_{jk}a_{kj} \Rightarrow trace(BA)= \sum_{j=1}^p \sum_{k=1}^n b_{jk}a_{kj} = \sum_{i=1}^n \sum_{k=1}^p a_{ik}b_{ki}$$
+
+Example. $A=\begin{pmatrix} 1\\ \vdots \\ 1 \end{pmatrix}, B=(1,\cdots,1)$. 
+$tr(AB)=tr(BA)=n$.  
+
+Proof of (3): (skip the proof in class) By the definition of eigenvalues, $\lambda_i$'s are the $n$ roots to $det(\lambda I_n-A)=0$. In other words, $det(\lambda I_n-A)=\prod (\lambda-\lambda_i)=\lambda^n -\lambda^{n-1}(\lambda_1+\cdots+\lambda_n) + \cdots + (-1)^n\lambda_1\cdots \lambda_n$.
+
+Note that
+$$det(\lambda I_n -A) = |\begin{pmatrix}
+\lambda-a_{11} & -a_{12} & \cdots & -a_{1n}\\
+-a_{21} & \lambda-a_{22} & \cdots & -a_{2n}\\
+\cdots & \cdots & \cdots & \cdots\\
+\cdots & \cdots & \cdots & \lambda -a_{nn}
+\end{pmatrix}|$$
+So we have  
+$$\lambda^n -\lambda^{n-1}(\lambda_1+\cdots+\lambda_n) + \cdots + (-1)^n\lambda_1\cdots \lambda_n=
+|\begin{pmatrix}
+\lambda-a_{11} & -a_{12} & \cdots & -a_{1n}\\
+-a_{21} & \lambda-a_{22} & \cdots & -a_{2n}\\
+\cdots & \cdots & \cdots & \cdots\\
+\cdots & \cdots & \cdots & \lambda -a_{nn}
+\end{pmatrix}|$$
+
+Use Cofactor Expansions and commpare the coefficient of $\lambda^{n-1}$ of both sides, we can conclude that 
+$$-(\lambda_1+\cdots+\lambda_n)=-(a_{11}+\cdots+a_{nn}),$$
+indicating that $tr(A)=\sum \lambda_i$. 
+
+Let $\lambda=0$ and compare both sides we have 
+$$(-1)^n\lambda_1\cdots\lambda_n=det(-A)=(-1)^n det(A),$$
+indicating that $det(A)=\prod \lambda_i$.
+
+Proof of (4): (show the proof in class) $tr(P^{-1}AP)=tr(APP^{-1})=tr(A)$.
+
+
+# Special Square Matrices
+
+## Symmetric Matrices
+A matrix $A$ is **symmetric** if $A = A^T$.
+
+
+
+### Theorem: Spectral Decomposition of Symmetric Matrices
+1. If $A_{n\times n}$ is a symmetrix matrix, then 
+there exists an orthogonal matrix $\Gamma=(\gamma_1,\cdots,\gamma_n)$ and a diagonal matrix $\Lambda=diag(\lambda_1,\cdots,\lambda_n$ such that $A=\Gamma \Lambda \Gamma^T$. This factorization is known as the **spectral decomposition** of a symmetric matrix.
+
+
+2. $A=\sum_{i=1}^n \lambda_i \gamma_i \gamma_i^T$.
+
+3. $A\Gamma=\Gamma \Lambda$, which implies that $A\gamma_i = \lambda_i \gamma_i$. Thus, $\lambda_i's$ are eigenvalues and $\gamma_i's$ are the correponing eigenvectors.
+
+4. $rank(A)$ is equal to the number of non-zero eigenvalues.
+
+5. $tr(A^s)=\sum \lambda_i^s$
+
+6. If $A$ is also non-singular, then $tr(A^{-1})=\sum \lambda_i^{-1}$
+
+
+Proof of (1): The proof is lengthy and requires basic knowledge of eigenvalues and eigenvectors. We omit the proof.
+
+Proof of (4): Recall that for any matrix $A$ and conformable and nonsingular $B$ and $C$ we have $rank(BAC)=rank(A)$. Therefore, $rank(A)=rank(\Gamma\Lambda \Gamma^T)=rank(\Lambda)=\sum I(\lambda_i\not=0)$
+
+Proof of (5): $tr(A^s)=tr((\Gamma\Lambda \Gamma^T)\cdots (\Gamma\Lambda \Gamma^T))=tr(\Gamma(\Lambda)^s\Gamma^T)=\sum \lambda_i^s$
+
+Proof of (6): When $A$ is nonsingular, the eigenvalues of $A^{-1}$ is $\lambda_i^{-1}$. Thus, there exists $\Gamma$ such that $A^{-1}=\Gamma(\Lambda)^{-1}\Gamma^T$ and the result follows immediately.
+
+Example. $A=\begin{pmatrix}2.2 & 0.4 \\ 0.4 & 2.8\end{pmatrix}=
+\begin{pmatrix}1/\sqrt{5} & 2/\sqrt{5} \\ 2/\sqrt{5} & -1/\sqrt{5}\end{pmatrix}
+\begin{pmatrix}3 & 0 \\ 0 & 2\end{pmatrix} \begin{pmatrix} 1/\sqrt{5} & 2/\sqrt{5} \\ 2/\sqrt{5} & -1/\sqrt{5} \end{pmatrix}$
+
+### Theorem: SVD
+Singular value decomposition: If $A$ is an $n\times p$ matrix of rank $r$, then $A$ can be written as
+$$A_{n\times p}=U_{n\times r}L_{r\times r}V^T_{r\times p}$$
+where $U(n\times r)$ and $V(p\times r)$ are column orthogonal matrices ($U^TU=V^TV=I_r$ and $L$ is a diagonal matrix).
+
+Note:$AA^T=UL^2U^T$, and $A^TA=VL^2V^T$.
+
+
+
+## Positive Definite and Positive-Semidefinite
+
+### Quadratic Forms
+A **quadratic form** of a vector $x$ is a function of the form
+$$Q(x)=x^TAx=\sum_{i=1}^p\sum_{j=1}^pa_{ij}x_ix_j$$
+where $A$ is a symmetric matrix; that is
+$$Q(x)=a_{11}x_1^2+\cdots+a_{pp}x_p^2+2a_{12}x_1x_2+\cdots+2a_{p-1,p}x_{p-1}x_p$$
+
+Examples. 
+
+1) $A=\begin{pmatrix}1 & 1\\ 1 & 1\end{pmatrix}, x^TAx=x_1^2+2x_1x_2+x_2^2$. Note that for any $x\not= 0$, $x^TAx\ge 0$.
+
+2) $A=\begin{pmatrix}1 & -1/2\\ -1/2 & 1\end{pmatrix}, x^TAx=x_1^2-x_1x_2+x_2^2=(x_1-x_2/2)^2+3x_2^2/4$. Note that for any $x\not= 0$, $x^TAx> 0$.
+
+3) $A=\begin{pmatrix}1 & -2\\ -2 & 1\end{pmatrix}, x^TAx=x_1^2-4x_1x_2+x_2^2=(x_1-x_2)^2-2x_1x_2$.
+
+
+### Theorem: Diagonalization of Quadratic Forms
+For any symmetric matrix $A$, there exists an orthogonal transformation $y=\Gamma^T x$ such that
+$$x^TAx=\sum \lambda_iy_i^2$$
+
+Proof: Consider the spectral decomposition of $A=\Gamma \Lambda \Gamma^T$ and the transformation $y=\Gamma^Tx$
+Then
+$$x^TAx=x^T\Gamma^T\Lambda\Gamma x=y^T\Lambda y=\sum \lambda_i y_i^2$$
+
+### Definition: Positive Definite and Positive Semi-definite
+- $Q(x)$ is called a **positive definite** (p.d.) quadratic form if $Q(x)>0$ for all $x\not=0$; it is call **positive semi-definite** (p.s.d.) if $Q(x)\ge 0$ for all $x\not=0$.
+
+- A symmetric matrix $A$ is called p.d. (or p.s.d.) if $Q(x)$ is p.d. (or p.s.d.). We use the notation $>0$ for positive definite and $\ge 0$ for positive semi-definite.
+
+### Properties of PSD matrices.
+Let $A_{p\times p}$ be p.s.d. Then 
+1) $\lambda_i\ge 0$ for $i=1,\cdots,p$. The result implies that if $A\ge 0$, then $tr(A)\ge 0$. Proof: $A\ge 0$ implies that $0\le x^TAx=x^T\Gamma\Lambda\Gamma^Tx=\lambda_1y_1^2+\cdots+\lambda_p y_p^2$ (Thm 1.5). Take $y_1=1, y_2=0,\cdots, y_p=0$ we have $\lambda_1\ge0$, etc.
+
+2) There exists a unique p.s.d matrix $B$ such that $A=B^2$. Proof of existence. Consider the spetral decomposition of A: $A=\Gamma \Lambda \Gamma^T$. Let $B=\Gamma \Lambda^{1/2} \Gamma^T$. $B$ is called the square root matrix of $A$. 
+
+Example. $A=\begin{pmatrix}1 & 1\\ 1 & 1\end{pmatrix}, A^{1/2}=\begin{pmatrix}1/\sqrt{2} & 1/\sqrt{2}\\ 1/\sqrt{2} & 1/\sqrt{2}\end{pmatrix}$
+
+3) Let $C$ be any $p\times n$ matrix. We have $C^TAC\ge 0$. Proof: Since $A\ge 0$, for any $n$-vector $x\not= 0$,
+$$x^TC^TACx=(Cx)^TA(Cx)\ge 0$$ so $C^TAC\ge 0$.
+
+4) $a_{ii}\ge 0$. Proof: take $x=(1,0,...,0)^T$, because $A$ is p.s.d., then $x^TAx\ge 0$. But $a_{11}=x^TAx$. So $a_{11}\ge 0$. Similarly, $a_{ii}\ge 0$ for $i=1,\cdots,p$.
+
+
+### Properties of PD Matrices. 
+
+Let $A$ be p.d. Then the following properties hold:
+
+1) $rank(CAC^T)=rank(C).$
+
+Proof: $rank(CAC^T)=rank(CBBC^T)=rank(CB(CB)^T)=rank(CB)=rank(C)$. The last step is true because we know that for any $A$, when $P$ and$Q$ are conformable and nonsingular, $rank(PAQ)=rank(A)=rank(PA)=rank(AQ)$.
+
+2) If $C(n\times p)$ has rank $n$, then $CAC^T$ is p.d.
+
+Proof: $x^TCAC^Tx=y^TAy\ge0$ with equality iff $y=0$ iff $C^Tx=0$ iff $x=0$ (since the columns of $C^T$ are linearly independent). Hence $x^TCAC^Tx>0$ for all $x\not=0$.
+
+3) If $B (n\times p)$ of rank $p$, then $B^TB$ is p.d.
+
+Proof: $x^TB^TBx=y^Ty\ge 0$ with equality iff $Bx=0$ iff $x=0$ (since the columns of $B$ are linearly independent)
+
+4) The diagonal elements of a p.d. matrix are all positive.
+
+Proof: For i=1, take $x=(1,0,...,0)^T$, then $x^TAx=a_{11}> 0$. Similarly, you can prove for other $i$'s.
+
+5) $x^TAx=0$ iff $x=0$. Proof: $A$ can be written as $B^2$. Thus $x^TAx=(Bx)^T(Bx)$, equal to 0 iff $Bx=0$, iff $x=0$.
+
+Practice Problems: 
+
+- Let $A_{p\times p}$ be a positive definite matrix and let $B_{k\times p}$ be a matrix of rank $k\le p$. Then $BAB^T$ is positive definite.
+
+- Let $A_{p\times p}$ be a positive defnite matrix and let $B_{k\times p}$ a matrix. If $k>p$ or if $rank(B)=r<p$, then $BAB^T$ is positive semidefinite. 
+
+
+### Lemma: Gram factorization / Gram representation
+A symmetric matrix $A$ is p.d. if and only if there exists a nonsingular matrix $P$ such that $A=P^TP$. 
+
+proof: $\Rightarrow: $ By the spectral decomposition, $A=\Gamma \Lambda \Gamma^T$, where $\Gamma$ is orthogonal and $\Lambda=$ is diagonal. Because $A$ is p.d., $\Gamma^TA\Gamma=\Lambda$ is also p.d.. Thus, we can write $\Lambda$ to $\Lambda^{1/2}\Lambda^{1/2}$, which leads to $A=P^TP$. 
+
+$\Leftarrow: $ Since $P$ is nonsingular, its columns are linearly independent. Therefore, for any $x\not=0$, $Px\not=0$, and $x^TAx=x^TP^TPx=(Px)^T (Px)>0$, i.e., $A$ is positive definite. 
+
+Remarks:
+
+(1) The result is known as the Gram factorization of a p.d. matrix, and $P$ is called the Gram representation of $A$. Note that the Gram representation is not unique. For example, if $P$ is a Gram representation of $A$, then so is $CP$ for any orthogonal matrix $C$.
+
+(2) Related factorizations: 
+
+- Cholesky factorization: If $A$ is p.d., then there exists a unique lower triangular matrix $L$ with positive diagonal entries such that $A=LL^T$.
+
+- Square root factorization: If $A$ is p.d., then there exists a unique p.d. matrix $B$ such that $A=B^2$.
+
+### Lemma: Eigenvalues of $AB$ and $BA$
+For conformable matrices, the nonzero eigenvalues of $AB$ are the same as those of $BA$. The eigenvalues are identical for square matrices.
+
+Proof: Let $\lambda$ be a nonzero eigenvalue of $AB$. Then there exists $u (u\not=0)$ such that $ABu=\lambda u$; that is, $BABu=\lambda Bu$. Hence $BAv=\lambda v$, where $v=Bu\not=0$ (as $ABu\not=0$), and $\lambda$ is an eigenvalue of $BA$. The argument reverses by interchanging the roles of $A$ and $B$. For square matrices $AB$ and $BA$ have the same number of zero eigenvalues.
+
+
+### Theorem: Maximization of Quadratic Forms
+Let $A$ and $B$ be two symmetric matrices. Suppose that $B>0$. Then the maximum (minimum) of $x^TAx$ given $x^TBx=1$ is attained when $x$ is the eigenvector of $B^{-1}A$ corresponding to the largest (smallest) eigenvalue of $B^{-1}A$. Thus, if $\lambda_1$ and $\lambda_p$ are the largest and the smallest eigenvalue of $B^{-1}A$, respectively, then subject to the constrain $x^TBx=1$,
+$$max_x x^TAx=\lambda_{max} (B^{-1}A), min_x x^TAx = \lambda_{min}(B^{-1}A)$$
+
+This is a homework problem. Hint: consider $y=B^{1/2}x$.
+
+<!--
+Proof: Let $B^{1/2}$ denote the square root matrix of $B$.
+
+Note, (1) in general a matrix can have many square root matrices; (2) a p.d. matrix has only one square root matrix, which is also p.d.; (3) a real matrix may fail to have a real square root matrix.
+
+Let $y=B^{1/2}x$. The the maximum $x^TAx$ subject to $x^TBx=1$ can be written as
+$$max yB^{-1/2}AB^{-1/2}y$$ subject to $y^Ty=1$.
+Let $B^{-1/2}AB^{-1/2}=\Gamma \Lambda \Gamma^T$ be a spectral decomposition of the symmetric matrix $B^{-1/2}AB^{-1/2}$. Let $z=\Gamma^Ty$. Then $z^Tz=y^T\Gamma\Gamma^Ty=y^Ty$ so that the above maximization problem can be written
+$$max_z z^T\Lambda z=max \sum \lambda_i z_i^2$$ subject to $z^Tz=1$.
+Further, this bound is attained for $z=(1,0,\cdots,0)^T$, that is for $y=\gamma_{(1)}$, and for $x=B^{-1/2}\gamma_{(1)}$. By the corollary, $B^{-1}A$ and $B^{-1/2}AB^{-1/2}$ have the same eigenvalues and $x=B^{-1/2}\gamma_{(1)}$ is an eigenvector of $B^{-1}A$ corresponding to $\lambda_1$. Thus is theorem is provided for maximization.
+-->
+
+The above theorem can also be written as
+$$max_{x\not=0} \frac{x^TAx}{x^TBx}=\lambda_{max} (B^{-1}A), min_{x\not=0} \frac{x^TAx}{x^TBx}=\lambda_{min} (B^{-1}A)$$
+
+A useful result from the theorem: Let $B=I$, then
+$$
+\begin{align*}
+\max_{x,\;x\ne 0}\left\{ \frac{x^T A x}{x^T x}\right\} &= \lambda_{\max}\\
+\min_{x,\;x\ne 0}\left\{ \frac{x^T A x}{x^T x}\right\} &= \lambda_{\min}
+\end{align*}
+$$
+
+where $\lambda_{min}$ and $\lambda_{max}$ are the minimum and maximum eigenvalues of $A$, respectively. These values occur when $x$ is the eigenvector corresponding to the eigenvalues $\lambda_{min}$ and $\lambda_{max}$, respectively.
+
+
+### Key Lemma for Scheffé’s Method (Maximization of Linear Contrasts)
+If $L$ is p.d., then for any $b$,
+$$max_{h,h\not=0}\left\{\frac{(h^Tb)^2}{h^TLh}\right\}=b^TL^{-1}b$$
+
+Proof: The theorem can be proved by using the previous theorem because we can rewrite $(h^Tb)^2$ to $h^Tbb^Th$. 
+
+Thus, the maximum is
+$$\lambda_{max}(L^{-1}bb^T)=\lambda_{max}(b^TL^{-1}b)=b^TL^{-1}b$$
+The last step is true because $b^TL^{-1}b$ is a scalar; the second to the last step is true because the nonzero eigenvalues of $AB$ are the same as those of $BA$.
+
+
+## Idempotent matrices and projection matrices
+Definition. A matrix $P$ is **idempotent** if $P^2=P$. 
+
+Note. If $P$ is idempotent, so is $I-P$.
+
+
+Example. $A=\begin{pmatrix}1 & 1\\ 0 & 0\end{pmatrix}, A^2=A$. Verify that $()
+
+
+
+Definition. A symmetric and idempotent matrix is called a **projection** matrix. 
+
+Example. $A=\begin{pmatrix}1/2 & 1/2\\ 1/2 & 1/2\end{pmatrix}, A=A^T, A^2=A$.
+
+
+### Properties of projection matrices:
+
+1) If $P$ is symmetric, then $P$ is idempotent with rank $r$ if and only if it has $r$ eigenvalues equal to 1 and $n-r$ eigenvalues equal to zero.
+
+2) If $P$ is a projection matrix, then $tr(P)=rank(P)$.
+
+3) Projection matrices are positive-semidefinite.
+
+4) If $P_i (i=1,2)$ is a projection matrix and $P_1-P_2$ is p.s.d., then
+  -  $P_1P_2=P_2P_1=P_2$ (note, both $P_1P_2$ and $P_2P_1$ are projection matrices).
+  -  $P_1-P_2$ is a projection matrix.
+
+
+Proof of (1): Let $\lambda$ be an eigenvalue of $P$, then we have $Px=\lambda x$, where $x$ is the corresponding eigenvector. Since $P^2=P$, we have
+$\lambda x= Px=P(Px)=\lambda Px= \lambda^2 x$, which implies that $\lambda$ equals either zero or 1. For a symmetric matrix, its rank equals the number of nonzero eigenvalues. Thus $rank(P)$ equals the number of 1's.
+
+On the other hand, suppose $P$ has $r$ eigenvalues equal to 1 and $n-r$ eigenvalues equal to 0. Without loss of generality, we assume that the first $r$ eigenvalues are 1. By the spectral decomposition of the symmetric matrix $P$, we have $P=\Gamma \Lambda \Gamma^T$, where the first $r$ diagonal elements of $\Lambda$ are 1 and all the other elements are zero. It is obvious that $\Lambda^2=\Lambda$. Thus $P^2=\Gamma \Lambda \Gamma^T\Gamma \Lambda \Gamma^T=\Gamma \Lambda \Gamma=P$.
+
+Proof of (2): Based on (1), $P$ has $rank(P)$ eigenvalues equal to 1 and $n-rank(P)$ eigenvalues equal to 0. We also know that $tr(P)=\sum \lambda_i=rank(P)$.
+
+Proof of (3): $x^TPx=X^TPPx=(Px)^T(Px)\ge 0$.
+
+Proof of (4): Clearly the following are true:
+
+$$\begin{eqnarray*}
+((I-P_1)y)^T P_2 ((I-P_1)y) & \ge & 0\\
+((I-P_1)y)^T P_1 ((I-P_1)y) & = & 0
+\end{eqnarray*}$$
+
+which implies that $[(I-P_1)y]^T(P_1-P_2)[(I-P_1)y] \le 0$. However, we also know that $P_1-P_2\ge 0$. Therefore, it must be true that
+$$[(I-P_1)y]^T(P_2-P_1)[(I-P_1)y] = 0$$
+which implies that
+$$\begin{eqnarray*}
+(I-P_1)P_2(I-P_1)=0\\
+&\Rightarrow & (I-P_1)P_2 P_2 (I-P_1)=0\\
+&\Rightarrow & (I-P_1)P_2=0\\
+&\Rightarrow & P_2=P_1P_2
+\end{eqnarray*}$$
+
+A projection matrix must be a symmetric matrix. Therefore 
+$$P_2=(P_2)^T=(P_1P_2)^T=(P_2)^T(P_1)^T=P_2P_1$$
+
+Last, $(P_1-P_2)^2=P_1-2P_1P_2+P_2=P_1-2P_2+P_2=P_1-P_2$.
+
+
+# Inverse and Generalized Inverse
+
+Definition. A full-rank square matrix is called a nonsingular matrix. A nonsingular matrix $A$ has a unique inverse, denoted by $A^{-1}$:
+$$AA^{-1}=A^{-1}A=I.$$
+
+Some properties of $A^{-1}$:
+- It is unique
+- $(AB)^{-1}=B^{-1}A^{-1}$
+- $(A^T)^{-1}=(A^{-1})^T$
+
+Definition. For a matrix $A_{n\times p}$, $A^{-}$ is call a **g-inverse** (generalized inverse) of $A$ if
+$$AA^{-}A=A$$
+
+A generalized inverse always exists although in general it is not unique.
+
+# Matrix Differentiation
+Definition.  We define the derivative of $f(X)$ with respect to $X_{n\times p}$ as 
+$$\frac{\partial f(X)}{\partial X}=\left(\frac{\partial f(X)}{\partial x_{ij}} \right)_{n\times p}$$
+
+The following results are useful:
+
+- $$\frac{\partial a^Tx}{\partial x}=a$$
+- $$\frac{\partial x^Tx}{\partial x}=2x, \frac{\partial x^TAx}{\partial x}=(A+A^T)x, \frac{\partial x^TAy}{\partial x}=Ay$$
+
+Proof of (2):
+$$\begin{eqnarray*}
+\frac{\partial x^TAx}{ \partial x_k}
+&=& \frac{\partial}{\partial x_k}\left( \sum_{i}\sum_{j} a_{ij}x_{i}x_{j}\right) \\
+&=& \frac{\partial}{\partial x_k} (a_{kk}x_k^2 + \sum_{j\not=k}a_{kj}x_kx_j +\sum_{i\not=k} a_{ik} x_i x_k )\\
+&=&2a_{kk}x_k + \sum_{j\not=k}a_{kj}x_j + \sum_{i\not=k}a_{ik}x_i\\
+&=&\sum_i a_{ki}x_i + \sum_i a_{ik}x_i\\
+&=& (Ax)_k + (A^Tx)_k\\
+&=& ((A+A^T)x)_k
+\end{eqnarray*}$$
+
+
+<!--
 ## Summary
 
 These lecture notes cover:
@@ -698,3 +1017,4 @@ These lecture notes cover:
 - eigenvalues and basic trace identities
 - symmetric matrices and spectral decomposition
 - a full spectral-decomposition example using rotation, rescaling, and recovery of simulated data
+-->

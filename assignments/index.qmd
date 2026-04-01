@@ -2,4 +2,6 @@
 title: "Assignments"
 ---
 
-- [STAT200C Assignment 0: Due on Monday, April 6, 2026](stat200c_assignment0.qmd)
+- [STAT200C Assignment 0: Due on Friday, April 10, 2026](stat200c_assignment0.qmd)
+
+- [STAT200C Assignment 0: Due date TBA](stat200c_assignment1.qmd)

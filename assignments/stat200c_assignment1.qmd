@@ -1,0 +1,126 @@
+
+---
+title: "STAT200C Assignment 1"
+author: "Zhaoxia Yu"
+format:
+  html:
+    toc: true
+    number-sections: false
+execute:
+  echo: false
+---
+
+
+1. **Simple linear regression.** Let $Y_i = \beta_0 + \beta_1 x_i + \epsilon_i$ for $i = 1, 2, \ldots, n$, where the $\epsilon_i$ are independent and identically distributed with mean $0$ and variance $\sigma^2$. Find the least squares estimates of $\beta_0$ and $\beta_1$. Prove that they are uncorrelated if and only if $\bar{x} = 0$.
+
+2. Consider the model $Y = X\beta + \epsilon$, where
+
+$$
+Y =
+\begin{pmatrix}
+Y_1\\
+Y_2\\
+Y_3\\
+Y_4
+\end{pmatrix},
+\qquad
+X =
+\begin{pmatrix}
+0 & 1 & 0\\
+1 & 0 & 1\\
+-1 & 1 & -1\\
+1 & -1 & 1
+\end{pmatrix},
+\qquad
+\beta =
+\begin{pmatrix}
+\beta_1\\
+\beta_2\\
+\beta_3
+\end{pmatrix},
+$$
+
+with $\epsilon \sim (0, \sigma^2 I_4)$. The observed values are
+
+$$
+Y_1 = 1, \qquad Y_2 = 3, \qquad Y_3 = -2, \qquad Y_4 = 2.
+$$
+
+   a. Use each of the three methods introduced in class to find the LSEs of $\beta$. Compare the three LSEs and examine whether they are identical. In R, you can use the function `solve` to obtain the inverse of a nonsingular matrix, and the function `ginv` from `library(MASS)` to obtain a generalized inverse of a singular matrix. Be sure to attach your R code at the end of your homework.
+
+   b. Prove that $\beta_2$ and $\beta_1 + \beta_3$ are estimable, but $\beta_1$ is not estimable.
+
+   c. For the three parameters in part (b), namely $\beta_2$, $\beta_1 + \beta_3$, and $\beta_1$, determine whether you can obtain the BLUE for each of them. For those for which you can obtain a BLUE, calculate the BLUEs and compute their variances.
+
+3. Let $X_{n \times p}$ be a design matrix. Suppose that $\operatorname{rank}(X) = r < p$. Consider the normal equation
+
+$$
+X^T X \beta = X^T Y.
+$$
+
+   a. **Compute LSE.** In class we showed that
+
+$$
+\hat{\beta} = (X^T X)^- X^T Y
+$$
+
+is a solution to the normal equation, where $(X^T X)^-$ is a generalized inverse. Show that
+
+$$
+\tilde{\beta}
+=
+\hat{\beta} + \left(I - (X^T X)^-(X^T X)\right) z,
+$$
+
+where $z$ is an arbitrary $p \times 1$ vector, is also a solution to the normal equation.
+
+   b. Without loss of generality, assume $X = (X_1, X_2)$, where $X_1$ is an $n \times r$ matrix with rank $r$. Prove the following.
+
+      i. There exists an $r \times (p-r)$ matrix $C$ such that $X_2 = X_1 C$.
+
+      ii.
+$$
+\hat{\beta}
+=
+\begin{pmatrix}
+(X_1^T X_1)^{-1} X_1^T Y\\
+0
+\end{pmatrix}
+$$
+
+is a solution to the normal equation.
+
+4. Consider a full-rank $n \times p$ design matrix $X = (\mathbf{1}, x_1, \cdots, x_{p-1})$. In the design matrix $X$, the first column is a vector of ones, and $x_i$ is the $(i+1)$th column for $i = 1, \ldots, p-1$. Let
+
+$$
+Z = (\mathbf{1}, c_1 x_1, \cdots, c_{p-1} x_{p-1})
+$$
+
+be a linear transformation of $X$, where $c_1, \ldots, c_{p-1}$ are nonzero scalars. Let $\hat{\beta}$ be the LSE when regressing $Y$ on $X$, and let $\hat{\beta}_Z$ be the LSE when regressing $Y$ on $Z$. Show that
+
+$$
+X \hat{\beta} = Z \hat{\beta}_Z.
+$$
+
+This result implies that the predicted value $\hat{Y}$ is invariant under a full-rank linear transformation of the design matrix.
+
+
+
+5. Consider the model
+
+$$
+Y_{ij} = \alpha_i + \beta_j + \epsilon_{ij},
+$$
+
+where $i = 1, \cdots, a$, $j = 1, \cdots, b$, and $\epsilon_{ij} \overset{iid}{\sim} (0, \sigma^2)$.
+
+~~Derive the necessary and sufficient condition for $\sum c_i \alpha_i + \sum d_j \beta_j$ to be estimable.~~
+
+<span style="color:red">
+Suppose that $\sum c_i \alpha_i + \sum d_j \beta_j$ is estimable. Show that $(c_1, \cdots, c_a, d_1, \cdots, d_b)$ satisfies
+$$
+\sum_{i=1}^a c_i = \sum_{j=1}^b d_j.
+$$
+</span>
+
+
