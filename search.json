@@ -1,157 +1,17 @@
 [
   {
-    "objectID": "lectures/index.html",
-    "href": "lectures/index.html",
-    "title": "index",
+    "objectID": "lectures/ProjectoinMatrices.html",
+    "href": "lectures/ProjectoinMatrices.html",
+    "title": "A Note on Projection Matrices (and an AI Attempt to Create Visualizations)",
     "section": "",
-    "text": "0 — Preliminary: Matrix Manipulations\n1 — Review of Linear Algebra"
+    "text": "library(MASS)\nI am sharing my 50-minute use of AI to create a set of lecture notes to help students understand projection matrices. The visualization part was where I had hoped AI would save time. However, that turned out to be the most problematic part - AI either did not fully understand the task or did not know how to implement it.\nI have omitted a lengthy and unsuccessful exchange. In the end, I tried Gemini; perhaps because I finally provided enough details, I was able to obtain the plot I wanted.\nI have created similar visualizations manually before. If I had revisited my old code and adapted it for this note, it likely would have taken a similar amount of time—or even less."
   },
   {
-    "objectID": "lectures/00-matrix-preliminary.html",
-    "href": "lectures/00-matrix-preliminary.html",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "",
-    "text": "These notes give a short preliminary review of basic matrix manipulations:\n\ndimensions of matrices, including row and column vectors;\ninner product: one row times one column;\nmatrix multiplication;\n\\(A^2\\) for a square matrix;\nwhy \\(AB\\) and \\(BA\\) are generally different."
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#overview",
-    "href": "lectures/00-matrix-preliminary.html#overview",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "",
-    "text": "These notes give a short preliminary review of basic matrix manipulations:\n\ndimensions of matrices, including row and column vectors;\ninner product: one row times one column;\nmatrix multiplication;\n\\(A^2\\) for a square matrix;\nwhy \\(AB\\) and \\(BA\\) are generally different."
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#dimensions-of-a-matrix",
-    "href": "lectures/00-matrix-preliminary.html#dimensions-of-a-matrix",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "2 Dimensions of a matrix",
-    "text": "2 Dimensions of a matrix\nA matrix with \\(m\\) rows and \\(n\\) columns has dimension \\(m \\times n\\).\nWe write\n\\[\nA \\in \\mathbb{R}^{m \\times n}.\n\\]\nThis means that \\(A\\) has \\(m\\) horizontal rows and \\(n\\) vertical columns.\nFor example,\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\in \\mathbb{R}^{2 \\times 3}.\n\\]\nIt has 2 rows and 3 columns.\n\n2.1 Column vector\nA column vector is a matrix with one column. Its dimension is \\(m \\times 1\\).\n\\[\nx =\n\\begin{bmatrix}\nx_1 \\\\\nx_2 \\\\\nx_3\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 1}.\n\\]\n\n\n2.2 Row vector\nA row vector is a matrix with one row. Its dimension is \\(1 \\times n\\).\n\\[\ny =\n\\begin{bmatrix}\ny_1 & y_2 & y_3\n\\end{bmatrix}\n\\in \\mathbb{R}^{1 \\times 3}.\n\\]\n\n\n2.3 Compatibility reminder\nWhen multiplying matrices, the inside dimensions must match.\nIf\n\\[\nA \\in \\mathbb{R}^{m \\times n}, \\qquad B \\in \\mathbb{R}^{n \\times p},\n\\]\nthen the product \\(AB\\) is defined and has dimension\n\\[\nAB \\in \\mathbb{R}^{m \\times p}.\n\\]\nA useful memory rule is:\n\\[\n(m \\times n)(n \\times p) = m \\times p.\n\\]"
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#inner-product-one-row-times-one-column",
-    "href": "lectures/00-matrix-preliminary.html#inner-product-one-row-times-one-column",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "3 Inner product: one row times one column",
-    "text": "3 Inner product: one row times one column\nThe simplest matrix product is a row vector times a column vector.\nLet\n\\[\nr =\n\\begin{bmatrix}\nr_1 & r_2 & \\cdots & r_n\n\\end{bmatrix}\n\\in \\mathbb{R}^{1 \\times n},\n\\]\nand\n\\[\nc =\n\\begin{bmatrix}\nc_1 \\\\\nc_2 \\\\\n\\vdots \\\\\nc_n\n\\end{bmatrix}\n\\in \\mathbb{R}^{n \\times 1}.\n\\]\nThen\n\\[\nrc = r_1c_1 + r_2c_2 + \\cdots + r_nc_n.\n\\]\nThis is the inner product (or dot product), and the result is a \\(1 \\times 1\\) matrix, that is, a scalar.\n\n3.1 Example\n\\[\n\\begin{bmatrix}\n1 & 2 & 3\n\\end{bmatrix}\n\\begin{bmatrix}\n4 \\\\\n5 \\\\\n6\n\\end{bmatrix}\n= 1\\cdot 4 + 2\\cdot 5 + 3\\cdot 6 = 32.\n\\]\n\n\n3.2 Unit vectors\nA unit vector is a vector of length 1. Check the following vectors:\n\\[\nu_1 =\n\\begin{bmatrix}\n1 \\\\\n0 \\\\\n0\n\\end{bmatrix},\n\\qquad\nu_2 = \\begin{bmatrix}\\frac{1}{\\sqrt{3}} \\\\ \\frac{1}{\\sqrt{3}} \\\\ \\frac{1}{\\sqrt{3}}\\end{bmatrix}.\n\\qquad\nu_3 = \\begin{bmatrix}\\frac{1}{\\sqrt{2}} \\\\ \\frac{1}{\\sqrt{2}} \\\\ 0\\end{bmatrix}.\n\\]\nThey all have length 1, so they are all unit vectors."
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#matrix-multiplication",
-    "href": "lectures/00-matrix-preliminary.html#matrix-multiplication",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "4 Matrix multiplication",
-    "text": "4 Matrix multiplication\nSuppose\n\\[\nA \\in \\mathbb{R}^{m \\times n}, \\qquad B \\in \\mathbb{R}^{n \\times p}.\n\\]\nThen the product \\(AB\\) is an \\(m \\times p\\) matrix. Its \\((i,j)\\)-entry is obtained by taking:\n\nrow \\(i\\) of \\(A\\), and\ncolumn \\(j\\) of \\(B\\),\n\nand forming their inner product.\nIn symbols,\n\\[\n(AB)_{ij} = \\sum_{k=1}^n a_{ik}b_{kj}.\n\\]\n\n4.1 Example\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n3 & 4\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n5 & 6 \\\\\n7 & 8\n\\end{bmatrix}.\n\\]\nThen\n\\[\nAB =\n\\begin{bmatrix}\n1\\cdot 5 + 2\\cdot 7 & 1\\cdot 6 + 2\\cdot 8 \\\\\n3\\cdot 5 + 4\\cdot 7 & 3\\cdot 6 + 4\\cdot 8\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n19 & 22 \\\\\n43 & 50\n\\end{bmatrix}.\n\\]\n\n\n4.2 How to read matrix multiplication\nEach entry of \\(AB\\) comes from one row of \\(A\\) and one column of \\(B\\).\nFor example, the upper-left entry is\n\\[\n(AB)_{11}\n=\n\\begin{bmatrix}\n1 & 2\n\\end{bmatrix}\n\\begin{bmatrix}\n5 \\\\\n7\n\\end{bmatrix}\n= 19.\n\\]\n\n\n4.3 Visual example with colored row and column\nThe row from \\(A\\) is highlighted in blue, and the matching column from \\(B\\) is highlighted in red.\n\\[\nA =\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2} \\\\\n3 & 4\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n\\textcolor{red}{5} & 6 \\\\\n\\textcolor{red}{7} & 8\n\\end{bmatrix}.\n\\]\nUsing the blue row of \\(A\\) and the red column of \\(B\\),\n\\[\n(AB)_{11}\n=\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2}\n\\end{bmatrix}\n\\begin{bmatrix}\n\\textcolor{red}{5} \\\\\n\\textcolor{red}{7}\n\\end{bmatrix}\n=\n\\textcolor{blue}{1}\\textcolor{red}{5}\n+\n\\textcolor{blue}{2}\\textcolor{red}{7}\n= 19.\n\\]\nLikewise, for the upper-right entry, use the same first row of \\(A\\) and the second column of \\(B\\):\n\\[\n(AB)_{12}\n=\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2}\n\\end{bmatrix}\n\\begin{bmatrix}\n6 \\\\\n8\n\\end{bmatrix}\n= 22.\n\\]\nThis is the basic mechanism of matrix multiplication: row times column, entry by entry."
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#a2-for-a-square-matrix",
-    "href": "lectures/00-matrix-preliminary.html#a2-for-a-square-matrix",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "5 \\(A^2\\) for a square matrix",
-    "text": "5 \\(A^2\\) for a square matrix\nThe expression \\(A^2\\) means\n\\[\nA^2 = AA.\n\\]\nThis is only defined when \\(A\\) is a square matrix, meaning\n\\[\nA \\in \\mathbb{R}^{n \\times n}.\n\\]\n\n5.1 Example\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}.\n\\]\nThen\n\\[\nA^2\n=\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1\\cdot 1 + 2\\cdot 0 & 1\\cdot 2 + 2\\cdot 3 \\\\\n0\\cdot 1 + 3\\cdot 0 & 0\\cdot 2 + 3\\cdot 3\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 8 \\\\\n0 & 9\n\\end{bmatrix}.\n\\]\nSo \\(A^2\\) is not obtained by squaring each entry separately. It is obtained by multiplying \\(A\\) by itself using the usual rules of matrix multiplication."
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#ab-and-ba-are-different",
-    "href": "lectures/00-matrix-preliminary.html#ab-and-ba-are-different",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "6 \\(AB\\) and \\(BA\\) are different",
-    "text": "6 \\(AB\\) and \\(BA\\) are different\nIn general,\n\\[\nAB \\neq BA.\n\\]\nMatrix multiplication is usually not commutative.\n\n6.1 Example 1: both products are defined, but they are different\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}.\n\\]\nThen\n\\[\nAB\n=\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n8 & 2 \\\\\n3 & 1\n\\end{bmatrix},\n\\]\nwhile\n\\[\nBA\n=\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n2 & 4 \\\\\n3 & 7\n\\end{bmatrix}.\n\\]\nTherefore,\n\\[\nAB \\neq BA.\n\\]\n\n\n6.2 Example 2: both products are defined, but they have different dimensions\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\in \\mathbb{R}^{2 \\times 3},\n\\qquad\nB =\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 2}.\n\\]\nThen \\(AB\\) is defined because\n\\[\n(2 \\times 3)(3 \\times 2) = 2 \\times 2.\n\\]\nIndeed,\n\\[\nAB =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n4 & 5 \\\\\n10 & 11\n\\end{bmatrix}.\n\\]\nAlso, \\(BA\\) is defined because\n\\[\n(3 \\times 2)(2 \\times 3) = 3 \\times 3.\n\\]\nComputing it gives\n\\[\nBA =\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6 \\\\\n5 & 7 & 9\n\\end{bmatrix}.\n\\]\nSo \\(AB\\) and \\(BA\\) differ not only in value but even in size.\n\n\n6.3 Optional contrast: one order may be impossible\nIf\n\\[\nA \\in \\mathbb{R}^{2 \\times 3}, \\qquad B \\in \\mathbb{R}^{2 \\times 2},\n\\]\nthen \\(BA\\) is defined:\n\\[\n(2 \\times 2)(2 \\times 3) = 2 \\times 3,\n\\]\nbut \\(AB\\) is not defined because the inside dimensions do not match:\n\\[\n(2 \\times 3)(2 \\times 2).\n\\]\nSo order matters in two ways:\n\nthe products can have different values;\none order may be defined while the other is not."
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#useful-references",
-    "href": "lectures/00-matrix-preliminary.html#useful-references",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "7 Useful references",
-    "text": "7 Useful references\nThese notes can be supplemented by the following materials from MIT 18.065:\n\nLearning from Data, Lecture 1.1: Multiplication of \\(Ax\\)\nLearning from Data, Lecture 1.2: Matrix-Matrix Multiplication \\(AB\\)"
-  },
-  {
-    "objectID": "lectures/00-matrix-preliminary.html#summary",
-    "href": "lectures/00-matrix-preliminary.html#summary",
-    "title": "Preliminary: Matrix Manipulations",
-    "section": "8 Summary",
-    "text": "8 Summary\nThe main points are:\n\na matrix in \\(\\mathbb{R}^{m \\times n}\\) has \\(m\\) rows and \\(n\\) columns;\na row times a column gives an inner product;\nmatrix multiplication is built from row-by-column inner products;\n\\(A^2\\) means \\(AA\\), so \\(A\\) must be square;\nin general, \\(AB\\) and \\(BA\\) are different."
-  },
-  {
-    "objectID": "exams/index.html",
-    "href": "exams/index.html",
-    "title": "Exams",
-    "section": "",
-    "text": "Midterm (coming soon)\nFinal (coming soon)"
-  },
-  {
-    "objectID": "assignments/stat200c_assignment1.html",
-    "href": "assignments/stat200c_assignment1.html",
-    "title": "STAT200C Assignment 1",
-    "section": "",
-    "text": "Simple linear regression. Let \\(Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i\\) for \\(i = 1, 2, \\ldots, n\\), where the \\(\\epsilon_i\\) are independent and identically distributed with mean \\(0\\) and variance \\(\\sigma^2\\). Find the least squares estimates of \\(\\beta_0\\) and \\(\\beta_1\\). Prove that they are uncorrelated if and only if \\(\\bar{x} = 0\\).\nConsider the model \\(Y = X\\beta + \\epsilon\\), where\n\n\\[\nY =\n\\begin{pmatrix}\nY_1\\\\\nY_2\\\\\nY_3\\\\\nY_4\n\\end{pmatrix},\n\\qquad\nX =\n\\begin{pmatrix}\n0 & 1 & 0\\\\\n1 & 0 & 1\\\\\n-1 & 1 & -1\\\\\n1 & -1 & 1\n\\end{pmatrix},\n\\qquad\n\\beta =\n\\begin{pmatrix}\n\\beta_1\\\\\n\\beta_2\\\\\n\\beta_3\n\\end{pmatrix},\n\\]\nwith \\(\\epsilon \\sim (0, \\sigma^2 I_4)\\). The observed values are\n\\[\nY_1 = 1, \\qquad Y_2 = 3, \\qquad Y_3 = -2, \\qquad Y_4 = 2.\n\\]\n\nUse each of the three methods introduced in class to find the LSEs of \\(\\beta\\). Compare the three LSEs and examine whether they are identical. In R, you can use the function solve to obtain the inverse of a nonsingular matrix, and the function ginv from library(MASS) to obtain a generalized inverse of a singular matrix. Be sure to attach your R code at the end of your homework.\nProve that \\(\\beta_2\\) and \\(\\beta_1 + \\beta_3\\) are estimable, but \\(\\beta_1\\) is not estimable.\nFor the three parameters in part (b), namely \\(\\beta_2\\), \\(\\beta_1 + \\beta_3\\), and \\(\\beta_1\\), determine whether you can obtain the BLUE for each of them. For those for which you can obtain a BLUE, calculate the BLUEs and compute their variances.\n\n\nLet \\(X_{n \\times p}\\) be a design matrix. Suppose that \\(\\operatorname{rank}(X) = r &lt; p\\). Consider the normal equation\n\n\\[\nX^T X \\beta = X^T Y.\n\\]\n\nCompute LSE. In class we showed that\n\n\\[\n\\hat{\\beta} = (X^T X)^- X^T Y\n\\]\nis a solution to the normal equation, where \\((X^T X)^-\\) is a generalized inverse. Show that\n\\[\n\\tilde{\\beta}\n=\n\\hat{\\beta} + \\left(I - (X^T X)^-(X^T X)\\right) z,\n\\]\nwhere \\(z\\) is an arbitrary \\(p \\times 1\\) vector, is also a solution to the normal equation.\n\nWithout loss of generality, assume \\(X = (X_1, X_2)\\), where \\(X_1\\) is an \\(n \\times r\\) matrix with rank \\(r\\). Prove the following.\n\nThere exists an \\(r \\times (p-r)\\) matrix \\(C\\) such that \\(X_2 = X_1 C\\).\n\\[\n\\hat{\\beta}\n=\n\\begin{pmatrix}\n(X_1^T X_1)^{-1} X_1^T Y\\\\\n0\n\\end{pmatrix}\n\\]\n\n\nis a solution to the normal equation.\n\nConsider a full-rank \\(n \\times p\\) design matrix \\(X = (\\mathbf{1}, x_1, \\cdots, x_{p-1})\\). In the design matrix \\(X\\), the first column is a vector of ones, and \\(x_i\\) is the \\((i+1)\\)th column for \\(i = 1, \\ldots, p-1\\). Let\n\n\\[\nZ = (\\mathbf{1}, c_1 x_1, \\cdots, c_{p-1} x_{p-1})\n\\]\nbe a linear transformation of \\(X\\), where \\(c_1, \\ldots, c_{p-1}\\) are nonzero scalars. Let \\(\\hat{\\beta}\\) be the LSE when regressing \\(Y\\) on \\(X\\), and let \\(\\hat{\\beta}_Z\\) be the LSE when regressing \\(Y\\) on \\(Z\\). Show that\n\\[\nX \\hat{\\beta} = Z \\hat{\\beta}_Z.\n\\]\nThis result implies that the predicted value \\(\\hat{Y}\\) is invariant under a full-rank linear transformation of the design matrix.\n\nConsider the model\n\n\\[\nY_{ij} = \\alpha_i + \\beta_j + \\epsilon_{ij},\n\\]\nwhere \\(i = 1, \\cdots, a\\), \\(j = 1, \\cdots, b\\), and \\(\\epsilon_{ij} \\overset{iid}{\\sim} (0, \\sigma^2)\\).\nDerive the necessary and sufficient condition for \\(\\sum c_i \\alpha_i + \\sum d_j \\beta_j\\) to be estimable.\n Suppose that \\(\\sum c_i \\alpha_i + \\sum d_j \\beta_j\\) is estimable. Show that \\((c_1, \\cdots, c_a, d_1, \\cdots, d_b)\\) satisfies \\[\n\\sum_{i=1}^a c_i = \\sum_{j=1}^b d_j.\n\\]"
-  },
-  {
-    "objectID": "assignments/index.html",
-    "href": "assignments/index.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "STAT200C Assignment 0: Due on Friday, April 10, 2026\nSTAT200C Assignment 1: Due date TBA"
-  },
-  {
-    "objectID": "assignments/stat200c_assignment0.html",
-    "href": "assignments/stat200c_assignment0.html",
-    "title": "STAT200C Assignment 0",
-    "section": "",
-    "text": "To obtain numerical answers, you may use R for the following problems: 4b, 7, 8, and 9."
-  },
-  {
-    "objectID": "assignments/stat200c_assignment0.html#part-1-matrix-operations",
-    "href": "assignments/stat200c_assignment0.html#part-1-matrix-operations",
-    "title": "STAT200C Assignment 0",
-    "section": "Part 1: Matrix Operations",
-    "text": "Part 1: Matrix Operations\n\nMatrix Multiplication & Transpose\n\nLet \\[\nA = \\begin{pmatrix} 1 & 3 \\\\ -2 & 0 \\end{pmatrix}, \\quad\nB = \\begin{pmatrix} 4 & -1 \\\\ 2 & 5 \\end{pmatrix}, \\quad\nC = \\begin{pmatrix} 1 & 0 & 2 \\\\ -3 & 4 & 1 \\end{pmatrix}.\n\\]\n\nCompute \\(AB\\) and \\(BA\\). Are they equal?\nCompute \\(A^\\top B\\).\nCompute \\(BC\\). What is the dimension?\nLet \\(\\mathbf{a}_1^\\top, \\mathbf{a}_2^\\top\\) be rows of \\(A\\), and \\(\\mathbf{b}_1, \\mathbf{b}_2\\) columns of \\(B\\). Verify: \\[\nAB =\n\\begin{pmatrix}\n\\mathbf{a}_1^\\top \\mathbf{b}_1 & \\mathbf{a}_1^\\top \\mathbf{b}_2 \\\\\n\\mathbf{a}_2^\\top \\mathbf{b}_1 & \\mathbf{a}_2^\\top \\mathbf{b}_2\n\\end{pmatrix}.\n\\]\n\n\n\nTrace & Frobenius Norm\n\nCompute \\(\\mathrm{tr}(AB)\\) and \\(\\|A\\|_F\\), where the Frobenius norm is of a matrix \\(D\\) is defined as \\[\n\\|D\\|_F = \\sqrt{\\sum_{i,j} D_{ij}^2}.\n\\]"
-  },
-  {
-    "objectID": "assignments/stat200c_assignment0.html#part-2-rank-inverses",
-    "href": "assignments/stat200c_assignment0.html#part-2-rank-inverses",
-    "title": "STAT200C Assignment 0",
-    "section": "Part 2: Rank & Inverses",
-    "text": "Part 2: Rank & Inverses\n\nMatrix Rank\n\n\\[\nM = \\begin{pmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 0 & 1 & 0 \\end{pmatrix}, \\quad\nN = \\begin{pmatrix} 1 & 0 & -1 \\\\ 0 & 2 & 4 \\\\ 3 & 1 & 1 \\end{pmatrix}\n\\]\nFind ranks and justify.\n\n\nInverse & Linear Independence\n\n\nFind inverse of \\[\nP = \\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}.\n\\] if it exists.\nCan you find the inverse of the following matrix? If not, find a generalized inverse using R. \\[\nQ = \\begin{pmatrix}\n2/3 & -1/3 & -1/3 \\\\\n-1/3 & 2/3 & -1/3 \\\\\n-1/3 & -1/3 & 2/3\n\\end{pmatrix}.\n\\]"
-  },
-  {
-    "objectID": "assignments/stat200c_assignment0.html#part-3-projections-design-matrices",
-    "href": "assignments/stat200c_assignment0.html#part-3-projections-design-matrices",
-    "title": "STAT200C Assignment 0",
-    "section": "Part 3: Projections & Design Matrices",
-    "text": "Part 3: Projections & Design Matrices\n\nProjection Matrix\n\nConsider \\[\nX = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\\\ 1 & 2 \\end{pmatrix}.\n\\]\nThe projection matrix onto the column space of \\(X\\) is given by \\[\nH = X(X^\\top X)^{-1}X^\\top.\n\\]\n\nFind \\(H\\) and verify that \\(H^2 = H\\).\nCompute \\(\\mathbf{H} \\mathbf{y}\\) for \\(\\mathbf{y} = (3, 1, 4)^\\top\\). What does this represent in linear regression?\n\n\nDesign Matrix Operations\n\nLet \\(X\\) be an \\(n \\times p\\) design matrix with rows \\(\\mathbf{x}_1^\\top, \\dots, \\mathbf{x}_n^\\top\\) (each a \\(p\\)-dimensional row vector) and columns \\(\\mathbf{X}_1, \\dots, \\mathbf{X}_p\\) (each an \\(n\\)-dimensional column vector).\n\nShow that \\(X^\\top X\\) can be written as: \\[X^\\top X = \\sum_{i=1}^n \\mathbf{x}_i \\mathbf{x}_i^\\top.\\] Interpret the entries of \\(X^\\top X\\): What does the \\((j,k)\\)-th element represent statistically?\nShow that \\(XX^\\top\\) has \\((i,j)\\)-th entry equal to \\(\\mathbf{x}_i^\\top \\mathbf{x}_j\\). How does \\(XX^\\top\\) relate to the Euclidean distances between observations \\(\\mathbf{x}_i\\) and \\(\\mathbf{x}_j\\)?\nAssume that \\(X\\) has full column rank. Show that the hat matrix \\[H = X(X^\\top X)^{-1}X^\\top\\] is symmetric (\\(H = H^\\top\\)) and idempotent (\\(H^2 = H\\)). For the training data, explain how \\(H\\) computes the fitted values \\(\\hat{\\mathbf y}\\)."
-  },
-  {
-    "objectID": "assignments/stat200c_assignment0.html#part-4-eigenvalues-spectral-theory",
-    "href": "assignments/stat200c_assignment0.html#part-4-eigenvalues-spectral-theory",
-    "title": "STAT200C Assignment 0",
-    "section": "Part 4: Eigenvalues & Spectral Theory",
-    "text": "Part 4: Eigenvalues & Spectral Theory\n\nEigen-Decomposition\n\n\\[\nR = \\begin{pmatrix} 3 & 1 \\\\ 1 & 3 \\end{pmatrix}\n\\]\n\nVerify that \\(R\\) can be written as \\(Q \\Lambda Q^\\top\\) (spectral decomposition).\nWhat is \\(R^k\\) for integer \\(k \\geq 1\\)?\n\n\n\nPositive Definiteness\n\n\\[\nS = \\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}\n\\] Is \\(S\\) positive definite? Justify your answer using eigenvalues."
-  },
-  {
-    "objectID": "assignments/stat200c_assignment0.html#optional-problem",
-    "href": "assignments/stat200c_assignment0.html#optional-problem",
-    "title": "STAT200C Assignment 0",
-    "section": "Optional Problem",
-    "text": "Optional Problem\n\nSVD\n\nExplain how SVD generalizes eigenvalue decomposition for non-square matrices. Compute the SVD of \\[A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\\\ 1 & 0 \\end{pmatrix}.\\]"
-  },
-  {
-    "objectID": "assignments_index_Version2.html",
-    "href": "assignments_index_Version2.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "Assignment 01 (coming soon)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "HomePage",
-    "section": "",
-    "text": "Welcome to the STAT200C course website."
-  },
-  {
-    "objectID": "index.html#course-materials",
-    "href": "index.html#course-materials",
-    "title": "HomePage",
-    "section": "Course materials",
-    "text": "Course materials\n\nLecture Notes\nAssignments\nExams"
+    "objectID": "lectures/ProjectoinMatrices.html#redraw-the-data-with-ticks",
+    "href": "lectures/ProjectoinMatrices.html#redraw-the-data-with-ticks",
+    "title": "A Note on Projection Matrices (and an AI Attempt to Create Visualizations)",
+    "section": "Redraw the data with ticks",
+    "text": "Redraw the data with ticks\nYu: Still not what I want. The ticks are short bars of the same length. Each bar should be perpendicular to the space projected to. For example, the data projected to the x-axis should be shown using vertical ticks, i.e., ticks perpendicular to the x-axis.\nGemini:\n\n\nCode\nplot(data, main=\"Projection to x-axis\", xlim=c(-1,3), ylim=c(-1,3))\n# Function to add ticks for projected data\nadd_ticks &lt;- function(data, projection, col) {\n  for (i in 1:nrow(data)) {\n    x0 &lt;- data[i, 1]\n    y0 &lt;- data[i, 2]\n    x1 &lt;- projection[i, 1]\n    y1 &lt;- projection[i, 2]\n    segments(x0, y0, x1, y1, col=col)\n  }\n}\nadd_ticks(data, data_x, col=\"red\")\nadd_ticks(data, data_y, col=\"blue\")\nadd_ticks(data, data_xy, col=\"green\")\nadd_ticks(data, data_2xy, col=\"purple\")\nlegend(\"topright\", legend=c(\"Original Data\", \"Projection to x-axis\", \"Projection to y-axis\", \"Projection to line y=x\", \"Projection to line y=2x\"), \n       col=c(\"black\", \"red\", \"blue\", \"green\", \"purple\"), pch=16)\n\n\n\n\n\n\n\n\n\nStill incorrect. The bars are of varying lengths.\n\nplot(data, main = \"Data Projections with Uniform Ticks\", \n     xlim = c(-1, 3), ylim = c(-1, 3), pch = 16, asp = 1)\n\n# Function to add uniform, perpendicular ticks\n# target_vec is a vector defining the line projected onto (e.g., c(1,0) for x-axis)\nadd_ticks &lt;- function(projected_data, target_vec, col, tick_len = 0.1) {\n  # Get the perpendicular vector (rotate target_vec by 90 degrees)\n  # For a vector (a, b), the perpendicular is (-b, a)\n  perp_vec &lt;- c(-target_vec[2], target_vec[1])\n  \n  # Normalize the perpendicular vector to unit length\n  perp_vec &lt;- perp_vec / sqrt(sum(perp_vec^2))\n  \n  for (i in 1:nrow(projected_data)) {\n    px &lt;- projected_data[i, 1]\n    py &lt;- projected_data[i, 2]\n    \n    # Calculate start and end points of the tick centered at the projected point\n    x0 &lt;- px - (perp_vec[1] * tick_len / 2)\n    y0 &lt;- py - (perp_vec[2] * tick_len / 2)\n    x1 &lt;- px + (perp_vec[1] * tick_len / 2)\n    y1 &lt;- py + (perp_vec[2] * tick_len / 2)\n    \n    segments(x0, y0, x1, y1, col = col, lwd = 1.5)\n  }\n}\n\n# 1. Projection to x-axis: line is (1,0)\nadd_ticks(data_x, c(1, 0), col = \"red\")\n\n# 2. Projection to y-axis: line is (0,1)\nadd_ticks(data_y, c(0, 1), col = \"blue\")\n\n# 3. Projection to y=x: line is (1,1)\nadd_ticks(data_xy, c(1, 1), col = \"green\")\n\n# 4. Projection to y=2x: line is (1,2)\nadd_ticks(data_2xy, c(1, 2), col = \"purple\")\n\nlegend(\"topleft\", \n       legend = c(\"Original Data\", \"to x-axis\", \"to y-axis\", \"to y=x\", \"to y=2x\"), \n       col = c(\"black\", \"red\", \"blue\", \"green\", \"purple\"), \n       pch = c(16, 124, 124, 124, 124), bty = \"n\", cex = 0.8)"
   },
   {
     "objectID": "lectures/01-linear-algebra-review.html",
@@ -299,5 +159,159 @@
     "title": "A Brief Review of Linear Algebra",
     "section": "6.3 Idempotent matrices and projection matrices",
     "text": "6.3 Idempotent matrices and projection matrices\nDefinition. A matrix \\(P\\) is idempotent if \\(P^2=P\\).\nNote. If \\(P\\) is idempotent, so is \\(I-P\\).\nExample. \\(A=\\begin{pmatrix}1 & 1\\\\ 0 & 0\\end{pmatrix}, A^2=A\\). Verify that $()\nDefinition. A symmetric and idempotent matrix is called a projection matrix.\nExample. \\(A=\\begin{pmatrix}1/2 & 1/2\\\\ 1/2 & 1/2\\end{pmatrix}, A=A^T, A^2=A\\).\n\n6.3.1 Properties of projection matrices:\n\nIf \\(P\\) is symmetric, then \\(P\\) is idempotent with rank \\(r\\) if and only if it has \\(r\\) eigenvalues equal to 1 and \\(n-r\\) eigenvalues equal to zero.\nIf \\(P\\) is a projection matrix, then \\(tr(P)=rank(P)\\).\nProjection matrices are positive-semidefinite.\nIf \\(P_i (i=1,2)\\) is a projection matrix and \\(P_1-P_2\\) is p.s.d., then\n\n\n\\(P_1P_2=P_2P_1=P_2\\) (note, both \\(P_1P_2\\) and \\(P_2P_1\\) are projection matrices).\n\\(P_1-P_2\\) is a projection matrix.\n\nProof of (1): Let \\(\\lambda\\) be an eigenvalue of \\(P\\), then we have \\(Px=\\lambda x\\), where \\(x\\) is the corresponding eigenvector. Since \\(P^2=P\\), we have \\(\\lambda x= Px=P(Px)=\\lambda Px= \\lambda^2 x\\), which implies that \\(\\lambda\\) equals either zero or 1. For a symmetric matrix, its rank equals the number of nonzero eigenvalues. Thus \\(rank(P)\\) equals the number of 1’s.\nOn the other hand, suppose \\(P\\) has \\(r\\) eigenvalues equal to 1 and \\(n-r\\) eigenvalues equal to 0. Without loss of generality, we assume that the first \\(r\\) eigenvalues are 1. By the spectral decomposition of the symmetric matrix \\(P\\), we have \\(P=\\Gamma \\Lambda \\Gamma^T\\), where the first \\(r\\) diagonal elements of \\(\\Lambda\\) are 1 and all the other elements are zero. It is obvious that \\(\\Lambda^2=\\Lambda\\). Thus \\(P^2=\\Gamma \\Lambda \\Gamma^T\\Gamma \\Lambda \\Gamma^T=\\Gamma \\Lambda \\Gamma=P\\).\nProof of (2): Based on (1), \\(P\\) has \\(rank(P)\\) eigenvalues equal to 1 and \\(n-rank(P)\\) eigenvalues equal to 0. We also know that \\(tr(P)=\\sum \\lambda_i=rank(P)\\).\nProof of (3): \\(x^TPx=X^TPPx=(Px)^T(Px)\\ge 0\\).\nProof of (4): Clearly the following are true:\n\\[\\begin{eqnarray*}\n((I-P_1)y)^T P_2 ((I-P_1)y) & \\ge & 0\\\\\n((I-P_1)y)^T P_1 ((I-P_1)y) & = & 0\n\\end{eqnarray*}\\]\nwhich implies that \\([(I-P_1)y]^T(P_1-P_2)[(I-P_1)y] \\le 0\\). However, we also know that \\(P_1-P_2\\ge 0\\). Therefore, it must be true that \\[[(I-P_1)y]^T(P_2-P_1)[(I-P_1)y] = 0\\] which implies that \\[\\begin{eqnarray*}\n(I-P_1)P_2(I-P_1)=0\\\\\n&\\Rightarrow & (I-P_1)P_2 P_2 (I-P_1)=0\\\\\n&\\Rightarrow & (I-P_1)P_2=0\\\\\n&\\Rightarrow & P_2=P_1P_2\n\\end{eqnarray*}\\]\nA projection matrix must be a symmetric matrix. Therefore \\[P_2=(P_2)^T=(P_1P_2)^T=(P_2)^T(P_1)^T=P_2P_1\\]\nLast, \\((P_1-P_2)^2=P_1-2P_1P_2+P_2=P_1-2P_2+P_2=P_1-P_2\\)."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "HomePage",
+    "section": "",
+    "text": "Welcome to the STAT200C course website."
+  },
+  {
+    "objectID": "index.html#course-materials",
+    "href": "index.html#course-materials",
+    "title": "HomePage",
+    "section": "Course materials",
+    "text": "Course materials\n\nLecture Notes\nAssignments\nExams"
+  },
+  {
+    "objectID": "assignments_index_Version2.html",
+    "href": "assignments_index_Version2.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Assignment 01 (coming soon)"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html",
+    "href": "assignments/stat200c_assignment0.html",
+    "title": "STAT200C Assignment 0",
+    "section": "",
+    "text": "To obtain numerical answers, you may use R for the following problems: 4b, 7, 8, and 9."
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-1-matrix-operations",
+    "href": "assignments/stat200c_assignment0.html#part-1-matrix-operations",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 1: Matrix Operations",
+    "text": "Part 1: Matrix Operations\n\nMatrix Multiplication & Transpose\n\nLet \\[\nA = \\begin{pmatrix} 1 & 3 \\\\ -2 & 0 \\end{pmatrix}, \\quad\nB = \\begin{pmatrix} 4 & -1 \\\\ 2 & 5 \\end{pmatrix}, \\quad\nC = \\begin{pmatrix} 1 & 0 & 2 \\\\ -3 & 4 & 1 \\end{pmatrix}.\n\\]\n\nCompute \\(AB\\) and \\(BA\\). Are they equal?\nCompute \\(A^\\top B\\).\nCompute \\(BC\\). What is the dimension?\nLet \\(\\mathbf{a}_1^\\top, \\mathbf{a}_2^\\top\\) be rows of \\(A\\), and \\(\\mathbf{b}_1, \\mathbf{b}_2\\) columns of \\(B\\). Verify: \\[\nAB =\n\\begin{pmatrix}\n\\mathbf{a}_1^\\top \\mathbf{b}_1 & \\mathbf{a}_1^\\top \\mathbf{b}_2 \\\\\n\\mathbf{a}_2^\\top \\mathbf{b}_1 & \\mathbf{a}_2^\\top \\mathbf{b}_2\n\\end{pmatrix}.\n\\]\n\n\n\nTrace & Frobenius Norm\n\nCompute \\(\\mathrm{tr}(AB)\\) and \\(\\|A\\|_F\\), where the Frobenius norm is of a matrix \\(D\\) is defined as \\[\n\\|D\\|_F = \\sqrt{\\sum_{i,j} D_{ij}^2}.\n\\]"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-2-rank-inverses",
+    "href": "assignments/stat200c_assignment0.html#part-2-rank-inverses",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 2: Rank & Inverses",
+    "text": "Part 2: Rank & Inverses\n\nMatrix Rank\n\n\\[\nM = \\begin{pmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 0 & 1 & 0 \\end{pmatrix}, \\quad\nN = \\begin{pmatrix} 1 & 0 & -1 \\\\ 0 & 2 & 4 \\\\ 3 & 1 & 1 \\end{pmatrix}\n\\]\nFind ranks and justify.\n\n\nInverse & Linear Independence\n\n\nFind inverse of \\[\nP = \\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}.\n\\] if it exists.\nCan you find the inverse of the following matrix? If not, find a generalized inverse using R. \\[\nQ = \\begin{pmatrix}\n2/3 & -1/3 & -1/3 \\\\\n-1/3 & 2/3 & -1/3 \\\\\n-1/3 & -1/3 & 2/3\n\\end{pmatrix}.\n\\]"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-3-projections-design-matrices",
+    "href": "assignments/stat200c_assignment0.html#part-3-projections-design-matrices",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 3: Projections & Design Matrices",
+    "text": "Part 3: Projections & Design Matrices\n\nProjection Matrix\n\nConsider \\[\nX = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\\\ 1 & 2 \\end{pmatrix}.\n\\]\nThe projection matrix onto the column space of \\(X\\) is given by \\[\nH = X(X^\\top X)^{-1}X^\\top.\n\\]\n\nFind \\(H\\) and verify that \\(H^2 = H\\).\nCompute \\(\\mathbf{H} \\mathbf{y}\\) for \\(\\mathbf{y} = (3, 1, 4)^\\top\\). What does this represent in linear regression?\n\n\nDesign Matrix Operations\n\nLet \\(X\\) be an \\(n \\times p\\) design matrix with rows \\(\\mathbf{x}_1^\\top, \\dots, \\mathbf{x}_n^\\top\\) (each a \\(p\\)-dimensional row vector) and columns \\(\\mathbf{X}_1, \\dots, \\mathbf{X}_p\\) (each an \\(n\\)-dimensional column vector).\n\nShow that \\(X^\\top X\\) can be written as: \\[X^\\top X = \\sum_{i=1}^n \\mathbf{x}_i \\mathbf{x}_i^\\top.\\] Interpret the entries of \\(X^\\top X\\): What does the \\((j,k)\\)-th element represent statistically?\nShow that \\(XX^\\top\\) has \\((i,j)\\)-th entry equal to \\(\\mathbf{x}_i^\\top \\mathbf{x}_j\\). How does \\(XX^\\top\\) relate to the Euclidean distances between observations \\(\\mathbf{x}_i\\) and \\(\\mathbf{x}_j\\)?\nAssume that \\(X\\) has full column rank. Show that the hat matrix \\[H = X(X^\\top X)^{-1}X^\\top\\] is symmetric (\\(H = H^\\top\\)) and idempotent (\\(H^2 = H\\)). For the training data, explain how \\(H\\) computes the fitted values \\(\\hat{\\mathbf y}\\)."
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#part-4-eigenvalues-spectral-theory",
+    "href": "assignments/stat200c_assignment0.html#part-4-eigenvalues-spectral-theory",
+    "title": "STAT200C Assignment 0",
+    "section": "Part 4: Eigenvalues & Spectral Theory",
+    "text": "Part 4: Eigenvalues & Spectral Theory\n\nEigen-Decomposition\n\n\\[\nR = \\begin{pmatrix} 3 & 1 \\\\ 1 & 3 \\end{pmatrix}\n\\]\n\nVerify that \\(R\\) can be written as \\(Q \\Lambda Q^\\top\\) (spectral decomposition).\nWhat is \\(R^k\\) for integer \\(k \\geq 1\\)?\n\n\n\nPositive Definiteness\n\n\\[\nS = \\begin{pmatrix} 2 & -1 \\\\ -1 & 2 \\end{pmatrix}\n\\] Is \\(S\\) positive definite? Justify your answer using eigenvalues."
+  },
+  {
+    "objectID": "assignments/stat200c_assignment0.html#optional-problem",
+    "href": "assignments/stat200c_assignment0.html#optional-problem",
+    "title": "STAT200C Assignment 0",
+    "section": "Optional Problem",
+    "text": "Optional Problem\n\nSVD\n\nExplain how SVD generalizes eigenvalue decomposition for non-square matrices. Compute the SVD of \\[A = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\\\ 1 & 0 \\end{pmatrix}.\\]"
+  },
+  {
+    "objectID": "assignments/index.html",
+    "href": "assignments/index.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "STAT200C Assignment 0: Due on Friday, April 10, 2026\nSTAT200C Assignment 1: Due date TBA"
+  },
+  {
+    "objectID": "assignments/stat200c_assignment1.html",
+    "href": "assignments/stat200c_assignment1.html",
+    "title": "STAT200C Assignment 1",
+    "section": "",
+    "text": "Simple linear regression. Let \\(Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i\\) for \\(i = 1, 2, \\ldots, n\\), where the \\(\\epsilon_i\\) are independent and identically distributed with mean \\(0\\) and variance \\(\\sigma^2\\). Find the least squares estimates of \\(\\beta_0\\) and \\(\\beta_1\\). Prove that they are uncorrelated if and only if \\(\\bar{x} = 0\\).\nConsider the model \\(Y = X\\beta + \\epsilon\\), where\n\n\\[\nY =\n\\begin{pmatrix}\nY_1\\\\\nY_2\\\\\nY_3\\\\\nY_4\n\\end{pmatrix},\n\\qquad\nX =\n\\begin{pmatrix}\n0 & 1 & 0\\\\\n1 & 0 & 1\\\\\n-1 & 1 & -1\\\\\n1 & -1 & 1\n\\end{pmatrix},\n\\qquad\n\\beta =\n\\begin{pmatrix}\n\\beta_1\\\\\n\\beta_2\\\\\n\\beta_3\n\\end{pmatrix},\n\\]\nwith \\(\\epsilon \\sim (0, \\sigma^2 I_4)\\). The observed values are\n\\[\nY_1 = 1, \\qquad Y_2 = 3, \\qquad Y_3 = -2, \\qquad Y_4 = 2.\n\\]\n\nUse each of the three methods introduced in class to find the LSEs of \\(\\beta\\). Compare the three LSEs and examine whether they are identical. In R, you can use the function solve to obtain the inverse of a nonsingular matrix, and the function ginv from library(MASS) to obtain a generalized inverse of a singular matrix. Be sure to attach your R code at the end of your homework.\nProve that \\(\\beta_2\\) and \\(\\beta_1 + \\beta_3\\) are estimable, but \\(\\beta_1\\) is not estimable.\nFor the three parameters in part (b), namely \\(\\beta_2\\), \\(\\beta_1 + \\beta_3\\), and \\(\\beta_1\\), determine whether you can obtain the BLUE for each of them. For those for which you can obtain a BLUE, calculate the BLUEs and compute their variances.\n\n\nLet \\(X_{n \\times p}\\) be a design matrix. Suppose that \\(\\operatorname{rank}(X) = r &lt; p\\). Consider the normal equation\n\n\\[\nX^T X \\beta = X^T Y.\n\\]\n\nCompute LSE. In class we showed that\n\n\\[\n\\hat{\\beta} = (X^T X)^- X^T Y\n\\]\nis a solution to the normal equation, where \\((X^T X)^-\\) is a generalized inverse. Show that\n\\[\n\\tilde{\\beta}\n=\n\\hat{\\beta} + \\left(I - (X^T X)^-(X^T X)\\right) z,\n\\]\nwhere \\(z\\) is an arbitrary \\(p \\times 1\\) vector, is also a solution to the normal equation.\n\nWithout loss of generality, assume \\(X = (X_1, X_2)\\), where \\(X_1\\) is an \\(n \\times r\\) matrix with rank \\(r\\). Prove the following.\n\nThere exists an \\(r \\times (p-r)\\) matrix \\(C\\) such that \\(X_2 = X_1 C\\).\n\\[\n\\hat{\\beta}\n=\n\\begin{pmatrix}\n(X_1^T X_1)^{-1} X_1^T Y\\\\\n0\n\\end{pmatrix}\n\\]\n\n\nis a solution to the normal equation.\n\nConsider a full-rank \\(n \\times p\\) design matrix \\(X = (\\mathbf{1}, x_1, \\cdots, x_{p-1})\\). In the design matrix \\(X\\), the first column is a vector of ones, and \\(x_i\\) is the \\((i+1)\\)th column for \\(i = 1, \\ldots, p-1\\). Let\n\n\\[\nZ = (\\mathbf{1}, c_1 x_1, \\cdots, c_{p-1} x_{p-1})\n\\]\nbe a linear transformation of \\(X\\), where \\(c_1, \\ldots, c_{p-1}\\) are nonzero scalars. Let \\(\\hat{\\beta}\\) be the LSE when regressing \\(Y\\) on \\(X\\), and let \\(\\hat{\\beta}_Z\\) be the LSE when regressing \\(Y\\) on \\(Z\\). Show that\n\\[\nX \\hat{\\beta} = Z \\hat{\\beta}_Z.\n\\]\nThis result implies that the predicted value \\(\\hat{Y}\\) is invariant under a full-rank linear transformation of the design matrix.\n\nConsider the model\n\n\\[\nY_{ij} = \\alpha_i + \\beta_j + \\epsilon_{ij},\n\\]\nwhere \\(i = 1, \\cdots, a\\), \\(j = 1, \\cdots, b\\), and \\(\\epsilon_{ij} \\overset{iid}{\\sim} (0, \\sigma^2)\\).\nDerive the necessary and sufficient condition for \\(\\sum c_i \\alpha_i + \\sum d_j \\beta_j\\) to be estimable.\n Suppose that \\(\\sum c_i \\alpha_i + \\sum d_j \\beta_j\\) is estimable. Show that \\((c_1, \\cdots, c_a, d_1, \\cdots, d_b)\\) satisfies \\[\n\\sum_{i=1}^a c_i = \\sum_{j=1}^b d_j.\n\\]"
+  },
+  {
+    "objectID": "exams/index.html",
+    "href": "exams/index.html",
+    "title": "Exams",
+    "section": "",
+    "text": "Midterm (coming soon)\nFinal (coming soon)"
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html",
+    "href": "lectures/00-matrix-preliminary.html",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "",
+    "text": "These notes give a short preliminary review of basic matrix manipulations:\n\ndimensions of matrices, including row and column vectors;\ninner product: one row times one column;\nmatrix multiplication;\n\\(A^2\\) for a square matrix;\nwhy \\(AB\\) and \\(BA\\) are generally different."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#overview",
+    "href": "lectures/00-matrix-preliminary.html#overview",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "",
+    "text": "These notes give a short preliminary review of basic matrix manipulations:\n\ndimensions of matrices, including row and column vectors;\ninner product: one row times one column;\nmatrix multiplication;\n\\(A^2\\) for a square matrix;\nwhy \\(AB\\) and \\(BA\\) are generally different."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#dimensions-of-a-matrix",
+    "href": "lectures/00-matrix-preliminary.html#dimensions-of-a-matrix",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "2 Dimensions of a matrix",
+    "text": "2 Dimensions of a matrix\nA matrix with \\(m\\) rows and \\(n\\) columns has dimension \\(m \\times n\\).\nWe write\n\\[\nA \\in \\mathbb{R}^{m \\times n}.\n\\]\nThis means that \\(A\\) has \\(m\\) horizontal rows and \\(n\\) vertical columns.\nFor example,\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\in \\mathbb{R}^{2 \\times 3}.\n\\]\nIt has 2 rows and 3 columns.\n\n2.1 Column vector\nA column vector is a matrix with one column. Its dimension is \\(m \\times 1\\).\n\\[\nx =\n\\begin{bmatrix}\nx_1 \\\\\nx_2 \\\\\nx_3\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 1}.\n\\]\n\n\n2.2 Row vector\nA row vector is a matrix with one row. Its dimension is \\(1 \\times n\\).\n\\[\ny =\n\\begin{bmatrix}\ny_1 & y_2 & y_3\n\\end{bmatrix}\n\\in \\mathbb{R}^{1 \\times 3}.\n\\]\n\n\n2.3 Compatibility reminder\nWhen multiplying matrices, the inside dimensions must match.\nIf\n\\[\nA \\in \\mathbb{R}^{m \\times n}, \\qquad B \\in \\mathbb{R}^{n \\times p},\n\\]\nthen the product \\(AB\\) is defined and has dimension\n\\[\nAB \\in \\mathbb{R}^{m \\times p}.\n\\]\nA useful memory rule is:\n\\[\n(m \\times n)(n \\times p) = m \\times p.\n\\]"
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#inner-product-one-row-times-one-column",
+    "href": "lectures/00-matrix-preliminary.html#inner-product-one-row-times-one-column",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "3 Inner product: one row times one column",
+    "text": "3 Inner product: one row times one column\nThe simplest matrix product is a row vector times a column vector.\nLet\n\\[\nr =\n\\begin{bmatrix}\nr_1 & r_2 & \\cdots & r_n\n\\end{bmatrix}\n\\in \\mathbb{R}^{1 \\times n},\n\\]\nand\n\\[\nc =\n\\begin{bmatrix}\nc_1 \\\\\nc_2 \\\\\n\\vdots \\\\\nc_n\n\\end{bmatrix}\n\\in \\mathbb{R}^{n \\times 1}.\n\\]\nThen\n\\[\nrc = r_1c_1 + r_2c_2 + \\cdots + r_nc_n.\n\\]\nThis is the inner product (or dot product), and the result is a \\(1 \\times 1\\) matrix, that is, a scalar.\n\n3.1 Example\n\\[\n\\begin{bmatrix}\n1 & 2 & 3\n\\end{bmatrix}\n\\begin{bmatrix}\n4 \\\\\n5 \\\\\n6\n\\end{bmatrix}\n= 1\\cdot 4 + 2\\cdot 5 + 3\\cdot 6 = 32.\n\\]\n\n\n3.2 Unit vectors\nA unit vector is a vector of length 1. Check the following vectors:\n\\[\nu_1 =\n\\begin{bmatrix}\n1 \\\\\n0 \\\\\n0\n\\end{bmatrix},\n\\qquad\nu_2 = \\begin{bmatrix}\\frac{1}{\\sqrt{3}} \\\\ \\frac{1}{\\sqrt{3}} \\\\ \\frac{1}{\\sqrt{3}}\\end{bmatrix}.\n\\qquad\nu_3 = \\begin{bmatrix}\\frac{1}{\\sqrt{2}} \\\\ \\frac{1}{\\sqrt{2}} \\\\ 0\\end{bmatrix}.\n\\]\nThey all have length 1, so they are all unit vectors."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#matrix-multiplication",
+    "href": "lectures/00-matrix-preliminary.html#matrix-multiplication",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "4 Matrix multiplication",
+    "text": "4 Matrix multiplication\nSuppose\n\\[\nA \\in \\mathbb{R}^{m \\times n}, \\qquad B \\in \\mathbb{R}^{n \\times p}.\n\\]\nThen the product \\(AB\\) is an \\(m \\times p\\) matrix. Its \\((i,j)\\)-entry is obtained by taking:\n\nrow \\(i\\) of \\(A\\), and\ncolumn \\(j\\) of \\(B\\),\n\nand forming their inner product.\nIn symbols,\n\\[\n(AB)_{ij} = \\sum_{k=1}^n a_{ik}b_{kj}.\n\\]\n\n4.1 Example\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n3 & 4\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n5 & 6 \\\\\n7 & 8\n\\end{bmatrix}.\n\\]\nThen\n\\[\nAB =\n\\begin{bmatrix}\n1\\cdot 5 + 2\\cdot 7 & 1\\cdot 6 + 2\\cdot 8 \\\\\n3\\cdot 5 + 4\\cdot 7 & 3\\cdot 6 + 4\\cdot 8\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n19 & 22 \\\\\n43 & 50\n\\end{bmatrix}.\n\\]\n\n\n4.2 How to read matrix multiplication\nEach entry of \\(AB\\) comes from one row of \\(A\\) and one column of \\(B\\).\nFor example, the upper-left entry is\n\\[\n(AB)_{11}\n=\n\\begin{bmatrix}\n1 & 2\n\\end{bmatrix}\n\\begin{bmatrix}\n5 \\\\\n7\n\\end{bmatrix}\n= 19.\n\\]\n\n\n4.3 Visual example with colored row and column\nThe row from \\(A\\) is highlighted in blue, and the matching column from \\(B\\) is highlighted in red.\n\\[\nA =\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2} \\\\\n3 & 4\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n\\textcolor{red}{5} & 6 \\\\\n\\textcolor{red}{7} & 8\n\\end{bmatrix}.\n\\]\nUsing the blue row of \\(A\\) and the red column of \\(B\\),\n\\[\n(AB)_{11}\n=\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2}\n\\end{bmatrix}\n\\begin{bmatrix}\n\\textcolor{red}{5} \\\\\n\\textcolor{red}{7}\n\\end{bmatrix}\n=\n\\textcolor{blue}{1}\\textcolor{red}{5}\n+\n\\textcolor{blue}{2}\\textcolor{red}{7}\n= 19.\n\\]\nLikewise, for the upper-right entry, use the same first row of \\(A\\) and the second column of \\(B\\):\n\\[\n(AB)_{12}\n=\n\\begin{bmatrix}\n\\textcolor{blue}{1} & \\textcolor{blue}{2}\n\\end{bmatrix}\n\\begin{bmatrix}\n6 \\\\\n8\n\\end{bmatrix}\n= 22.\n\\]\nThis is the basic mechanism of matrix multiplication: row times column, entry by entry."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#a2-for-a-square-matrix",
+    "href": "lectures/00-matrix-preliminary.html#a2-for-a-square-matrix",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "5 \\(A^2\\) for a square matrix",
+    "text": "5 \\(A^2\\) for a square matrix\nThe expression \\(A^2\\) means\n\\[\nA^2 = AA.\n\\]\nThis is only defined when \\(A\\) is a square matrix, meaning\n\\[\nA \\in \\mathbb{R}^{n \\times n}.\n\\]\n\n5.1 Example\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}.\n\\]\nThen\n\\[\nA^2\n=\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 3\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1\\cdot 1 + 2\\cdot 0 & 1\\cdot 2 + 2\\cdot 3 \\\\\n0\\cdot 1 + 3\\cdot 0 & 0\\cdot 2 + 3\\cdot 3\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 8 \\\\\n0 & 9\n\\end{bmatrix}.\n\\]\nSo \\(A^2\\) is not obtained by squaring each entry separately. It is obtained by multiplying \\(A\\) by itself using the usual rules of matrix multiplication."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#ab-and-ba-are-different",
+    "href": "lectures/00-matrix-preliminary.html#ab-and-ba-are-different",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "6 \\(AB\\) and \\(BA\\) are different",
+    "text": "6 \\(AB\\) and \\(BA\\) are different\nIn general,\n\\[\nAB \\neq BA.\n\\]\nMatrix multiplication is usually not commutative.\n\n6.1 Example 1: both products are defined, but they are different\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix},\n\\qquad\nB =\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}.\n\\]\nThen\n\\[\nAB\n=\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n8 & 2 \\\\\n3 & 1\n\\end{bmatrix},\n\\]\nwhile\n\\[\nBA\n=\n\\begin{bmatrix}\n2 & 0 \\\\\n3 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 \\\\\n0 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n2 & 4 \\\\\n3 & 7\n\\end{bmatrix}.\n\\]\nTherefore,\n\\[\nAB \\neq BA.\n\\]\n\n\n6.2 Example 2: both products are defined, but they have different dimensions\nLet\n\\[\nA =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\in \\mathbb{R}^{2 \\times 3},\n\\qquad\nB =\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n\\in \\mathbb{R}^{3 \\times 2}.\n\\]\nThen \\(AB\\) is defined because\n\\[\n(2 \\times 3)(3 \\times 2) = 2 \\times 2.\n\\]\nIndeed,\n\\[\nAB =\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n4 & 5 \\\\\n10 & 11\n\\end{bmatrix}.\n\\]\nAlso, \\(BA\\) is defined because\n\\[\n(3 \\times 2)(2 \\times 3) = 3 \\times 3.\n\\]\nComputing it gives\n\\[\nBA =\n\\begin{bmatrix}\n1 & 0 \\\\\n0 & 1 \\\\\n1 & 1\n\\end{bmatrix}\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n1 & 2 & 3 \\\\\n4 & 5 & 6 \\\\\n5 & 7 & 9\n\\end{bmatrix}.\n\\]\nSo \\(AB\\) and \\(BA\\) differ not only in value but even in size.\n\n\n6.3 Optional contrast: one order may be impossible\nIf\n\\[\nA \\in \\mathbb{R}^{2 \\times 3}, \\qquad B \\in \\mathbb{R}^{2 \\times 2},\n\\]\nthen \\(BA\\) is defined:\n\\[\n(2 \\times 2)(2 \\times 3) = 2 \\times 3,\n\\]\nbut \\(AB\\) is not defined because the inside dimensions do not match:\n\\[\n(2 \\times 3)(2 \\times 2).\n\\]\nSo order matters in two ways:\n\nthe products can have different values;\none order may be defined while the other is not."
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#useful-references",
+    "href": "lectures/00-matrix-preliminary.html#useful-references",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "7 Useful references",
+    "text": "7 Useful references\nThese notes can be supplemented by the following materials from MIT 18.065:\n\nLearning from Data, Lecture 1.1: Multiplication of \\(Ax\\)\nLearning from Data, Lecture 1.2: Matrix-Matrix Multiplication \\(AB\\)"
+  },
+  {
+    "objectID": "lectures/00-matrix-preliminary.html#summary",
+    "href": "lectures/00-matrix-preliminary.html#summary",
+    "title": "Preliminary: Matrix Manipulations",
+    "section": "8 Summary",
+    "text": "8 Summary\nThe main points are:\n\na matrix in \\(\\mathbb{R}^{m \\times n}\\) has \\(m\\) rows and \\(n\\) columns;\na row times a column gives an inner product;\nmatrix multiplication is built from row-by-column inner products;\n\\(A^2\\) means \\(AA\\), so \\(A\\) must be square;\nin general, \\(AB\\) and \\(BA\\) are different."
+  },
+  {
+    "objectID": "lectures/index.html",
+    "href": "lectures/index.html",
+    "title": "index",
+    "section": "",
+    "text": "0 — Preliminary: Matrix Manipulations\n1 — Review of Linear Algebra\n\nA note on projection matrices (and an AI attempt to create visualizations)"
   }
 ]
