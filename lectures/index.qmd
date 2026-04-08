@@ -5,3 +5,4 @@ format: html
 
 - [0 — Preliminary: Matrix Manipulations](00-matrix-preliminary.qmd)
 - [1 — Review of Linear Algebra](01-linear-algebra-review.qmd)
+  - [A note on projection matrices (and an AI attempt to create visualizations)](ProjectoinMatrices.qmd)
