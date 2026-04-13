@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – STAT200C — Theory of Linear Models</title>
+<title>Least Squares Estimates – STAT200C — Theory of Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -92,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../lectures/index.html" aria-current="page"> 
+    <a class="nav-link" href="../lectures/index.html"> 
 <span class="menu-text">Lecture Notes</span></a>
   </li>  
   <li class="nav-item">
@@ -114,15 +143,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-linear-models" id="toc-introduction-to-linear-models" class="nav-link active" data-scroll-target="#introduction-to-linear-models"><span class="header-section-number">1</span> Introduction to Linear Models</a></li>
+  <li><a href="#estimation-and-distribution-theory" id="toc-estimation-and-distribution-theory" class="nav-link" data-scroll-target="#estimation-and-distribution-theory"><span class="header-section-number">2</span> Estimation and Distribution Theory</a>
+  <ul class="collapse">
+  <li><a href="#the-least-squares-estimate-lse-olse" id="toc-the-least-squares-estimate-lse-olse" class="nav-link" data-scroll-target="#the-least-squares-estimate-lse-olse"><span class="header-section-number">2.1</span> The Least Squares Estimate (LSE) / OLSE</a></li>
+  <li><a href="#existence-of-lse" id="toc-existence-of-lse" class="nav-link" data-scroll-target="#existence-of-lse"><span class="header-section-number">2.2</span> Existence of LSE</a></li>
+  <li><a href="#compute-lse" id="toc-compute-lse" class="nav-link" data-scroll-target="#compute-lse"><span class="header-section-number">2.3</span> Compute LSE</a>
+  <ul class="collapse">
+  <li><a href="#when-x-is-full-rank" id="toc-when-x-is-full-rank" class="nav-link" data-scroll-target="#when-x-is-full-rank"><span class="header-section-number">2.3.1</span> When <span class="math inline">\(X\)</span> is Full Rank</a></li>
+  <li><a href="#when-x-is-less-than-full-rank" id="toc-when-x-is-less-than-full-rank" class="nav-link" data-scroll-target="#when-x-is-less-than-full-rank"><span class="header-section-number">2.3.2</span> When <span class="math inline">\(X\)</span> is Less Than Full Rank</a></li>
+  <li><a href="#example.-one-way-anova" id="toc-example.-one-way-anova" class="nav-link" data-scroll-target="#example.-one-way-anova"><span class="header-section-number">2.3.3</span> Example. One-Way ANOVA</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3</span> </a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">index</h1>
+<h1 class="title">Least Squares Estimates</h1>
 </div>
 
 
@@ -139,16 +186,171 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction-to-linear-models" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction to Linear Models</h1>
+<p>Let <span class="math inline">\(y_i\)</span> be the <span class="math inline">\(i\)</span>th response among <span class="math inline">\(n\)</span> measured values. It is often of interest to consider a linear model to model the response: <span class="math display">\[y_i = \beta_0 + \beta_1 x_{i1} +\cdots + \beta_{p-1} x_{i(p-1)} + \epsilon_i, \mbox{ } i=1,\cdots,n\]</span></p>
+<p>The linear model consists of a systematic part and a random part. Write the <span class="math inline">\(n\)</span> equations jointly, <span class="math display">\[\begin{eqnarray*}
+\begin{pmatrix}
+y_{1} \\
+y_{2} \\
+\vdots\\
+y_n
+\end{pmatrix}
+  &amp; = &amp;
+\begin{pmatrix}
+\beta_0 + \beta_1 x_{11} + \cdots+ \beta_{p-1} x_{1(p-1)} + \epsilon_1 \\
+\beta_0 + \beta_1 x_{21} + \cdots+ \beta_{p-1} x_{2(p-1)} + \epsilon_2 \\
+\vdots\\
+\beta_0 + \beta_1 x_{n1} + \cdots+ \beta_{p-1} x_{n(p-1)} + \epsilon_n \\
+\end{pmatrix}   \\
+&amp;=&amp;
+\begin{pmatrix}
+1 \mbox{  } x_{11} \cdots x_{1(p-1)} \\
+1 \mbox{  } x_{21} \cdots x_{2(p-1)} \\
+\vdots\\
+1 \mbox{  } x_{n1} \cdots x_{n(p-1)}
+\end{pmatrix}
+\begin{pmatrix}
+\beta_0\\
+\beta_1\\
+\vdots\\
+\beta_(p-1)
+\end{pmatrix} +
+\begin{pmatrix}
+\epsilon_1\\
+\epsilon_2\\
+\vdots\\
+\epsilon_n
+\end{pmatrix}
+\end{eqnarray*}\]</span></p>
+<p>Use matrix notations, we have : <span class="math display">\[\begin{eqnarray*}
+{Y} &amp;=&amp; {X}{\beta} + {\epsilon}
+\end{eqnarray*}\]</span></p>
+<p>In linear models, the basic assumptions we use are: <span class="math display">\[\begin{eqnarray*}
+E[ Y ] &amp;=&amp; X\beta \\
+Var[Y] &amp;=&amp; \Sigma\\
+\end{eqnarray*}\]</span> where the variance-covariance matrix of <span class="math inline">\(Y\)</span> is defined as <span class="math display">\[\begin{eqnarray*}
+\Sigma &amp;=&amp;
+\begin{pmatrix}
+var[y_1] &amp; cov[y_1, y_2] &amp; \cdots &amp; cov[y_1, y_n] \\
+cov[y_1,y_2] &amp; var[y_2] &amp; \cdots &amp; cov[y_2, y_n]\\
+\vdots &amp; \cdots &amp; \cdots &amp; \vdots\\
+cov[y_1, y_n]&amp; cov[y_2,y_n] &amp; \cdots &amp; var[y_n]
+\end{pmatrix}\\
+&amp;=&amp;
+\begin{pmatrix}
+\sigma_1^2 &amp; \sigma_{12} &amp; \cdots &amp; \sigma_{1n}\\
+\sigma_{12} &amp; \sigma_2^2 &amp; \cdots &amp; \sigma_{2n}\\
+\vdots &amp; \cdots &amp; \cdots &amp; \vdots\\
+\sigma_{1n} &amp; \sigma_{2n} &amp; \cdots &amp; \sigma_{n}^2
+\end{pmatrix}
+\end{eqnarray*}\]</span></p>
+<p>The mean assumption is equivalent to <span class="math display">\[E[ {\epsilon}]={0}=(0,0,\cdots,0)^T\]</span> The variance-covariance assumption is equivalent to <span class="math display">\[cov(y_i, y_j)=cov(\epsilon_i, \epsilon_j)=\sigma_{ij} \]</span></p>
+<p>In practice, for a response variable <span class="math inline">\(Y\)</span> (or a transformed version), we first identify explanatory variables to be used in the linear model, and estimate parameters <span class="math inline">\({\beta}\)</span>, then try to make statistical inferences based upon the sampling distributions of the estimates.</p>
+</section>
+<section id="estimation-and-distribution-theory" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Estimation and Distribution Theory</h1>
+<section id="the-least-squares-estimate-lse-olse" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="the-least-squares-estimate-lse-olse"><span class="header-section-number">2.1</span> The Least Squares Estimate (LSE) / OLSE</h2>
+<p>One approach to estimate <span class="math inline">\({\beta}\)</span> is to minimize <span class="math display">\[Q={\epsilon}^T{\epsilon}=\sum_{i=1}^n(y_i-E[y_i])^2 = (Y-X\beta)^T(Y-X\beta)\]</span></p>
+<p>To obtain the least square estimates, we first expand it</p>
+<p><span class="math display">\[\begin{eqnarray*}
+Q&amp;=&amp;({Y}^T -{\beta}^T {X}^T)(Y-{X}{\beta})\\
+&amp;=&amp;{Y}^T {Y} - {\beta}^T {X}^T {Y} - Y^T X \beta + \beta^T X^T X \beta\\
+&amp;=&amp;{Y}^T{Y} - 2{\beta}^TX^T{Y} + {\beta}^T {X}^T {X} {\beta}
+\end{eqnarray*}\]</span> To minimize the sum of squares with respect to <span class="math inline">\(\beta\)</span>, we take partial derivatives <span class="math display">\[\frac{\partial Q}{\partial {\beta}} =
+\begin{pmatrix}
+\frac{\partial Q}{\partial {\beta}_0}\\
+\frac{\partial Q}{\partial {\beta}_1}\\
+\vdots\\
+\frac{\partial Q}{\partial {\beta}_{p-1}}
+\end{pmatrix}
+\]</span></p>
+<p>Therefore, <span class="math display">\[\begin{eqnarray*}
+\frac{\partial Q }{\partial \beta} &amp;=&amp; -2{X}^T{Y} + 2{X}^T{X}{\beta} \equiv 0\\
+&amp;\Rightarrow &amp; {X}^T{X}\hat{{\beta}} = {X}^T {Y} \\
+\end{eqnarray*}\]</span> We say <span class="math inline">\(\hat{{\beta}}\)</span> a least squares estimate of <span class="math inline">\({\beta}\)</span> for <span class="math inline">\({Y}={X}{\beta}+{\epsilon}\)</span> if <span class="math display">\[{X}^T{X}\hat{{\beta}}={X}^T{Y}\]</span></p>
+<p>Definition. The column space of a matrix <span class="math inline">\(A\)</span> is the vector space generated by the columns of <span class="math inline">\(A\)</span>. If <span class="math inline">\(A=(a_{ij})_{n\times p}=(a_1,\cdots, a_p)\)</span>, then the column space of <span class="math inline">\(A\)</span>, denoted by <span class="math inline">\(C(A)\)</span> is given by <span class="math display">\[C(A)=\{y:y=\sum_{i=1}^pc_ia_i\}\]</span> for scalars <span class="math inline">\(c_i,i=1,\cdots,p\)</span>. Alternatively, <span class="math inline">\(y\in C(A)\)</span> iff <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\in R^p\)</span> s.t. <span class="math inline">\(y=Ac\)</span>.</p>
+</section>
+<section id="existence-of-lse" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="existence-of-lse"><span class="header-section-number">2.2</span> Existence of LSE</h2>
+<p>The normal equation <span class="math inline">\(X^TX\beta=X^TY\)</span> always has a solution for <span class="math inline">\(\beta\)</span>.</p>
+</section>
+<section id="compute-lse" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="compute-lse"><span class="header-section-number">2.3</span> Compute LSE</h2>
+<section id="when-x-is-full-rank" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="when-x-is-full-rank"><span class="header-section-number">2.3.1</span> When <span class="math inline">\(X\)</span> is Full Rank</h3>
+<p>Proposition: When <span class="math inline">\(rank(X)=p\)</span>, i.e., all the columns are linearly independent, the normal equation has a unique solution and the ordinary least squares estimate is <span class="math display">\[\hat{\beta}=(X^TX)^{-1}X^TY\]</span></p>
+<p>The proof is trivial.</p>
+</section>
+<section id="when-x-is-less-than-full-rank" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="when-x-is-less-than-full-rank"><span class="header-section-number">2.3.2</span> When <span class="math inline">\(X\)</span> is Less Than Full Rank</h3>
+<p>When <span class="math inline">\(Rank(X)=r&lt;p\)</span>, we can use the following methods to find an LSE</p>
+<ol type="1">
+<li>Choose a linearly independent subset of <span class="math inline">\(r\)</span> columns of <span class="math inline">\(X\)</span>. WLOG, assume <span class="math inline">\(X=(X_1, X_2)\)</span>, where <span class="math inline">\(Rank(X_1)=r\)</span>. A LSE of <span class="math inline">\(\beta\)</span> is <span class="math display">\[\hat{\beta}=
+\begin{pmatrix}
+(X_1^TX_1)^{-1}X_1^TY\\
+0
+\end{pmatrix}
+\]</span></li>
+</ol>
+<p>Proof: (assign it to homework) Hint: Show that there exists a <span class="math inline">\(r\times (p-r)\)</span> matrix <span class="math inline">\(C\)</span> such that <span class="math inline">\(X_2=X_1C\)</span>.</p>
+<p>(This method is commonly used by regression packages, and the columns selected will be package-dependent).</p>
+<ol start="2" type="1">
+<li>Consider an identifiability constraint <span class="math inline">\(H\beta=0\)</span>. We say <span class="math inline">\(H\beta=0\)</span> an identifiability constraint IFF</li>
+</ol>
+<ol type="a">
+<li><p><span class="math inline">\(C(H^T)\)</span> and <span class="math inline">\(C(X^T)\)</span> are disjoint. (i.e., <span class="math inline">\(H\)</span> doesn’t contribute any information that <span class="math inline">\(X\)</span> does.</p></li>
+<li><p>Rank(W)=p</p></li>
+</ol>
+<p>Define <span class="math display">\[
+W=\begin{pmatrix}X\\H\end{pmatrix},
+Z=\begin{pmatrix}Y\\0\end{pmatrix}
+\]</span> One LSE is <span class="math display">\[\hat{\beta}=(W^TW)^{-1}W^TZ=(W^TW)^{-1}X^TY\]</span> Note (a) and (b) <span class="math inline">\(\Rightarrow Rank(H)=p-r\)</span>.</p>
+<p>The proof is not required in STAT200C.</p>
+<p>Example. The one-way anova <span class="math inline">\(Y_{ij}=\mu+\alpha_i+\epsilon_{ij}\)</span>.</p>
+<p>One way to get a unique solution to <span class="math inline">\(\beta\)</span> is to require <span class="math inline">\(\sum \alpha_i=0\)</span></p>
+<ol start="3" type="1">
+<li>Using any generalized inverse matrix <span class="math inline">\((X^TX)^-\)</span>, where a generalized inverse of <span class="math inline">\(B\)</span> is any matrix <span class="math inline">\(B^-\)</span> s.t. <span class="math inline">\(BB^-B=B\)</span>. A LSE is then <span class="math display">\[\hat{\beta}=(X^TX)^-X^TY\]</span></li>
+</ol>
+<p>The proof follows from the following Lemma.</p>
+<section id="lemma.-lemma-1-of-generalized-inverse." class="level4" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="lemma.-lemma-1-of-generalized-inverse."><span class="header-section-number">2.3.2.1</span> Lemma. Lemma 1 of Generalized Inverse.</h4>
+<p><span class="math inline">\(X(X^TX)^-X^TX=X\)</span></p>
+<p>Proof. Let <span class="math inline">\((X^TX)^-\)</span> be a generalized inverse of <span class="math inline">\(X^TX\)</span>. By the definition of generalized inverse we have <span class="math inline">\(X^TX(X^TX)^-X^TX=X^TX\)</span>. Take transpose on both sides we have <span class="math inline">\(X^TX[(X^TX)^-]^TX^TX=X^TX\)</span>, indicating that <span class="math inline">\([(X^TX)^-]^T\)</span> is also a generalized inverse of <span class="math inline">\(X^TX\)</span>.</p>
+<p>Let <span class="math inline">\(D=X(X^TX)^-X^TX-X\)</span>. Using the definition of generalized inverse and the above result, it is easy to verify that <span class="math inline">\(D^TD=0\)</span>, which implies that <span class="math inline">\(D=0\)</span>.</p>
+<p>Similarly, one can show that <span class="math inline">\(X^TX(X^TX)^-X^T=X^T\)</span>. Based on this result, it is very easy to verify that <span class="math display">\[\hat{\beta}=(X^TX)^-X^TY\]</span> satisfies the normal equation. In other words, it is an LSE.</p>
+<p>Note, <span class="math display">\[\widetilde{\beta}=\hat{\beta} + (I -(X^TX)^-(X^TX))z\]</span> where z is an arbitrary vector, is also a solution to the normal equation. (a homework problem).</p>
+<p>We can conclude from the methods of computing LSE that:</p>
 <ul>
-<li><a href="../lectures/00-matrix-preliminary.html">0 — Preliminary: Matrix Manipulations</a></li>
-<li><a href="../lectures/01-linear-algebra-review.html">1 — Review of Linear Algebra</a>
-<ul>
-<li><a href="../lectures/ProjectoinMatrices.html">A note on projection matrices (and an AI attempt to create visualizations)</a></li>
-</ul></li>
-<li><a href="../lectures/02-LSE-Moments-Computation.html">2 — Least Squares Estimates: Moments and Computatoin</a></li>
+<li><p>An LSE always exists.</p></li>
+<li><p>Least squares estimate is unique iff <span class="math inline">\(rank(X)=p\)</span>.</p></li>
 </ul>
+</section>
+</section>
+<section id="example.-one-way-anova" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="example.-one-way-anova"><span class="header-section-number">2.3.3</span> Example. One-Way ANOVA</h3>
+<p>The one-way ANOVA <span class="math display">\[Y_{ij}=\mu+\alpha_{i}+\epsilon_{ij}\]</span> How to find <span class="math inline">\(\beta=(\mu, \alpha_1, \alpha_2)^T\)</span>? <span class="math display">\[X=\begin{pmatrix}
+1&amp;1&amp;0\\
+1&amp;1&amp;0\\
+1&amp;0&amp;1\\
+1&amp;0&amp;1
+\end{pmatrix}
+\]</span> Notice that column 1 of <span class="math inline">\(X\)</span> is a linear combination of the other two columns. Thus the design matrix is less than full rank.</p>
+<p>How to use the three methods to obtain <span class="math inline">\(X\hat{\beta}\)</span>.</p>
+<ul>
+<li><p>Find a subset of the columns of <span class="math inline">\(X\)</span>. E.g., keep the first two columns we have <span class="math inline">\(\hat\beta=( \bar Y_{2.},\bar Y_{1.}- \bar Y_{2.}, 0)^T\)</span>. E.g., keep the last two columns we have <span class="math inline">\(\hat\beta=( 0, \bar Y_{1.}, \bar Y_{2.})^T\)</span>.</p></li>
+<li><p>Add a constraint, i.e., add <span class="math inline">\((0,1,-1)\)</span> to the design matrix, one can show that <span class="math inline">\(\hat\beta=( \bar Y_{..},\bar Y_{1.}- \bar Y_{..}, \bar Y_{2.}- \bar Y_{..})^T\)</span></p></li>
+<li><p>Calculate a g-inverse of <span class="math inline">\(X^TX\)</span> using R. (library(MASS), ginv()). Using the g-inv from R, the LSE is <span class="math inline">\(\hat\beta=( \frac{2}{3}\bar Y_{..},\bar Y_{1.}- \frac{2}{3}\bar Y_{..}, \bar Y_{2.}-\frac{2}{3}\bar Y_{..})^T\)</span>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="section" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> </h1>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
