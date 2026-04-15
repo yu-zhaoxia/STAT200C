@@ -149,18 +149,44 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction-to-linear-models" id="toc-introduction-to-linear-models" class="nav-link active" data-scroll-target="#introduction-to-linear-models"><span class="header-section-number">1</span> Introduction to Linear Models</a></li>
-  <li><a href="#estimation-and-distribution-theory" id="toc-estimation-and-distribution-theory" class="nav-link" data-scroll-target="#estimation-and-distribution-theory"><span class="header-section-number">2</span> Estimation and Distribution Theory</a>
+  <li><a href="#lse" id="toc-lse" class="nav-link" data-scroll-target="#lse"><span class="header-section-number">2</span> LSE</a>
   <ul class="collapse">
   <li><a href="#the-least-squares-estimate-lse-olse" id="toc-the-least-squares-estimate-lse-olse" class="nav-link" data-scroll-target="#the-least-squares-estimate-lse-olse"><span class="header-section-number">2.1</span> The Least Squares Estimate (LSE) / OLSE</a></li>
   <li><a href="#existence-of-lse" id="toc-existence-of-lse" class="nav-link" data-scroll-target="#existence-of-lse"><span class="header-section-number">2.2</span> Existence of LSE</a></li>
-  <li><a href="#compute-lse" id="toc-compute-lse" class="nav-link" data-scroll-target="#compute-lse"><span class="header-section-number">2.3</span> Compute LSE</a>
+  </ul></li>
+  <li><a href="#compute-lse" id="toc-compute-lse" class="nav-link" data-scroll-target="#compute-lse"><span class="header-section-number">3</span> Compute LSE</a>
   <ul class="collapse">
-  <li><a href="#when-x-is-full-rank" id="toc-when-x-is-full-rank" class="nav-link" data-scroll-target="#when-x-is-full-rank"><span class="header-section-number">2.3.1</span> When <span class="math inline">\(X\)</span> is Full Rank</a></li>
-  <li><a href="#when-x-is-less-than-full-rank" id="toc-when-x-is-less-than-full-rank" class="nav-link" data-scroll-target="#when-x-is-less-than-full-rank"><span class="header-section-number">2.3.2</span> When <span class="math inline">\(X\)</span> is Less Than Full Rank</a></li>
-  <li><a href="#example.-one-way-anova" id="toc-example.-one-way-anova" class="nav-link" data-scroll-target="#example.-one-way-anova"><span class="header-section-number">2.3.3</span> Example. One-Way ANOVA</a></li>
+  <li><a href="#when-x-is-full-rank" id="toc-when-x-is-full-rank" class="nav-link" data-scroll-target="#when-x-is-full-rank"><span class="header-section-number">3.1</span> When <span class="math inline">\(X\)</span> is Full Rank</a></li>
+  <li><a href="#when-x-is-less-than-full-rank" id="toc-when-x-is-less-than-full-rank" class="nav-link" data-scroll-target="#when-x-is-less-than-full-rank"><span class="header-section-number">3.2</span> When <span class="math inline">\(X\)</span> is Less Than Full Rank</a>
+  <ul class="collapse">
+  <li><a href="#lemma" id="toc-lemma" class="nav-link" data-scroll-target="#lemma"><span class="header-section-number">3.2.1</span> Lemma</a></li>
+  </ul></li>
+  <li><a href="#example.-one-way-anova" id="toc-example.-one-way-anova" class="nav-link" data-scroll-target="#example.-one-way-anova"><span class="header-section-number">3.3</span> Example. One-Way ANOVA</a></li>
+  </ul></li>
+  <li><a href="#fitted-values-and-residuals" id="toc-fitted-values-and-residuals" class="nav-link" data-scroll-target="#fitted-values-and-residuals"><span class="header-section-number">4</span> Fitted Values and Residuals</a>
+  <ul class="collapse">
+  <li><a href="#fitted-values" id="toc-fitted-values" class="nav-link" data-scroll-target="#fitted-values"><span class="header-section-number">4.1</span> Fitted values:</a></li>
+  <li><a href="#the-uniqueness-of-the-fitted-values" id="toc-the-uniqueness-of-the-fitted-values" class="nav-link" data-scroll-target="#the-uniqueness-of-the-fitted-values"><span class="header-section-number">4.2</span> The uniqueness of the fitted values</a>
+  <ul class="collapse">
+  <li><a href="#theorem.-the-fitted-values-i.e.-hat-yxhatbeta-are-unique." id="toc-theorem.-the-fitted-values-i.e.-hat-yxhatbeta-are-unique." class="nav-link" data-scroll-target="#theorem.-the-fitted-values-i.e.-hat-yxhatbeta-are-unique."><span class="header-section-number">4.2.1</span> Theorem. The fitted values, i.e., <span class="math inline">\(\hat Y=X\hat\beta\)</span> are unique.</a></li>
+  <li><a href="#lemma-1" id="toc-lemma-1" class="nav-link" data-scroll-target="#lemma-1"><span class="header-section-number">4.2.2</span> Lemma</a></li>
+  <li><a href="#proposition" id="toc-proposition" class="nav-link" data-scroll-target="#proposition"><span class="header-section-number">4.2.3</span> proposition</a></li>
+  </ul></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals"><span class="header-section-number">4.3</span> Residuals</a>
+  <ul class="collapse">
+  <li><a href="#rss" id="toc-rss" class="nav-link" data-scroll-target="#rss"><span class="header-section-number">4.3.1</span> RSS</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3</span> </a></li>
+  <li><a href="#estimable-functions" id="toc-estimable-functions" class="nav-link" data-scroll-target="#estimable-functions"><span class="header-section-number">5</span> Estimable Functions</a>
+  <ul class="collapse">
+  <li><a href="#expectation-and-covariance" id="toc-expectation-and-covariance" class="nav-link" data-scroll-target="#expectation-and-covariance"><span class="header-section-number">5.1</span> Expectation and Covariance</a></li>
+  <li><a href="#estimable-functions-1" id="toc-estimable-functions-1" class="nav-link" data-scroll-target="#estimable-functions-1"><span class="header-section-number">5.2</span> Estimable Functions</a>
+  <ul class="collapse">
+  <li><a href="#example-one-way-anova" id="toc-example-one-way-anova" class="nav-link" data-scroll-target="#example-one-way-anova"><span class="header-section-number">5.2.1</span> Example: One-way ANOVA</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">5.2.2</span> Example</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6</span> </a></li>
   </ul>
 </nav>
     </div>
@@ -248,8 +274,8 @@ cov[y_1, y_n]&amp; cov[y_2,y_n] &amp; \cdots &amp; var[y_n]
 <p>The mean assumption is equivalent to <span class="math display">\[E[ {\epsilon}]={0}=(0,0,\cdots,0)^T\]</span> The variance-covariance assumption is equivalent to <span class="math display">\[cov(y_i, y_j)=cov(\epsilon_i, \epsilon_j)=\sigma_{ij} \]</span></p>
 <p>In practice, for a response variable <span class="math inline">\(Y\)</span> (or a transformed version), we first identify explanatory variables to be used in the linear model, and estimate parameters <span class="math inline">\({\beta}\)</span>, then try to make statistical inferences based upon the sampling distributions of the estimates.</p>
 </section>
-<section id="estimation-and-distribution-theory" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Estimation and Distribution Theory</h1>
+<section id="lse" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> LSE</h1>
 <section id="the-least-squares-estimate-lse-olse" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="the-least-squares-estimate-lse-olse"><span class="header-section-number">2.1</span> The Least Squares Estimate (LSE) / OLSE</h2>
 <p>One approach to estimate <span class="math inline">\({\beta}\)</span> is to minimize <span class="math display">\[Q={\epsilon}^T{\epsilon}=\sum_{i=1}^n(y_i-E[y_i])^2 = (Y-X\beta)^T(Y-X\beta)\]</span></p>
@@ -275,16 +301,19 @@ Q&amp;=&amp;({Y}^T -{\beta}^T {X}^T)(Y-{X}{\beta})\\
 <section id="existence-of-lse" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="existence-of-lse"><span class="header-section-number">2.2</span> Existence of LSE</h2>
 <p>The normal equation <span class="math inline">\(X^TX\beta=X^TY\)</span> always has a solution for <span class="math inline">\(\beta\)</span>.</p>
+<p><strong>Lemma</strong>. <span class="math inline">\(C(X^T)=C(X^TX)\)</span>. This can approved by the following two facts. - <span class="math inline">\(C(X^TX)\subset C(X^T)\)</span> because <span class="math inline">\(X^TX=X^T(X)\)</span>. - <span class="math inline">\(C(X^T)\)</span> and <span class="math inline">\(C(X^TX)\)</span> have the same dimension because <span class="math inline">\(X\)</span> and <span class="math inline">\(X^TX\)</span> have the same rank.</p>
+<p><strong>Proof</strong>. It is obvious that <span class="math inline">\(X^TY\in C(X^T)=C(X^TX)\)</span>; therefore, <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\in R^p\)</span> s.t. <span class="math inline">\(X^TY=X^TXc\)</span>. This proves the existence of LSE.</p>
 </section>
-<section id="compute-lse" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="compute-lse"><span class="header-section-number">2.3</span> Compute LSE</h2>
-<section id="when-x-is-full-rank" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="when-x-is-full-rank"><span class="header-section-number">2.3.1</span> When <span class="math inline">\(X\)</span> is Full Rank</h3>
+</section>
+<section id="compute-lse" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Compute LSE</h1>
+<section id="when-x-is-full-rank" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="when-x-is-full-rank"><span class="header-section-number">3.1</span> When <span class="math inline">\(X\)</span> is Full Rank</h2>
 <p>Proposition: When <span class="math inline">\(rank(X)=p\)</span>, i.e., all the columns are linearly independent, the normal equation has a unique solution and the ordinary least squares estimate is <span class="math display">\[\hat{\beta}=(X^TX)^{-1}X^TY\]</span></p>
 <p>The proof is trivial.</p>
 </section>
-<section id="when-x-is-less-than-full-rank" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="when-x-is-less-than-full-rank"><span class="header-section-number">2.3.2</span> When <span class="math inline">\(X\)</span> is Less Than Full Rank</h3>
+<section id="when-x-is-less-than-full-rank" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="when-x-is-less-than-full-rank"><span class="header-section-number">3.2</span> When <span class="math inline">\(X\)</span> is Less Than Full Rank</h2>
 <p>When <span class="math inline">\(Rank(X)=r&lt;p\)</span>, we can use the following methods to find an LSE</p>
 <ol type="1">
 <li>Choose a linearly independent subset of <span class="math inline">\(r\)</span> columns of <span class="math inline">\(X\)</span>. WLOG, assume <span class="math inline">\(X=(X_1, X_2)\)</span>, where <span class="math inline">\(Rank(X_1)=r\)</span>. A LSE of <span class="math inline">\(\beta\)</span> is <span class="math display">\[\hat{\beta}=
@@ -314,10 +343,11 @@ Z=\begin{pmatrix}Y\\0\end{pmatrix}
 <li>Using any generalized inverse matrix <span class="math inline">\((X^TX)^-\)</span>, where a generalized inverse of <span class="math inline">\(B\)</span> is any matrix <span class="math inline">\(B^-\)</span> s.t. <span class="math inline">\(BB^-B=B\)</span>. A LSE is then <span class="math display">\[\hat{\beta}=(X^TX)^-X^TY\]</span></li>
 </ol>
 <p>The proof follows from the following Lemma.</p>
-<section id="lemma.-lemma-1-of-generalized-inverse." class="level4" data-number="2.3.2.1">
-<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="lemma.-lemma-1-of-generalized-inverse."><span class="header-section-number">2.3.2.1</span> Lemma. Lemma 1 of Generalized Inverse.</h4>
-<p><span class="math inline">\(X(X^TX)^-X^TX=X\)</span></p>
-<p>Proof. Let <span class="math inline">\((X^TX)^-\)</span> be a generalized inverse of <span class="math inline">\(X^TX\)</span>. By the definition of generalized inverse we have <span class="math inline">\(X^TX(X^TX)^-X^TX=X^TX\)</span>. Take transpose on both sides we have <span class="math inline">\(X^TX[(X^TX)^-]^TX^TX=X^TX\)</span>, indicating that <span class="math inline">\([(X^TX)^-]^T\)</span> is also a generalized inverse of <span class="math inline">\(X^TX\)</span>.</p>
+<section id="lemma" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="lemma"><span class="header-section-number">3.2.1</span> Lemma</h3>
+<p><strong>Lemma 1 of Generalized Inverse</strong>. <span class="math inline">\(X(X^TX)^-X^TX=X\)</span></p>
+<p><strong>Proof</strong>.</p>
+<p>Let <span class="math inline">\((X^TX)^-\)</span> be a generalized inverse of <span class="math inline">\(X^TX\)</span>. By the definition of generalized inverse we have <span class="math inline">\(X^TX(X^TX)^-X^TX=X^TX\)</span>. Take transpose on both sides we have <span class="math inline">\(X^TX[(X^TX)^-]^TX^TX=X^TX\)</span>, indicating that <span class="math inline">\([(X^TX)^-]^T\)</span> is also a generalized inverse of <span class="math inline">\(X^TX\)</span>.</p>
 <p>Let <span class="math inline">\(D=X(X^TX)^-X^TX-X\)</span>. Using the definition of generalized inverse and the above result, it is easy to verify that <span class="math inline">\(D^TD=0\)</span>, which implies that <span class="math inline">\(D=0\)</span>.</p>
 <p>Similarly, one can show that <span class="math inline">\(X^TX(X^TX)^-X^T=X^T\)</span>. Based on this result, it is very easy to verify that <span class="math display">\[\hat{\beta}=(X^TX)^-X^TY\]</span> satisfies the normal equation. In other words, it is an LSE.</p>
 <p>Note, <span class="math display">\[\widetilde{\beta}=\hat{\beta} + (I -(X^TX)^-(X^TX))z\]</span> where z is an arbitrary vector, is also a solution to the normal equation. (a homework problem).</p>
@@ -328,8 +358,8 @@ Z=\begin{pmatrix}Y\\0\end{pmatrix}
 </ul>
 </section>
 </section>
-<section id="example.-one-way-anova" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="example.-one-way-anova"><span class="header-section-number">2.3.3</span> Example. One-Way ANOVA</h3>
+<section id="example.-one-way-anova" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="example.-one-way-anova"><span class="header-section-number">3.3</span> Example. One-Way ANOVA</h2>
 <p>The one-way ANOVA <span class="math display">\[Y_{ij}=\mu+\alpha_{i}+\epsilon_{ij}\]</span> How to find <span class="math inline">\(\beta=(\mu, \alpha_1, \alpha_2)^T\)</span>? <span class="math display">\[X=\begin{pmatrix}
 1&amp;1&amp;0\\
 1&amp;1&amp;0\\
@@ -345,9 +375,167 @@ Z=\begin{pmatrix}Y\\0\end{pmatrix}
 </ul>
 </section>
 </section>
+<section id="fitted-values-and-residuals" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Fitted Values and Residuals</h1>
+<section id="fitted-values" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="fitted-values"><span class="header-section-number">4.1</span> Fitted values:</h2>
+<p><span class="math inline">\(\hat{\theta}=X\hat{\beta}=\hat{Y}=(\hat{Y}_1,\cdots,\hat{Y}_n)^T\)</span></p>
 </section>
-<section id="section" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> </h1>
+<section id="the-uniqueness-of-the-fitted-values" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="the-uniqueness-of-the-fitted-values"><span class="header-section-number">4.2</span> The uniqueness of the fitted values</h2>
+<p>When <span class="math inline">\(X\)</span> is less than full rank, there are infinitely many estimates that satisfy the normal equation. Does this mean that we are going to have different fitted values? It has been shown (Urquhart 1969) that all the LSE of <span class="math inline">\(\beta\)</span> to the normal equation can be written into to the following form <span class="math inline">\(\hat{\beta}=(X^TX)^-X^TY\)</span>.</p>
+<section id="theorem.-the-fitted-values-i.e.-hat-yxhatbeta-are-unique." class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="theorem.-the-fitted-values-i.e.-hat-yxhatbeta-are-unique."><span class="header-section-number">4.2.1</span> Theorem. The fitted values, i.e., <span class="math inline">\(\hat Y=X\hat\beta\)</span> are unique.</h3>
+<p><strong>Proof</strong>. First, based on Urquhart (1969), all the LSEs of <span class="math inline">\(\beta\)</span> to the normal equation can be written into <span class="math inline">\(\hat{\beta}=(X^TX)^-X^TY\)</span>. The proof follows immediately from the Lemma below.</p>
+</section>
+<section id="lemma-1" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="lemma-1"><span class="header-section-number">4.2.2</span> Lemma</h3>
+<p><strong>Invariant of <span class="math inline">\(P_X\)</span></strong>.</p>
+<p><span class="math inline">\(P_X=X(X^TX)^-X^T\)</span> is invariant to the choice of <span class="math inline">\((X^TX)^-\)</span>.</p>
+<p><strong>Proof</strong>. Let <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> be two generalized inverses of <span class="math inline">\(X^T X\)</span>. We have shown that:</p>
+<ul>
+<li><p>First, <span class="math inline">\(G_1^T\)</span> and <span class="math inline">\(G_2^T\)</span> are also generalized inverses of <span class="math inline">\(X^T X\)</span>. This can be proved using the definition of generalized inverse of <span class="math inline">\(X^TX\)</span>.</p></li>
+<li><p>Second, by Lemma 1 of Generalized Inverse, we have <span class="math display">\[\begin{align*}
+  X G_1 X^T X &amp; =X G_1^T X^T X = X G_2 X^T X = X G_2^T X^T X=X,\\
+  X^TXG_1 X^T &amp; = X^TXG_1^T X^T = X^TXG_2 X^T = X^TXG_2^T X^T = X^T
+\end{align*}\]</span></p></li>
+<li><p>Third. Let <span class="math inline">\(P_1 = X G_1 X^T\)</span> and <span class="math inline">\(P_2 = X G_2 X^T\)</span>. Denote their difference by <span class="math inline">\(D\)</span>. Then <span class="math display">\[\begin{align*}
+  D^TD &amp;=\underline {X G_1^T X^TX} G_1 X^T - \underline{X G_1^T X^TX} G_2 X^T - \underline{X G_2^T X^TX} G_1 X^T + \underline{X G_2^T X^TX} G_2 X^T  \\
+  &amp;=X G_1^T X^T - X G_2 X^T - X G_1 X^T + X G_2 X^T\\
+  &amp;=0
+\end{align*}\]</span></p></li>
+</ul>
+<p>The second to the last step is true because each of the underlined parts can be substituted by <span class="math inline">\(X\)</span>.</p>
+</section>
+<section id="proposition" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="proposition"><span class="header-section-number">4.2.3</span> proposition</h3>
+<p><span class="math inline">\(P_X=X(X^TX)^-X^T\)</span> is symmetric and idempotent, i.e., <span class="math inline">\(P_X\)</span> is a projection matrix.</p>
+<p><strong>Proof</strong>.</p>
+<p>The idempotent part follows from Lemma 1 of Generalized Inverse.</p>
+<p>The symmetry follows from the invariance property of <span class="math inline">\(P_X\)</span>.</p>
+<p>Remark. Lemma 1 of Generalized Inverse also implies that <span class="math inline">\(P_X\)</span>.</p>
+</section>
+</section>
+<section id="residuals" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="residuals"><span class="header-section-number">4.3</span> Residuals</h2>
+<p><strong>Definition</strong>. Residuals:</p>
+<p><span class="math display">\[e=\begin{pmatrix}
+y_1 - \hat y_1\\
+\cdots\\
+y_n - \hat y_n
+\end{pmatrix} =Y-\hat{Y}=Y-X\hat{\beta}=Y-P_XY=(I-P_X)Y\]</span></p>
+<p>Since <span class="math inline">\(P_X\)</span> is a projection matrix, so is <span class="math inline">\(I-P_X\)</span>. Therefore, the residuals are the projection of <span class="math inline">\(Y\)</span> onto the orthogonal complement of <span class="math inline">\(C(X)\)</span>.</p>
+<section id="rss" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="rss"><span class="header-section-number">4.3.1</span> RSS</h3>
+<p><strong>Definition</strong>. Residual sum of squares (RSS): <span class="math display">\[RSS=e^Te=\sum_{i=1}^n (y_i-\hat y_i)^2=(Y-\hat{Y})^T(Y-\hat{Y})\]</span></p>
+<p><span class="math inline">\(RSS\)</span> can be written into the following form:</p>
+<p><span class="math display">\[RSS=(Y-X\hat{\beta})^T(Y-X\hat{\beta})=Y^T(I-P_X)Y.\]</span> The last step is true because <span class="math inline">\(I - P_X\)</span> is a projection matrix.</p>
+</section>
+</section>
+</section>
+<section id="estimable-functions" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Estimable Functions</h1>
+<section id="expectation-and-covariance" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="expectation-and-covariance"><span class="header-section-number">5.1</span> Expectation and Covariance</h2>
+<p><strong>Proposition</strong>: Let <span class="math inline">\(Z\)</span> be a random matrix, A, B, and C are known matrices. <span class="math display">\[E[AZB+C]=AE[Z]B+C\]</span></p>
+<p><strong>Proof</strong>. Let <span class="math inline">\(W=AZB+C\)</span>, then <span class="math display">\[\begin{eqnarray*}
+w_{ij} &amp;= \sum_{k}\sum_{l}a_{ik}z_{kl}b_{lj}+c_{ij}\\
+&amp;\Rightarrow E[w_{ij}]=\sum_{k}\sum_{l}a_{ik}E[z_{kl}]b_{lj}+c_{ij}
+\end{eqnarray*}\]</span></p>
+<p><strong>Proposition</strong>: For random vectors <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>, known matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and constants <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span></p>
+<ul>
+<li><span class="math inline">\(E[AY+BZ]=AE[Y]+BE[Z]\)</span></li>
+<li><span class="math inline">\(Cov(AY+c, BZ+d) = ACov(Y,Z)B^T\)</span></li>
+</ul>
+<p><strong>Proof</strong>.</p>
+<p>The first part: Use the cov definition for scalar.</p>
+<p>The second part:</p>
+<p>Let <span class="math inline">\(U=AY+c\)</span>, <span class="math inline">\(W=BZ+d\)</span>. Then <span class="math display">\[\begin{eqnarray*}
+E[U] &amp;=&amp; AE[Y]+c\\
+U-E[U] &amp;=&amp; A(Y-E[Y])\\
+E[W] &amp;=&amp; BE[Z]+d\\
+W-E[W] &amp;=&amp; B(Z-E[Z])\\
+Cov(AY+c,BZ+d) &amp;=&amp; ACov(Y,Z)B
+\end{eqnarray*}\]</span></p>
+</section>
+<section id="estimable-functions-1" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="estimable-functions-1"><span class="header-section-number">5.2</span> Estimable Functions</h2>
+<p>Suppose <span class="math inline">\(X\)</span> is less than full rank, there there are infinitely many of LSEs of <span class="math inline">\(\beta\)</span>. Since <span class="math inline">\(\hat{\beta}\)</span> (LSE) is not unique, <span class="math inline">\(\beta\)</span> is not estimable. In addition, is any of the LSEs unbiased?</p>
+<p>Suppose it is unbiased, i.e., <span class="math inline">\(E[\hat{\beta}]=\beta\)</span> for all <span class="math inline">\(\beta\)</span>, i.e., <span class="math inline">\((X^TX)^{-}X^TX\beta\)</span>. Thus <span class="math inline">\((X^TX)^-X^TX=I_p\)</span>, which contradicts with the fact that <span class="math inline">\(X\)</span> is less than full rank. This implies that no one of the infinitely many solutions is unbiased.</p>
+<p><strong>Definition</strong>. <span class="math inline">\(a^T\beta\)</span> is said to be an estimable function if <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\)</span> s.t. <span class="math inline">\(E[c^TY]=a^T\beta\)</span> for any <span class="math inline">\(\beta\)</span>.</p>
+<p>Note: <span class="math inline">\(X\beta\)</span> is always estimable (why? <span class="math inline">\(E[Y]=X\beta\)</span>). But <span class="math inline">\(\beta\)</span> might not be estimable.</p>
+<p><strong>Theorem</strong>. <span class="math inline">\(a^T\beta\)</span> is estimable IFF any one of the following conditions:</p>
+<ul>
+<li><p><span class="math inline">\(a\in C(X^T)\)</span>. [Note: Seber A.2.5 implies that <span class="math inline">\(C(X^T)=C(X^TX)\)</span>]</p></li>
+<li><p><span class="math inline">\(a^T(X^TX)^-X^TX=a^T\)</span>.</p></li>
+<li><p><span class="math inline">\(E[a^T\hat{\beta}]=a^T\beta\)</span> for all <span class="math inline">\(\beta\)</span>, where <span class="math inline">\(\hat{\beta}\)</span> is an LSE.</p></li>
+</ul>
+<p><strong>Proof</strong>.</p>
+<p>[Proof for (1)] <span class="math inline">\(a^T\beta\)</span> is estimable iff <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\)</span> s.t. <span class="math inline">\(E[c^TY]=a^T\beta\)</span> for all <span class="math inline">\(\beta\)</span> iff <span class="math inline">\(c^TX\beta=a^T\beta\)</span> for all <span class="math inline">\(\beta\)</span> iff <span class="math inline">\(a=X^Tc\)</span>.</p>
+<p>On the other hand, <span class="math inline">\(a\in C(X^T)\Rightarrow a=X^Tc\Rightarrow a^T\beta=c^TX\beta\Rightarrow E[c^TY]=a^T\beta\)</span>. By the definition, <span class="math inline">\(a^T\beta\)</span> is estimable.</p>
+<p>[Proof of (2)] <span class="math inline">\(E[a^T(X^TX)^{-}X^TY]=a^T(X^TX)^-X^TX\beta=a^T\beta\Rightarrow a^T\beta\)</span> is estimable.</p>
+<p>If <span class="math inline">\(a^T\beta\)</span> is estimable, by (1), <span class="math inline">\(a=X^TXd\Rightarrow X^TX(X^TX)^-X^TXd=X^TXd=a\)</span>.</p>
+<p>[Proof of (3)] If estimable, by (2), <span class="math inline">\(E[a^T\hat\beta]=a^T(X^TX)^-X^TX\beta=a^T\beta\)</span>; if <span class="math inline">\(E[a^T\hat\beta]=a^T\beta\)</span>, then <span class="math inline">\(a^T(X^TX)^-X^TX\beta=a^T\beta\)</span> for all <span class="math inline">\(\beta\)</span>, which implies (2).</p>
+<p>A proof for <span class="math inline">\(C(X^T)=C(X^TX)\)</span>. Clearly <span class="math inline">\(C(X^TX)\subset C(X^T)\)</span>. Because <span class="math inline">\(X^TX\)</span> and <span class="math inline">\(X\)</span> have the same rank, their column spaces have the same dimension. This implies that the spaces must be equal. As a consequence, there exists some <span class="math inline">\(M\)</span> so that <span class="math inline">\(X^T=X^TXM\)</span>.</p>
+<p>Theorem .Let <span class="math inline">\(\hat{\beta}\)</span> be the OLSE of <span class="math inline">\(\beta\)</span> from regression model <span class="math display">\[Y=X\beta+\epsilon\]</span> with <span class="math inline">\(E[\epsilon]=0\)</span>. Consider an estimable function <span class="math inline">\(a^T\beta\)</span>, then</p>
+<ul>
+<li><p><span class="math inline">\(a^T\hat{\beta}\)</span> is unique, i.e., <span class="math inline">\(a^T\hat{\beta}\)</span> is invariant to the choice of <span class="math inline">\((X^TX)^-\)</span>.</p></li>
+<li><p><span class="math inline">\(E[a^T\hat{\beta}]=a^T\beta\)</span>. When <span class="math inline">\(X\)</span> is full rank, <span class="math inline">\(\beta\)</span> is estimable and <span class="math inline">\(E[\hat{\beta}]=\beta\)</span>.</p></li>
+<li><p><span class="math inline">\(Var[a^T\hat{\beta}]=\sigma^2a^T(X^TX)^-a\)</span> if we furtherf assume that <span class="math inline">\(Var[\epsilon]=\sigma^2I_n\)</span>. When <span class="math inline">\(X\)</span> is full rank, <span class="math inline">\(Var[\hat{\beta}]=\sigma^2(X^TX)^{-1}\)</span>.</p></li>
+</ul>
+<p>Proof: Based on the assumptions, we have The OLSE of <span class="math inline">\(\beta\)</span> is <span class="math inline">\(\hat{\beta}=(X^TX)^-X^TY\)</span>. Note, when <span class="math inline">\(X\)</span> is full rank, <span class="math inline">\((X^TX)^-=(X^TX)^{-1}\)</span>. We have <span class="math display">\[a^T\hat{\beta}=a^T(X^TX)^-X^TY\]</span></p>
+<p><strong><em>Uniqueness</em></strong> of the <span class="math inline">\(a^T\hat{\beta}\)</span>}. Because <span class="math inline">\(a^T\beta\)</span> is estimable, <span class="math inline">\(a\in C(X^T)=C(X^TX)\)</span>. Thus <span class="math inline">\(\exists c\)</span> s.t. <span class="math inline">\(a=X^TXc\)</span>. Therefore, <span class="math display">\[a\hat{\beta}=c^TX(X^TX)^-X^TY=c^TP_XY.\]</span> It is invariant to the choice of the g-inverse because <span class="math inline">\(P_X\)</span> is invariant to the choice of the g-inverse.</p>
+<p><strong><em>Mean</em></strong>: Because <span class="math inline">\(a^T\beta\)</span> is estimable, <span class="math inline">\(a\in C(X^T)\)</span>, i.e., <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\)</span> s.t. <span class="math inline">\(a=X^Tc\)</span>. By Lemma~<span class="math inline">\(\ref{GinvLemma1}\)</span> <span class="math inline">\(X(X^TX)^-X^TX=X\)</span>. Thus <span class="math inline">\(E[a^T\hat{\beta}]=c^TX(X^TX)^-X^TX\beta = c^TX\beta=a^T\beta\)</span>.</p>
+<p><strong><em>Variance</em></strong>: Note that <span class="math inline">\(a^T\hat\beta=a^T(X^TX)^-X^TY=c^TX(X^TX)^-X^TY=c^TP_XY\)</span>. Thus, <span class="math display">\[Var[a^T\hat{\beta}]c^TP_x\sigma^2P_xc=\sigma^2c^tX(X^TX)^-X^Tc=\sigma^2a^T(X^TX)^-a\]</span> \end{proof}</p>
+<p>Note: the LSE of estimable functions are unbiased. But this is not true for functions that are not estimable, as we showed at the beginning of the section.</p>
+<p>{}</p>
+<ul>
+<li><p>The expected value of any observation is estimable.</p></li>
+<li><p>Any linear combination of estimable functions is estimable.</p></li>
+<li><p>The function <span class="math inline">\(a^T\beta\)</span> is estimable iff</p>
+<ul>
+<li><span class="math inline">\(a\in C(X^T)\)</span></li>
+<li><span class="math inline">\(a^T=a^T(X^TX)^-X^TX\)</span></li>
+<li><span class="math inline">\(a^T\hat{\beta}\)</span> is unbiased for <span class="math inline">\(a^T\beta\)</span>.</li>
+</ul></li>
+<li><p><span class="math inline">\(X\beta\)</span> is estimable, and any linear function of <span class="math inline">\(X\beta\)</span> is estimable.</p></li>
+<li><p><span class="math inline">\(X^TX\beta\)</span> is estimable, and any linear function of <span class="math inline">\(X^TX\beta\)</span> is estimable.</p></li>
+<li><p>There are exactly <span class="math inline">\(r=rank(X)\)</span> linearly independent estimable functions of <span class="math inline">\(\beta\)</span>.</p></li>
+</ul>
+<section id="example-one-way-anova" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="example-one-way-anova"><span class="header-section-number">5.2.1</span> Example: One-way ANOVA</h3>
+<p><span class="math display">\[Y_{ij}=\mu+\alpha_{i}+\epsilon_{ij}\]</span> Use matrix/vector notation, <span class="math display">\[Y=(Y_{11},Y_{12},Y_{21}, Y_{22})^T,\]</span> <span class="math display">\[X=\begin{pmatrix}
+1&amp;1&amp;0\\
+1&amp;1&amp;0\\
+1&amp;0&amp;1\\
+1&amp;0&amp;1
+\end{pmatrix},
+\]</span> <span class="math display">\[\beta=(\mu, \alpha_1, \alpha_2)^T\]</span> Notice that column 1 of <span class="math inline">\(X\)</span> is a linear combination of the other two columns. Thus the design matrix is less than full rank, and the inverse of <span class="math inline">\(X^TX\)</span> doesn’t exist. <span class="math display">\[X^TX = \begin{pmatrix}
+4&amp;2&amp;2\\
+2&amp;2&amp;0\\
+2&amp;0&amp;2
+\end{pmatrix}
+\]</span> Consider two generalized inverses of <span class="math inline">\(X^TX\)</span>: <span class="math display">\[(X^TX)_1^- = \begin{pmatrix}
+0&amp;0&amp;0\\
+0&amp;1/2&amp;0\\
+0&amp;0&amp;1/2
+\end{pmatrix}\]</span></p>
+<p><span class="math display">\[(X^TX)_2^- = \begin{pmatrix}
+1/2&amp;-1/2&amp;0\\
+-1/2&amp;1&amp;0\\
+0&amp;0&amp;0
+\end{pmatrix}\]</span></p>
+<p>Note that <span class="math display">\[X^TY=(y_{++}, y_{1+}, y_{2+})^T,\]</span> we have <span class="math display">\[\hat{\beta}_1=(X^TX)_1^-X^TY=(0, \bar{y}_{1+}, \bar{y}_{2+})^T,\]</span> and <span class="math display">\[\hat{\beta}_2=(X^TX)_2^-X^TY=(\bar{y}_{2+},  \bar{y}_{1+}-\bar{y}_{2+}, 0)^T\]</span></p>
+<p>Claim: <span class="math inline">\(\mu, \alpha_1, \alpha_2, \alpha_1+\alpha_2\)</span> are not estimable. <span class="math inline">\(\mu+\alpha_1\)</span>, <span class="math inline">\(\alpha_1-\alpha_2\)</span> are estimable. (This can be proved by checking whether they belong to <span class="math inline">\(C(X^T)\)</span>.</p>
+</section>
+<section id="example" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="example"><span class="header-section-number">5.2.2</span> Example</h3>
+<p>Consider the model (additive two-way model) <span class="math display">\[Y_{ij}=\alpha_i+\beta_j+\epsilon_{ij}\]</span> where <span class="math inline">\(i=1,\cdots,a \mbox{ ; } j=1,\cdots,b\)</span> and <span class="math inline">\(\epsilon_{ij}\overset{iid}\sim N(0,\sigma^2)\)</span>. Derive the necessary and sufficient condition for <span class="math inline">\(\sum c_i \alpha_i + \sum d_j \beta_j\)</span> to be estimable.</p>
+</section>
+</section>
+</section>
+<section id="section" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> </h1>
 
 
 </section>
