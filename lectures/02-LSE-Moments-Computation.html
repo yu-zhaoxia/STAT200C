@@ -186,7 +186,30 @@ window.Quarto = {
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">5.2.2</span> Example</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6</span> </a></li>
+  <li><a href="#optimality-of-lse" id="toc-optimality-of-lse" class="nav-link" data-scroll-target="#optimality-of-lse"><span class="header-section-number">6</span> Optimality of LSE</a>
+  <ul class="collapse">
+  <li><a href="#gauss-markov-theorem" id="toc-gauss-markov-theorem" class="nav-link" data-scroll-target="#gauss-markov-theorem"><span class="header-section-number">6.1</span> Gauss-Markov Theorem</a></li>
+  <li><a href="#generalized-lse-glse" id="toc-generalized-lse-glse" class="nav-link" data-scroll-target="#generalized-lse-glse"><span class="header-section-number">6.2</span> Generalized LSE (GLSE)</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">6.3</span> Examples</a></li>
+  </ul></li>
+  <li><a href="#estimation-with-linear-restriction" id="toc-estimation-with-linear-restriction" class="nav-link" data-scroll-target="#estimation-with-linear-restriction"><span class="header-section-number">7</span> Estimation with linear Restriction</a>
+  <ul class="collapse">
+  <li><a href="#design-matrix-of-full-rank" id="toc-design-matrix-of-full-rank" class="nav-link" data-scroll-target="#design-matrix-of-full-rank"><span class="header-section-number">7.1</span> Design Matrix of Full rank</a></li>
+  <li><a href="#design-matrix-of-less-than-full-rank" id="toc-design-matrix-of-less-than-full-rank" class="nav-link" data-scroll-target="#design-matrix-of-less-than-full-rank"><span class="header-section-number">7.2</span> Design Matrix of Less Than Full Rank</a></li>
+  </ul></li>
+  <li><a href="#addingdeleting-covariatescases" id="toc-addingdeleting-covariatescases" class="nav-link" data-scroll-target="#addingdeleting-covariatescases"><span class="header-section-number">8</span> Adding/Deleting Covariates/Cases</a>
+  <ul class="collapse">
+  <li><a href="#adding-covariates" id="toc-adding-covariates" class="nav-link" data-scroll-target="#adding-covariates"><span class="header-section-number">8.1</span> Adding Covariates</a>
+  <ul class="collapse">
+  <li><a href="#add-one-covariate-at-a-time" id="toc-add-one-covariate-at-a-time" class="nav-link" data-scroll-target="#add-one-covariate-at-a-time"><span class="header-section-number">8.1.1</span> Add one covariate at a time</a></li>
+  <li><a href="#removing-covariates" id="toc-removing-covariates" class="nav-link" data-scroll-target="#removing-covariates"><span class="header-section-number">8.1.2</span> Removing Covariates</a></li>
+  </ul></li>
+  <li><a href="#adding-subjects" id="toc-adding-subjects" class="nav-link" data-scroll-target="#adding-subjects"><span class="header-section-number">8.2</span> Adding Subjects</a>
+  <ul class="collapse">
+  <li><a href="#removing-subjects" id="toc-removing-subjects" class="nav-link" data-scroll-target="#removing-subjects"><span class="header-section-number">8.2.1</span> Removing subjects</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">9</span> </a></li>
   </ul>
 </nav>
     </div>
@@ -370,7 +393,7 @@ Z=\begin{pmatrix}Y\\0\end{pmatrix}
 <p>How to use the three methods to obtain <span class="math inline">\(X\hat{\beta}\)</span>.</p>
 <ul>
 <li><p>Find a subset of the columns of <span class="math inline">\(X\)</span>. E.g., keep the first two columns we have <span class="math inline">\(\hat\beta=( \bar Y_{2.},\bar Y_{1.}- \bar Y_{2.}, 0)^T\)</span>. E.g., keep the last two columns we have <span class="math inline">\(\hat\beta=( 0, \bar Y_{1.}, \bar Y_{2.})^T\)</span>.</p></li>
-<li><p>Add a constraint, i.e., add <span class="math inline">\((0,1,-1)\)</span> to the design matrix, one can show that <span class="math inline">\(\hat\beta=( \bar Y_{..},\bar Y_{1.}- \bar Y_{..}, \bar Y_{2.}- \bar Y_{..})^T\)</span></p></li>
+<li><p>Add a constraint, i.e., add <span class="math inline">\((0,1,1)\)</span> to the design matrix, one can show that <span class="math inline">\(\hat\beta=( \bar Y_{..},\bar Y_{1.}- \bar Y_{..}, \bar Y_{2.}- \bar Y_{..})^T\)</span></p></li>
 <li><p>Calculate a g-inverse of <span class="math inline">\(X^TX\)</span> using R. (library(MASS), ginv()). Using the g-inv from R, the LSE is <span class="math inline">\(\hat\beta=( \frac{2}{3}\bar Y_{..},\bar Y_{1.}- \frac{2}{3}\bar Y_{..}, \bar Y_{2.}-\frac{2}{3}\bar Y_{..})^T\)</span>.</p></li>
 </ul>
 </section>
@@ -485,10 +508,10 @@ Cov(AY+c,BZ+d) &amp;=&amp; ACov(Y,Z)B
 </ul>
 <p>Proof: Based on the assumptions, we have The OLSE of <span class="math inline">\(\beta\)</span> is <span class="math inline">\(\hat{\beta}=(X^TX)^-X^TY\)</span>. Note, when <span class="math inline">\(X\)</span> is full rank, <span class="math inline">\((X^TX)^-=(X^TX)^{-1}\)</span>. We have <span class="math display">\[a^T\hat{\beta}=a^T(X^TX)^-X^TY\]</span></p>
 <p><strong><em>Uniqueness</em></strong> of the <span class="math inline">\(a^T\hat{\beta}\)</span>}. Because <span class="math inline">\(a^T\beta\)</span> is estimable, <span class="math inline">\(a\in C(X^T)=C(X^TX)\)</span>. Thus <span class="math inline">\(\exists c\)</span> s.t. <span class="math inline">\(a=X^TXc\)</span>. Therefore, <span class="math display">\[a\hat{\beta}=c^TX(X^TX)^-X^TY=c^TP_XY.\]</span> It is invariant to the choice of the g-inverse because <span class="math inline">\(P_X\)</span> is invariant to the choice of the g-inverse.</p>
-<p><strong><em>Mean</em></strong>: Because <span class="math inline">\(a^T\beta\)</span> is estimable, <span class="math inline">\(a\in C(X^T)\)</span>, i.e., <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\)</span> s.t. <span class="math inline">\(a=X^Tc\)</span>. By Lemma~<span class="math inline">\(\ref{GinvLemma1}\)</span> <span class="math inline">\(X(X^TX)^-X^TX=X\)</span>. Thus <span class="math inline">\(E[a^T\hat{\beta}]=c^TX(X^TX)^-X^TX\beta = c^TX\beta=a^T\beta\)</span>.</p>
-<p><strong><em>Variance</em></strong>: Note that <span class="math inline">\(a^T\hat\beta=a^T(X^TX)^-X^TY=c^TX(X^TX)^-X^TY=c^TP_XY\)</span>. Thus, <span class="math display">\[Var[a^T\hat{\beta}]c^TP_x\sigma^2P_xc=\sigma^2c^tX(X^TX)^-X^Tc=\sigma^2a^T(X^TX)^-a\]</span> \end{proof}</p>
+<p><strong><em>Mean</em></strong>: Because <span class="math inline">\(a^T\beta\)</span> is estimable, <span class="math inline">\(a\in C(X^T)\)</span>, i.e., <span class="math inline">\(\exists\)</span> <span class="math inline">\(c\)</span> s.t. <span class="math inline">\(a=X^Tc\)</span>. By Lemma 1 of Generalized Inverse, <span class="math inline">\(X(X^TX)^-X^TX=X\)</span>. Thus <span class="math inline">\(E[a^T\hat{\beta}]=c^TX(X^TX)^-X^TX\beta = c^TX\beta=a^T\beta\)</span>.</p>
+<p><strong><em>Variance</em></strong>: Note that <span class="math inline">\(a^T\hat\beta=a^T(X^TX)^-X^TY=c^TX(X^TX)^-X^TY=c^TP_XY\)</span>. Thus, <span class="math display">\[Var[a^T\hat{\beta}]c^TP_x\sigma^2P_xc=\sigma^2c^tX(X^TX)^-X^Tc=\sigma^2a^T(X^TX)^-a\]</span></p>
 <p>Note: the LSE of estimable functions are unbiased. But this is not true for functions that are not estimable, as we showed at the beginning of the section.</p>
-<p>{}</p>
+<p><strong>Summary about estimable function</strong></p>
 <ul>
 <li><p>The expected value of any observation is estimable.</p></li>
 <li><p>Any linear combination of estimable functions is estimable.</p></li>
@@ -534,8 +557,344 @@ Cov(AY+c,BZ+d) &amp;=&amp; ACov(Y,Z)B
 </section>
 </section>
 </section>
-<section id="section" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> </h1>
+<section id="optimality-of-lse" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Optimality of LSE</h1>
+<section id="gauss-markov-theorem" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="gauss-markov-theorem"><span class="header-section-number">6.1</span> Gauss-Markov Theorem</h2>
+<p><strong>Gauss-Markov</strong> Theorem: Let <span class="math inline">\(\hat{\beta}\)</span> be an OLSE from linear regression model <span class="math inline">\(Y=X\beta+\epsilon\)</span> with <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\sigma^2I_n\)</span>. Consider an estimable function <span class="math inline">\(a^T\beta\)</span>. Then <span class="math inline">\(a^T\hat{\beta}\)</span> is the unique estimate with minimum variance among the class of unbiased linear estimators of <span class="math inline">\(a^T\beta\)</span>, i.e., the LSE of <span class="math inline">\(a^T\beta\)</span> is the best linear unbiased estimator (<strong>BLUE</strong>).</p>
+<p><strong>Proof</strong>.</p>
+<p>Method 1.</p>
+<p>Because <span class="math inline">\(a^T\beta\)</span> is estimable, <span class="math inline">\(a^t\hat{\beta}\)</span> is unique and unbiased, i.e.&nbsp;<span class="math inline">\(E[a^T\hat{\beta}]=a^T\beta\)</span>. <span class="math display">\[
+Var[a^T\hat{\beta}] =\sigma^2 a^T(X^TX)^- a
+\]</span></p>
+<p>Let <span class="math inline">\(b^TY\)</span> be any unbiased estimate of <span class="math inline">\(a^T\beta\)</span>, we have <span class="math display">\[E(b^TY)=b^TX\beta=a^T\beta,\]</span> which implies that <span class="math inline">\(b^TX=a^T\)</span>.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+Var[b^TY] - Var[a^T\hat{\beta}] &amp;=&amp; \sigma^2[b^Tb - a^T(X^TX)^-a]\\
+&amp;=&amp; \sigma^2 [b^Tb-b^TX(X^TXb)^-X^T]\\
+&amp;=&amp; \sigma^2 b^T(I-P_X)b \\
+&amp;=&amp; \sigma^2 b^T(I-P_X)^2b\ge 0
+\end{eqnarray*}\]</span> The equation is true iff <span class="math inline">\(b=P_xb\)</span>, which implies that <span class="math inline">\(b^TY=a^T\hat{\beta}\)</span>.</p>
+<p>Method 2</p>
+<p><span class="math display">\[\begin{eqnarray*}
+Var[b^TY] &amp;=&amp; Var[ b^TY-a^T\hat{\beta} + a^T\hat{\beta}]\\
+&amp;=&amp; Var[b^TY-b^TX\hat\beta + b^TX\hat\beta]\\
+&amp;=&amp; Var[b^T(I-P_x)Y+b^TP_xY]\\
+&amp;=&amp; Var[b^T(I-P_x)Y]+Var[b^TP_xY]+0\\
+&amp;\ge&amp;Var[a^T\hat\beta]
+\end{eqnarray*}\]</span> The equation holds iff <span class="math inline">\(b^TY=a^T\hat{\beta}\)</span>.</p>
+<p>Note: the proof doesn’t assume a specific distribution on the error part.</p>
+<p><strong>Proposition</strong>: Let <span class="math inline">\(\theta=X\beta\)</span>, then <span class="math inline">\(\theta\)</span> is estimable, and <span class="math inline">\(\hat{\theta}=X\hat{\beta}\)</span> is the BLUE of <span class="math inline">\(\theta\)</span>. For any matrix <span class="math inline">\(A_{p\times n}\)</span>, <span class="math inline">\(A\theta\)</span> is estimable and <span class="math inline">\(A\hat{\theta}\)</span> is the BLUE of <span class="math inline">\(A\theta\)</span>.</p>
+<p>The OLSE <span class="math inline">\(a^T\hat{\beta}\)</span> is unbiased for an estimable function <span class="math inline">\(a^T\beta\)</span>, no matter whether the errors are independent or not. QUESTION: is the OLSE optimal when <span class="math inline">\(Var[\epsilon]=\Sigma\)</span> for any positive definite covariance matrix? No.</p>
+</section>
+<section id="generalized-lse-glse" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="generalized-lse-glse"><span class="header-section-number">6.2</span> Generalized LSE (GLSE)</h2>
+<p><strong>Proposition</strong>. Let <span class="math inline">\(\hat{\beta}_G\)</span> be the GLSE from linear regression model <span class="math inline">\(Y=X\beta+\epsilon\)</span> with <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\Sigma\)</span> with <span class="math inline">\(rank(\Sigma)=n\)</span>. Then <span class="math inline">\(a^T\hat{\beta}_G\)</span> is the unique estimate with minimum variance among all linear unbiased estimators of estimable <span class="math inline">\(a^T\beta\)</span>. Hence the GLSE is the BLUE for this problem.</p>
+<p><strong>Proof</strong>.</p>
+<p>(Method 1: show that that <span class="math inline">\(a\in C(W^T)\)</span>, which implies that the GLSE is an estimable function under the old model is also an estimable function under the new model; secnd show that <span class="math inline">\(E[a^T\hat\beta_G]=a^T\beta\)</span> and <span class="math inline">\(a^T\hat\beta_G\)</span> is a linear function of <span class="math inline">\(Z\)</span>.)</p>
+<p>First notice that <span class="math inline">\(a^T\hat{\beta}_G\)</span> is a linear function of <span class="math inline">\(Y\)</span>.</p>
+<p>Rewrite the model} to <span class="math inline">\(Z=W\beta+\epsilon^*\)</span>, where <span class="math inline">\(Z=\Sigma^{-1/2}Y\)</span>, <span class="math inline">\(W=\Sigma^{-1/2}X\)</span>, and <span class="math inline">\(E[\epsilon^*]=0\)</span>, and <span class="math inline">\(Var[\epsilon^*]=I_n\)</span>.</p>
+<p>It can be shown that <span class="math inline">\(a^T\beta\)</span> is also estimable under the new model. If this is true, <span class="math inline">\(a^T\hat{\beta}_G\)</span> is the BLUE for <span class="math inline">\(a^T\beta\)</span>.</p>
+<p><span class="math inline">\(a^T\beta\)</span> is estimable <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(a\in C(X^T)\)</span>.</p>
+<p>Claim: <span class="math inline">\(C(X^T)=C(X^T\Sigma^{-1/2})=C(W^T)\)</span>.</p>
+<p>Based on the claim, <span class="math inline">\(a\in C(W)\)</span>, which implies that <span class="math inline">\(a^T\beta\)</span> is estimable for <span class="math inline">\(\beta\)</span> under <span class="math inline">\(Z=W\beta+\epsilon^*\)</span>. Because <span class="math inline">\(\hat{\beta}_G\)</span> is the OLSE of <span class="math inline">\(\beta\)</span> under <span class="math inline">\(Z=W\beta+\epsilon^*\)</span>, <span class="math inline">\(a^T\hat{\beta}_G\)</span> is the BLUE of <span class="math inline">\(a^T\beta\)</span> under <span class="math inline">\(Z=W\beta+\epsilon^*\)</span>, which is equivalent to the original model.</p>
+<p>Proof of the claim.</p>
+<p>For any <span class="math inline">\(y\in C(X^T\Sigma^{-1/2})\)</span>, <span class="math inline">\(\exists c\in R^n\)</span> s.t. <span class="math inline">\(y=X^T\Sigma^{-1/2}=X^T(\Sigma^{-1/2})\)</span>, which implies that <span class="math inline">\(y\in C(X^T)\)</span>. This proves that <span class="math inline">\(C(X^T\Sigma^{-1/2}) \subseteq C(X^T)\)</span>.</p>
+<p>For any <span class="math inline">\(y \in C(X^T)\)</span>, <span class="math inline">\(\exists c\in R^n\)</span> s.t. <span class="math inline">\(y=X^Tc=X^T\Sigma^{-1/2}\Sigma^{1/2}c=(X^T\Sigma^{-1/2})(\Sigma^{1/2}c)\)</span>, which implies that <span class="math inline">\(C(X^T) \subseteq C(X^T\Sigma^{1/2})\)</span>.</p>
+<p>Therefore, <span class="math inline">\(C(X^T\Sigma^{-1/2}) = C(X^T)\)</span>.</p>
+<p>Since <span class="math inline">\(\Sigma\)</span> is positive, its square root exists and is nonsingular. Let <span class="math inline">\(Z=\Sigma ^{-1/2}Y\)</span> and <span class="math inline">\(W=\Sigma^{-1/2}X\)</span>. Then <span class="math inline">\(Z=\Sigma^{-1/2}Y=\Sigma^{-1/2}X\beta+\Sigma^{-1/2}\epsilon\)</span> and in class we showed that <span class="math inline">\(\hat{\beta}_{G}=(X^{T}\Sigma^{-1}X)^{-}X^{T}\Sigma^{-1}Y=(W^{T}W)^{-}W^{T}Z\)</span>. Since <span class="math inline">\(a^{T}\beta\)</span> is estimable, there exists a <span class="math inline">\(c\)</span> such that <span class="math inline">\(a=X^Tc=X^T\Sigma^{-1/2}\Sigma^{1/2}c=W^T\Sigma^{1/2}c\in \mathcal(W^T)\)</span>, which implies that <span class="math inline">\(a^T\beta\)</span> is also estimable under the new model.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+a^{T}\hat{\beta}_{G} &amp; = &amp; a^{T}(W^{T}W)^{-}W^{T}Z\\
+&amp; = &amp; c^{T}W(W^{T}W)^{-}W^{T}Z\\
+&amp; = &amp; c^{T}P_{W}W\beta\end{eqnarray*}\]</span> Since <span class="math inline">\(P_{W}\)</span> is invariant to <span class="math inline">\((W^{T}W)^{-}\)</span>, <span class="math inline">\(a^{T}\hat{\beta}_{G}\)</span> is also invariant to choice of generalized inverse.</p>
+<ul>
+<li><p><span class="math display">\[\begin{eqnarray*}
+E[a^{T}\hat{\beta}_{G}] &amp; = &amp; E[a^{T}(W^{T}W)^{-}W^{T}Z]=a^{T}(W^{T}W)^{-}W^{T}W\beta=a^{T}\beta\end{eqnarray*}\]</span> since if <span class="math inline">\(a^{T}\beta\)</span> is estimable <span class="math inline">\(a^{T}(W^{T}W)^{-}W^{T}W=a^{T}\)</span> (Thm 4.9 (2)).</p></li>
+<li><p>It is clear that any linear estimator can be written as <span class="math inline">\(d^T\)</span>, because we can always write it to <span class="math inline">\((d^T\Sigma) Y\)</span>. Clearly <span class="math inline">\(\hat\beta_G\)</span> is the OLSE for <span class="math inline">\(Z=W\beta+\epsilon*\)</span> with <span class="math inline">\(\epsilon*\sim (0,I)\)</span>. Thus <span class="math inline">\(a^T\hat\beta_G\)</span> is the BLUE.</p></li>
+</ul>
+<p><strong>Summary</strong>. Consider the linear model <span class="math inline">\(Y=X\beta+\epsilon\)</span> with <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\Sigma\)</span>, where <span class="math inline">\(\Sigma\)</span> is a positive definite symmetric matrix. Since <span class="math inline">\(\Sigma\)</span> is positive definite and symmetric, we can find a non-singular symmetric matrix <span class="math inline">\(\Sigma^{1/2}\)</span> s.t. <span class="math inline">\(\Sigma=\Sigma^{1/2}\Sigma^{1/2}\)</span>. Consider <span class="math inline">\(Z=\Sigma^{1/2}Y\)</span>, we have <span class="math display">\[\begin{eqnarray*}
+E[Z] &amp;=&amp; \Sigma^{-1/2}E[Y]=\Sigma^{-1/2}X\beta\\
+Var[Z] &amp;=&amp; \Sigma^{-1/2}\Sigma \Sigma^{-1/2} = I_n
+\end{eqnarray*}\]</span> Consider the design matrix <span class="math inline">\(W=\Sigma^{-1/2}X\)</span> and the response vector <span class="math inline">\(Z=\Sigma^{-1/2}Y\)</span>. The OLSE for <span class="math inline">\(\beta\)</span> would be <span class="math display">\[\hat{\beta}_G=(W^TW)^-W^TZ\]</span> Use the original notation, we have the generalized least squares estimate: <span class="math display">\[\hat{\beta}_G=(X^T\Sigma^{-1}X)^-X^TA^{-1}Y\]</span></p>
+</section>
+<section id="examples" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="examples"><span class="header-section-number">6.3</span> Examples</h2>
+<p><strong>Example 1</strong>. Consider <span class="math inline">\(K\)</span> independent random samples with sizes <span class="math inline">\(n_1, \dots, n_K\)</span>. Only the sample means <span class="math inline">\(\bar{y}_1, \dots, \bar{y}_K\)</span> are available. We estimate the population mean <span class="math inline">\(\mu\)</span> efficiently.</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Linear Model</strong>: <span class="math display">\[
+\mathbf{y} = \mathbf{1}_K \mu + \boldsymbol{\epsilon}, \quad \mathbb{E}[\boldsymbol{\epsilon}] = \mathbf{0}, \quad \text{Var}(\boldsymbol{\epsilon}) = \sigma^2 \mathbf{V},
+\]</span> where <span class="math inline">\(\mathbf{V} = \text{diag}(1/n_1, \dots, 1/n_K)\)</span>.</p></li>
+<li><p>Although <span class="math inline">\(\mathbf {\bar y}\)</span> is unbiased for <span class="math inline">\(\mu\)</span>, it does not achieve minimal variance.</p></li>
+<li><p>The GLSE solution: <span class="math display">\[\hat{\mu}_{\text{GLS}} =(\mathbf{1}_K^T \mathbf V^{-1}\mathbf{1}_K)^{-1}\mathbf{1}_K^T \mathbf V^{-1} \mathbf y= \frac{\sum_{k=1}^K n_k \bar{y}_k}{\sum_{k=1}^K n_k}\]</span></p>
+<p>Note that <span class="math inline">\(\mathbf V^{-1/2} \mathbf y \sim (\mathbf 1_K u, \sigma^2 \mathbf I_K)\)</span></p></li>
+</ul>
+<p><strong>Example 2.</strong> Assume <span class="math inline">\(E(Y_i)=x_i^T \beta,\quad Var(Y_i)=(x_i^T \beta)^2, cov(Y_i, Y_j)=0 \text{ if } i\not=j.\)</span></p>
+<p>Note that <span class="math display">\[Var(Y)= \mathbf{V} =
+\begin{pmatrix}
+\exp(\mathbf{x}_1^T \boldsymbol{\beta}) &amp; 0        &amp; \cdots  &amp; 0 \\
+0        &amp; \exp(\mathbf{x}_2^T \boldsymbol{\beta}) &amp; \cdots  &amp; 0 \\
+\vdots   &amp; \vdots   &amp; \ddots  &amp; \vdots \\
+0        &amp; 0        &amp; \cdots  &amp; \exp(\mathbf{x}_n^T \boldsymbol{\beta})
+\end{pmatrix}.\]</span></p>
+<p>Different from <strong><em>Example 1</em></strong>, the <span class="math inline">\(V\)</span> matrix here depends on <span class="math inline">\(\beta\)</span>. As a result, we don’t have a closed-form GLSE in this problem. But we can use an Iteratively Reweighted Least Squares (IRLS) algorithm:</p>
+<p>Algorithm: IRLS for Variance Structure <span class="math inline">\(Var(Y_i) = (x_i^T \beta)^2\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\mathbf 0\)</span>: Initialization: <span class="math inline">\(\beta^{(0)}\)</span></p></li>
+<li><p><span class="math inline">\(\mathbf 1\)</span>: <span class="math inline">\(\Sigma(\hat\beta^{(t)} ) = Diag((x_1^T \beta)^2, \cdots, (x_n^T \beta)^2)\)</span></p></li>
+<li><p><span class="math inline">\(\mathbf 2\)</span>: <span class="math inline">\(\hat\beta^{(t+1)} = (X^T \Sigma^{-1}(\hat\beta^{(t)}) X)^{-1}X^T \Sigma^{-1}(\hat\beta^{(t)})Y\)</span>.</p></li>
+<li><p>Repeat 1 and 2 until convergence.</p></li>
+</ul>
+</section>
+</section>
+<section id="estimation-with-linear-restriction" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Estimation with linear Restriction</h1>
+<section id="design-matrix-of-full-rank" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="design-matrix-of-full-rank"><span class="header-section-number">7.1</span> Design Matrix of Full rank</h2>
+<p>Let <span class="math inline">\(Y=X\beta+\epsilon\)</span>, where <span class="math inline">\(X\)</span> is full rank. Suppose we want minimize <span class="math display">\[(Y-X\beta)^T(Y-X\beta)\]</span> subject to the linear restriction <span class="math inline">\(A\beta=c\)</span>, where <span class="math inline">\(A\)</span> is a known <span class="math inline">\(q\times p\)</span> matrix of rank <span class="math inline">\(q\)</span> and <span class="math inline">\(c\)</span> is a known <span class="math inline">\(q\times 1\)</span> vector.</p>
+<p>We will use the Lagrange multipliers to find the least square estimate subject to the linear restriction. <span class="math display">\[\begin{eqnarray*}
+f(\beta,\lambda) &amp;=&amp; (Y-X\beta)^T(Y-X\beta) + \lambda^T(A\beta-c)
+\end{eqnarray*}\]</span> Take derivative with respect to <span class="math inline">\(\beta\)</span>, we have <span class="math display">\[-2X^TY+2X^TX\beta+A^T\lambda=0\]</span> Let <span class="math inline">\(\hat{\beta}_H\)</span> denote the estimate subject to the linear restriction, <span class="math display">\[\hat{\beta}_H=(X^TX)^{-1}X^TY-\frac{1}{2}(X^TX)^{-1}A^T\hat{\lambda}_H
+=\hat{\beta}-\frac{1}{2}(X^TX)^{-1}A^T\hat{\lambda}_H\]</span> The linear restriction <span class="math display">\[c=A\hat{\beta}_H=A\hat{\beta}-\frac{1}{2}A(X^TX)^{-1}A^T\hat{\lambda}_H\]</span> which gives <span class="math display">\[-\frac{1}{2}\hat{\lambda}_H=[A(X^T)^{-1}A^T]^{-1}(c-A\hat{\beta})\]</span> Substitute in the formula for <span class="math inline">\(\hat{\beta}_H\)</span>, we have <span class="math display">\[\hat{\beta}_H=\hat{\beta}+(X^TX)^{-1}A^T[A(X^TX)^{-1}A^T]^{-1}(c-A\hat{\beta})\]</span></p>
+<p>Note, when <span class="math inline">\(X\)</span> does not have full rank, not all linear restrictions have a solution.</p>
+<p><strong><em>Proposition</em></strong></p>
+<p>The estimate given above does minimize <span class="math inline">\(\epsilon^T\epsilon\)</span> subject to <span class="math inline">\(A\beta=c\)</span>.</p>
+<p>Proof.</p>
+<p>First, <span class="math display">\[\begin{eqnarray*}
+\epsilon^T\epsilon
+&amp;=&amp; \|Y-X\beta \|^2\\
+&amp;=&amp; \|Y-\hat{Y}+\hat{Y}-X\beta \|^2\\
+&amp;=&amp; \|Y-\hat{Y} \|^2 + \|\hat{Y}-X\beta \|^2 +
+2(Y-\hat{Y})^T(\hat{Y}-X\beta)\\
+&amp;=&amp; \|Y-\hat{Y} \|^2 + \|\hat{Y}-X\beta \|^2 +
+2Y^T(I-P_X)^TX(\hat{\beta}-\beta)\\
+&amp;=&amp; \|Y-\hat{Y} \|^2 + \|X(\hat{\beta}-\beta) \|^2
+\end{eqnarray*}\]</span></p>
+<p>Second <span class="math display">\[\begin{eqnarray*}
+\|X(\hat{\beta}-\beta) \|^2
+&amp;=&amp; (\hat{\beta}-\beta)^TX^TX(\hat{\beta}-\beta)\\
+&amp;=&amp; (\hat{\beta}-\hat{\beta}_H + \hat{\beta}_H-\beta)^TX^TX(\hat{\beta}-\hat{\beta}_H + \hat{\beta}_H - \beta)\\
+&amp;=&amp; \|X(\hat{\beta}-\hat{\beta}_H)\|^2 + \|X(\hat{\beta}_H-\beta)\|^2
+\end{eqnarray*}\]</span> The last step is true because <span class="math display">\[\begin{eqnarray*}
+2(\hat{\beta}-\hat{\beta}_H)^TX^TX(\hat{\beta}_H-\beta)
+&amp;=&amp; \hat\lambda_HA(X^TX)^{-1}X^TX(\hat\beta_H-\beta)\\
+&amp;=&amp; \hat{\lambda}_H^TA(\hat{\beta}_H-\beta)\\
+&amp;=&amp; \hat{\lambda}_H^T(c-c)=0
+\end{eqnarray*}\]</span></p>
+<p>Thus, <span class="math display">\[\begin{eqnarray*}
+e^T e &amp;=&amp;  \|Y-\hat{Y} \|^2  +  \|X(\hat{\beta}-\hat{\beta}_H)\|^2 + \|X(\hat{\beta}_H-\beta)\|^2
+\end{eqnarray*}\]</span></p>
+<p>It is minimized when <span class="math inline">\(\beta=\hat{\beta}_H\)</span>.</p>
+<p>Here is another proof</p>
+<p>Proof.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+||Y-X\beta||^2&amp;=&amp; ||Y-X\hat\beta+X\hat\beta-X\hat\beta_H+X\hat\beta_H-X\beta||^2\\
+&amp;=&amp; ||Y-X\hat\beta||^2+||X\hat\beta-X\hat\beta_H||^2+||X\hat\beta_H-X\beta||^2+2[\cdots]\\
+&amp;=&amp; ||Y-X\hat\beta||^2+||X\hat\beta-X\hat\beta_H||^2+||X\hat\beta_H-X\beta||^2
+\end{eqnarray*}\]</span> The last step is true because <span class="math display">\[\begin{eqnarray*}
+Y-X\hat\beta &amp;=&amp; (I-P_X)Y\\
+X\hat\beta-X\hat\beta_H &amp;=&amp; X(\hat\beta-\hat\beta_H)=\frac{1}{2}X(X^TX)^{-1}A^T\hat\lambda_H\\
+X\hat\beta_H-X\beta=X(\hat\beta_H-\beta)
+\end{eqnarray*}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
+(Y-X\hat\beta)^T(X\hat\beta-X\hat\beta_H) &amp;=&amp; Y^T(I-P_X)X(\hat\beta-\hat\beta_H)=0\\
+(Y-X\hat\beta)^T(X\hat\beta_H-X\beta)&amp;=&amp; Y^T(I-P_X)X(\hat\beta_H-\beta)=0\\
+(X\hat\beta-X\hat\beta_H)^T(X\hat\beta_H-X\beta) &amp;=&amp;(\hat\beta-\hat\beta_H)^TX^TX(\hat\beta_H-\beta)\\
+&amp;=&amp;\frac{1}{2}\hat\lambda_H^TA(X^TX)^{-1}X^TX(\hat\beta_H-\beta)\\
+&amp;=&amp;\frac{1}{2}\hat\lambda_H^T(A\hat\beta_H-A\beta)=\frac{1}{c}\hat\lambda_H^T(c-c)=0
+\end{eqnarray*}\]</span></p>
+<p>An interesting observation (Exercise 3.g.4 on page 62): <span class="math display">\[||Y-\hat Y_H||^2-||Y-\hat Y||^2=\sigma^2 \hat\gamma_H^T (Var[\hat\gamma_H])^{-1}\hat\gamma_H\]</span></p>
+<p>Example.</p>
+<p>Consider the linear model <span class="math display">\[Y_{ij}=\mu_i+\epsilon_{ij}; i=1,2, j=1,2\]</span> where <span class="math inline">\(\epsilon \sim (0, I\sigma^2)\)</span>. Consider the linear restriction <span class="math inline">\(\mu_1=\mu_2\)</span>, or <span class="math inline">\(\mu_1-\mu_2=0\)</span>. We can rewrite the linear restriction to <span class="math inline">\(A\beta=(1 \mbox{ } -1)\beta=0\)</span>. <span class="math display">\[\begin{eqnarray*}
+A&amp;=&amp; (1 \mbox{ } -1)\\
+\hat{\beta} &amp;=&amp; (\bar Y_{1.}, \bar Y_{2.})^T\\
+\hat{\beta}_H &amp;=&amp; \hat\beta+
+\begin{pmatrix} 1/2 &amp; 0\\ 0 &amp; 1/2\end{pmatrix}
+\begin{pmatrix}1 \\ -1\end{pmatrix}
+\left[(1, -1)\begin{pmatrix} 1/2 &amp; 0\\ 0 &amp; 1/2\end{pmatrix}\begin{pmatrix}1 \\ -1\end{pmatrix}  \right]^{-1}
+(0-(1,-1)\begin{pmatrix}\hat\beta_1 \\ \hat\beta_2\end{pmatrix})\\
+&amp;=&amp; \hat\beta - \begin{pmatrix}1/2 \\ -1/2\end{pmatrix}(\hat\beta_1-\hat\beta_2)=
+\begin{pmatrix} \frac{\bar Y_{1.}-\bar Y_{2.}}{2} \\ \frac{\bar Y_{1.}-\bar Y_{2.}}{2} \end{pmatrix}
+\end{eqnarray*}\]</span></p>
+<p><strong><em>Example</em></strong>. Consider the model <span class="math display">\[Y_i=\mu_i+\epsilon_i \mbox{, i=1,2,3,4}\]</span> where <span class="math inline">\(\epsilon\sim(0,I_4\sigma^2)\)</span>. We are interested the the restriction <span class="math inline">\(\mu_1+\mu_2+\mu_3+\mu_4=0\)</span>.</p>
+<p>Clearly <span class="math inline">\(X=I_4\)</span>, <span class="math inline">\(\hat\theta=(y_1,y_2,y_3,y_4)^T\)</span>, <span class="math inline">\(A=(1,1,1,1)\)</span>, and <span class="math inline">\(c=0\)</span>. Thus the restrcited estimate is <span class="math display">\[\hat\beta_H=\hat\beta+(I_4)^{-1}A^T(4)^{-1}(0-(y_1,y_2,y_3,y_4)^T)=
+\begin{pmatrix}y_1-\bar y\\ y_2-\bar y\\ y_3-\bar y\\ y_4-\bar y\end{pmatrix}\]</span></p>
+</section>
+<section id="design-matrix-of-less-than-full-rank" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="design-matrix-of-less-than-full-rank"><span class="header-section-number">7.2</span> Design Matrix of Less Than Full Rank</h2>
+<p>Take a subset of <span class="math inline">\(X\)</span>, <span class="math inline">\(X_1\)</span> and a subset of <span class="math inline">\(Z\)</span>, <span class="math inline">\(Z_1\)</span>.</p>
+</section>
+</section>
+<section id="addingdeleting-covariatescases" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Adding/Deleting Covariates/Cases</h1>
+<p>The technique introduced here is closely related to the sweep algorithm for fitting the linear model.</p>
+<section id="adding-covariates" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="adding-covariates"><span class="header-section-number">8.1</span> Adding Covariates</h2>
+<p>Suppose we have fit the model <span class="math inline">\(Y=X\beta+\epsilon\)</span> and obtained the OLSE <span class="math inline">\(\hat\beta\)</span>. Now we have a new set of variables <span class="math inline">\(Z\)</span> and we want to add it to the model. In other words, we want to obtain the OLSE of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> under the new model: <span class="math display">\[Y=X\beta+Z\gamma+\epsilon= (X | Z) \begin{pmatrix} \beta\\ \gamma \end{pmatrix} + \epsilon=W\delta+\epsilon\]</span> Here we assume that (1) the columns of <span class="math inline">\(X\)</span> and the columns of <span class="math inline">\(Z\)</span> are linearly independent; (2) both <span class="math inline">\(X_{n\times p}\)</span> and <span class="math inline">\(Z_{n\times t}\)</span> are full rank (i.e., $rank([X Z]=p+t $); (3) <span class="math inline">\(\epsilon\sim (0,\sigma^2I)\)</span>. One can refit the model and estimate <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> using the new model. However, this is not computationally efficient. A more efficient way is to use what we have learned from the old model to obtain OLSE for the new model.</p>
+<p><strong><em>Lemma</em></strong> Let <span class="math inline">\(R=I-P_X\)</span>. Suppose that the columns of <span class="math inline">\(X\)</span> and the columns of <span class="math inline">\(Z\)</span> are linearly independent, both <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are full rank (<span class="math inline">\(rank(X)=p\)</span>, <span class="math inline">\(rank(Z)=t\)</span>), and their columns are linearly independent, then (1) <span class="math inline">\(Z^TRZ\)</span> is p.d.; (2) <span class="math inline">\(rank(Z^TRZ)=rank(Z)=t\)</span>.</p>
+<p>Another way to state the results. Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(n\times p\)</span> matrix and <span class="math inline">\(Z\)</span> be an <span class="math inline">\(n\times t\)</span> matrix. Let <span class="math inline">\(R=I-P_X\)</span>. We have the following result <span class="math display">\[rank([X\vdots Z]=p+t \Rightarrow rank(Z^T R Z)=t.\]</span></p>
+<p>Before proving the lemma, let’s review a property regarding <span class="math inline">\(p.d.\)</span> matrices. We learned that</p>
+<p>If <span class="math inline">\(A_{n\times p}\)</span> has rank <span class="math inline">\(p\)</span>, then <span class="math inline">\(A^TA&gt;0\)</span>. Proof: <span class="math inline">\(x^TA^TAx=y^Ty\ge0\)</span> with ``<span class="math inline">\(=\)</span>’’ iff <span class="math inline">\(Ax=0\)</span> iff <span class="math inline">\(x=0\)</span>. The last iff is because <span class="math inline">\(rank(A)=p\)</span> thus the columns of <span class="math inline">\(A\)</span> are linearly independent. Here is the proof of the lemma:</p>
+<p><strong><em>Proof</em></strong>.</p>
+<p>Suppose the columns of <span class="math inline">\(RZ\)</span> are not linearly independent, then <span class="math inline">\(\exists a\not=0\)</span> s.t. <span class="math inline">\(RZa=0\)</span>, i.e., <span class="math inline">\(Za=P_xa=Xb\)</span>. Because we the columns of <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>, we have <span class="math inline">\(a=b=0\)</span>. The contradiction implies the columns of <span class="math inline">\(RZ\)</span> are linearly independent and <span class="math inline">\(rank(RZ)=t\)</span>. In addition, <span class="math inline">\(Z^TRZ=(RZ)^TRZ\)</span>. Therefore, <span class="math inline">\((RZ)^TRZ=Z^TRZ\)</span> is p.d. and <span class="math inline">\(rank(Z^TRZ)=rank(RZ)=t\)</span>.</p>
+<p>An algorithm to update from <span class="math inline">\(Y~X\)</span> to <span class="math inline">\(Y~X+Z\)</span>:</p>
+<ul>
+<li><p>Regress <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> to obtain <span class="math inline">\(\hat\beta\)</span>. During this step, we can compute <span class="math inline">\(R=I-P_X\)</span></p></li>
+<li><p>Compute <span class="math inline">\(RZ\)</span>. Note that <span class="math inline">\(RZ\)</span> can also be obtained by regressing each column of <span class="math inline">\(Z\)</span> of <span class="math inline">\(X\)</span>, although it is more efficient to multiply <span class="math inline">\(R\)</span> to <span class="math inline">\(Z\)</span>.</p></li>
+<li><p>Regress <span class="math inline">\(Y\)</span> on <span class="math inline">\(RZ\)</span> to obtain <span class="math inline">\(\hat\gamma_G\)</span>.</p></li>
+<li><p>Regress <span class="math inline">\(Y-Z\hat\gamma_G\)</span> on <span class="math inline">\(X\)</span> to obtain <span class="math inline">\(\hat\beta_G\)</span>.</p></li>
+</ul>
+<p>Why does the algorithm work? See the following theorem.</p>
+<p><strong><em>Theorem</em></strong>.</p>
+<p>Let <span class="math inline">\(R=I-P_X\)</span>, <span class="math inline">\(L=(X^TX)^{-1}X^TZ\)</span>, <span class="math inline">\(M=(Z^TRZ)^{-1}\)</span>, and <span class="math inline">\(\hat \delta_G\)</span> is the OLSE of <span class="math inline">\(\delta\)</span>. Then</p>
+<ul>
+<li><p><span class="math inline">\(\hat\gamma_G=(Z^TRZ)^{-1}Z^TRY=[(RZ)^T(RZ)]^{-1}(RZ)^T RY=MZ^TRY\)</span></p></li>
+<li><p><span class="math inline">\(\hat\beta_G=(X^TX)^{-1}X^T(Y-Z\hat\gamma_G)=\hat\beta - L\hat\gamma_G\)</span></p></li>
+<li><p><span class="math inline">\(RSS_{new}=(Y-\hat Y_G)^T(Y-\hat Y_G)=(Y-Z\hat\gamma_G)^T R (Y-Z\hat\gamma_G)=Y^TRY-\hat\gamma_G^TZ^TRY\)</span></p></li>
+<li><p><span class="math inline">\(var(\hat\delta_G)=\sigma^2 \begin{pmatrix}(X^TX)^{-1}+LML^T &amp; -LM\\ -ML^T &amp; M \end{pmatrix}= \sigma^2 \tilde X(\tilde X^T\tilde X)^{-1} \tilde X^T\)</span> where <span class="math inline">\(\tilde X = [X\vdots Z]\)</span>.</p></li>
+</ul>
+<p>Proof.</p>
+<ul>
+<li><p>First orthogonalize <span class="math inline">\(Z\)</span> by writing it to <span class="math inline">\(Z=P_XZ+R_Z\)</span>. Thus the new model is <span class="math display">\[\begin{eqnarray*}
+Y
+&amp;=&amp; X\beta+P_XZ+RZ\gamma+\epsilon\\
+&amp;=&amp; X\alpha + RZ\gamma + \epsilon\\
+&amp;=&amp; (X|RZ)\begin{pmatrix}\alpha &amp; \gamma \end{pmatrix} + \epsilon \\
+&amp;=&amp; V \lambda + \epsilon
+\end{eqnarray*}\]</span> where <span class="math inline">\(\alpha=\beta + (X^TX)^{-1}X^TZ\gamma=\beta+L\gamma\)</span>. Note that <span class="math inline">\(C(X)\perp C(RZ)\)</span> (this is true because for <span class="math inline">\(\vee a\)</span> and <span class="math inline">\(\vee b\)</span> we have <span class="math inline">\(a^TX^TRZb=a^T(X^T-X^T)Zb=0\)</span>), thus the columns of <span class="math inline">\(X\)</span> and <span class="math inline">\(RZ\)</span> are linearly independent and <span class="math inline">\(V\)</span> is full rank. The OLSE of <span class="math inline">\(\lambda\)</span> is <span class="math display">\[\begin{eqnarray*}
+\hat\lambda &amp;=&amp; (V^TV)^{-1}V^TY =\begin{pmatrix}X^TX &amp; X^TRZ\\ Z^TRX &amp; Z^TRZ\end{pmatrix}^{-1}
+\begin{pmatrix}X^T \\ Z^TR\end{pmatrix}Y\\
+&amp;=&amp; \begin{pmatrix}X^TX &amp; 0 \\ 0 &amp; Z^TRZ\end{pmatrix}^{-1}\begin{pmatrix}X^T \\ Z^TR\end{pmatrix}Y\\
+&amp;=&amp; \begin{pmatrix} (X^TX)^{-1}X^TY\\ (Z^TRZ)^{-1}Z^TRY\end{pmatrix}=\begin{pmatrix}\hat \alpha_G \\ \hat \gamma_G\end{pmatrix}
+\end{eqnarray*}\]</span> Thus <span class="math inline">\(\hat\gamma_G=(Z^TRZ)^{-1}Z^TRY\)</span>. Because <span class="math inline">\(R\)</span> is a projection matrix, we can rewrite <span class="math inline">\(\hat\gamma_G\)</span> to <span class="math display">\[\hat\gamma_G=(Z^TRZ)^{-1}Z^TRY=[(RZ)^T(RZ)]^{-1}(RZ)^T RY\]</span> Note that if <span class="math inline">\(Z\)</span> is the only set of covariates in the model, we would solve <span class="math inline">\(Z^TZ\gamma=Z^TY\)</span>. With <span class="math inline">\(X\)</span> already in the model, we replace <span class="math inline">\(Z\)</span> with <span class="math inline">\(RZ\)</span> and replace <span class="math inline">\(Y\)</span> with <span class="math inline">\(RY\)</span>.</p></li>
+<li><p>Since <span class="math inline">\(\hat \alpha_G=\hat\beta_G+L\hat\gamma_G\)</span> we have <span class="math display">\[\hat\beta_G=(X^TX)^{-1}X^TY-L\hat\gamma_G\]</span> This correlates the OLSE under the old model to that under the new model.</p></li>
+<li><p>Here we want to show the relationship between the RSS of the old model to that of the new model. Note that <span class="math display">\[\begin{eqnarray*}
+Y-\hat Y_{new} &amp;=&amp; Y-\hat Y_{new}=Y-X\hat\beta + XL\hat\gamma_G - Z\hat\gamma_G\\
+&amp;=&amp; (I-P_X)Y+(X(X^TX)^{-1}X^T-I)Z\hat\gamma_G\\
+&amp;=&amp; RY-RZ\hat\gamma_G
+\end{eqnarray*}\]</span> Thus <span class="math display">\[RSS_{new} = (RY-RZ\hat\gamma_G)^T(RY-RZ\hat\gamma_G)= (Y-Z\hat\gamma_G)^TR(Y-Z\hat\gamma_G)\]</span> Also note that <span class="math inline">\(RZ\hat\gamma_G=RZ(Z^TRZ)^{-1}Z^TRY=P_{RZ}Y\)</span>. Hence, <span class="math display">\[\begin{eqnarray*}
+RSS_{new}&amp;=&amp;Y^TRY-2Y^T(RZ\gamma_G)+(\gamma_G)^TZ^TRZ\gamma_G\\
+&amp;=&amp; Y^TRY-2Y^T(RZ\gamma_G)+(RZ\gamma_G)^T(RZ\gamma_G)=Y^TRY-2Y^TP_{RZ}Y+Y^TP_{RZ}Y\\
+&amp;=&amp; RSS_{old} - Y^TP_{RZ}Y
+\end{eqnarray*}\]</span></p></li>
+</ul>
+<p>This result indicates that adding new variables will decrease <span class="math inline">\(RSS\)</span>.</p>
+<p>Here is a more straightforward way to prove: Note that <span class="math display">\[\begin{eqnarray*}
+    P_V&amp;=&amp;V(V^TV)^{-1}V^T= [X\vdots Z]\begin{pmatrix}
+        (X^TX)^{-1} &amp; 0\\
+        0 &amp; (Z^TRZ)^{-1}
+    \end{pmatrix}
+     \begin{pmatrix}
+            X^T\\ Z^T R
+        \end{pmatrix}\\
+        &amp;=&amp; P_X + P_{RZ}
+\end{eqnarray*}\]</span> Therefore, <span class="math display">\[RSS_{new}=Y^T(I-P_V)Y = Y^TY - Y^T P_X Y - Y^T P_{RZ}Y=RSS - Y^T P_{RZ}Y \le RSS.\]</span></p>
+<ul>
+<li>Note that <span class="math inline">\(\hat\gamma_G=(Z^TRZ)^{-1}Z^TRY=MZ^TRY\)</span>. Thus <span class="math display">\[\begin{eqnarray*}
+Var(\hat\gamma_G) &amp;=&amp; Var(MZ^TRY)=MZ^TRZM\sigma^2=\sigma^2M\\
+Cov(\hat\beta, \hat\gamma_G) &amp;=&amp; cov((X^TX)^{-1}X^TY, MZ^TRY)\\
+&amp;=&amp;(X^TX)^{-1}X^TRZM^{-1}L\sigma^2\\
+&amp;=&amp; 0 (X^TR=0)\\
+Cov(\hat\beta_G,\hat\gamma_G)&amp;=&amp; Cov(\hat\beta-L\hat\gamma_G,\hat\gamma_G)\\
+&amp;=&amp; cov(\hat\beta,\hat\gamma_G)-L Var(\hat\gamma_G)\\
+&amp;=&amp; -\sigma^2LM\\
+Var(\hat\beta_G) &amp;=&amp; Var(\hat\beta)-2cov[\hat\beta,L\hat\gamma_G]+Var(L\hat\gamma_G)\\
+&amp;=&amp; (X^TX)^{-1}\sigma^2 - 0+LVar(\hat\gamma_G)L^T\\
+&amp;=&amp; \sigma^2[(X^TX)^{-1}+LML^T]
+\end{eqnarray*}\]</span></li>
+</ul>
+<section id="add-one-covariate-at-a-time" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="add-one-covariate-at-a-time"><span class="header-section-number">8.1.1</span> Add one covariate at a time</h3>
+<p>When <span class="math inline">\(Z\)</span> is <span class="math inline">\(n\times 1\)</span>, <span class="math inline">\(L\)</span> (denoted by <span class="math inline">\(l\)</span> now) and <span class="math inline">\(M\)</span> (denoted by <span class="math inline">\(m\)</span> now) are scalars, <span class="math inline">\(Z^T R Z\)</span> and <span class="math inline">\(\hat\gamma_G\)</span> are also scalars. We have <span class="math display">\[\hat\beta_{new}=
+\begin{pmatrix}\hat\beta_{old}-lz^TRYm\\z^TRYm
+\end{pmatrix}\]</span> where <span class="math inline">\(l=(X^TX)^{-1}X^Tz, m=(z^TRz)^{-1}\)</span>.</p>
+<p>Example 3.7.2 of Seber (page 57). Let the columns of <span class="math inline">\(X\)</span> be denoted by <span class="math inline">\(x_{(j)},j=0,1,\cdots,p-1\)</span>, so that <span class="math display">\[E[Y]=x_{(0)}\beta_0+x_{(1)}\beta_1+x_{(2)}\beta_2+\cdots+x_{(p-1)}\beta_{p-1}\]</span> Suppose now that we want to introduce the explanatory variable <span class="math inline">\(x_{(p)}\)</span> into the model. Thus <span class="math inline">\(Z^TRZ=x_{(p)}^TRx_{(p)}\)</span> is a scalar. Hence, <span class="math display">\[\begin{eqnarray*}
+\hat\beta_{p,G} &amp;=&amp; \hat\gamma_G=(Z^TRZ)^{-1}Z^TRY=\frac{x_{(p)}^TRY}{x_{(p)}^TRx_{(p)}}\\
+(\hat\beta_{0,G},\cdots,\hat\beta_{p-1,G})^T &amp;=&amp; \hat\beta-(X^TX)^{-1}X^Tx_{(p)}\hat\beta_{p,G}\\
+Y^TR_GY &amp;=&amp; Y^TRY-\hat\beta_{p,G}x_{(p)}^TRY
+\end{eqnarray*}\]</span> \end{example}</p>
+<p>This is a homework assignment</p>
+<p>We can also use <span class="math inline">\(A.9.1\)</span> to prove the results. <span class="math inline">\(A.9.1\)</span> states that if all inverses exist, then <span class="math display">\[\begin{pmatrix}A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22}\end{pmatrix}^{-1}
+=\begin{pmatrix}A^{11} &amp; A^{12} \\ A^{21} &amp; A^{22} \end{pmatrix}
+=\begin{pmatrix}A_{11}^{-1} + B_{12}B_{22}^{-1}B_{21} &amp; -B_{12}B_{22}^{-1}\\
+-B_{22}^{-1}B_{21} &amp; B_{22}^{-1} \end{pmatrix}\]</span> where <span class="math inline">\(B_{22}=A_{22}-A_{21}A_{11}^{-1}A_{12}, B_{12}=A_{11}^{-1}A_{12}, B_{21}=A_{21}A_{11}^{-1}\)</span>. Here <span class="math inline">\(B_{22}\)</span> is known as the Schur complement of <span class="math inline">\(A_{11}\)</span>. We can the result as the inverse of a partitioned matrix.</p>
+<p>Now let <span class="math inline">\(A_{11}=(X^TX), A_{12}=X^TZ, A_{21}=Z^TX, A_{22}=Z^TZ\)</span> and <span class="math inline">\(L=(X^TX)^{-1}X^TZ, M=(Z^TRZ)^{-1}\)</span>, we can show that <span class="math display">\[A^{11}=(X^TX)^{-1}+LML^T, A^{12}=-LM, A^{21}=-ML^T, A^{22}=M\]</span> Because <span class="math display">\[\begin{pmatrix}\hat\beta_G\\ \hat\gamma_G\end{pmatrix}
+=\begin{pmatrix}A^{11} &amp; A^{12} \\ A^{21} &amp; A^{22} \end{pmatrix}
+\begin{pmatrix}X^TY \\ Z^TY \end{pmatrix}\]</span> We have <span class="math inline">\(\hat\beta_G=\hat\beta-L\hat\gamma_G\)</span>.</p>
+<p>Algebra explanation of of the inverse of a partitioned matrix.</p>
+Let <span class="math inline">\(M\)</span> be a block matrix partitioned as: [ M =
+<span class="math display">\[\begin{pmatrix}
+A_{11} &amp; A_{12} \\
+A_{21} &amp; A_{22}
+\end{pmatrix}\]</span>
+<p>] where <span class="math inline">\(A_{11}\)</span> is invertible. Define: [ B_{22} = A_{22} - A_{21}A_{11}^{-1}A_{12}, B_{12} = A_{11}^{-1}A_{12}, B_{21} = A_{21}A_{11}^{-1}. ]</p>
+<p>The matrix can be decomposed as (LU decomposition): [ M = <em>{L} </em>{D} _{U} ] where:</p>
+<ul>
+<li><span class="math inline">\(L\)</span> is lower block triangular (Gaussian elimination matrix)</li>
+<li><span class="math inline">\(D\)</span> is block diagonal containing pivots</li>
+<li><span class="math inline">\(U\)</span> is upper block triangular</li>
+</ul>
+<p>The inverse is <span class="math inline">\(M^{-1} = U^{-1}D^{-1}L^{-1}\)</span> with: <span class="math display">\[\begin{align*}
+U^{-1} &amp;= \begin{pmatrix}
+I &amp; -B_{12} \\
+0 &amp; I
+\end{pmatrix}, \\
+D^{-1} &amp;= \begin{pmatrix}
+A_{11}^{-1} &amp; 0 \\
+0 &amp; B_{22}^{-1}
+\end{pmatrix}, \\
+L^{-1} &amp;= \begin{pmatrix}
+I &amp; 0 \\
+-B_{21} &amp; I
+\end{pmatrix}.
+\end{align*}\]</span></p>
+<p>Finally, <span class="math display">\[M^{-1} = \boxed{
+\begin{pmatrix}
+A_{11}^{-1} + B_{12}B_{22}^{-1}B_{21} &amp; -B_{12}B_{22}^{-1} \\
+-B_{22}^{-1}B_{21} &amp; B_{22}^{-1}
+\end{pmatrix}
+}\]</span></p>
+<p>This method is known as the ``sweep operator”. Most software uses the QR decomposition method to solve least squares. SAS has an option to the sweep operator.</p>
+</section>
+<section id="removing-covariates" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="removing-covariates"><span class="header-section-number">8.1.2</span> Removing Covariates</h3>
+<p>This is a homework problem</p>
+<p>Assume that <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are full rank and the columns between the two matrices are linearly independent. Suppose we have obtained the OLSE of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>, denoted by <span class="math inline">\(\hat\beta_1\)</span> and <span class="math inline">\(\hat\beta_2\)</span> respectively, in the following full model: <span class="math display">\[Y=X_1\beta_1+X_2\beta_2+\epsilon\]</span> Now consider removing <span class="math inline">\(X_2\)</span> from the model and fit the following new model: <span class="math display">\[Y=X_1\beta_1+\epsilon\]</span> and denote the corresponding OLSE as <span class="math inline">\(\tilde\beta_1\)</span>. Then <span class="math inline">\(\tilde{\beta}_1= \hat\beta_1+(X_1^TX_1)^{-1}X_1^TX_2\hat\beta_2\)</span></p>
+<p>Question: When does adding/removing covariates will not effect the OLSE for the covariates in the model? Think about perpendicular covariates and Analysis of variance (balanced). This happens when the columns of <span class="math inline">\(X\)</span> and the columns of <span class="math inline">\(Z\)</span> are orthogonal.</p>
+</section>
+</section>
+<section id="adding-subjects" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="adding-subjects"><span class="header-section-number">8.2</span> Adding Subjects</h2>
+<p>Suppose we have fit a linear model using <span class="math inline">\(n\)</span> subjects with the design matrix <span class="math inline">\(X\)</span>. Now data from <span class="math inline">\(k\)</span> new subjects are available and we denote the design matrix for them by <span class="math inline">\(X_1\)</span> and the responses by <span class="math inline">\(Y_1\)</span>. How can we update our model efficiently? Let <span class="math inline">\(\hat\beta_{old}\)</span> denote the OLSE based on the first <span class="math inline">\(n\)</span> subjects, i.e., <span class="math inline">\(\hat\beta_{old}=(X^TX)^{-1}X^TY\)</span> and let <span class="math inline">\(\hat\beta_{new}\)</span> denote the OLSE using all available data. Then we have <span class="math inline">\(\hat\beta_{new}=(X^TX+X_1^TX_1)^{-1}(X^TY+X_1^TY_1)\)</span>. Recall the Sherman-Morrison-Woodbury formula (<span class="math inline">\(A.9.3\)</span>), <span class="math display">\[(A+UBV)^{-1}=A^{-1}-A^{-1}UB(B+BVA^{-1}UB)^{-1}BVA^{-1}\]</span> Here <span class="math inline">\(A=X^TX\)</span>, <span class="math inline">\(U=X_1^T\)</span>, <span class="math inline">\(B=I_k\)</span>, and <span class="math inline">\(V=X_1\)</span>. We have <span class="math display">\[(X^TX+X_1^TX_1)^{-1}=(X^TX)^{-1}-(X^TX)^{-1} X_1^T(I+X_1(X^TX)^{-1}X_1^T)^{-1}X_1 (X^TX)^{-1}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
+\hat\beta_{new} &amp;=&amp; [(X^TX)^{-1}-(X^TX)^{-1} X_1^T(I+X_1(X^TX)^{-1}X_1^T)^{-1}X_1 (X^TX)^{-1}](X^TY+X_1^TY_1)\\
+&amp;=&amp; \hat\beta_{old} + (X^TX)^{-1}X_1^T(I+X_1(X^TX)^{-1}X_1^T)^{-1}[-X_1(X^TX)^{-1}X^TY-X_1(X^TX)^{-1}X_1^TY_1+\\
+&amp;&amp;(I+X_1(X^TX)^{-1}X_1^T)Y_1]\\
+&amp;=&amp; \hat\beta_{old}+(X^TX)^{-1}X_1^T(I+X_1(X^TX)^{-1}X_1^T)^{-1}[Y_1-X_1\hat\beta_{old}]
+\end{eqnarray*}\]</span></p>
+<p>We add a single row to <span class="math inline">\(X\)</span> and let <span class="math inline">\(x_1^T\)</span> denote the row. Let <span class="math inline">\(y_1\)</span> denote the corresponding response. We have <span class="math display">\[\hat\beta_{new} = \hat\beta_{old}+\frac{(X^TX)^{-1}x_1}{1+x_1^T(X^TX)^{-1}x_1}[y_1-x_1^T\hat\beta_{old}]\]</span> Note, this can also be proved using <span class="math inline">\(A.9.4\)</span> b let <span class="math inline">\(C=(X^TX)^{-1}x_1^T\)</span>, <span class="math inline">\(D=(1+x_1(X^TX)^{-1}x_1^T)^{-1}=(1+x_1C)^{-1}\)</span>.</p>
+<p>By <span class="math inline">\(A.9.4\)</span>, <span class="math inline">\((X^TX+x_1^Tx_1)^{-1}=(X^TX)^{-1}-CDC^T\)</span>. Thus, <span class="math display">\[\begin{eqnarray*}
+\hat\beta_{new} &amp;=&amp; (X^TX+x_1^Tx_1)^{-1}(X^TY+x_1^Ty_1)\\
+&amp;=&amp;\hat\beta_{old}-CDC^T(X^TY+x_1^Ty_1)+cy_1\\
+&amp;=&amp;\hat\beta_{old}+CD[D^{-1}y_1-C^TX^TY-C^Tx_1^Ty_1]\\
+&amp;=&amp;\hat\beta_{old}+CD[y_1-C^TX^TY]\\
+&amp;=&amp;\hat\beta_{old}+CD[y_1-x_1^T\hat\beta_{old}]\\
+&amp;=&amp;\hat\beta_{old}+\frac{(X^TX)^{-1}x_1}{1+x_1^T(X^TX)^{-1}x_1}[y_1-x_1^T\hat\beta_{old}]
+\end{eqnarray*}\]</span></p>
+<section id="removing-subjects" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="removing-subjects"><span class="header-section-number">8.2.1</span> Removing subjects</h3>
+<p>We single out the situation when we want to remove the <span class="math inline">\(i\)</span>th subject. Use <span class="math inline">\(A.9.4\)</span>, i.e., <span class="math display">\[(A-uv^T)^{-1} = A^{-1} + \frac{A^{-1}uv^TA^{-1}}{1-v^TA^{-1}u}\]</span> Let <span class="math inline">\(X_{(i)}\)</span> denote the design matrix with the ith observation remved. Note that <span class="math inline">\(X^TX=\sum x_ix_i^T\)</span>. we have <span class="math display">\[\begin{eqnarray*}
+(X_{(i)}^TX_{(i)})^{-1} &amp;=&amp; (X^TX-x_ix_i^T)^{-1}\\
+&amp;=&amp; (X^TX)^{-1}+ \frac{(X^TX)^{-1}x_ix_i^T(X^TX)^{-1}}{1-x_i^T(X^TX)^{-1}x_i}\\
+&amp;=&amp; (X^TX)^{-1}+ \frac{(X^TX)^{-1}x_ix_i^T(X^TX)^{-1}}{1-h_{ii}}
+\end{eqnarray*}\]</span> The last equation is true because we define <span class="math inline">\(h_{ii}\)</span> as the <span class="math inline">\((i,i)\)</span> element of <span class="math inline">\(X(X^TX)^{-1}X^T\)</span>. Hence, <span class="math display">\[\begin{eqnarray*}
+\hat\beta_{(i)} &amp;=&amp; [X_{(i)}^TX_{(i)}]^{-1}(X^TY-x_iy_i)\\
+&amp;=&amp; [(X^TX)^{-1}+ \frac{(X^TX)^{-1}x_ix_i^T(X^TX)^{-1}}{1-h_{ii}}](X^TY-x_iy_i)\\
+&amp;=&amp; \hat\beta-\frac{(X^TX)^{-1}x_i}{1-h_{ii}}[y_i(1-h_i)-x_i^T\hat\beta+h_{ii}y_i]\\
+&amp;=&amp; \hat\beta-\frac{(X^TX)^{-1}x_ie_i}{1-h_{ii}}
+\end{eqnarray*}\]</span> Note, this result is very useful in diagnostics, as it shows the influence of a single data point on OLSE. Since <span class="math inline">\(\sum h_{ii}=trace(H)=p\)</span>, the average of <span class="math inline">\(h_{ii}\)</span> is <span class="math inline">\(p/n\)</span>. If <span class="math inline">\(h_{ii}\)</span> is close to 1, the ith observation has a large influence on parameter estimation. The difference, <span class="math inline">\(\hat\beta-\hat\beta_{(i)}\)</span> (called <span class="math inline">\(DFBETA\)</span>) and its standardized version is often used to test outliers. We will discuss this later.</p>
+</section>
+</section>
+</section>
+<section id="section" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> </h1>
 
 
 </section>
