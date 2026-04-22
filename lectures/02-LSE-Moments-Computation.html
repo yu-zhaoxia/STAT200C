@@ -614,7 +614,7 @@ E[a^{T}\hat{\beta}_{G}] &amp; = &amp; E[a^{T}(W^{T}W)^{-}W^{T}Z]=a^{T}(W^{T}W)^{
 <p><strong>Summary</strong>. Consider the linear model <span class="math inline">\(Y=X\beta+\epsilon\)</span> with <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\Sigma\)</span>, where <span class="math inline">\(\Sigma\)</span> is a positive definite symmetric matrix. Since <span class="math inline">\(\Sigma\)</span> is positive definite and symmetric, we can find a non-singular symmetric matrix <span class="math inline">\(\Sigma^{1/2}\)</span> s.t. <span class="math inline">\(\Sigma=\Sigma^{1/2}\Sigma^{1/2}\)</span>. Consider <span class="math inline">\(Z=\Sigma^{1/2}Y\)</span>, we have <span class="math display">\[\begin{eqnarray*}
 E[Z] &amp;=&amp; \Sigma^{-1/2}E[Y]=\Sigma^{-1/2}X\beta\\
 Var[Z] &amp;=&amp; \Sigma^{-1/2}\Sigma \Sigma^{-1/2} = I_n
-\end{eqnarray*}\]</span> Consider the design matrix <span class="math inline">\(W=\Sigma^{-1/2}X\)</span> and the response vector <span class="math inline">\(Z=\Sigma^{-1/2}Y\)</span>. The OLSE for <span class="math inline">\(\beta\)</span> would be <span class="math display">\[\hat{\beta}_G=(W^TW)^-W^TZ\]</span> Use the original notation, we have the generalized least squares estimate: <span class="math display">\[\hat{\beta}_G=(X^T\Sigma^{-1}X)^-X^TA^{-1}Y\]</span></p>
+\end{eqnarray*}\]</span> Consider the design matrix <span class="math inline">\(W=\Sigma^{-1/2}X\)</span> and the response vector <span class="math inline">\(Z=\Sigma^{-1/2}Y\)</span>. The OLSE for <span class="math inline">\(\beta\)</span> would be <span class="math display">\[\hat{\beta}_G=(W^TW)^-W^TZ\]</span> Use the original notation, we have the generalized least squares estimate: <span class="math display">\[\hat{\beta}_G=(X^T\Sigma^{-1}X)^-X^T\Sigma^{-1}Y\]</span></p>
 </section>
 <section id="examples" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="examples"><span class="header-section-number">6.3</span> Examples</h2>
@@ -631,10 +631,10 @@ Var[Z] &amp;=&amp; \Sigma^{-1/2}\Sigma \Sigma^{-1/2} = I_n
 <p><strong>Example 2.</strong> Assume <span class="math inline">\(E(Y_i)=x_i^T \beta,\quad Var(Y_i)=(x_i^T \beta)^2, cov(Y_i, Y_j)=0 \text{ if } i\not=j.\)</span></p>
 <p>Note that <span class="math display">\[Var(Y)= \mathbf{V} =
 \begin{pmatrix}
-\exp(\mathbf{x}_1^T \boldsymbol{\beta}) &amp; 0        &amp; \cdots  &amp; 0 \\
-0        &amp; \exp(\mathbf{x}_2^T \boldsymbol{\beta}) &amp; \cdots  &amp; 0 \\
+(\mathbf{x}_1^T \boldsymbol{\beta})^2 &amp; 0        &amp; \cdots  &amp; 0 \\
+0        &amp; (\mathbf{x}_2^T \boldsymbol{\beta})^2 &amp; \cdots  &amp; 0 \\
 \vdots   &amp; \vdots   &amp; \ddots  &amp; \vdots \\
-0        &amp; 0        &amp; \cdots  &amp; \exp(\mathbf{x}_n^T \boldsymbol{\beta})
+0        &amp; 0        &amp; \cdots  &amp; (\mathbf{x}_n^T \boldsymbol{\beta})^2
 \end{pmatrix}.\]</span></p>
 <p>Different from <strong><em>Example 1</em></strong>, the <span class="math inline">\(V\)</span> matrix here depends on <span class="math inline">\(\beta\)</span>. As a result, we don’t have a closed-form GLSE in this problem. But we can use an Iteratively Reweighted Least Squares (IRLS) algorithm:</p>
 <p>Algorithm: IRLS for Variance Structure <span class="math inline">\(Var(Y_i) = (x_i^T \beta)^2\)</span>.</p>
@@ -693,7 +693,7 @@ e^T e &amp;=&amp;  \|Y-\hat{Y} \|^2  +  \|X(\hat{\beta}-\hat{\beta}_H)\|^2 + \|X
 \end{eqnarray*}\]</span> The last step is true because <span class="math display">\[\begin{eqnarray*}
 Y-X\hat\beta &amp;=&amp; (I-P_X)Y\\
 X\hat\beta-X\hat\beta_H &amp;=&amp; X(\hat\beta-\hat\beta_H)=\frac{1}{2}X(X^TX)^{-1}A^T\hat\lambda_H\\
-X\hat\beta_H-X\beta=X(\hat\beta_H-\beta)
+X\hat\beta_H-X\beta&amp;=&amp;X(\hat\beta_H-\beta)
 \end{eqnarray*}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
 (Y-X\hat\beta)^T(X\hat\beta-X\hat\beta_H) &amp;=&amp; Y^T(I-P_X)X(\hat\beta-\hat\beta_H)=0\\
 (Y-X\hat\beta)^T(X\hat\beta_H-X\beta)&amp;=&amp; Y^T(I-P_X)X(\hat\beta_H-\beta)=0\\
