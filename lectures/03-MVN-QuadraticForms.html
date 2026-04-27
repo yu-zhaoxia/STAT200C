@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -114,8 +143,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#multivariate-normal-distribution" id="toc-multivariate-normal-distribution" class="nav-link active" data-scroll-target="#multivariate-normal-distribution"><span class="header-section-number">1</span> Multivariate Normal Distribution</a>
+  <ul class="collapse">
+  <li><a href="#univariate-normal-distribution" id="toc-univariate-normal-distribution" class="nav-link" data-scroll-target="#univariate-normal-distribution"><span class="header-section-number">1.1</span> Univariate normal distribution</a></li>
+  <li><a href="#bivariate-normal-distribution" id="toc-bivariate-normal-distribution" class="nav-link" data-scroll-target="#bivariate-normal-distribution"><span class="header-section-number">1.2</span> Bivariate normal distribution</a></li>
+  <li><a href="#mvn" id="toc-mvn" class="nav-link" data-scroll-target="#mvn"><span class="header-section-number">1.3</span> MVN</a></li>
+  <li><a href="#linear-transformations-of-mvn" id="toc-linear-transformations-of-mvn" class="nav-link" data-scroll-target="#linear-transformations-of-mvn"><span class="header-section-number">1.4</span> Linear transformations of MVN</a></li>
+  <li><a href="#conditional-distributions" id="toc-conditional-distributions" class="nav-link" data-scroll-target="#conditional-distributions"><span class="header-section-number">1.5</span> Conditional distributions</a></li>
+  </ul></li>
+  <li><a href="#chi-square-distributions-and-quadratic-forms" id="toc-chi-square-distributions-and-quadratic-forms" class="nav-link" data-scroll-target="#chi-square-distributions-and-quadratic-forms"><span class="header-section-number">2</span> Chi-Square Distributions and Quadratic Forms</a>
+  <ul class="collapse">
+  <li><a href="#chi-square-distributions" id="toc-chi-square-distributions" class="nav-link" data-scroll-target="#chi-square-distributions"><span class="header-section-number">2.1</span> Chi-Square Distributions</a></li>
+  <li><a href="#quadratic-forms" id="toc-quadratic-forms" class="nav-link" data-scroll-target="#quadratic-forms"><span class="header-section-number">2.2</span> Quadratic Forms</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -139,9 +186,271 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The lecture covers the following topics:</p>
+<section id="multivariate-normal-distribution" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Multivariate Normal Distribution</h1>
+<section id="univariate-normal-distribution" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="univariate-normal-distribution"><span class="header-section-number">1.1</span> Univariate normal distribution</h2>
+<p>Recall the pdf for the univariate normal distribution <span class="math inline">\(Y\sim N(\mu,\sigma^2)\)</span> <span class="math display">\[f(y)=\frac{1}{\sqrt{2\pi\sigma^2}}exp\{-\frac{(y-u)^2}{2\sigma^2}\}.\]</span></p>
+</section>
+<section id="bivariate-normal-distribution" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="bivariate-normal-distribution"><span class="header-section-number">1.2</span> Bivariate normal distribution</h2>
+<p>For a bivariate normal distribution with mean <span class="math inline">\(\vec{\mu}=(\mu_1,\mu_2)^T\)</span> and covariance matrix <span class="math display">\[\Sigma=
+\begin{pmatrix}
+\sigma_{1}^2 &amp; \rho \sigma_1\sigma_2\\
+\rho\sigma_1\sigma_2 &amp; \sigma^2
+\end{pmatrix}
+\]</span> where <span class="math inline">\(cov(Y_1, Y_2)= \rho\sigma_1\sigma_1\)</span> and <span class="math inline">\(cor(Y_1, Y_2)=\rho\)</span>.</p>
+<p>The (joint) pdf is <span class="math display">\[f(y_1,y_2)=\frac{1}{\sqrt{(2\pi)^2\sigma_1^2\sigma_2^2(1-\rho^2)}}
+exp\left[-\frac{1}{2(1-\rho^2)}
+\left\{
+\frac{(x_1-\mu_1)^2}{\sigma_1^2}
+-\frac{2\rho(x_1-\mu_1)(x_2-\mu_2)}{\sigma_1\sigma_2}
++\frac{(x_2-\mu_2)^2}{\sigma^2}
+\right\}\right]
+\]</span></p>
+<p>Next, we will generalize it to multivariate normal distribution.</p>
+</section>
+<section id="mvn" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="mvn"><span class="header-section-number">1.3</span> MVN</h2>
+<p>MVN can be defined in several equivalent ways. We will show the equivalence of these definitions later.</p>
+<ol type="1">
+<li><p>A random vector <span class="math inline">\(Y\)</span> has a multivariate normal distribution if <span class="math inline">\(Y_{p\times 1}=A_{p\times r}Z_{r\times 1}+\mu_{p\times 1}\)</span> (<span class="math inline">\(p&lt;r\)</span>), where <span class="math inline">\(dim(A)=p\times r\)</span> and <span class="math inline">\(Z\)</span> is an <span class="math inline">\(r\)</span>-vector of independent univariate normal random variables.</p></li>
+<li><p>If the density is <span class="math display">\[f_Y(y) = \frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}exp\{-\frac{1}{2}(y-\mu)^T\Sigma^{-1} (y-\mu)\}\]</span></p></li>
+<li><p>If the moment generating function is <span class="math display">\[M_Y(t)=E(e^{t'Y})=exp\{t'\mu+\frac{1}{2} t'\Sigma t \}\]</span></p></li>
+<li><p>A random vector <span class="math inline">\(Y\)</span> with variance-covariance matrix <span class="math inline">\(\Sigma\)</span> and mean vector <span class="math inline">\(\mu\)</span> has a <span class="math inline">\(N(\mu,\Sigma)\)</span> distribution if and only if <span class="math inline">\(a^TY\)</span> has a univariate distribution for every vector <span class="math inline">\(a\)</span>. In other words, a random vector has a multivariate normal distribution if and only if any linear combination of the components of <span class="math inline">\(Y\)</span> is normal.</p></li>
+</ol>
+<p>Before proving the equivalence of the above definitions, we need to review some properties of moment generating functions (mgf).</p>
+<ul>
+<li><p>The mgf of a random variable <span class="math inline">\(X\)</span> is defined as <span class="math inline">\(M_X(t)=E(e^{tX})\)</span>.</p></li>
+<li><p>For a random vector <span class="math inline">\(Y\)</span>, the mgf is defined as <span class="math inline">\(M_Y(t)=E(e^{t^TY})\)</span> where <span class="math inline">\(t\)</span> is a vector of the same dimension as <span class="math inline">\(Y\)</span>. Note that the mgf of a random vector is a function of a vector, not a scalar. For example, for a univariate random variable <span class="math inline">\(X\)</span>, the m</p></li>
+<li><p><strong>Theorem</strong>: Suppose that the moment-generating function of <span class="math inline">\((X_1,\cdots,X_n)^T\)</span> exists in some open set. Then these random variables are independent if and only if <span class="math inline">\(M(t_1,\cdots,t_n)=M_{X_1}(t_1)\cdots M_{X_n}(t_n)\)</span>.</p></li>
+</ul>
+<p>We say <span class="math inline">\(S\)</span> is an open set if for any <span class="math inline">\(x\in S\)</span>, there is a neighborhood of <span class="math inline">\(x\)</span> that is lying in the set.</p>
+<!--
+
+''A key result about mgf is that if $M_X(t)$ exists for all $||t||\le t_0$ ($t_0>0$, i.e., in an interval containing the origin), then it determines the distribution uniquely. Fortunately, most of the common distributions have mgf's, one important exception being the t-distribution (with some of its moments being infinite, including the Cauchy distribution with 1 degree of freedom)." If a distribution has mgf, then all the moments should exist. However, for a t-distribution with $n$ d.f., it can be shown that the moments only exist for orders below $n$. For this reason, mgf doesn't exist for t-distributions.
+-->
+<p><strong>Proof of Equivalence</strong></p>
+<p>The equivalence of the four definitions can be proved. We show <span class="math inline">\((1)\Rightarrow (4)\)</span> and <span class="math inline">\((4)\Rightarrow (3)\)</span>.</p>
+<p><strong>Proof</strong>:</p>
+<ul>
+<li><span class="math inline">\((1)\Rightarrow (4)\)</span>: If <span class="math inline">\(Y\sim N(\mu,\Sigma)\)</span>, then by definition (1), <span class="math inline">\(Y=AZ+\mu\)</span>.</li>
+</ul>
+<p>Therefore, <span class="math inline">\(a^TY=a^TAZ+a^T\mu=(a^TA)Z+a^T\mu\)</span> for any <span class="math inline">\(a\)</span>, which has a univariate normal distribution by definition (1).</p>
+<ul>
+<li><span class="math inline">\((4)\Rightarrow (3)\)</span>: If <span class="math inline">\(a^TY\)</span> has a univariate normal distribution for all <span class="math inline">\(a\)</span>, its mean is <span class="math inline">\(a^T\mu\)</span> and variance is <span class="math inline">\(a^T\Sigma a\)</span>. Then using for the formula for mgf of the univariate normal, we have <span class="math display">\[E\{exp[t(a^TY)]\}=exp[t(a^T\mu)+1/2t^2(a^T\Sigma a)\]</span> Let <span class="math inline">\(t=1\)</span> leading to <span class="math display">\[E\{exp[a^TY]\}=exp[a^T\mu+1/2a^T\Sigma a)]=M_Y(a),\]</span> i.e., the mgf of <span class="math inline">\(Y\)</span> by Definition (3).</li>
+</ul>
+<p>Note, the distribution of a random vector is completely determined by the set of all one-dimensional distributions of the linear combinations of the random vector and this is known as <strong>Cramer-Wold</strong> theorem.</p>
+</section>
+<section id="linear-transformations-of-mvn" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="linear-transformations-of-mvn"><span class="header-section-number">1.4</span> Linear transformations of MVN</h2>
+<p><strong>corollary</strong>. Suppose <span class="math inline">\(X\sim (\mu, \Sigma)\)</span>, then <span class="math inline">\(AX+B \sim (A\mu+B, A\Sigma A^T)\)</span></p>
+<p><strong>Proof</strong>.</p>
+<p><span class="math display">\[\begin{align*}
+E(AX+B) &amp;= AE(X)+B=A\mu+B\\
+Cov(AX+B) &amp;= Cov(AX)=E[(AX-E(AX))(AX-E(AX))^T]\\
+&amp;= E[(A(X-\mu)(X-\mu)^TA^T]\\
+&amp;= AE[(X-\mu)(X-\mu)^T]A^T=A\Sigma A^T.
+\end{align*}\]</span></p>
+<p><strong>Theorem</strong>. If <span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>, then <span class="math display">\[AY+c \sim  N(A\mu+\mu, A\Sigma A^T)\]</span> with <span class="math inline">\(dim(A)=r\times n\)</span></p>
+<p><strong>Proof</strong>.</p>
+<p>Hint: Either definition (1) or (3) can be used to prove the above result.</p>
+<p><strong>Corollary</strong>. If <span class="math inline">\(Y \sim N(\mu, \Sigma)\)</span> then every subset of elements of <span class="math inline">\(Y\)</span> is MVN.</p>
+<p><strong>Proof</strong>. WLOG consider the first <span class="math inline">\(r\)</span> elements of <span class="math inline">\(Y\)</span>, <span class="math inline">\(W=(Y_1,...,Y_r)^T\)</span>. Consider the partition of the mean vector and covariance matrix of <span class="math inline">\(Y\)</span> as follows:</p>
+<p><span class="math display">\[
+\mu=\begin{pmatrix}\mu_1\\\mu_2\end{pmatrix},
+\Sigma=
+\begin{pmatrix}
+\Sigma_{11} &amp; \Sigma_{12}\\
+\Sigma_{12} &amp; \Sigma_{22}\\
+\end{pmatrix}
+\]</span> where <span class="math inline">\(dim(\Sigma_{11})=r\times r\)</span>.</p>
+<p>Note that <span class="math inline">\(W=(I_r,0)Y\)</span>. So <span class="math inline">\(W\)</span> follows a MVN and the mean vector and covariance matrix of <span class="math inline">\(W\)</span> are</p>
+<p><span class="math display">\[E(W)=(I_r,0)\mu=\mu_1, Cov(W)=(I_r,0)\Sigma (I_r,0)^T=\Sigma_{11}\]</span></p>
+<strong>Theorem</strong>.
+<p>where <span class="math display">\[\Sigma=\begin{pmatrix}
+\Sigma_{11} &amp; \Sigma_{12}\\
+\Sigma_{21} &amp; \Sigma_{22} \end{pmatrix}
+\]</span> <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are independent iff <span class="math inline">\(\Sigma_{12}=0\)</span>.</p>
+<p><strong>Proof</strong>: If <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are independent, <span class="math inline">\(Cov(Y_1,Y_2)=\Sigma_{12}=0\)</span>.</p>
+<p>The other direction can be proved using moment generating function function and the factorization theorem. The m.g.f of <span class="math inline">\(Y\)</span> is <span class="math inline">\(exp(t^T\mu+1/2t^T\sigma t)\)</span>. Partition <span class="math inline">\(t\)</span> conformably with <span class="math inline">\(Y\)</span>. Then the exponent of the m.g.f. above is <span class="math display">\[t_1^T\mu_1 + t_2^T\mu_2 + 1/2t_1^T\Sigma_{11}t_1 + 1/2t_2^T\Sigma_{22}t_2 + t_1^T\Sigma_{12}t_2\]</span> If <span class="math inline">\(\Sigma_{12}=0\)</span>, the exponent can be written as a function of just <span class="math inline">\(t_1\)</span> plus a function of just <span class="math inline">\(t_2\)</span>, so the m.g.f. factorizes to a term in <span class="math inline">\(t_1\)</span> alone times a term in <span class="math inline">\(t_2\)</span> alone. This implies that <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are independent.</p>
+</section>
+<section id="conditional-distributions" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="conditional-distributions"><span class="header-section-number">1.5</span> Conditional distributions</h2>
+<p>We will derive the conditional distribution of <span class="math inline">\(Y_1|Y_2=v\)</span>. The first method is based on the definition of conditional distribution, i.e., we compute <span class="math inline">\(f(y_1,y_2)/f(y_2)\)</span>. The following inverse of partitioned matrix is useful. Let <span class="math display">\[\Sigma=
+\begin{pmatrix}
+\Sigma_{11} &amp; \Sigma_{12}\\
+\Sigma_{21} &amp; \Sigma_{22}
+\end{pmatrix}
+\]</span> Then <span class="math display">\[\Sigma^{-1}=
+\begin{pmatrix}
+\Sigma^{11} &amp; \Sigma^{12}\\
+\Sigma^{21} &amp; \Sigma^{22}
+\end{pmatrix}
+\]</span> where <span class="math display">\[\begin{eqnarray*}
+\Sigma^{11}&amp;=&amp;\Sigma_{11}^{-1}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21} \\
+\Sigma^{22}&amp;=&amp;\Sigma_{22}^{-1}-\Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12} \\
+\Sigma^{12}&amp;=&amp;-\Sigma_{11}^{-1}\Sigma_{12}\Sigma_{22}^{-1}\\
+\Sigma^{21}&amp;=&amp;-\Sigma_{22}^{-1}\Sigma_{21}\Sigma_{11}^{-1}
+\end{eqnarray*}\]</span></p>
+<p>This method is Another method, Let <span class="math display">\[A=
+\begin{pmatrix}
+I_p &amp; -\Sigma_{12}\Sigma_{22}^{-1}\\
+0 &amp; I_q
+\end{pmatrix}
+\]</span></p>
+<p>Then define <span class="math inline">\(X=AY\)</span>, we have <span class="math inline">\(X\sim N(A\mu, A\Sigma A^T)\)</span>. Note that <span class="math display">\[AY= \begin{pmatrix} Y_1-\Sigma_{12}\Sigma_{22}^{-1}Y_2\\ Y_2 \end{pmatrix} \]</span> <span class="math display">\[A\mu= \begin{pmatrix} \mu_1-\Sigma_{12}\Sigma_{22}^{-1}\mu_2\\ \mu_2 \end{pmatrix}\]</span></p>
+<p><span class="math display">\[A\Sigma A^T=
+\begin{pmatrix}
+\Sigma_{11} - \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21} &amp; 0\\
+\Sigma_{21} &amp; \Sigma_{22}
+\end{pmatrix}
+\begin{pmatrix}
+I_p &amp; -\Sigma_{12}\Sigma_{22}^{-1}\\
+0 &amp; I_q
+\end{pmatrix}=
+\begin{pmatrix}
+\Sigma_{11.2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21} &amp; 0 \\
+0 &amp; \Sigma_{22}
+\end{pmatrix}
+\]</span></p>
+<p>Hence <span class="math inline">\(Y_1-\Sigma_{12}\Sigma_{22}^{-1}Y_2\)</span> and <span class="math inline">\(Y_2\)</span> are independent. Therefore, <span class="math inline">\(\{Y_1-\Sigma_{12}\Sigma_{22}^{-1}v | Y_2=v\} \sim N_p (\mu_1-\Sigma_{12}\Sigma_{22}^{-1}\mu_2, \Sigma_{11.2} )\)</span>, i.e., <span class="math inline">\(\{Y_1|Y_2=v\}\sim N_p(\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(v-\mu_2), \Sigma_{11.2} )\)</span></p>
+<p>The matrix <span class="math inline">\(\Sigma_{11.2}\)</span> is called the ’’partial covariance matrix of <span class="math inline">\(Y_1\)</span> adjusted for <span class="math inline">\(Y_2\)</span>. It is the covariance matrix for the residuals of the regression of <span class="math inline">\(y_1\)</span> on <span class="math inline">\(y_2\)</span>, conditional on the values of <span class="math inline">\(y_2\)</span>. The partial correlation matrix is obtained by standardizing the covariances by the appropriate standard deviations, i.e., <span class="math display">\[\rho_{ij.2}=\frac{\sigma_{ij.2}}{\sqrt{\sigma_{ii.2}}\sqrt{\sigma_{jj.2}}}\]</span> Note that the conditional mean <span class="math inline">\(E(Y_1|Y_2=v)=\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(v-\mu_2)\)</span> is called the “best linear regression of <span class="math inline">\(y_1\)</span> on <span class="math inline">\(y_2\)</span>”.</p>
+<p><strong>Multiple Correlation</strong>: Here we define the correlation between a scalar variable, say <span class="math inline">\(y_1\)</span>, and a vector, say <span class="math inline">\(y_2\)</span>, with the above type partitioning for the mean vector and covariance matrix, but without the assumption of normality. Let <span class="math inline">\(a\in R^{k-1}\)</span> be a fixed vector. For convenience, let <span class="math inline">\(a=(a_2,\cdots,a_k)^T\)</span>. Then consider the correlation between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(a^Ty_2\)</span>: <span class="math display">\[\rho(a)=corr(y_1,a^Ty_2)=\frac{cov(y_1,a^Ty_2)}{\sqrt{\sigma_{11}}\sqrt{a^T\Sigma_{22}a}}=
+\frac{\sum_{i=2}^ka_icov(y_1,y_i)}{\sqrt{\sigma_{11}}\sqrt{a^T\Sigma_{22}a}}\
+=\frac{a^T\Sigma_{21}}{\sqrt{\sigma_{11}}\sqrt{a^T\Sigma_{22}a}}
+\]</span> The multiple correlation between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> is defined as the maximum value of <span class="math inline">\(\rho(a)\)</span> over <span class="math inline">\(a\)</span>. Note that <span class="math display">\[\rho_{max}=max_{a}\frac{a^T\Sigma_{21}\Sigma_{12}a}{\sigma_{11}a^T\Sigma_{22}a}\]</span> Use Theorem~<span class="math inline">\(\ref{maxcorr}\)</span>, we have <span class="math display">\[\rho_{max}=\frac{\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}}{\sigma_{11}}\]</span> And <span class="math inline">\(\rho_{max}\)</span> is attained when <span class="math inline">\(a=\Sigma_{22}^{-1}\Sigma_{21}\)</span>.</p>
+<p><strong>corollary</strong>. If <span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span>. Then <span class="math inline">\(AY\)</span> and <span class="math inline">\(BY\)</span> are independent iff <span class="math inline">\(A\Sigma B^T =0\)</span></p>
+<p><strong>proposition</strong>. If <span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span> and <span class="math inline">\(U=AY\)</span> and <span class="math inline">\(V=BY\)</span>, then if <span class="math inline">\(A\Sigma B =0\)</span></p>
+<ol type="a">
+<li><span class="math inline">\(U\)</span> is independent of <span class="math inline">\(V\)</span></li>
+<li><span class="math inline">\(U\)</span> is independent of <span class="math inline">\(V^TV\)</span> (think about <span class="math inline">\(Y\)</span> and <span class="math inline">\(S^2\)</span>)</li>
+<li><span class="math inline">\(U^TU\)</span> is independent of <span class="math inline">\(V^TV\)</span></li>
+</ol>
+<p><strong>proof</strong></p>
+<ol type="a">
+<li>follows direction from the two propositions we just proved. (b) and (c) are true because if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(g(X)\)</span> and <span class="math inline">\(h(Y)\)</span> are also independent.</li>
+</ol>
+<p><strong>Lemma</strong>. If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(g(X)\)</span> and <span class="math inline">\(h(Y)\)</span> are also independent</p>
+<p><strong>Proof</strong>: Consider the MGF of the vector <span class="math inline">\(g(X), h(Y)\)</span> <span class="math display">\[\begin{align*}
+    M_{(g(X), h(Y))}(t_1, t_2)&amp;=\iint Exp\{ t_1g(x) + t_2 g(y)\}f(x,y)dxdy\\
+    &amp;\overset{X\perp Y}= \iint Exp\{ t_1g(x) + t_2 g(y)\}f_X(x)f_Y(y)dxdy\\
+    &amp;= \iint Exp\{ t_1g(x)\}Exp\{ t_2 g(y)\}f_X(x)f_Y(y)dxdy\\
+    &amp;\int Exp\{ t_1g(x)\} f_X(x) dx  \int Exp\{ t_2 g(y)\} dy\\
+    &amp;=M_{g(X)}(t_1) M_{h(Y)}(t2)
+\end{align*}\]</span> which implies independence.</p>
+<p>Note, if <span class="math inline">\(\Sigma=I\)</span>, the condition becomes <span class="math inline">\(AB=0\)</span></p>
+<p><strong>example</strong>. Let <span class="math inline">\(Y \sim N(\mu, \sigma^2 I_n)\)</span>, let <span class="math inline">\(1_n\)</span> be an n-vector of 1’s, and let <span class="math inline">\(J_n=1_n1_n^{'}\)</span>. Then the sample mean <span class="math inline">\(\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i\)</span> is independent of of the sample variance <span class="math inline">\(S^2=\frac{1}{n-1}\sum_{i}(Y-\bar{Y})^2\)</span>. This is because <span class="math display">\[\bar{Y}=n^{-1}1_n^{'}Y\]</span> <span class="math display">\[S^2=\frac{1}{n-1}(Y-1_n\bar{Y})^T(Y-1_n\bar{Y})=\frac{1}{n-1}Y^T(I_n-n^{-1}J_n)^T(I_n-n^{-1}J_n)Y\]</span> <span class="math inline">\(1_n^{'}(I_n-n^{-1}J_n)^T=0\)</span>.</p>
+<p><strong>example</strong>. <span class="math inline">\(Y=X\beta+\epsilon\)</span>, where <span class="math inline">\(\epsilon\sim N(0,\sigma^2)\)</span>. Let <span class="math inline">\(\hat Y=X\hat \beta\)</span>. Then <span class="math inline">\(Y-\hat Y\)</span> and <span class="math inline">\(\hat Y\)</span> are indep. This is true, as <span class="math display">\[\hat Y= X\hat \beta = P_X Y\]</span> and <span class="math display">\[Y-\hat Y=(I-P_X)Y\]</span></p>
+<p>Similarly, you can show that the <span class="math inline">\(\hat Y_G\)</span> and <span class="math inline">\(Y-\hat Y_G\)</span> are indep for <span class="math inline">\(Y=X\beta +\epsilon\)</span>, where <span class="math inline">\(\epsilon \sim N(0, \Sigma)\)</span>.</p>
+</section>
+</section>
+<section id="chi-square-distributions-and-quadratic-forms" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Chi-Square Distributions and Quadratic Forms</h1>
+<section id="chi-square-distributions" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="chi-square-distributions"><span class="header-section-number">2.1</span> Chi-Square Distributions</h2>
+<p><strong>definition</strong>. Let <span class="math inline">\(X=\sum_{i=1}^p Z_i^2=Z^{;}Z\)</span>, where <span class="math inline">\(Z_i \overset{iid} \sim N(0,1)\)</span> (e.q.t <span class="math inline">\(Z\sim N(0, I_p)\)</span>), then <span class="math inline">\(X\sim \chi_p^2\)</span>.</p>
+<ul>
+<li>pdf <span class="math display">\[f(x;p)=\frac{1}{2^{p/2}\Gamma (p/2)} x^{p/2-1}e^{-x/2}\]</span> Note: <span class="math inline">\(\chi_p^2=Gamma(p/2,2)\)</span>, where <span class="math inline">\(p/2\)</span> and <span class="math inline">\(2\)</span> are the shape and scale parameters, respectively.</li>
+</ul>
+<p>Recall that <span class="math inline">\(Y\sim Gamma(k,\theta)\)</span>, then <span class="math inline">\(f_Y(y)=\frac{y^{k-1}e^{-y/\theta}}{\Gamma (k) \theta^{k}}\)</span></p>
+<ul>
+<li>mgf: <span class="math inline">\((1-2t)^{-p/2}\)</span>. The mgf for Gamma distribution can be calculated easily.</li>
+</ul>
+<p><strong>Definition</strong>. Let <span class="math inline">\(X=\sum_{i=1}^pZ_i^2\)</span>, where <span class="math inline">\(Z_i\)</span> independent and <span class="math inline">\(Z_i \sim N(\mu_i,1)\)</span>. Then <span class="math display">\[X\sim \chi_p^2(\lambda=\sum_{i=1}^p\mu_i^2)\]</span></p>
+<p> <span class="math display">\[f(x;p,\lambda)=\sum_{k=0}^\infty \frac{e^{-\lambda/2}(\lambda/2)^k}{k!}f_{n+2k}(x)\]</span></p>
+<p>It can be shown that if</p>
+<ul>
+<li><span class="math inline">\(K\sim Poisson(\lambda/2)\)</span></li>
+<li><span class="math inline">\(X|K\sim \chi_{p+2k}^2\)</span></li>
+</ul>
+<p>then <span class="math inline">\(X\sim \chi_{p}^2(\lambda)\)</span>.</p>
+<p>[A homework problem.] Suppose <span class="math inline">\(K\sim Poisson(\lambda/2)\)</span> and <span class="math inline">\(X|K \sim \chi_{p+2k}^2\)</span>. Show that <span class="math inline">\(X\sim \chi_p^2 (\lambda)\)</span>. Hint: Let <span class="math inline">\(Z_i\)</span>’s be independent and <span class="math inline">\(Z_i\sim N(\mu_i,1)\)</span>. Compute the mgf of <span class="math inline">\(Z_i^2\)</span> then the mgf of <span class="math inline">\(\sum Z_i^2\)</span>. By doing this, you obtain the mgf for a non-central chi-square distribution with <span class="math inline">\(p\)</span> df and <span class="math inline">\(\lambda=\sum \mu_i^2\)</span>. Next compute the mgf of <span class="math inline">\(X\)</span> and compare it to that of <span class="math inline">\(\chi_p^2(\lambda)\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>Let <span class="math inline">\(Z_i \sim N(\mu_i, 1)\)</span> and suppose that <span class="math inline">\(Z_i\)</span>’s are independent. Thus <span class="math display">\[\begin{align*}
+M_{Z_i^2}(t)&amp;= E[exp(tZ_i^2)]=\int \frac{1}{\sqrt{2\pi}} exp\{tz_i^2 - \frac{z_i^2-2\mu_i z_i + \mu_i^2}{2}\}dz_i\\
+&amp;= \int \frac{1}{\sqrt{2\pi}} exp\{-\frac{(1-2t)(z_i-\mu_i/(1-2t))^2 +\mu_i^2 -\mu_i^2/(1-2t)}{2} \} dz_i\\
+&amp;= e^{\frac{t\mu_i^2}{1-2t}} (1-2t)^{-1/2}\int \frac{1}{\sqrt{2\pi}}(1-2t)^{1/2} exp\{-\frac{(1-2t)(z_i-\mu_i/(1-2t))^2}{2} \} dz_i\\
+&amp;= e^{\frac{t\mu_i^2}{1-2t}}(1-2t)^{-1/2}
+\end{align*}\]</span></p>
+<p>Because <span class="math inline">\(Z_i\)</span>’s are independent, the mgf of the sum is <span class="math inline">\(e^{\frac{t\sum \mu_i^2}{1-2t}}(1-2t)^{-1/2}\)</span>. Let <span class="math inline">\(\lambda=\sum \mu_i^2\)</span>. By the definition of <span class="math inline">\(\chi_p^2(\lambda)\)</span>, <span class="math inline">\(\sum Z_i^2\)</span> follows <span class="math inline">\(\chi_p^2(\lambda)\)</span> and the corresponding mgf is <span class="math inline">\(e^{\frac{t\sum \mu_i^2}{1-2t}}(1-2t)^{-p/2}\)</span>.</p>
+<p>Next we compute the mgf of <span class="math inline">\(X\)</span>. <span class="math display">\[\begin{align*}
+M_X(t) &amp;= E[e^{tX}]=E[E[e^{tX}]|K]=E[(1-2t)^{-\frac{p}{2}-k}]\\
+&amp;= (1-2t)^{-p/2}\sum_{k=0}^{\infty} (1-2t)^{-k}\frac{e^{-\lambda/2}(\lambda/2)^k}{k!}\\
+&amp;= (1-2t)^{-p/2}e^{-\frac{\lambda}{2}+\frac{\lambda}{2(1-2t)}} \sum_{K=0}^{\infty} (1-2t)^{-k}\frac{e^{-\lambda/[2(1-2t)]}(\lambda/[2(1-2t)])^k}{k!}\\
+&amp;= (1-2t)^{-p/2}e^{\frac{\lambda t}{1-2t}}
+\end{align*}\]</span></p>
+<p>This shows the the mgf of <span class="math inline">\(X\)</span> is the same as that of <span class="math inline">\(\chi_p^2(\lambda)\)</span>, which implies that <span class="math inline">\(X\sim \chi_p^2(\lambda)\)</span>.</p>
+</section>
+<section id="quadratic-forms" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="quadratic-forms"><span class="header-section-number">2.2</span> Quadratic Forms</h2>
+<p>Recall two properties of symmetric matrix:</p>
+<p>1 If <span class="math inline">\(A\)</span> is symmetric, then <span class="math inline">\(Rank(A)\)</span> is equal to the number of nonzero eigenvalues of <span class="math inline">\(A\)</span>. 2 If <span class="math inline">\(A\)</span> is symmetric of rank <span class="math inline">\(r\)</span>, then <span class="math inline">\(AA=A\)</span> (i.e., <span class="math inline">\(A\)</span> is idempotent) IFF <span class="math inline">\(A\)</span> has <span class="math inline">\(r\)</span> eigenvalues equal to 1 and <span class="math inline">\(n-r\)</span> eigenvalues equal to 0.</p>
+<p><strong>Proof</strong>. By the spectral decomposition of a symmetric matrix, <span class="math inline">\(\exists\)</span> orthogonal matrix <span class="math inline">\(T\)</span> s.t. <span class="math inline">\(A=T\Lambda T^{'}\)</span> where <span class="math inline">\(\Lambda\)</span> is diagonal and the diagonal elements are the eigenvalues of <span class="math inline">\(A\)</span>. <span class="math inline">\(rank(A)=rank(T\Lambda T^{'})=rank(\Lambda)\)</span>=number of nonzero eigenvalues.</p>
+<p><strong>Proof</strong>.Suppose the <span class="math inline">\(A\)</span> is symmetric of rank <span class="math inline">\(r\)</span>. <span class="math inline">\(\Rightarrow\)</span>: suppose that <span class="math inline">\(A\)</span> is idempotent. Then <span class="math inline">\(Ax=\lambda x\)</span> for <span class="math inline">\(x\)</span> nonzero implies that <span class="math display">\[\begin{align*}
+\lambda x^Tx &amp;= x^TAx\\
+&amp;= x^T A^2 x\\
+&amp;= (Ax)^T(Ax)\\
+&amp;= \lambda ^2 x^Tx\\
+&amp;\rightarrow \lambda(\lambda-1)=0
+\end{align*}\]</span> This proves that the eigenvalues of an idempotent matrix is either 0 or 1. By the previous Lemma, <span class="math inline">\(r\)</span> of the eigenvalues equal to 1 and <span class="math inline">\(n-r\)</span> equal to 0.</p>
+<p><span class="math inline">\(\Leftarrow\)</span>: WLOG, we assume the first <span class="math inline">\(r\)</span> eigenvalues of <span class="math inline">\(A\)</span> are 1 and the remaining are 0. By the principle axis theorem (Seber A.1.4) <span class="math inline">\(\exists\)</span> an orthogonal matrix <span class="math inline">\(T\)</span> s.t. <span class="math display">\[T^TAT=\Lambda=
+\begin{pmatrix}
+I_r &amp; 0\\
+0 &amp; 0
+\end{pmatrix}
+\]</span> which is equivalent to <span class="math inline">\(A=T\Lambda T^T\)</span>. Therefore, <span class="math display">\[A^2=T\Lambda T^T T \Lambda T^T = T \Lambda^2 T^T=A.\]</span></p>
+<p>Note: a symmetric idempotent matrix is called a projection matrix.</p>
+<div id="thm-quadchi" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1</strong></span> If <span class="math inline">\(Y\sim N(\mu, I_p)\)</span> and <span class="math inline">\(A\)</span> is a <span class="math inline">\(p\times p\)</span> symmetric matrix of rank <span class="math inline">\(r\)</span>, then <span class="math display">\[Q=(Y-\mu)^TA(Y-\mu)\sim \chi_r^2\]</span> IFF <span class="math inline">\(A\)</span> is idempotent.</p>
+</div>
+<p><strong>Proof</strong>. (idempotenet <span class="math inline">\(\Rightarrow \chi_r^2\)</span> )</p>
+<p>Let <span class="math inline">\(A\)</span> denote a symmetric matrix of rank <span class="math inline">\(r\)</span> and idempotent. By the spectral decomposition, <span class="math inline">\(\exists\)</span> an orthogonal matrix <span class="math inline">\(T\)</span> s.t. <span class="math display">\[T^TAT=\Lambda=diag(\lambda_1,\cdots,\lambda_n)=
+\begin{pmatrix}
+I_r &amp; 0\\
+0 &amp; 0
+\end{pmatrix}
+\]</span> Then <span class="math inline">\(Z=T^T(Y-\mu)\sim N(0,I_r)\)</span> and <span class="math display">\[\begin{align*}
+Q &amp;= (Y-\mu)^TA(Y-\mu)\\
+&amp;= [T^T(Y-\mu)]^{T} \Lambda [T^T(Y-\mu)]\\
+&amp;= Z^T\Lambda Z\\
+&amp;= \sum_{i=1}^rZ_i^2 \sim \chi_r^2
+\end{align*}\]</span></p>
+<p>The opposite is also true (<span class="math inline">\(\chi_r^2\Rightarrow\)</span> idempotent). Now assume <span class="math inline">\(Q\)</span> follows <span class="math inline">\(\chi_r^2\)</span>. <span class="math display">\[Q=Y^T T\Lambda T^T Y =\sum_i \lambda_i Z_i^2\]</span> where <span class="math inline">\(Z_i \overset{iid}\sim N(0,1)\)</span>. Recall that <span class="math inline">\(m.g.f(Z_i^2)=(1-2t)^{-1/2}\)</span>. Thus <span class="math inline">\(mgf(Q)=\prod_{i=1}^p (1-2\lambda_it)^{-1/2}=(1-2t)^{-r/2}\)</span>. By the unique factorization of polynomials, <span class="math inline">\(r\)</span> of the eigenvalues are 1 and the rest are zero.</p>
+<p><strong>Example</strong>. Suppose <span class="math inline">\(Y_i\overset{iid}\sim N(\mu,\sigma^2)\)</span>. Then <span class="math inline">\(\bar Y\sim N(\mu, \sigma^2/n)\)</span> and <span class="math display">\[\frac{(n-1)s^2}{\sigma^2} = \frac{(Y-\bar{Y})^T(Y-\bar{Y})}{\sigma^2}\sim \frac{}{}\chi_{n-1}^2\]</span> <strong>Proof</strong>. Consider <span class="math inline">\(A=I_n-\frac{1}{n}1_n1_n^T\)</span>. It is easy to verify that <span class="math inline">\(A\)</span> is symmetric and idempotent. Because <span class="math inline">\(A\)</span> is symmetric and idempotent, by Seber A.6.2, <span class="math inline">\(Rank(A)=tr(A)=n-1\)</span>. In addition, <span class="math display">\[A(Y-\mu)=A(Y-1_n\mu)=AY-A1_n\mu=AY-(I_n1_n-\frac{1}{n}1_n1_n^{'}1_n)\mu=AY\]</span> Therefore, <span class="math display">\[\frac{(n-1)s^2}{\sigma^2}=\frac{(AY)^{T}AY}{\sigma^2}=\frac{(Y-\mu)^T A^TA(Y-\mu)}{\sigma^2}=\frac{(Y-\mu)^TA(Y-\mu)}{\sigma^2}\]</span>.</p>
+<p>By Theorem~<span class="math inline">\(\ref{QuadChi}\)</span>, <span class="math inline">\((n-1)s^2/\sigma^2\sim \chi_{n-1}^2.\)</span></p>
+<p><strong>Example</strong>. Suppose that <span class="math inline">\(A\)</span> is symmetric and <span class="math inline">\(Y\sim N(0, I_n)\)</span>. Then if <span class="math inline">\(Y^TAY\sim \chi_r^2\)</span>, then <span class="math inline">\(Y^T(I_n-A)Y\sim \chi_{n-r}^2\)</span>.</p>
+<p><strong>Proof</strong>. This follows from the fact that if <span class="math inline">\(A\)</span> is idempotent of rank <span class="math inline">\(r\)</span>, then <span class="math inline">\(I_n-A\)</span> is idempotent with rank <span class="math inline">\(n-r\)</span>.</p>
+<p><strong>Theorem</strong>. If <span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span> with <span class="math inline">\(Rank(\Sigma)=n\)</span> (full rank), then <span class="math display">\[Q=(Y-\mu)^T\Sigma^{-1}(Y-\mu)\sim \chi _n^2\]</span></p>
+<p><strong>Proof</strong>. Let <span class="math inline">\(Z=\Sigma^{-1/2}(Y-\mu)\)</span>, then <span class="math inline">\(Z\sim N(0,I)\)</span>. We have <span class="math display">\[Q=Z^TZ\sim \chi_n^2\]</span></p>
+<p><strong>Theorem</strong>. Suppose that <span class="math inline">\(Y \sim N(0,\Sigma)\)</span>, and <span class="math inline">\(A\)</span> is a symmetric matrix. Then <span class="math inline">\(Y^TAY\)</span> is <span class="math inline">\(\chi_r^2\)</span> if and only if <span class="math inline">\(r\)</span> of the eigenvalues of <span class="math inline">\(A\Sigma\)</span> are 1 and the rest are zero.</p>
+<p><strong>Proof</strong>. Because <span class="math inline">\(\Sigma\ge0\)</span>, it can be written as <span class="math inline">\(\Sigma=RR^T\)</span> (by spectral decomposition of a symmetric matrix and the fact that the eigenvalues of a p.s.d matrix is nonnegative).</p>
+<p>Suppose <span class="math inline">\(Y^TAY\sim \chi_r^2\)</span>, then <span class="math inline">\(Z^TR^TARZ\sim \chi_r^2\)</span>, which implies that <span class="math inline">\(R^TAR\)</span> is symmetric and idempotent with <span class="math inline">\(r\)</span> of its eigenvalues equal to 1 and <span class="math inline">\(n-r\)</span> equal to 0. Thus, <span class="math display">\[r=rank(R^TAR)=tr(R^TAR)=tr(ARR^T)=tr(A\Sigma)\]</span> We also know that <span class="math inline">\(R^TAR\)</span> and <span class="math inline">\(ARR^T=A\Sigma\)</span> have the same eigenvalues. Therefore, the eigenvalues of <span class="math inline">\(A\Sigma\)</span> are either 1 or 0. Because the rank is <span class="math inline">\(r\)</span>, exactly <span class="math inline">\(r\)</span> of its eigenvalues are 1.</p>
+<p>The converse argument is just the reverse of the one above.</p>
+<p><strong>corollary</strong>. Let <span class="math inline">\(Y\sim N(0, \Sigma)\)</span>, where <span class="math inline">\(\Sigma\)</span> is p.d., and suppose that <span class="math inline">\(A\)</span> is symmetric. Then <span class="math inline">\(Y^TAY\sim \chi_r^2\)</span> if and only if <span class="math inline">\(A\Sigma\)</span> is idempotent and has rank <span class="math inline">\(r\)</span>.</p>
+<p>Here is the difference between the above theorem and corollary: for nonsymmetric matrices, idempotence implies that the eigenvalues are zero or 1, but the converse is not true.</p>
+<p>When <span class="math inline">\(\Sigma\)</span> (hence <span class="math inline">\(R\)</span>) has full rank, the fact that <span class="math inline">\(R^TAR\)</span> is idempotent implies that <span class="math inline">\(A\Sigma\)</span> is idempotent. This is because the equation <span class="math display">\[T^TARR^TAR=R^TAR\]</span> can be multiplied by <span class="math inline">\((R^T)^{-1}\)</span> and postmultiplied by <span class="math inline">\(R^T\)</span> to give <span class="math display">\[A\Sigma A\Sigma=A\Sigma\]</span></p>
+<p>If <span class="math inline">\(Y\sim N(\mu, \Sigma)\)</span> with <span class="math inline">\(Rank(\Sigma)=n\)</span>, then <span class="math display">\[Y^T\Sigma^{-1}Y\sim \chi_n^2 (\lambda=\mu^T\Sigma^{-1}\mu)\]</span> where <span class="math inline">\(\chi_n^2(\lambda)\)</span> denotes the non-central chi-squared distribution with <span class="math inline">\(n\)</span> d.f. and non-centrality parameter <span class="math inline">\(\lambda\)</span>.</p>
+<p>Note, <span class="math inline">\(E[Y^T\Sigma^{-1}Y]=tr(\Sigma\Sigma^{-1})+\mu^T\Sigma^{-1}\mu=n+\mu^T
+\Sigma^{-1}\mu\)</span>. The power of various statistical tests of hypotheses depends on the noncentrality parameter.</p>
+<p><strong>Theorem</strong>. If <span class="math inline">\(Y\sim (\mu,\Sigma)\)</span>, then <span class="math inline">\(E[Y^TAY]=tr(A\Sigma)+\mu^TA\mu\)</span>.</p>
+<p><strong>Proof</strong>. <span class="math display">\[\begin{align*}
+E[Y^TAY] &amp;= E[tr(Y^TAY)]=E(tr[AYY^T]) \\
+&amp;= tr(A E[YY^T]) = tr(A [\Sigma + \mu\mu^T]) \\
+&amp;= tr(A\Sigma) + tr(A\mu\mu^T)= tr(A\Sigma)+tr(\mu^TA\mu) \\
+&amp;= tr(A\Sigma) + \mu^TA\mu
+\end{align*}\]</span></p>
+<p><strong>Example</strong>. <span class="math inline">\(X_1,\cdots,X_n \sim_{iid} N(\mu, \sigma^2)\)</span>. We will compute the expectation of <span class="math display">\[Q(X)=X_1^2+2X_2^2+\cdots+X_{n-1}^2+X_n^2=(X_1-X_2)^2 + \cdots + (X_{n-1}-X_{n})^2\]</span> To compute <span class="math inline">\(E[Q(X)]\)</span>, we write <span class="math inline">\(Q(X)\)</span> as a quadratic form <span class="math inline">\(Q(X)=X^TAX\)</span>, with <span class="math display">\[A=
+\begin{pmatrix}
+1 &amp; -1 &amp; 0  &amp; 0  &amp; 0 &amp; \cdots\\
+-1&amp;  2 &amp; -1 &amp; 0  &amp; 0 &amp; \cdots\\
+0 &amp; -1 &amp; 2  &amp; -1 &amp; 0 &amp; \cdots\\
+\cdots &amp;&amp;&amp;&amp;&amp; \cdots
+\end{pmatrix}\]</span> Then <span class="math inline">\(E[Q(X)]=tr(A)\sigma^2+\mu^TA\mu=(2n-2)\sigma^2+(\mu-\mu)^2+...+(\mu-\mu)^2=(2n-2)\sigma^2\)</span></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zhaoxia Yu">
 
-<title>Assignments – STAT200C — Theory of Linear Models</title>
+<title>STAT200C Assignment 2 – STAT200C — Theory of Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -96,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Lecture Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../assignments/index.html" aria-current="page"> 
+    <a class="nav-link" href="../assignments/index.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
@@ -114,21 +144,34 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-i" id="toc-part-i" class="nav-link active" data-scroll-target="#part-i">Part I</a></li>
+  <li><a href="#part-ii" id="toc-part-ii" class="nav-link" data-scroll-target="#part-ii">Part II</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignments</h1>
+<h1 class="title">STAT200C Assignment 2</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zhaoxia Yu </p>
+          </div>
+  </div>
     
   
     
@@ -139,13 +182,91 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This material is for the use of the students enrolled in the course. It is protected by United States copyright law [Title 17, U.S. Code]. It should not be distributed without written permission from the instructor Zhaoxia Yu. In particular, please do not upload it to online “resource” websites such as www.coursehero.com.</p>
+<section id="part-i" class="level1">
+<h1>Part I</h1>
+<ol type="1">
+<li>Show that</li>
+</ol>
+<p><span class="math display">\[
+\|Y - \hat{Y}_H\|^2 - \|Y - \hat{Y}\|^2
+= \sigma^2 \hat{\lambda}_H^T
+\left(\operatorname{var}[\hat{\lambda}_H]\right)^{-1}
+\hat{\lambda}_H,
+\]</span></p>
+<p>where the notations and assumptions were provided in a STAT200C lecture.</p>
+<ol start="2" type="1">
+<li><p>Let <span class="math inline">\(\hat{\beta}_H\)</span> be the LSE subject to the linear restriction <span class="math inline">\(A\beta = c\)</span> in the linear model <span class="math inline">\(Y = X\beta + \epsilon\)</span> with <span class="math inline">\(\epsilon \sim (0, \sigma^2 I)\)</span>. Suppose that both <span class="math inline">\(A\)</span> and <span class="math inline">\(X\)</span> have column full rank.</p>
+<ol type="a">
+<li><p>Give the mean and covariance matrix of <span class="math inline">\(\hat{\beta}_H\)</span>.</p></li>
+<li><p>Show that</p></li>
+</ol></li>
+</ol>
+<p><span class="math display">\[
+\operatorname{Cov}(\hat{\beta}) - \operatorname{Cov}(\hat{\beta}_H)
+\]</span></p>
+<p>is positive semidefinite, which implies that</p>
+<p><span class="math display">\[
+\operatorname{Var}(\hat{\beta}_i) \geq \operatorname{Var}(\hat{\beta}_{H_i}),
+\qquad i = 1, \ldots, p.
+\]</span></p>
+<ol start="3" type="1">
+<li><strong>Adding covariates.</strong> Let <span class="math inline">\(\hat{\beta}_{old}\)</span> be the LSE from <span class="math inline">\(Y = X\beta + \epsilon\)</span>. Let</li>
+</ol>
+<p><span class="math display">\[
+\begin{pmatrix}
+\hat{\beta} \\
+\hat{\gamma}
+\end{pmatrix}
+\]</span></p>
+<p>be the LSE from <span class="math inline">\(Y = X\beta + Z\gamma + \epsilon\)</span>. Here both <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> have full ranks, and the columns of <span class="math inline">\(X\)</span> and the columns of <span class="math inline">\(Z\)</span> are linearly independent. Use the inverse of a partitioned matrix formula to show that</p>
+<p><span class="math display">\[
+\hat{\gamma} = (Z^T R Z)^{-1} Z^T RY,
+\qquad \text{where } R = I - P_X,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\hat{\beta}
+= \hat{\beta}_{old} - (X^T X)^{-1} X^T Z \hat{\gamma}.
+\]</span></p>
+<p>Hint: Let <span class="math inline">\(W = (X, Z)\)</span>. The following inverse of a partitioned matrix can be used to find <span class="math inline">\((W^T W)^{-1}\)</span>:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+A_{11} &amp; A_{12} \\
+A_{21} &amp; A_{22}
+\end{pmatrix}^{-1}
+=
+\begin{pmatrix}
+A^{11} &amp; A^{12} \\
+A^{21} &amp; A^{22}
+\end{pmatrix}
+=
+\begin{pmatrix}
+A_{11}^{-1} + B_{12} B_{22}^{-1} B_{21} &amp; - B_{12} B_{22}^{-1} \\
+- B_{22}^{-1} B_{21} &amp; B_{22}^{-1}
+\end{pmatrix},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+B_{22} = A_{22} - A_{21} A_{11}^{-1} A_{12},
+\qquad
+B_{12} = A_{11}^{-1} A_{12},
+\qquad
+B_{21} = A_{21} A_{11}^{-1}.
+\]</span></p>
+</section>
+<section id="part-ii" class="level1">
+<h1>Part II</h1>
+<p><strong>Part II of Assignment 2: due on Monday in week 10.</strong> Use the add-one-covariate-at-a-time method we discussed in class to write a function for computing the LSE.</p>
 <ul>
-<li><p><a href="../assignments/stat200c_assignment0.html">STAT200C Assignment 0: Due on Friday, April 10, 2026</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment1.html">STAT200C Assignment 1: Due on Friday, April 24, 2026</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment2.html">STAT200C Assignment 2: Part I is due on Monday, May 4, 2026; Part II is due on the Monday in week 10</a></p></li>
+<li><p>Please remember that you <strong>cannot</strong> use any function or package that gives you the inverse of a matrix.</p></li>
+<li><p>Include an intercept term in the model.</p></li>
+<li><p>You can assume that the design matrix is full rank, meaning all columns are linearly independent.</p></li>
+<li><p>Please include your code and an application to a real or simulated data set.</p></li>
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
