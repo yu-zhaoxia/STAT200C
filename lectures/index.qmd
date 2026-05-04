@@ -7,3 +7,5 @@ format: html
 - [1 — Review of Linear Algebra](01-linear-algebra-review.qmd)
   - [A note on projection matrices (and an AI attempt to create visualizations)](ProjectoinMatrices.qmd)
 - [2 — Least Squares Estimates: Moments and Computatoin](02-LSE-Moments-Computation.qmd)
+
+- [3 — Multivariate Normal Distribution and Quadratic Forms ](03-MVN-QuadraticForms.qmd)
