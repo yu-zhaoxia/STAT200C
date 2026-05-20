@@ -182,7 +182,6 @@ window.Quarto = {
 </header>
 
 
-<p>THIS IS A DRAFT. IT WILL BE POLISHED.</p>
 <section id="multivariate-normal-distribution" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Multivariate Normal Distribution</h1>
 <section id="univariate-normal-distribution" class="level2" data-number="1.1">
@@ -505,10 +504,10 @@ Q &amp;= (Y-\mu)^TA(Y-\mu)\\
 &amp;= Z^T\Lambda Z\\
 &amp;= \sum_{i=1}^rZ_i^2 \sim \chi_r^2
 \end{align*}\]</span></p>
-<p>The opposite is also true (<span class="math inline">\(\chi_r^2\Rightarrow\)</span> idempotent). Now assume <span class="math inline">\(Q\)</span> follows <span class="math inline">\(\chi_r^2\)</span>. <span class="math display">\[Q=Y^T T\Lambda T^T Y =\sum_i \lambda_i Z_i^2\]</span> where <span class="math inline">\(Z_i \overset{iid}\sim N(0,1)\)</span>. Recall that <span class="math inline">\(m.g.f(Z_i^2)=(1-2t)^{-1/2}\)</span>. Thus <span class="math inline">\(mgf(Q)=\prod_{i=1}^p (1-2\lambda_it)^{-1/2}=(1-2t)^{-r/2}\)</span>. By the unique factorization of polynomials, <span class="math inline">\(r\)</span> of the eigenvalues are 1 and the rest are zero.</p>
+<p>The opposite is also true (<span class="math inline">\(\chi_r^2\Rightarrow\)</span> idempotent). Now assume <span class="math inline">\(Q\)</span> follows <span class="math inline">\(\chi_r^2\)</span>. <span class="math display">\[Q=Y^T T\Lambda T^T Y =\sum_i \lambda_i Z_i^2\]</span> where <span class="math inline">\(Z_i \overset{iid}\sim N(0,1)\)</span>. Recall that <span class="math inline">\(M_{Z_i^2}(t)=(1-2t)^{-1/2}\)</span>. Thus <span class="math inline">\(M_Q(t)=\prod_{i=1}^p (1-2\lambda_it)^{-1/2}=(1-2t)^{-r/2}\)</span>. By the unique factorization of polynomials, <span class="math inline">\(r\)</span> of the eigenvalues are 1 and the rest are zero.</p>
 </div>
 <div class="example">
-<p>Suppose <span class="math inline">\(Y_i\overset{iid}\sim N(\mu,\sigma^2)\)</span>. Then <span class="math inline">\(\bar Y\sim N(\mu, \sigma^2/n)\)</span> and <span class="math display">\[\frac{(n-1)s^2}{\sigma^2} = \frac{(Y-\bar{Y})^T(Y-\bar{Y})}{\sigma^2}\sim \frac{}{}\chi_{n-1}^2\]</span></p>
+<p>Suppose <span class="math inline">\(Y_i\overset{iid}\sim N(\mu,\sigma^2)\)</span>. Then <span class="math inline">\(\bar Y\sim N(\mu, \sigma^2/n)\)</span> and <span class="math display">\[\frac{(n-1)s^2}{\sigma^2} = \frac{(Y-\bar{Y})^T(Y-\bar{Y})}{\sigma^2}\sim \chi_{n-1}^2\]</span></p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Consider <span class="math inline">\(A=I_n-\frac{1}{n}1_n1_n^T\)</span>. It is easy to verify that <span class="math inline">\(A\)</span> is symmetric and idempotent. Because <span class="math inline">\(A\)</span> is symmetric and idempotent, by Seber A.6.2, <span class="math inline">\(Rank(A)=tr(A)=n-1\)</span>. In addition, <span class="math display">\[A(Y-\mu)=A(Y-1_n\mu)=AY-A1_n\mu=AY-(I_n1_n-\frac{1}{n}1_n1_n^{'}1_n)\mu=AY\]</span> Therefore, <span class="math display">\[\frac{(n-1)s^2}{\sigma^2}=\frac{(AY)^{T}AY}{\sigma^2}=\frac{(Y-\mu)^T A^TA(Y-\mu)}{\sigma^2}=\frac{(Y-\mu)^TA(Y-\mu)}{\sigma^2}\]</span>.</p>

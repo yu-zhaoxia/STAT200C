@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Least Squares Estimates – STAT200C — Theory of Linear Models</title>
+<title>Statistical Inference in Linear Models – STAT200C — Theory of Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,20 +148,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#statistical-inference-in-linear-models" id="toc-statistical-inference-in-linear-models" class="nav-link active" data-scroll-target="#statistical-inference-in-linear-models"><span class="header-section-number">1</span> Statistical Inference in Linear Models</a></li>
-  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">2</span> Hypothesis Testing</a>
+  <li><a href="#statistical-inference-in-linear-models" id="toc-statistical-inference-in-linear-models" class="nav-link active" data-scroll-target="#statistical-inference-in-linear-models">Statistical Inference in Linear Models</a>
   <ul class="collapse">
-  <li><a href="#f-test" id="toc-f-test" class="nav-link" data-scroll-target="#f-test"><span class="header-section-number">2.1</span> F-Test</a></li>
-  <li><a href="#likelihood-ratio-test" id="toc-likelihood-ratio-test" class="nav-link" data-scroll-target="#likelihood-ratio-test"><span class="header-section-number">2.2</span> Likelihood Ratio Test</a>
-  <ul class="collapse">
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">2.2.1</span> Examples</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a></li>
+  <li><a href="#noncentral-f-distribution" id="toc-noncentral-f-distribution" class="nav-link" data-scroll-target="#noncentral-f-distribution">Noncentral F Distribution</a></li>
+  <li><a href="#relationship-between-t-tests-and-f-tests" id="toc-relationship-between-t-tests-and-f-tests" class="nav-link" data-scroll-target="#relationship-between-t-tests-and-f-tests">Relationship Between t-tests and F-tests</a></li>
   </ul></li>
-  <li><a href="#wald-test" id="toc-wald-test" class="nav-link" data-scroll-target="#wald-test"><span class="header-section-number">2.3</span> Wald Test</a></li>
-  <li><a href="#score-test" id="toc-score-test" class="nav-link" data-scroll-target="#score-test"><span class="header-section-number">2.4</span> Score Test</a></li>
-  </ul></li>
-  <li><a href="#confidence-intervals-and-regions" id="toc-confidence-intervals-and-regions" class="nav-link" data-scroll-target="#confidence-intervals-and-regions"><span class="header-section-number">3</span> Confidence Intervals and Regions</a></li>
-  <li><a href="#confidence-bands-for-the-regression-surface" id="toc-confidence-bands-for-the-regression-surface" class="nav-link" data-scroll-target="#confidence-bands-for-the-regression-surface"><span class="header-section-number">4</span> Confidence bands for the regression surface</a></li>
-  <li><a href="#prediction-intervals-and-bands-for-the-response" id="toc-prediction-intervals-and-bands-for-the-response" class="nav-link" data-scroll-target="#prediction-intervals-and-bands-for-the-response"><span class="header-section-number">5</span> Prediction intervals and bands for the response</a></li>
   </ul>
 </nav>
     </div>
@@ -170,7 +162,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Least Squares Estimates</h1>
+<h1 class="title">Statistical Inference in Linear Models</h1>
 </div>
 
 
@@ -187,207 +179,329 @@ window.Quarto = {
 </header>
 
 
-<section id="statistical-inference-in-linear-models" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Statistical Inference in Linear Models</h1>
+<section id="statistical-inference-in-linear-models" class="level1">
+<h1>Statistical Inference in Linear Models</h1>
 <p>Throughout this section we assume <span class="math display">\[
 Y=X\beta+\epsilon,
 \qquad
 \epsilon\sim N(0,\sigma^2I_n),
-\]</span> where <span class="math inline">\(X\)</span> is an <span class="math inline">\(n\times p\)</span> design matrix with full column rank.</p>
-<p>Statistical inference in linear models includes many useful statistical tools. We have covered estimation and optimality of least squares estimates. In this section, we will cover the following topics: hypothesis testing / model comparison, confidence intervals /bands, and predictions.</p>
-</section>
-<section id="hypothesis-testing" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Hypothesis Testing</h1>
-<p>We focus primarily on hypothesis testing for linear constraints of the form <span class="math display">\[
-H_0: A\beta=c \quad \text{v.s.} \quad H_1: A\beta \neq c
+\]</span> where (X) is an (np) design matrix with full column rank.</p>
+<p>Statistical inference in linear models includes estimation, confidence intervals, hypothesis testing, and model comparison. In this chapter we focus primarily on hypothesis testing for linear constraints of the form <span class="math display">\[
+A\beta=c.
 \]</span></p>
-<div class="definition">
-<p>A hypothesis <span class="math inline">\(A\beta=c\)</span> is testable if each row of <span class="math inline">\(A\beta\)</span> represents an estimable function of <span class="math inline">\(\beta\)</span>. Suppose <span class="math inline">\(dim(A)=q\times p\)</span>, we assume <span class="math inline">\(Rank(A)=q&lt;p\)</span>.</p>
-</div>
-<p>The following tests will be covered:</p>
-<ul>
-<li><p>F-Test</p></li>
-<li><p>likelihood ratio test</p></li>
-<li><p>Wald test</p></li>
-<li><p>score test</p></li>
-</ul>
-<section id="f-test" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="f-test"><span class="header-section-number">2.1</span> F-Test</h2>
+<section id="hypothesis-testing" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing</h2>
 <div id="thm-F-test" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1</strong></span> &nbsp;</p>
-<ol type="a">
-<li>Restricted and Full Model RSS Relationship</li>
-</ol>
-<span class="math display">\[\begin{aligned}
-&amp;RSS_H-RSS = RSS_{reduce}-RSS_{full}=\|\hat{Y}-\hat{Y}_H\|^2 \\
-&amp;= (A\hat{\beta}-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat{\beta}-c)=Z^TB^{-1}Z
-\end{aligned}\]</span>
-<p>where <span class="math inline">\(Z\sim N(A\beta-c,\sigma^2B)\)</span>.</p>
-<ol start="2" type="a">
-<li><p>Expected value of <span class="math inline">\(RSS_H-RSS\)</span>: <span class="math display">\[E[RSS_H-RSS]= \sigma^2q+(A\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\beta-c)\]</span></p></li>
-<li><p>F-statistic for testing <span class="math inline">\(H_0: A\beta=c\)</span>:</p></li>
-</ol>
+<p><span class="theorem-title"><strong>Theorem 1 (Extra Sum of Squares for a General Linear Hypothesis)</strong></span> Suppose we test <span class="math display">\[
+H_0:A\beta=c,
+\]</span> where (A) is a (qp) matrix with ((A)=q).</p>
+<section id="a-restricted-and-full-model-rss-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="a-restricted-and-full-model-rss-decomposition">(a) Restricted and Full Model RSS Decomposition</h3>
 <p><span class="math display">\[\begin{eqnarray*}
-F &amp;=&amp; \frac{(RSS_H-RSS)/q}{RSS/(n-p)}\\
-&amp;=&amp; \frac{(A\hat{\beta}-c)^T[A(XX^T)^{-1}A^T]^{-1}(A\hat{\beta}-c)}{qS^2}\overset{H_0}\sim F_{q,n-p}.
+RSS_H-RSS
+&amp;=&amp; RSS_{restricted}-RSS_{full}\\
+&amp;=&amp; \|\hat{Y}-\hat{Y}_H\|^2 \\
+&amp;=&amp; (A\hat{\beta}-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat{\beta}-c)\\
+&amp;=&amp; Z^TB^{-1}Z,
 \end{eqnarray*}\]</span></p>
-<ol start="4" type="a">
-<li>Projection Matrix Representation:</li>
-</ol>
-<p>When <span class="math inline">\(c=0\)</span>, <span class="math inline">\(F\)</span> can be expressed in the form <span class="math display">\[
-F=\frac{n-p}{q}\frac{Y^T(P_X-P_H)Y}{Y^T(I-P_X)Y}
-\]</span> where <span class="math inline">\(P_H\)</span> is symmetric and idempotent, and <span class="math inline">\(P_HP_X=P_XP_H=P_H\)</span>.</p>
+<p>where <span class="math display">\[
+Z\sim N_q(A\beta-c,\sigma^2B),
+\]</span></p>
+<p>and <span class="math display">\[
+B=A(X^TX)^{-1}A^T.
+\]</span></p>
+<p>Furthermore, (RSS_H-RSS) measures the amount of variation explained by relaxing the constraints (A=c).</p>
+</section>
+<section id="b-expected-value-of-rss_h-rss" class="level3">
+<h3 class="anchored" data-anchor-id="b-expected-value-of-rss_h-rss">(b) Expected Value of (RSS_H-RSS)</h3>
+<p><span class="math display">\[
+E[RSS_H-RSS]
+=
+\sigma^2q
++
+(A\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\beta-c).
+\]</span></p>
+</section>
+<section id="c-f-statistic-for-testing-h_0ac" class="level3">
+<h3 class="anchored" data-anchor-id="c-f-statistic-for-testing-h_0ac">(c) F-statistic for Testing (H_0:A=c)</h3>
+<p>Under (H_0),</p>
+<p><span class="math display">\[\begin{eqnarray*}
+F
+&amp;=&amp;
+\frac{(RSS_H-RSS)/q}{RSS/(n-p)}
+\\
+&amp;=&amp;
+\frac{
+(A\hat{\beta}-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat{\beta}-c)
+}{
+qS^2
+}
+\sim F_{q,n-p}.
+\end{eqnarray*}\]</span></p>
+<p>The F-statistic compares the reduction in residual sum of squares achieved by moving from the restricted model to the full model, relative to the residual variation left unexplained by the full model.</p>
+</section>
+<section id="d-projection-matrix-representation" class="level3">
+<h3 class="anchored" data-anchor-id="d-projection-matrix-representation">(d) Projection Matrix Representation</h3>
+<p>When (c=0),</p>
+<p><span class="math display">\[
+F=
+\frac{n-p}{q}
+\frac{
+Y^T(P_X-P_H)Y
+}{
+Y^T(I-P_X)Y
+},
+\]</span></p>
+<p>where (P_H) is symmetric and idempotent, and <span class="math display">\[
+P_HP_X=P_XP_H=P_H.
+\]</span></p>
 <p>The matrix (P_H) is the projection matrix onto the restricted model space <span class="math display">\[
 \{X\beta:A\beta=0\}.
 \]</span></p>
+</section>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><strong>Proof for a</strong> <span class="math display">\[\begin{eqnarray*}
-RSS_H=\epsilon^T\epsilon
-&amp;=&amp; ||Y-\hat{Y}_H||^2\\
-&amp;=&amp; ||Y-\hat{Y}+\hat{Y}-\hat{Y}_H||^2\\
-&amp;=&amp; ||Y-\hat{Y}||^2 + ||\hat{Y}-\hat{Y}_H||^2 + 2(Y-\hat{Y})^T(\hat{Y}-\hat{Y}_H)\\
-&amp;=&amp; ||Y-\hat{Y}||^2 + ||\hat{Y}-\hat{Y}_H||^2 +
-2Y^T(I-P_X)X(\hat{\beta}-\hat{\beta}_H)\\
-&amp;=&amp; ||Y-\hat{Y}||^2 + ||\hat{Y}-\hat{Y}_H||^2 +
-2Y^T(X-X)(\hat{\beta}-\hat{\beta}_H)\\
-&amp;=&amp; ||Y-\hat{Y}||^2 + ||\hat{Y}-\hat{Y}_H||^2 \\
-&amp;=&amp; RSS + \| X(\hat{\beta}-\hat{\beta}_H) \|^2
-\end{eqnarray*}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
-RSS_H - RSS &amp;=&amp; \|X(\hat{\beta}-\hat{\beta}_H)\|^2\\
-&amp;=&amp; (A\hat{\beta}-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat{\beta}-c)
-\end{eqnarray*}\]</span></p>
-<p><strong>Proof for b</strong></p>
-<p>Because <span class="math inline">\(\hat{\beta}\sim N_p(\beta, \sigma^2 (X^TX)^{-1})\)</span> and the rows of <span class="math inline">\(A\)</span> are linearly independent (<span class="math inline">\(dim(A)=q\times p\)</span> and <span class="math inline">\(Rank(A)=q&lt;p\)</span>, we have <span class="math display">\[A\hat{\beta} \sim N_q(A\beta, \sigma^2 A(X^TX)^{-1}A^T ).\]</span> Let <span class="math inline">\(Z=A\hat{\beta}-c\)</span>, we have <span class="math display">\[Z\sim N(A\beta-c, \sigma^2B),\]</span> where <span class="math inline">\(B=A(X^TX)^{-1}A^T\)</span>. Thus <span class="math display">\[\begin{eqnarray*}
-E[RSS_H-RSS] &amp;=&amp; E[Z^TB^{-1}Z]\\
-&amp;=&amp; tr(\sigma^2B^{-1}B) + (A\beta-c)^TB^{-1}(A\beta-c)\\
-&amp;=&amp; \sigma^2q + (A\beta-c)^TB^{-1}(A\beta-c)
-\end{eqnarray*}\]</span> [Recall that <span class="math inline">\(Y\sim N(\mu,\Sigma)\)</span>, then <span class="math inline">\(E[Y^TAY]=tr(A\Sigma)+\mu^TA\mu\)</span>.]</p>
-<p><strong>Proof for c</strong> First <span class="math inline">\(RSS/\sigma^2\sim \chi_{n-p}^2\)</span>. This is true as <span class="math display">\[\begin{eqnarray*}
-\frac{RSS}{\sigma^2} &amp;=&amp; \frac{(Y-X\hat\beta)^T(Y-X\hat\beta)}{\sigma^2}\\
-&amp;=&amp; \frac{((I-P_X)Y)^T((I-P_X)Y)}{\sigma^2}\\
-&amp;=&amp; \frac{(Y-X\beta)^T(I-P_X)(Y-X\beta)}{\sigma^2} \sim \chi_{n-p}^2
-\end{eqnarray*}\]</span> The last equation is true because <span class="math display">\[(I-P_X)Y=(I-P_X)Y-(I-P_X)X\beta=(I-P_X)(Y-X\beta).\]</span></p>
-<p>Under the null hypothesis <span class="math inline">\(Z\sim N(0, \sigma^2B)\)</span>. <span class="math display">\[
-\frac{RSS_H-RSS}{\sigma^2}=\frac{Z^T B^{-1} Z}{\sigma^2}\sim \chi_q^2
-\]</span> We have also shown that <span class="math inline">\(RSS/\sigma^2\sim \chi_{n-p}^2\)</span>.</p>
-<p>One more thing we need to show is that <span class="math inline">\(RSS_H-RSS\)</span> and <span class="math inline">\(RSS\)</span> and independent. Notice that <span class="math inline">\(RSS=||(I-P_X)Y||^2\)</span> and <span class="math inline">\(RSS_H-RSS=Z^TB^{-1}Z\)</span>, where <span class="math inline">\(Z=A\hat \beta -c = A (X^TX)^{-1}X^TY -c\)</span>. So it is sufficient to show the following</p>
-<span class="math display">\[\begin{aligned}
-cov((I-P_X)Y, Z) &amp;= cov((I-P_X)Y, A\hat\beta)\\
-&amp;= cov((I-P_X)Y, A(X^TX)^{-1}X^TY)\\
-&amp;=(I-P_X)\sigma^2\mathbf I X (X^TX)^{-1} A^T\\
-&amp;=0
-\end{aligned}\]</span>
-<p>The last step is true because <span class="math inline">\((I-P_X)X=X-P_XX=X-X=\mathbf 0\)</span>.</p>
-<p><strong>Proof for d</strong> When <span class="math inline">\(c=0\)</span>, <span class="math display">\[\begin{eqnarray*}
-\hat{Y}_H &amp;=&amp; X\hat{\beta}_H\\
-&amp;=&amp; {P_X- X(X^TX)^{-1}A^T[A(X^TX)^{-1}A^T]^{-1}A(X^TX)^{-1}X^T } Y\\
-&amp;=&amp; (P_X-P_1)Y\\
-&amp;=&amp; P_H Y
-\end{eqnarray*}\]</span> It is easy to show that <span class="math inline">\(P_1\)</span> is symmetric and idempotent, and <span class="math inline">\(P_1P_X=P_XP_1=P_1\)</span>, which implies that <span class="math inline">\(P_H\)</span> is symmetric and idempotent, and <span class="math inline">\(P_HP_X=P_H\)</span> and <span class="math inline">\(P_XP_H=P_H\)</span>. <span class="math display">\[\begin{eqnarray*}
-RSS_H &amp;=&amp; \|Y-X\hat{\beta}_H\|^2\\
-&amp;=&amp; Y^T(I_n-P_H)^2Y\\
-&amp;=&amp; Y^T(I_n-P_H)Y
-\end{eqnarray*}\]</span> Therefore, <span class="math inline">\(RSS_H-RSS=Y^T(P_X-P_H)Y\)</span></p>
-</div>
-<p><strong>Note</strong>:</p>
-<ul>
-<li><span class="math inline">\(E[RSS]=?\)</span>, is the mle for <span class="math inline">\(\sigma^2\)</span> unbiased?</li>
-<li>We proved the case when both <span class="math inline">\(X\)</span> and <span class="math inline">\(A\)</span> are full rank. It can shown that the theorem also applies when they are not full rank. If you can show that <span class="math inline">\(X\hat\beta_H\)</span> is invariant to the choice of the generalized inverse, all the proof works.</li>
-</ul>
-</section>
-<section id="likelihood-ratio-test" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="likelihood-ratio-test"><span class="header-section-number">2.2</span> Likelihood Ratio Test</h2>
-<p>The likelihood ratio test is based on both the restricted and unrestricted estimators. The likelihood function is <span class="math display">\[ L(\beta, \sigma^2) = (2\pi\sigma^2)^{-n/2}exp[-\frac{1}{2\sigma^2}\|Y-X\beta\|^2]\]</span></p>
-<p>The MLEs are <span class="math inline">\(\hat{\beta}=(X^TX)^{-1}X^TY\)</span> and <span class="math inline">\(\hat{\sigma}^2=\|Y-X\hat{\beta}\|^2/n\)</span>. The maximum value is <span class="math display">\[L(\hat{\beta},\hat{\sigma}^2)=(2\pi\hat{\sigma}^2)^{-n/2}e^{-n/2}\]</span></p>
-<p>Under the null hypothesis, <span class="math inline">\(\beta\)</span> satisfies the constraint <span class="math inline">\(A\beta=c\)</span>. We have shown that <span class="math display">\[\hat{\beta}_H=\hat{\beta}+(X^TX)^{-1}A^{T}[A(X^TX)^{-1}A^T]^{-1}(c-A\hat{\beta})\]</span> It is easy to find that <span class="math display">\[\hat{\sigma}_H^2=\|Y-X\hat{\beta}_H\|^2/n\]</span> The corresponding maximum value of likelihood under the constraint is <span class="math display">\[ L(\hat{\beta}_H, \hat{\sigma}_H^2) = (2\pi\hat{\sigma}_H^2)^{-n/2}e^{-n/2}\]</span> The likelihood ratio test statistic is given by <span class="math display">\[ \Lambda = \frac{L(\hat{\beta}_H, \hat{\sigma}_H^2)}{L(\beta, \hat{\sigma}^2)} = (\frac{\hat{\sigma}^2}{\hat{\sigma}_H^2})^{n/2} \]</span> According to logic of likelihood ratio, we reject <span class="math inline">\(H_0\)</span> for small value of <span class="math inline">\(\Lambda\)</span>. One can based on the asymptotic property of <span class="math inline">\(\Lambda\)</span>, i.e., under the null hypothesis <span class="math display">\[-2log(\lambda)\dot{\sim} \chi_{q}^2\]</span> to test the hypothesis. Here <span class="math inline">\(q\)</span> is the difference in number of parameters between the full and the restricted models: there are <span class="math inline">\(p+1\)</span> parameters in <span class="math inline">\(H_0\)</span> and <span class="math inline">\(p+1-q\)</span> parameters in <span class="math inline">\(H_1\)</span>.</p>
-<p>With the normality assumption, we can construct exact test: an F-test <span class="math display">\[F=\frac{n-p}{q}(\Lambda^{-2/n}-1),\]</span> and <span class="math inline">\(H_0\)</span> will be rejected when <span class="math inline">\(F\)</span> is large. More details will be given in next section.</p>
-<p><strong>Relation of the F-test to likelihood ratio test</strong></p>
-<p>Because <span class="math inline">\(\hat{\sigma}_H^2=RSS_H/n\)</span> and <span class="math inline">\(\hat{\sigma}^2=RSS/n\)</span>, <span class="math display">\[\begin{eqnarray*}
-F &amp;=&amp; \frac{n-p}{q}\frac{\hat{\sigma}_H^2-\hat{\sigma}^2}{\hat{\sigma}^2}\\
-&amp;=&amp; \frac{n-p}{q}(\hat{\sigma}_H^2/\hat{\sigma}^2-1)\\
-&amp;=&amp; \frac{n-p}{q}(\Lambda^{-2/n}-1).
-\end{eqnarray*}\]</span></p>
-<p>Remarks: We know that <span class="math inline">\(qF_{q,n-p}\)</span> and <span class="math inline">\(-2log(\Lambda)\)</span> converge to <span class="math inline">\(\chi_q^2\mbox{ as } n\rightarrow \infty\)</span>. The following shows that the likelihood ratio test statistic is identical to <span class="math inline">\(qF\)</span> by using the first order Taylor approximation: <span class="math display">\[-2log(\Lambda)=nlog(\Lambda^{-2/n})=nlog[1+(\Lambda^{-2/n}-1)]\approx n(\Lambda^{-2/n}-1)\approx qF.\]</span></p>
-<section id="examples" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="examples"><span class="header-section-number">2.2.1</span> Examples</h3>
-<div class="example">
-<p>Two-sample t-test with equal variance. Consider <span class="math inline">\(U_i\overset{iid}\sim N(\mu_1,\sigma^2), i=1,\cdots,m\)</span> and <span class="math inline">\(V_i\overset{iid}\sim N(\mu_2,\sigma^2), i=1,\cdots,n\)</span>. Suppose the two samples are independent. We want to derive a test statistic for <span class="math inline">\(H_0: \mu_1=\mu_2\)</span>.</p>
-<p>We use the linear model to describe the distributions: <span class="math display">\[Y=X\beta+\epsilon\]</span> where <span class="math inline">\(Y=(U_1,\cdots,U_m,V_1,\cdots,V_n)^T\)</span> and <span class="math display">\[X=\begin{pmatrix}
-1&amp;0\\
-1&amp;0\\
-\cdots&amp;\\
-1&amp;0\\
-0&amp;1\\
-0&amp;1\\
-\cdots&amp;\\
-0&amp;1
-\end{pmatrix}
-\]</span> And <span class="math inline">\(\beta=(\mu_1,\mu_2)^T\)</span>. The null hypothesis becomes <span class="math inline">\(H_0: (1, -1)\beta=0\)</span>.</p>
-<p><span class="math display">\[X^TX=\begin{pmatrix}
-m&amp;0\\
-0&amp;n
-\end{pmatrix}
+<p><span class="proof-title"><em>Proof</em> (Proof for (a)). </span>Notice that</p>
+<p><span class="math display">\[
+Y-\hat Y \perp \mathcal C(X),
 \]</span></p>
-<p><span class="math display">\[X^TY=\begin{pmatrix}
-U_+\\
-V_+
-\end{pmatrix}
+<p>and</p>
+<p><span class="math display">\[
+\hat Y-\hat Y_H\in\mathcal C(X).
 \]</span></p>
-<p>So we have <span class="math display">\[\begin{eqnarray*}
-\hat \beta &amp;=&amp; (X^TX)^{-1}X^TY=
-\begin{pmatrix}\bar{U} \\ \bar{V}\end{pmatrix}\\
-A\hat\beta &amp;=&amp; \bar{U}-\bar{V}\\
-RSS &amp;=&amp; (Y-X\hat\beta)^T(Y-X\hat\beta)=\sum(U_i-\bar(U))^2 + \sum (V_i-\bar{V})^2
-\end{eqnarray*}\]</span> The last equation is true because <span class="math display">\[Y-X\hat\beta=\begin{pmatrix}
-U_1-\bar{U}\\
-\cdots\\
-U_m-\bar{U}\\
-V_1-\bar{V}\\
-\cdots\\
-V_n-\bar{V}
-\end{pmatrix}
-\]</span> Also, <span class="math inline">\(A(X^TX)^{-1}A^T=\frac{1}{m}+\frac{1}{n}\)</span> The F statistic is <span class="math display">\[F=\frac{(A\hat\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)}{qS^2}=\frac{(\bar U-\bar V)^2}{S^2 (1/m+1/n)}
-\]</span> Here <span class="math inline">\(n=m+n-2\)</span>, <span class="math inline">\(q=1\)</span>, <span class="math inline">\(p=2\)</span>. Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(F\sim F_{1,m+n-2}\)</span>. Note, <span class="math inline">\(t^2=F\)</span>.</p>
-</div>
-<div class="example">
-<p><strong>The multiple correlation coefficient</strong> The correlation coefficient between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The estimate is the sample correlation coefficient <span class="math display">\[\begin{eqnarray*}
-r &amp;=&amp;\frac{\sum (Y_i-\bar Y)(x_i-\bar x)}{\sum (Y_i-\bar Y)^2 \sum (x_i-\bar x)^2}\\
-&amp;=&amp; \frac{\hat\beta_1***}{\hat\beta_1***}\\
-&amp;=&amp; \frac{\sum (Y_i-\bar Y)(\hat Y_i-\bar Y)}{\sum (Y_i-\bar Y)^2 \sum (\hat Y_i-\bar Y)^2}
+<p>Therefore,</p>
+<p><span class="math display">\[
+(Y-\hat Y)^T(\hat Y-\hat Y_H)=0.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[\begin{eqnarray*}
+RSS_H
+&amp;=&amp;
+\|Y-\hat Y_H\|^2
+\\
+&amp;=&amp;
+\|Y-\hat Y+\hat Y-\hat Y_H\|^2
+\\
+&amp;=&amp;
+\|Y-\hat Y\|^2
++
+\|\hat Y-\hat Y_H\|^2
+\\
+&amp;=&amp;
+RSS+\|X(\hat\beta-\hat\beta_H)\|^2.
 \end{eqnarray*}\]</span></p>
-<p><span class="math display">\[r^2=\frac{\sum (\hat Y_i-\bar Y)^2}{\sum (Y_i-\bar Y)^2}\]</span></p>
-<p>We can generalize the measure from a straight line to a general linear model:</p>
-<p>By the decomposition of the total sum of squares <span class="math display">\[r^2=\frac{SSTO-RSS}{SSTO}\]</span></p>
-</div>
-</section>
-</section>
-<section id="wald-test" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="wald-test"><span class="header-section-number">2.3</span> Wald Test</h2>
-<p>The Wald test is based on the unrestricted estimator. When the sample size is large, <span class="math inline">\((\hat{\beta}-\beta)^T[cov(\hat{\beta})]^{-1}(\hat{\beta}-\beta)\)</span> is roughly <span class="math inline">\(\chi^2\)</span> and the d.f.=p. Now consider the transformation <span class="math inline">\(A\hat\beta\)</span>. Under the null hypothesis, it has mean <span class="math inline">\(c\)</span> and covariance <span class="math inline">\(A cov(\hat\beta) A^T\)</span>. Thus, the Wald test is: <span class="math display">\[(A\hat\beta-c)^T[A cov(\hat\beta) A^T]^{-1}(A\hat\beta-c)=(A\hat\beta-c)^T[\sigma^2 A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)\]</span> Note that the MLEs <span class="math inline">\(\hat\sigma^2=RSS/n\)</span> and <span class="math inline">\(\hat\sigma_H^2=RSS_H/n\)</span>. If we place <span class="math inline">\(\sigma^2\)</span> with <span class="math inline">\(\hat\sigma^2\)</span>, the Wald test statsitic becomes <span class="math display">\[n(RSS_H-RSS)/RSS=n(\frac{\hat\sigma_H^2}{\hat\sigma^2}-1)=n(\Lambda^{-2/n}-1)\]</span></p>
-<p>It is known that LRT and the Wald and asymptotically equivalent.</p>
-</section>
-<section id="score-test" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="score-test"><span class="header-section-number">2.4</span> Score Test</h2>
-<p>The score test is based on the restricted estimator. We omit the results. If there is no nuisance parameter, i.e., <span class="math inline">\(\sigma^2\)</span> is known, it can be shown that LR=Wald=Score. This is not true because the log-likelihood is quadratic.</p>
-<div class="example">
-<p>Let <span class="math inline">\((y_1,\cdots,y_n)\)</span> drawn from <span class="math inline">\(N(\mu,\sigma^2)\)</span> with unknown <span class="math inline">\(\sigma^2\)</span>. The three test statistics for <span class="math inline">\(H_0:\mu=1\)</span> vs <span class="math inline">\(H_1:\mu\not=1\)</span> are respectively: <span class="math display">\[LR=nlog\left[\frac{\sum (y_i-1)^2}{\sum (y_i-\bar y)^2}\right] \mbox{ , }
-W=\frac{n^2 (\bar y-1)^2}{\sum (y_i-\bar y)^2} \mbox{ , }
-S=\frac{n^2 (\bar y-1)^2}{\sum (y_i-1)^2}
+<p>Hence,</p>
+<p><span class="math display">\[\begin{eqnarray*}
+RSS_H-RSS
+&amp;=&amp;
+\|X(\hat\beta-\hat\beta_H)\|^2
+\\
+&amp;=&amp;
+(A\hat{\beta}-c)^T
+[A(X^TX)^{-1}A^T]^{-1}
+(A\hat{\beta}-c).
+\end{eqnarray*}\]</span></p>
+<section id="proof-for-b" class="level3">
+<h3 class="anchored" data-anchor-id="proof-for-b">Proof for (b)</h3>
+<p>Because</p>
+<p><span class="math display">\[
+\hat\beta
+\sim
+N_p(\beta,\sigma^2(X^TX)^{-1}),
 \]</span></p>
+<p>we have</p>
+<p><span class="math display">\[
+A\hat\beta
+\sim
+N_q
+\left(
+A\beta,
+\sigma^2A(X^TX)^{-1}A^T
+\right).
+\]</span></p>
+<p>Let</p>
+<p><span class="math display">\[
+Z=A\hat\beta-c.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+Z\sim N_q(A\beta-c,\sigma^2B),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+B=A(X^TX)^{-1}A^T.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[\begin{eqnarray*}
+E[RSS_H-RSS]
+&amp;=&amp;
+E[Z^TB^{-1}Z]
+\\
+&amp;=&amp;
+tr(\sigma^2B^{-1}B)
++
+(A\beta-c)^TB^{-1}(A\beta-c)
+\\
+&amp;=&amp;
+\sigma^2q
++
+(A\beta-c)^TB^{-1}(A\beta-c).
+\end{eqnarray*}\]</span></p>
+<p>Recall that if <span class="math display">\[
+Y\sim N(\mu,\Sigma),
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+E[Y^TAY]
+=
+tr(A\Sigma)+\mu^TA\mu.
+\]</span></p>
+</section>
+<section id="proof-for-c" class="level3">
+<h3 class="anchored" data-anchor-id="proof-for-c">Proof for (c)</h3>
+<p>First,</p>
+<p><span class="math display">\[\begin{eqnarray*}
+\frac{RSS}{\sigma^2}
+&amp;=&amp;
+\frac{(Y-X\hat\beta)^T(Y-X\hat\beta)}{\sigma^2}
+\\
+&amp;=&amp;
+\frac{Y^T(I-P_X)Y}{\sigma^2}
+\\
+&amp;\sim&amp;
+\chi^2_{n-p}.
+\end{eqnarray*}\]</span></p>
+<p>This follows because (I-P_X) is symmetric and idempotent with rank (n-p).</p>
+<p>Under the null hypothesis,</p>
+<p><span class="math display">\[
+Z\sim N_q(0,\sigma^2B),
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+\frac{RSS_H-RSS}{\sigma^2}
+=
+\frac{Z^TB^{-1}Z}{\sigma^2}
+\sim
+\chi_q^2.
+\]</span></p>
+<p>It remains to show that (RSS_H-RSS) and (RSS) are independent.</p>
+<p>Notice that</p>
+<p><span class="math display">\[
+RSS=Y^T(I-P_X)Y,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+RSS_H-RSS=Y^TP_1Y,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+P_1=
+X(X^TX)^{-1}A^T
+[A(X^TX)^{-1}A^T]^{-1}
+A(X^TX)^{-1}X^T.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+(I-P_X)P_1=0,
+\]</span></p>
+<p>the two quadratic forms are independent.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+F=
+\frac{(RSS_H-RSS)/q}{RSS/(n-p)}
+\sim F_{q,n-p}.
+\]</span></p>
+</section>
+<section id="proof-for-d" class="level3">
+<h3 class="anchored" data-anchor-id="proof-for-d">Proof for (d)</h3>
+<p>When (c=0),</p>
+<p><span class="math display">\[\begin{eqnarray*}
+\hat Y_H
+&amp;=&amp;
+X\hat\beta_H
+\\
+&amp;=&amp;
+\left(
+P_X
+-
+X(X^TX)^{-1}A^T
+[A(X^TX)^{-1}A^T]^{-1}
+A(X^TX)^{-1}X^T
+\right)Y
+\\
+&amp;=&amp;
+(P_X-P_1)Y
+\\
+&amp;=&amp;
+P_HY.
+\end{eqnarray*}\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+P_1P_X=P_XP_1=P_1,
+\]</span></p>
+<p>we have</p>
+<p><span class="math display">\[\begin{eqnarray*}
+(P_X-P_1)^2
+&amp;=&amp;
+P_X^2-P_XP_1-P_1P_X+P_1^2
+\\
+&amp;=&amp;
+P_X-P_1.
+\end{eqnarray*}\]</span></p>
+<p>Therefore (P_H=P_X-P_1) is idempotent.</p>
+<p>Also,</p>
+<p><span class="math display">\[\begin{eqnarray*}
+RSS_H
+&amp;=&amp;
+\|Y-\hat Y_H\|^2
+\\
+&amp;=&amp;
+Y^T(I-P_H)^2Y
+\\
+&amp;=&amp;
+Y^T(I-P_H)Y.
+\end{eqnarray*}\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+RSS_H-RSS
+=
+Y^T(P_X-P_H)Y.
+\]</span></p>
+</section>
 </div>
 </section>
+<section id="noncentral-f-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="noncentral-f-distribution">Noncentral F Distribution</h2>
+<p>Under the alternative hypothesis (Ac),</p>
+<p><span class="math display">\[
+\frac{RSS_H-RSS}{\sigma^2}
+\sim
+\chi_q^2(\lambda),
+\]</span></p>
+<p>where the noncentrality parameter is</p>
+<p><span class="math display">\[
+\lambda=
+\frac{
+(A\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\beta-c)
+}{
+\sigma^2
+}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+F\sim F_{q,n-p}(\lambda).
+\]</span></p>
 </section>
-<section id="confidence-intervals-and-regions" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Confidence Intervals and Regions</h1>
-</section>
-<section id="confidence-bands-for-the-regression-surface" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Confidence bands for the regression surface</h1>
-</section>
-<section id="prediction-intervals-and-bands-for-the-response" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Prediction intervals and bands for the response</h1>
+<section id="relationship-between-t-tests-and-f-tests" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-between-t-tests-and-f-tests">Relationship Between t-tests and F-tests</h2>
+<p>When (q=1), the F-test reduces to the square of a t-test:</p>
+<p><span class="math display">\[
+F_{1,n-p}=t_{n-p}^2.
+\]</span></p>
+<p>Thus the t-test is a special case of the general linear hypothesis test.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -481,7 +595,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/yu-zhaoxia\.github\.io\/STAT200C\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
