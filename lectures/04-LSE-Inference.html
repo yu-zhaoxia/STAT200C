@@ -191,6 +191,7 @@ window.Quarto = {
 </header>
 
 
+<p>This is an unpolished draft of the lecture notes.</p>
 <section id="statistical-inference-in-linear-models" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Statistical Inference in Linear Models</h1>
 <p>Throughout this section we assume <span class="math display">\[
@@ -241,7 +242,7 @@ F &amp;=&amp; \frac{(RSS_H-RSS)/q}{RSS/(n-p)}\\
 <p>When <span class="math inline">\(c=0\)</span>, <span class="math inline">\(F\)</span> can be expressed in the form <span class="math display">\[
 F=\frac{n-p}{q}\frac{Y^T(P_X-P_H)Y}{Y^T(I-P_X)Y}
 \]</span> where <span class="math inline">\(P_H\)</span> is symmetric and idempotent, and <span class="math inline">\(P_HP_X=P_XP_H=P_H\)</span>.</p>
-<p>The matrix (P_H) is the projection matrix onto the restricted model space <span class="math display">\[
+<p>The matrix <span class="math inline">\(P_H\)</span> is the projection matrix onto the restricted model space <span class="math display">\[
 \{X\beta:A\beta=0\}.
 \]</span></p>
 </div>
@@ -399,7 +400,7 @@ i=1,\dots,I,\quad j=1,\dots,n_i,
 \]</span> where <span class="math display">\[
 \varepsilon_{ij} \overset{\text{iid}}{\sim} N(0,\sigma^2).
 \]</span></p>
-<p>The factor has (I) levels.</p>
+<p>The factor has <span class="math inline">\(I\)</span> levels.</p>
 <p>We test <span class="math display">\[
 H_0:\mu_1=\mu_2=\cdots=\mu_I.
 \]</span></p>
@@ -419,7 +420,7 @@ RSS
 \sum_{i=1}^I\sum_{j=1}^{n_i}
 (Y_{ij}-\bar Y_{i\cdot})^2.
 \]</span></p>
-<p>The reduced model under (H_0) is <span class="math display">\[
+<p>The reduced model under <span class="math inline">\(H_0\)</span> is <span class="math display">\[
 Y_{ij}=\mu+\varepsilon_{ij},
 \]</span> with <span class="math display">\[
 \hat\mu=\bar Y_{\cdot\cdot}.
@@ -591,8 +592,8 @@ F_{AB}
 \frac{SSAB/[(I-1)(J-1)]}{SSW/[IJ(K-1)]}.
 \]</span></p>
 </div>
-<section id="proof-of-the-sum-of-squares-decomposition-in-two-way-anova" class="level4" data-number="2.5.3.1">
-<h4 data-number="2.5.3.1" class="anchored" data-anchor-id="proof-of-the-sum-of-squares-decomposition-in-two-way-anova"><span class="header-section-number">2.5.3.1</span> Proof of the Sum-of-Squares Decomposition in Two-Way ANOVA</h4>
+<section id="independence-of-sums-of-squares" class="level4" data-number="2.5.3.1">
+<h4 data-number="2.5.3.1" class="anchored" data-anchor-id="independence-of-sums-of-squares"><span class="header-section-number">2.5.3.1</span> Independence of Sums of Squares</h4>
 <p>Consider the balanced two-way ANOVA model <span class="math display">\[Y_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk},\]</span> where <span class="math display">\[i=1,\dots,I,\qquad j=1,\dots,J,\qquad k=1,\dots,K,\]</span> and <span class="math display">\[\varepsilon_{ijk}\overset{\text{iid}}{\sim}N(0,\sigma^2).\]</span></p>
 <p>Assume the identifiability constraints <span class="math display">\[\sum_{i=1}^I \alpha_i=0,\qquad \sum_{j=1}^J \beta_j=0,\]</span> and <span class="math display">\[\sum_{i=1}^I \gamma_{ij}=0,\qquad \sum_{j=1}^J \gamma_{ij}=0.\]</span></p>
 <p>Define the sample means <span class="math display">\[\bar Y_{ij\cdot}=\frac1K\sum_{k=1}^K Y_{ijk},\]</span></p>
@@ -609,47 +610,212 @@ F_{AB}
 <p><span class="math display">\[b_j=\bar Y_{\cdot j\cdot}-\bar Y_{\cdot\cdot\cdot},\]</span></p>
 <p><span class="math display">\[(ab)_{ij}=\bar Y_{ij\cdot}-\bar Y_{i\cdot\cdot}-\bar Y_{\cdot j\cdot}+\bar Y_{\cdot\cdot\cdot},\]</span></p>
 <p><span class="math display">\[e_{ijk}=Y_{ijk}-\bar Y_{ij\cdot}.\]</span></p>
-<section id="a-effect-orthogonal-to-b-effect" class="level5" data-number="2.5.3.1.1">
-<h5 data-number="2.5.3.1.1" class="anchored" data-anchor-id="a-effect-orthogonal-to-b-effect"><span class="header-section-number">2.5.3.1.1</span> A-effect orthogonal to B-effect</h5>
-<p>Consider <span class="math display">\[\sum_{i,j,k} a_i b_j.\]</span></p>
-<p>Since neither term depends on (k), <span class="math display">\[\sum_{i,j,k} a_i b_j=K\sum_i a_i\sum_j b_j.\]</span></p>
-<p>But <span class="math display">\[\sum_i a_i=\sum_i(\bar Y_{i\cdot\cdot}-\bar Y_{\cdot\cdot\cdot})=0,\]</span> and similarly <span class="math display">\[\sum_j b_j=0.\]</span></p>
-<p>Hence <span class="math display">\[\sum_{i,j,k} a_i b_j=0.\]</span></p>
-<p>Thus the A and B effects are orthogonal.</p>
+<p>Since the observations are jointly normal, the vectors <span class="math display">\[
+(a_1,\dots,a_I)
+\quad \text{and} \quad
+(b_1,\dots,b_J)
+\]</span> are jointly normal. Therefore, it suffices to show <span class="math display">\[
+\operatorname{Cov}(a_i,b_j)=0
+\]</span> for all <span class="math inline">\(i,j\)</span>.</p>
+<p>Now <span class="math display">\[
+\operatorname{Cov}(a_i,b_j)
+=
+\operatorname{Cov}
+(\bar Y_{i\cdot\cdot}-\bar Y_{\cdot\cdot\cdot},
+\bar Y_{\cdot j\cdot}-\bar Y_{\cdot\cdot\cdot}).
+\]</span></p>
+<p>Expanding, <span class="math display">\[
+\begin{aligned}
+\operatorname{Cov}(a_i,b_j)
+&amp;=
+\operatorname{Cov}(\bar Y_{i\cdot\cdot},\bar Y_{\cdot j\cdot})
+-\operatorname{Cov}(\bar Y_{i\cdot\cdot},\bar Y_{\cdot\cdot\cdot}) \\
+&amp;\quad
+-\operatorname{Cov}(\bar Y_{\cdot\cdot\cdot},\bar Y_{\cdot j\cdot})
++\operatorname{Var}(\bar Y_{\cdot\cdot\cdot}).
+\end{aligned}
+\]</span></p>
+<p>Because the design is balanced, <span class="math display">\[
+\operatorname{Var}(\bar Y_{i\cdot\cdot})
+=
+\frac{\sigma^2}{JK},
+\qquad
+\operatorname{Var}(\bar Y_{\cdot j\cdot})
+=
+\frac{\sigma^2}{IK},
+\]</span> and <span class="math display">\[
+\operatorname{Var}(\bar Y_{\cdot\cdot\cdot})
+=
+\frac{\sigma^2}{IJK}.
+\]</span></p>
+<p>Also, <span class="math display">\[
+\operatorname{Cov}(\bar Y_{i\cdot\cdot},\bar Y_{\cdot j\cdot})
+=
+\frac{\sigma^2}{IJK},
+\]</span> since the two averages share exactly the <span class="math inline">\(K\)</span> observations <span class="math display">\[
+Y_{ij1},\dots,Y_{ijK}.
+\]</span></p>
+<p>Similarly, <span class="math display">\[
+\operatorname{Cov}(\bar Y_{i\cdot\cdot},\bar Y_{\cdot\cdot\cdot})
+=
+\frac{\sigma^2}{IJK},
+\]</span> and <span class="math display">\[
+\operatorname{Cov}(\bar Y_{\cdot j\cdot},\bar Y_{\cdot\cdot\cdot})
+=
+\frac{\sigma^2}{IJK}.
+\]</span></p>
+<p>Therefore, <span class="math display">\[
+\operatorname{Cov}(a_i,b_j)
+=
+\frac{\sigma^2}{IJK}
+-\frac{\sigma^2}{IJK}
+-\frac{\sigma^2}{IJK}
++\frac{\sigma^2}{IJK}
+=0.
+\]</span></p>
+<p>Hence the A-effects and B-effects are jointly normal and uncorrelated, so they are independent.</p>
+<p>Consequently, <span class="math display">\[
+SSA
+=
+JK\sum_i a_i^2
+\]</span> and <span class="math display">\[
+SSB
+=
+IK\sum_j b_j^2
+\]</span> are independent quadratic forms.</p>
 </section>
-<section id="interaction-orthogonal-to-a-effect" class="level5" data-number="2.5.3.1.2">
-<h5 data-number="2.5.3.1.2" class="anchored" data-anchor-id="interaction-orthogonal-to-a-effect"><span class="header-section-number">2.5.3.1.2</span> Interaction orthogonal to A-effect</h5>
-<p>Consider <span class="math display">\[\sum_{i,j,k} (ab)_{ij}a_i.\]</span></p>
-<p>Since the terms do not depend on (k), <span class="math display">\[\sum_{i,j,k} (ab)_{ij}a_i=K\sum_i a_i\sum_j (ab)_{ij}.\]</span></p>
-<p>Now <span class="math display">\[\sum_j (ab)_{ij}=\sum_j\left(\bar Y_{ij\cdot}-\bar Y_{i\cdot\cdot}-\bar Y_{\cdot j\cdot}+\bar Y_{\cdot\cdot\cdot}\right).\]</span></p>
-<p>Compute term-by-term: <span class="math display">\[\sum_j \bar Y_{ij\cdot}=J\bar Y_{i\cdot\cdot},\]</span></p>
-<p><span class="math display">\[\sum_j \bar Y_{i\cdot\cdot}=J\bar Y_{i\cdot\cdot},\]</span></p>
-<p><span class="math display">\[\sum_j \bar Y_{\cdot j\cdot}=J\bar Y_{\cdot\cdot\cdot},\]</span></p>
-<p><span class="math display">\[\sum_j \bar Y_{\cdot\cdot\cdot}=J\bar Y_{\cdot\cdot\cdot}.\]</span></p>
-<p>Therefore, <span class="math display">\[\sum_j (ab)_{ij}=0.\]</span></p>
-<p>Hence <span class="math display">\[\sum_{i,j,k}(ab)_{ij}a_i=0.\]</span></p>
-<p>Thus the interaction effect is orthogonal to the A main effect.</p>
-<p>Similarly, <span class="math display">\[\sum_{i,j,k}(ab)_{ij}b_j=0.\]</span></p>
+<section id="orthogonality-via-the-design-matrix" class="level4" data-number="2.5.3.2">
+<h4 data-number="2.5.3.2" class="anchored" data-anchor-id="orthogonality-via-the-design-matrix"><span class="header-section-number">2.5.3.2</span> Orthogonality via the Design Matrix</h4>
+<p>Consider the balanced two-way ANOVA model <span class="math display">\[
+Y_{ijk}
+=
+\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk},
+\]</span> with <span class="math display">\[
+i=1,\dots,I,
+\qquad
+j=1,\dots,J,
+\qquad
+k=1,\dots,K.
+\]</span></p>
+<p>Write the model as <span class="math display">\[
+Y=X\theta+\varepsilon,
+\]</span> where <span class="math display">\[
+X=
+\begin{pmatrix}
+1 &amp; X_A &amp; X_B &amp; X_{AB}
+\end{pmatrix}.
+\]</span></p>
+<p>Here:</p>
+<ul>
+<li><span class="math inline">\(1\)</span>: intercept column,</li>
+<li><span class="math inline">\(X_A\)</span>: columns for factor A,</li>
+<li><span class="math inline">\(X_B\)</span>: columns for factor B,</li>
+<li><span class="math inline">\(X_{AB}\)</span>: interaction columns.</li>
+</ul>
+<p>Assume sum-to-zero coding is used, so each column of <span class="math inline">\(X_A\)</span>, <span class="math inline">\(X_B\)</span>, and <span class="math inline">\(X_{AB}\)</span> has mean zero.</p>
+<section id="orthogonality-of-the-main-effect-design-matrices" class="level5" data-number="2.5.3.2.1">
+<h5 data-number="2.5.3.2.1" class="anchored" data-anchor-id="orthogonality-of-the-main-effect-design-matrices"><span class="header-section-number">2.5.3.2.1</span> Orthogonality of the Main-Effect Design Matrices</h5>
+<p>Let <span class="math inline">\(x_a\)</span> be a column of <span class="math inline">\(X_A\)</span>, and let <span class="math inline">\(x_b\)</span> be a column of <span class="math inline">\(X_B\)</span>.</p>
+<p>Because the design is balanced:</p>
+<ul>
+<li>each level of factor A occurs equally often within every level of factor B,</li>
+<li>each level of factor B occurs equally often within every level of factor A.</li>
+</ul>
+<p>Hence the positive and negative entries of <span class="math inline">\(x_a\)</span> average out within each level of B.</p>
+<p>Therefore, <span class="math display">\[
+x_a^T x_b = 0.
+\]</span></p>
+<p>Thus, <span class="math display">\[
+X_A^T X_B = 0.
+\]</span></p>
+<p>Similarly, <span class="math display">\[
+X_A^T X_{AB}=0,
+\qquad
+X_B^T X_{AB}=0.
+\]</span></p>
+<p>Hence the column spaces <span class="math display">\[
+\mathcal C(X_A),
+\qquad
+\mathcal C(X_B),
+\qquad
+\mathcal C(X_{AB})
+\]</span> are mutually orthogonal.</p>
 </section>
-<section id="residual-orthogonal-to-all-fitted-effects" class="level5" data-number="2.5.3.1.3">
-<h5 data-number="2.5.3.1.3" class="anchored" data-anchor-id="residual-orthogonal-to-all-fitted-effects"><span class="header-section-number">2.5.3.1.3</span> Residual orthogonal to all fitted effects</h5>
-<p>Since <span class="math display">\[e_{ijk}=Y_{ijk}-\bar Y_{ij\cdot},\]</span> we have <span class="math display">\[\sum_{k=1}^K e_{ijk}=0 \quad \text{for every } i,j.\]</span></p>
-<p>Hence <span class="math display">\[\sum_{i,j,k} e_{ijk}a_i=0,\]</span></p>
-<p><span class="math display">\[\sum_{i,j,k} e_{ijk}b_j=0,\]</span></p>
-<p>and <span class="math display">\[\sum_{i,j,k} e_{ijk}(ab)_{ij}=0.\]</span></p>
-<p>Thus the residual component is orthogonal to all fitted effects.</p>
+<section id="orthogonal-projection-matrices" class="level5" data-number="2.5.3.2.2">
+<h5 data-number="2.5.3.2.2" class="anchored" data-anchor-id="orthogonal-projection-matrices"><span class="header-section-number">2.5.3.2.2</span> Orthogonal Projection Matrices</h5>
+<p>Define the projection matrices <span class="math display">\[
+P_A
+=
+X_A(X_A^TX_A)^{-1}X_A^T,
+\]</span></p>
+<p><span class="math display">\[
+P_B
+=
+X_B(X_B^TX_B)^{-1}X_B^T.
+\]</span></p>
+<p>Since <span class="math display">\[
+X_A^TX_B=0,
+\]</span> we obtain <span class="math display">\[
+P_AP_B
+=
+X_A(X_A^TX_A)^{-1}
+(X_A^TX_B)
+(X_B^TX_B)^{-1}X_B^T
+=0.
+\]</span></p>
+<p>Therefore the projections are orthogonal.</p>
 </section>
-<section id="sum-of-squares-decomposition" class="level5" data-number="2.5.3.1.4">
-<h5 data-number="2.5.3.1.4" class="anchored" data-anchor-id="sum-of-squares-decomposition"><span class="header-section-number">2.5.3.1.4</span> Sum-of-Squares Decomposition</h5>
+<section id="independence-of-the-sums-of-squares" class="level5" data-number="2.5.3.2.3">
+<h5 data-number="2.5.3.2.3" class="anchored" data-anchor-id="independence-of-the-sums-of-squares"><span class="header-section-number">2.5.3.2.3</span> Independence of the Sums of Squares</h5>
+<p>The sums of squares can be written as <span class="math display">\[
+SSA = Y^TP_AY,
+\qquad
+SSB = Y^TP_BY.
+\]</span></p>
+<p>Under normality, <span class="math display">\[
+Y\sim N(X\theta,\sigma^2I).
+\]</span></p>
+<p>A standard theorem states:</p>
+<p>If <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span> are symmetric idempotent matrices satisfying <span class="math display">\[
+P_1P_2=0,
+\]</span> then <span class="math display">\[
+Y^TP_1Y
+\quad \text{and} \quad
+Y^TP_2Y
+\]</span> are independent quadratic forms.</p>
+<p>Since <span class="math display">\[
+P_AP_B=0,
+\]</span> it follows that <span class="math display">\[
+SSA \perp SSB.
+\]</span></p>
+<p>Similarly, <span class="math display">\[
+SSA,\quad SSB,\quad SSAB,\quad SSW
+\]</span> are mutually independent.</p>
+</section>
+<section id="important-remark" class="level5" data-number="2.5.3.2.4">
+<h5 data-number="2.5.3.2.4" class="anchored" data-anchor-id="important-remark"><span class="header-section-number">2.5.3.2.4</span> Important Remark</h5>
+<p>This orthogonality relies crucially on the balanced design.</p>
+<p>For unbalanced data, <span class="math display">\[
+X_A^TX_B \neq 0
+\]</span> in general, so the main-effect spaces are no longer orthogonal.</p>
+<p>Consequently:</p>
+<ul>
+<li>sums of squares depend on the order in which terms are entered,</li>
+<li>Type I, II, and III sums of squares differ,</li>
+<li>the clean ANOVA decomposition breaks down.</li>
+</ul>
+</section>
+</section>
+<section id="sum-of-squares-decomposition" class="level4" data-number="2.5.3.3">
+<h4 data-number="2.5.3.3" class="anchored" data-anchor-id="sum-of-squares-decomposition"><span class="header-section-number">2.5.3.3</span> Sum-of-Squares Decomposition</h4>
 <p>Since all components are orthogonal, <span class="math display">\[\sum_{i,j,k}(Y_{ijk}-\bar Y_{\cdot\cdot\cdot})^2\]</span> equals the sum of squared norms of the orthogonal pieces: <span class="math display">\[SSTO = SSA + SSB + SSAB + SSW,\]</span> where <span class="math display">\[SSA=JK\sum_i a_i^2,\]</span></p>
 <p><span class="math display">\[SSB=IK\sum_j b_j^2,\]</span></p>
 <p><span class="math display">\[SSAB=K\sum_{i,j}(ab)_{ij}^2,\]</span></p>
 <p><span class="math display">\[SSW=\sum_{i,j,k} e_{ijk}^2.\]</span></p>
 <p>This is exactly the ANOVA decomposition from a linear algebra viewpoint.</p>
 </section>
-<section id="degrees-of-freedom" class="level5" data-number="2.5.3.1.5">
-<h5 data-number="2.5.3.1.5" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">2.5.3.1.5</span> Degrees of Freedom</h5>
-</section>
+<section id="degrees-of-freedom" class="level4" data-number="2.5.3.4">
+<h4 data-number="2.5.3.4" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">2.5.3.4</span> Degrees of Freedom</h4>
 </section>
 </section>
 <section id="example-4-compare-k-straight-lines" class="level3" data-number="2.5.4">
