@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zhaoxia Yu">
 
-<title>Assignments – STAT200C — Theory of Linear Models</title>
+<title>STAT200C Assignment 4 – STAT200C — Theory of Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -96,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Lecture Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../assignments/index.html" aria-current="page"> 
+    <a class="nav-link" href="../assignments/index.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
@@ -122,13 +152,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignments</h1>
+<h1 class="title">STAT200C Assignment 4</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zhaoxia Yu </p>
+          </div>
+  </div>
     
   
     
@@ -139,13 +175,79 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li><p><a href="../assignments/stat200c_assignment0.html">STAT200C Assignment 0: Due on Friday, April 10, 2026</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment1.html">STAT200C Assignment 1: Due on Friday, April 24, 2026</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment2.html">STAT200C Assignment 2: Part I is due on Monday, May 4, 2026; Part II is due on the Monday in week 10</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment3.html">STAT200C Assignment 3: Due on Friday, May 22, 2026</a></p></li>
-<li><p><a href="../assignments/stat200c_assignment4.html">STAT200C Assignment 4: Due on Monday, June 8, 2026</a></p></li>
-</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This material is for the use of the students enrolled in the course. It is protected by United States copyright law [Title 17, U.S. Code]. It should not be distributed without written permission from the instructor Zhaoxia Yu. In particular, please do not upload it to online “resource” websites.</p>
+</div>
+</div>
+<ol type="1">
+<li>Consider two samples <span class="math inline">\((Y_{11},\cdots,Y_{1n})\)</span> and <span class="math inline">\((Y_{21},\cdots,Y_{2n})\)</span>. For each <span class="math inline">\(i\)</span>, we assume that <span class="math inline">\(Y_{1i}\)</span> and <span class="math inline">\(Y_{2i}\)</span> have the same predictor <span class="math inline">\(x_i\)</span>. Consider the follwoing regression model <span class="math display">\[Y_{ki}=\beta_kx_i+\epsilon_{ki} \mbox{ } (\epsilon_{ki}\overset{iid}\sim N(0,\sigma^2), k=1,2; i=1,2,\cdots,n),\]</span> Note that we use two different slope parameters for the two underlying populations. We are interested in testing <span class="math inline">\(H: \beta_1=\beta_2\)</span>.</li>
+</ol>
+<ol type="a">
+<li><p>Derive the OLSEs of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\hat\beta_1\)</span> and <span class="math inline">\(\hat\beta_2\)</span> denote the OLSEs of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>, respectively. Show that the OLSE under <span class="math inline">\(H\)</span> equals <span class="math inline">\((\hat\beta_1+\hat\beta_2)/2\)</span>.</p></li>
+<li><p>Obtain <span class="math inline">\(RSS\)</span> and <span class="math inline">\(RSS_H\)</span> and verify that <span class="math display">\[RSS_H-RSS=\frac{\sum x_i^2(\hat\beta_1-\hat\beta_2)^2}{2}.\]</span></p></li>
+<li><p>Show that F test statistic equals <span class="math display">\[F=\frac{(\hat\beta_1-\hat\beta_2)^2}{2S^2(\sum x_i^2)^{-1}}.\]</span> where <span class="math inline">\(S^2=RSS/(2n-2)\)</span>.</p></li>
+</ol>
+<ol start="2" type="1">
+<li>Consider a balanced two-way ANOVA model in which <span class="math display">\[Y_{ijk}=\mu + \alpha_i +\beta_j + \delta_{ij}+\epsilon_{ijk}\]</span> for <span class="math inline">\(i=1,2\)</span>, <span class="math inline">\(j=1,2\)</span>, and <span class="math inline">\(k=1,2\)</span>, where <span class="math inline">\(\epsilon_{ijk} \overset{iid} \sim N(0,\sigma^2)\)</span> and the identifiability constraints <span class="math display">\[\sum_{i}\alpha_i=\sum_{j}\beta_j=\sum_{i}\delta_{ij}=\sum_{j}\delta_{ij}=0\]</span> We consider tests of the following null hypotheses</li>
+</ol>
+<p><span class="math display">\[\begin{eqnarray*}
+H_A &amp;:&amp; \alpha_1=\alpha_2=0\\
+H_B &amp;:&amp; \beta_1=\beta_2=0\\
+H_{AB} &amp;:&amp; \delta_{ij}=0 \mbox{ for all } i=1,2; j=1,2
+\end{eqnarray*}\]</span></p>
+<p>One can show that the MLEs are <span class="math display">\[\begin{eqnarray*}
+\hat\mu &amp;=&amp; \bar{Y}_{...}\\
+\hat{\alpha}_i &amp;=&amp; \bar{Y}_{i..}-\bar{Y}_{...}\\
+\hat{\beta}_j &amp;=&amp; \bar{Y}_{.j.}-\bar{Y}_{...}\\
+\hat{\delta}_{ij} &amp;=&amp; \bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+\bar{Y}_{...}
+\end{eqnarray*}\]</span></p>
+<p>Test statistics can be based on sums of squares</p>
+<p><span class="math display">\[\begin{eqnarray*}
+SSE &amp;=&amp; \sum_i\sum_j\sum_k (Y_{ijk}-\hat\mu-\hat\alpha_i-\hat\beta_j -\hat\delta_{ij})^2=\sum_i\sum_j\sum_k (Y_{ijk}-\bar{Y}_{ij.})^2=RSS\\
+SSA &amp;=&amp; \sum_i\sum_j\sum_k (\bar{Y}_{i..}-\bar{Y}_{...})^2= \sum_i\sum_j\sum_k \hat{\alpha}_i^2 =RSS_A-RSS\\
+SSB &amp;=&amp; \sum_i\sum_j\sum_k (\bar{Y}_{.j.}-\bar{Y}_{...})^2=\sum_i\sum_j\sum_k \hat{\beta}_j^2=RSS_B-RSS \\
+SSAB &amp;=&amp; \sum_i\sum_j\sum_k (\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+\bar{Y}_{...})^2=\sum_i\sum_j\sum_k \hat{\delta}_{ij}^2=RSS_{AB}-RSS
+\end{eqnarray*}\]</span></p>
+<p>Define mean squares</p>
+<p><span class="math display">\[\begin{eqnarray*}
+MSA=SSA/(2-1), MSB=SSB/(2-1), MSAB=SSAB/[(2-1)\times(2-1)], MSE=SSE/[2\times 2 \times (2-1)]
+\end{eqnarray*}\]</span></p>
+<ol type="a">
+<li>Show that <span class="math inline">\(SSA\)</span>, <span class="math inline">\(SSB\)</span>, <span class="math inline">\(SSAB\)</span>, and <span class="math inline">\(SSE\)</span> are independent.</li>
+<li>Derive the distribution for <span class="math inline">\(SSA/\sigma^2\)</span> under <span class="math inline">\(H_A\)</span>. Show that under <span class="math inline">\(H_A\)</span>, <span class="math inline">\(MSA/MSE\)</span> has an F distribution.</li>
+<li>Derive the distribution for <span class="math inline">\(SSAB/\sigma^2\)</span> under <span class="math inline">\(H_{AB}\)</span>. Show that under <span class="math inline">\(H_{AB}\)</span>, <span class="math inline">\(MSAB/MSE\)</span> has an F distribution.</li>
+</ol>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your answer to this question will NOT be graded.</p>
+</div>
+</div>
+<p>Consider a balanced two-way ANOVA with <strong>random effects</strong>, i.e., <span class="math display">\[Y_{ijk}=\mu + a_i + b_j +(ab)_{ij} + \epsilon_{ijk}\]</span> with <span class="math inline">\(i=1,2; j=1,2; k=1,2,3\)</span> where <span class="math inline">\(a_i \sim N(0, \sigma_A^2), b_j \sim N(0,\sigma_B^2), (ab)_{ij} \sim N(0, \sigma_{AB}^2)\)</span>, and <span class="math inline">\(\epsilon_{ijk}\sim N(0,\sigma^2)\)</span> are all independent with each other. The sums of squares are defined in the same way as in the two-way ANOVA model with fixed-effects (Problem 2).</p>
+<ol type="a">
+<li><p>What is <span class="math inline">\(cov(Y)\)</span>?</p></li>
+<li><p>Give the distributions for <span class="math inline">\(SSA\)</span>, <span class="math inline">\(SSAB\)</span>, <span class="math inline">\(SSE\)</span>. You may re-scale each of them using using <span class="math inline">\(\sigma^2, \sigma_A^2, \sigma_B^2, \sigma_{AB}^2\)</span> to obtain chi-square distributed random variables. Hint: when examining a sum of squares, express it using the <span class="math inline">\(a_i, b_j, (ab)_{ij}, \epsilon_{ijk}\)</span>. The results you derive in Problem 2 can be used to justify the distribution of the sums of squares.</p></li>
+</ol>
 
 
 

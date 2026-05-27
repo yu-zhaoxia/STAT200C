@@ -152,12 +152,16 @@ window.Quarto = {
   <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">2</span> Hypothesis Testing</a>
   <ul class="collapse">
   <li><a href="#f-test" id="toc-f-test" class="nav-link" data-scroll-target="#f-test"><span class="header-section-number">2.1</span> F-Test</a></li>
-  <li><a href="#likelihood-ratio-test" id="toc-likelihood-ratio-test" class="nav-link" data-scroll-target="#likelihood-ratio-test"><span class="header-section-number">2.2</span> Likelihood Ratio Test</a>
-  <ul class="collapse">
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">2.2.1</span> Examples</a></li>
-  </ul></li>
+  <li><a href="#likelihood-ratio-test" id="toc-likelihood-ratio-test" class="nav-link" data-scroll-target="#likelihood-ratio-test"><span class="header-section-number">2.2</span> Likelihood Ratio Test</a></li>
   <li><a href="#wald-test" id="toc-wald-test" class="nav-link" data-scroll-target="#wald-test"><span class="header-section-number">2.3</span> Wald Test</a></li>
   <li><a href="#score-test" id="toc-score-test" class="nav-link" data-scroll-target="#score-test"><span class="header-section-number">2.4</span> Score Test</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">2.5</span> Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1-two-sample-t-test" id="toc-example-1-two-sample-t-test" class="nav-link" data-scroll-target="#example-1-two-sample-t-test"><span class="header-section-number">2.5.1</span> Example 1: Two-Sample t-test</a></li>
+  <li><a href="#example-2-one-way-anova" id="toc-example-2-one-way-anova" class="nav-link" data-scroll-target="#example-2-one-way-anova"><span class="header-section-number">2.5.2</span> Example 2: One-Way ANOVA</a></li>
+  <li><a href="#example-3-two-way-anova-balanced-design" id="toc-example-3-two-way-anova-balanced-design" class="nav-link" data-scroll-target="#example-3-two-way-anova-balanced-design"><span class="header-section-number">2.5.3</span> Example 3: Two-Way ANOVA (Balanced Design)</a></li>
+  <li><a href="#example-4-compare-k-straight-lines" id="toc-example-4-compare-k-straight-lines" class="nav-link" data-scroll-target="#example-4-compare-k-straight-lines"><span class="header-section-number">2.5.4</span> Example 4: Compare <span class="math inline">\(K\)</span> Straight Lines</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#confidence-intervals-and-regions" id="toc-confidence-intervals-and-regions" class="nav-link" data-scroll-target="#confidence-intervals-and-regions"><span class="header-section-number">3</span> Confidence Intervals and Regions</a></li>
   <li><a href="#confidence-bands-for-the-regression-surface" id="toc-confidence-bands-for-the-regression-surface" class="nav-link" data-scroll-target="#confidence-bands-for-the-regression-surface"><span class="header-section-number">4</span> Confidence bands for the regression surface</a></li>
@@ -290,17 +294,26 @@ RSS_H &amp;=&amp; \|Y-X\hat{\beta}_H\|^2\\
 &amp;=&amp; Y^T(I_n-P_H)Y
 \end{eqnarray*}\]</span> Therefore, <span class="math inline">\(RSS_H-RSS=Y^T(P_X-P_H)Y\)</span></p>
 </div>
-<p><strong>Note</strong>:</p>
+<p><strong>Summary</strong>:</p>
 <ul>
-<li><span class="math inline">\(E[RSS]=?\)</span>, is the mle for <span class="math inline">\(\sigma^2\)</span> unbiased?</li>
-<li>We proved the case when both <span class="math inline">\(X\)</span> and <span class="math inline">\(A\)</span> are full rank. It can shown that the theorem also applies when they are not full rank. If you can show that <span class="math inline">\(X\hat\beta_H\)</span> is invariant to the choice of the generalized inverse, all the proof works.</li>
+<li><p><span class="math inline">\(RSS/\sigma^2 \sim \chi_{n-p}^2\)</span> and <span class="math inline">\(E[RSS]=(n-p)\sigma^2\)</span>.<br>
+</p></li>
+<li><p>F-statistic: <span class="math display">\[F=\frac{(RSS_H-RSS)/q}{RSS/(n-p)}=\frac{(A\hat\beta -c )^T[A (X^TX)^{-1}A^T]^{-1}(A\hat\beta -c)}{\hat\sigma^2}\]</span></p></li>
+<li><p><span class="math inline">\(F\overset{H_0}\sim F_{q,n-p}\)</span>.</p></li>
+<li><p>Multiple R-squared and F:</p>
+<ul>
+<li>Multiple R-squared for the full model: <span class="math inline">\(R^2=1-RSS/SSTO\)</span>.</li>
+<li>Multiple R-squared for the reduced model: <span class="math inline">\(R_H^2=1-RSS_H/SSTO\)</span>.</li>
+<li>F-statistic can be expressed as <span class="math display">\[F=\frac{(R_H^2-R^2)/q}{(1-R_H^2)/(n-p)}\]</span></li>
+</ul></li>
+<li><p>We proved the case when both <span class="math inline">\(X\)</span> and <span class="math inline">\(A\)</span> are full rank. It can shown that the theorem also applies when they are not full rank. If you can show that <span class="math inline">\(X\hat\beta_H\)</span> is invariant to the choice of the generalized inverse, all the proof works.</p></li>
 </ul>
 </section>
 <section id="likelihood-ratio-test" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="likelihood-ratio-test"><span class="header-section-number">2.2</span> Likelihood Ratio Test</h2>
 <p>The likelihood ratio test is based on both the restricted and unrestricted estimators. The likelihood function is <span class="math display">\[ L(\beta, \sigma^2) = (2\pi\sigma^2)^{-n/2}exp[-\frac{1}{2\sigma^2}\|Y-X\beta\|^2]\]</span></p>
-<p>The MLEs are <span class="math inline">\(\hat{\beta}=(X^TX)^{-1}X^TY\)</span> and <span class="math inline">\(\hat{\sigma}^2=\|Y-X\hat{\beta}\|^2/n\)</span>. The maximum value is <span class="math display">\[L(\hat{\beta},\hat{\sigma}^2)=(2\pi\hat{\sigma}^2)^{-n/2}e^{-n/2}\]</span></p>
-<p>Under the null hypothesis, <span class="math inline">\(\beta\)</span> satisfies the constraint <span class="math inline">\(A\beta=c\)</span>. We have shown that <span class="math display">\[\hat{\beta}_H=\hat{\beta}+(X^TX)^{-1}A^{T}[A(X^TX)^{-1}A^T]^{-1}(c-A\hat{\beta})\]</span> It is easy to find that <span class="math display">\[\hat{\sigma}_H^2=\|Y-X\hat{\beta}_H\|^2/n\]</span> The corresponding maximum value of likelihood under the constraint is <span class="math display">\[ L(\hat{\beta}_H, \hat{\sigma}_H^2) = (2\pi\hat{\sigma}_H^2)^{-n/2}e^{-n/2}\]</span> The likelihood ratio test statistic is given by <span class="math display">\[ \Lambda = \frac{L(\hat{\beta}_H, \hat{\sigma}_H^2)}{L(\beta, \hat{\sigma}^2)} = (\frac{\hat{\sigma}^2}{\hat{\sigma}_H^2})^{n/2} \]</span> According to logic of likelihood ratio, we reject <span class="math inline">\(H_0\)</span> for small value of <span class="math inline">\(\Lambda\)</span>. One can based on the asymptotic property of <span class="math inline">\(\Lambda\)</span>, i.e., under the null hypothesis <span class="math display">\[-2log(\lambda)\dot{\sim} \chi_{q}^2\]</span> to test the hypothesis. Here <span class="math inline">\(q\)</span> is the difference in number of parameters between the full and the restricted models: there are <span class="math inline">\(p+1\)</span> parameters in <span class="math inline">\(H_0\)</span> and <span class="math inline">\(p+1-q\)</span> parameters in <span class="math inline">\(H_1\)</span>.</p>
+<p>The MLEs are <span class="math inline">\(\hat{\beta}=(X^TX)^{-1}X^TY\)</span> and <span class="math inline">\(\hat{\sigma}^2=\|Y-X\hat{\beta}\|^2/n=RSS/n\)</span>. The maximum value is <span class="math display">\[L(\hat{\beta},\hat{\sigma}^2)=(2\pi\hat{\sigma}^2)^{-n/2}e^{-n/2}\]</span></p>
+<p>Under the null hypothesis, <span class="math inline">\(\beta\)</span> satisfies the constraint <span class="math inline">\(A\beta=c\)</span>. We have shown that <span class="math display">\[\hat{\beta}_H=\hat{\beta}+(X^TX)^{-1}A^{T}[A(X^TX)^{-1}A^T]^{-1}(c-A\hat{\beta})\]</span> It is easy to find that <span class="math display">\[\hat{\sigma}_H^2=\|Y-X\hat{\beta}_H\|^2/n=RSS_H/n\]</span> The corresponding maximum value of likelihood under the constraint is <span class="math display">\[ L(\hat{\beta}_H, \hat{\sigma}_H^2) = (2\pi\hat{\sigma}_H^2)^{-n/2}e^{-n/2}\]</span> The likelihood ratio test statistic is given by <span class="math display">\[ \Lambda = \frac{L(\hat{\beta}_H, \hat{\sigma}_H^2)}{L(\beta, \hat{\sigma}^2)} = (\frac{\hat{\sigma}^2}{\hat{\sigma}_H^2})^{n/2} \]</span> According to logic of likelihood ratio, we reject <span class="math inline">\(H_0\)</span> for small value of <span class="math inline">\(\Lambda\)</span>. One can based on the asymptotic property of <span class="math inline">\(\Lambda\)</span>, i.e., under the null hypothesis <span class="math display">\[-2log(\lambda)\dot{\sim} \chi_{q}^2\]</span> to test the hypothesis. Here <span class="math inline">\(q\)</span> is the difference in number of parameters between the full and the restricted models: there are <span class="math inline">\(p+1\)</span> parameters in <span class="math inline">\(H_0\)</span> and <span class="math inline">\(p+1-q\)</span> parameters in <span class="math inline">\(H_1\)</span>.</p>
 <p>With the normality assumption, we can construct exact test: an F-test <span class="math display">\[F=\frac{n-p}{q}(\Lambda^{-2/n}-1),\]</span> and <span class="math inline">\(H_0\)</span> will be rejected when <span class="math inline">\(F\)</span> is large. More details will be given in next section.</p>
 <p><strong>Relation of the F-test to likelihood ratio test</strong></p>
 <p>Because <span class="math inline">\(\hat{\sigma}_H^2=RSS_H/n\)</span> and <span class="math inline">\(\hat{\sigma}^2=RSS/n\)</span>, <span class="math display">\[\begin{eqnarray*}
@@ -309,8 +322,26 @@ F &amp;=&amp; \frac{n-p}{q}\frac{\hat{\sigma}_H^2-\hat{\sigma}^2}{\hat{\sigma}^2
 &amp;=&amp; \frac{n-p}{q}(\Lambda^{-2/n}-1).
 \end{eqnarray*}\]</span></p>
 <p>Remarks: We know that <span class="math inline">\(qF_{q,n-p}\)</span> and <span class="math inline">\(-2log(\Lambda)\)</span> converge to <span class="math inline">\(\chi_q^2\mbox{ as } n\rightarrow \infty\)</span>. The following shows that the likelihood ratio test statistic is identical to <span class="math inline">\(qF\)</span> by using the first order Taylor approximation: <span class="math display">\[-2log(\Lambda)=nlog(\Lambda^{-2/n})=nlog[1+(\Lambda^{-2/n}-1)]\approx n(\Lambda^{-2/n}-1)\approx qF.\]</span></p>
-<section id="examples" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="examples"><span class="header-section-number">2.2.1</span> Examples</h3>
+</section>
+<section id="wald-test" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="wald-test"><span class="header-section-number">2.3</span> Wald Test</h2>
+<p>The Wald test is based on the unrestricted estimator. When the sample size is large, <span class="math inline">\((\hat{\beta}-\beta)^T[cov(\hat{\beta})]^{-1}(\hat{\beta}-\beta)\)</span> is roughly <span class="math inline">\(\chi^2\)</span> and the d.f.=p. Now consider the transformation <span class="math inline">\(A\hat\beta\)</span>. Under the null hypothesis, it has mean <span class="math inline">\(c\)</span> and covariance <span class="math inline">\(A cov(\hat\beta) A^T\)</span>. Thus, the Wald test is: <span class="math display">\[(A\hat\beta-c)^T[A cov(\hat\beta) A^T]^{-1}(A\hat\beta-c)=(A\hat\beta-c)^T[\sigma^2 A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)\]</span> Note that the MLEs <span class="math inline">\(\hat\sigma^2=RSS/n\)</span> and <span class="math inline">\(\hat\sigma_H^2=RSS_H/n\)</span>. If we place <span class="math inline">\(\sigma^2\)</span> with <span class="math inline">\(\hat\sigma^2\)</span>, the Wald test statsitic becomes <span class="math display">\[n(RSS_H-RSS)/RSS=n(\frac{\hat\sigma_H^2}{\hat\sigma^2}-1)=n(\Lambda^{-2/n}-1)\]</span></p>
+<p>It is known that LRT and the Wald and asymptotically equivalent.</p>
+</section>
+<section id="score-test" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="score-test"><span class="header-section-number">2.4</span> Score Test</h2>
+<p>The score test is based on the restricted estimator. We omit the results. If there is no nuisance parameter, i.e., <span class="math inline">\(\sigma^2\)</span> is known, it can be shown that LR=Wald=Score. This is not true because the log-likelihood is quadratic.</p>
+<div class="example">
+<p>Let <span class="math inline">\((y_1,\cdots,y_n)\)</span> drawn from <span class="math inline">\(N(\mu,\sigma^2)\)</span> with unknown <span class="math inline">\(\sigma^2\)</span>. The three test statistics for <span class="math inline">\(H_0:\mu=1\)</span> vs <span class="math inline">\(H_1:\mu\not=1\)</span> are respectively: <span class="math display">\[LR=nlog\left[\frac{\sum (y_i-1)^2}{\sum (y_i-\bar y)^2}\right] \mbox{ , }
+W=\frac{n^2 (\bar y-1)^2}{\sum (y_i-\bar y)^2} \mbox{ , }
+S=\frac{n^2 (\bar y-1)^2}{\sum (y_i-1)^2}
+\]</span></p>
+</div>
+</section>
+<section id="examples" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="examples"><span class="header-section-number">2.5</span> Examples</h2>
+<section id="example-1-two-sample-t-test" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="example-1-two-sample-t-test"><span class="header-section-number">2.5.1</span> Example 1: Two-Sample t-test</h3>
 <div class="example">
 <p>Two-sample t-test with equal variance. Consider <span class="math inline">\(U_i\overset{iid}\sim N(\mu_1,\sigma^2), i=1,\cdots,m\)</span> and <span class="math inline">\(V_i\overset{iid}\sim N(\mu_2,\sigma^2), i=1,\cdots,n\)</span>. Suppose the two samples are independent. We want to derive a test statistic for <span class="math inline">\(H_0: \mu_1=\mu_2\)</span>.</p>
 <p>We use the linear model to describe the distributions: <span class="math display">\[Y=X\beta+\epsilon\]</span> where <span class="math inline">\(Y=(U_1,\cdots,U_m,V_1,\cdots,V_n)^T\)</span> and <span class="math display">\[X=\begin{pmatrix}
@@ -349,33 +380,326 @@ V_n-\bar{V}
 \end{pmatrix}
 \]</span> Also, <span class="math inline">\(A(X^TX)^{-1}A^T=\frac{1}{m}+\frac{1}{n}\)</span> The F statistic is <span class="math display">\[F=\frac{(A\hat\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)}{qS^2}=\frac{(\bar U-\bar V)^2}{S^2 (1/m+1/n)}
 \]</span> Here <span class="math inline">\(n=m+n-2\)</span>, <span class="math inline">\(q=1\)</span>, <span class="math inline">\(p=2\)</span>. Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(F\sim F_{1,m+n-2}\)</span>. Note, <span class="math inline">\(t^2=F\)</span>.</p>
-</div>
-<div class="example">
-<p><strong>The multiple correlation coefficient</strong> The correlation coefficient between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The estimate is the sample correlation coefficient <span class="math display">\[\begin{eqnarray*}
-r &amp;=&amp;\frac{\sum (Y_i-\bar Y)(x_i-\bar x)}{\sum (Y_i-\bar Y)^2 \sum (x_i-\bar x)^2}\\
-&amp;=&amp; \frac{\hat\beta_1***}{\hat\beta_1***}\\
-&amp;=&amp; \frac{\sum (Y_i-\bar Y)(\hat Y_i-\bar Y)}{\sum (Y_i-\bar Y)^2 \sum (\hat Y_i-\bar Y)^2}
-\end{eqnarray*}\]</span></p>
-<p><span class="math display">\[r^2=\frac{\sum (\hat Y_i-\bar Y)^2}{\sum (Y_i-\bar Y)^2}\]</span></p>
-<p>We can generalize the measure from a straight line to a general linear model:</p>
-<p>By the decomposition of the total sum of squares <span class="math display">\[r^2=\frac{SSTO-RSS}{SSTO}\]</span></p>
+<strong>Method 2</strong>
+<span class="math display">\[\begin{aligned}
+RSS&amp;=\sum_{i=1}^m(U_i -\bar U)^2 + \sum_{i=1}^n (V_i -\bar V)^2\\
+RSS_H &amp;= \sum_{i=1}^m(U_i -\frac{m\bar U + n \bar V}{m+n})^2 + \sum_{i=1}^n (V_i -\frac{m\bar U + n \bar V}{m+n})^2
+\end{aligned}\]</span>
+<p>The F-test statistic is <span class="math display">\[F=\frac{(RSS_H-RSS)/1}{RSS/(m+n-2)}.\]</span></p>
+<p>After some algebra, we can show that the two methods give the same test statistic.</p>
 </div>
 </section>
-</section>
-<section id="wald-test" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="wald-test"><span class="header-section-number">2.3</span> Wald Test</h2>
-<p>The Wald test is based on the unrestricted estimator. When the sample size is large, <span class="math inline">\((\hat{\beta}-\beta)^T[cov(\hat{\beta})]^{-1}(\hat{\beta}-\beta)\)</span> is roughly <span class="math inline">\(\chi^2\)</span> and the d.f.=p. Now consider the transformation <span class="math inline">\(A\hat\beta\)</span>. Under the null hypothesis, it has mean <span class="math inline">\(c\)</span> and covariance <span class="math inline">\(A cov(\hat\beta) A^T\)</span>. Thus, the Wald test is: <span class="math display">\[(A\hat\beta-c)^T[A cov(\hat\beta) A^T]^{-1}(A\hat\beta-c)=(A\hat\beta-c)^T[\sigma^2 A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)\]</span> Note that the MLEs <span class="math inline">\(\hat\sigma^2=RSS/n\)</span> and <span class="math inline">\(\hat\sigma_H^2=RSS_H/n\)</span>. If we place <span class="math inline">\(\sigma^2\)</span> with <span class="math inline">\(\hat\sigma^2\)</span>, the Wald test statsitic becomes <span class="math display">\[n(RSS_H-RSS)/RSS=n(\frac{\hat\sigma_H^2}{\hat\sigma^2}-1)=n(\Lambda^{-2/n}-1)\]</span></p>
-<p>It is known that LRT and the Wald and asymptotically equivalent.</p>
-</section>
-<section id="score-test" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="score-test"><span class="header-section-number">2.4</span> Score Test</h2>
-<p>The score test is based on the restricted estimator. We omit the results. If there is no nuisance parameter, i.e., <span class="math inline">\(\sigma^2\)</span> is known, it can be shown that LR=Wald=Score. This is not true because the log-likelihood is quadratic.</p>
+<section id="example-2-one-way-anova" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="example-2-one-way-anova"><span class="header-section-number">2.5.2</span> Example 2: One-Way ANOVA</h3>
 <div class="example">
-<p>Let <span class="math inline">\((y_1,\cdots,y_n)\)</span> drawn from <span class="math inline">\(N(\mu,\sigma^2)\)</span> with unknown <span class="math inline">\(\sigma^2\)</span>. The three test statistics for <span class="math inline">\(H_0:\mu=1\)</span> vs <span class="math inline">\(H_1:\mu\not=1\)</span> are respectively: <span class="math display">\[LR=nlog\left[\frac{\sum (y_i-1)^2}{\sum (y_i-\bar y)^2}\right] \mbox{ , }
-W=\frac{n^2 (\bar y-1)^2}{\sum (y_i-\bar y)^2} \mbox{ , }
-S=\frac{n^2 (\bar y-1)^2}{\sum (y_i-1)^2}
+<p>Consider the one-way ANOVA model <span class="math display">\[
+Y_{ij} = \mu_i + \varepsilon_{ij},
+\qquad
+i=1,\dots,I,\quad j=1,\dots,n_i,
+\]</span> where <span class="math display">\[
+\varepsilon_{ij} \overset{\text{iid}}{\sim} N(0,\sigma^2).
+\]</span></p>
+<p>The factor has (I) levels.</p>
+<p>We test <span class="math display">\[
+H_0:\mu_1=\mu_2=\cdots=\mu_I.
+\]</span></p>
+<p>Define <span class="math display">\[
+\bar Y_{i\cdot}=\frac1{n_i}\sum_{j=1}^{n_i}Y_{ij},
+\qquad
+\bar Y_{\cdot\cdot}=\frac1n\sum_{i=1}^I\sum_{j=1}^{n_i}Y_{ij},
+\]</span> where <span class="math display">\[
+n=\sum_{i=1}^I n_i.
+\]</span></p>
+<p>The least squares estimator is <span class="math display">\[
+\hat\mu_i=\bar Y_{i\cdot}.
+\]</span></p>
+<p>The residual sum of squares for the full model is <span class="math display">\[
+RSS
+=
+\sum_{i=1}^I\sum_{j=1}^{n_i}
+(Y_{ij}-\bar Y_{i\cdot})^2.
+\]</span></p>
+<p>The reduced model under (H_0) is <span class="math display">\[
+Y_{ij}=\mu+\varepsilon_{ij},
+\]</span> with <span class="math display">\[
+\hat\mu=\bar Y_{\cdot\cdot}.
+\]</span></p>
+<p>The residual sum of squares for the reduced model is <span class="math display">\[
+RSS_H
+=
+\sum_{i=1}^I\sum_{j=1}^{n_i}
+(Y_{ij}-\bar Y_{\cdot\cdot})^2.
+\]</span></p>
+<p>Hence <span class="math display">\[
+RSS_H-RSS
+=
+\sum_{i=1}^I n_i
+(\bar Y_{i\cdot}-\bar Y_{\cdot\cdot})^2.
+\]</span></p>
+<p>Define <span class="math display">\[
+SSB
+=
+\sum_{i=1}^I n_i
+(\bar Y_{i\cdot}-\bar Y_{\cdot\cdot})^2
+\]</span> and <span class="math display">\[
+SSW
+=
+\sum_{i=1}^I\sum_{j=1}^{n_i}
+(Y_{ij}-\bar Y_{i\cdot})^2.
+\]</span></p>
+<p>Then <span class="math display">\[
+SSTO = SSB + SSW.
+\]</span></p>
+<p>The ANOVA F-statistic is <span class="math display">\[
+F
+=
+\frac{SSB/(I-1)}{SSW/(n-I)}
+\sim F_{I-1,n-I}
+\quad \text{under } H_0.
 \]</span></p>
 </div>
+</section>
+<section id="example-3-two-way-anova-balanced-design" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="example-3-two-way-anova-balanced-design"><span class="header-section-number">2.5.3</span> Example 3: Two-Way ANOVA (Balanced Design)</h3>
+<div class="example">
+<p>Consider the balanced two-way ANOVA model <span class="math display">\[
+Y_{ijk}
+=
+\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk},
+\]</span> where <span class="math display">\[
+i=1,\dots,I,
+\qquad
+j=1,\dots,J,
+\qquad
+k=1,\dots,K,
+\]</span> and <span class="math display">\[
+\varepsilon_{ijk}
+\overset{\text{iid}}{\sim}
+N(0,\sigma^2).
+\]</span></p>
+<p>Interpretation of parameters:</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span>: grand mean</li>
+<li><span class="math inline">\(\alpha_i\)</span>: main effect of factor A</li>
+<li><span class="math inline">\(\beta_j\)</span>: main effect of factor B</li>
+<li><span class="math inline">\(\gamma_{ij}\)</span>: interaction effect</li>
+</ul>
+<p>Identifiability constraints: <span class="math display">\[
+\sum_{i=1}^I \alpha_i = 0,
+\qquad
+\sum_{j=1}^J \beta_j = 0,
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i=1}^I \gamma_{ij}=0,
+\qquad
+\sum_{j=1}^J \gamma_{ij}=0.
+\]</span></p>
+<p>Hypotheses:</p>
+<p>Main effect of A: <span class="math display">\[
+H_{0A}:\alpha_1=\cdots=\alpha_I=0.
+\]</span></p>
+<p>Main effect of B: <span class="math display">\[
+H_{0B}:\beta_1=\cdots=\beta_J=0.
+\]</span></p>
+<p>Interaction: <span class="math display">\[
+H_{0AB}:\gamma_{ij}=0
+\quad \text{for all } i,j.
+\]</span></p>
+<p>Define means: <span class="math display">\[
+\bar Y_{i\cdot\cdot}
+=
+\frac1{JK}\sum_{j=1}^J\sum_{k=1}^K Y_{ijk},
+\]</span></p>
+<p><span class="math display">\[
+\bar Y_{\cdot j\cdot}
+=
+\frac1{IK}\sum_{i=1}^I\sum_{k=1}^K Y_{ijk},
+\]</span></p>
+<p><span class="math display">\[
+\bar Y_{ij\cdot}
+=
+\frac1K\sum_{k=1}^K Y_{ijk},
+\]</span></p>
+<p><span class="math display">\[
+\bar Y_{\cdot\cdot\cdot}
+=
+\frac1{IJK}\sum_{i,j,k}Y_{ijk}.
+\]</span></p>
+<p>Sums of squares:</p>
+<p><span class="math display">\[
+SSA
+=
+JK\sum_{i=1}^I
+(\bar Y_{i\cdot\cdot}-\bar Y_{\cdot\cdot\cdot})^2,
+\]</span></p>
+<p><span class="math display">\[
+SSB
+=
+IK\sum_{j=1}^J
+(\bar Y_{\cdot j\cdot}-\bar Y_{\cdot\cdot\cdot})^2,
+\]</span></p>
+<p><span class="math display">\[
+SSAB
+=
+K\sum_{i=1}^I\sum_{j=1}^J
+(\bar Y_{ij\cdot}
+-\bar Y_{i\cdot\cdot}
+-\bar Y_{\cdot j\cdot}
++\bar Y_{\cdot\cdot\cdot})^2,
+\]</span></p>
+<p><span class="math display">\[
+SSW
+=
+\sum_{i,j,k}
+(Y_{ijk}-\bar Y_{ij\cdot})^2.
+\]</span></p>
+<p>The total sum of squares decomposes as <span class="math display">\[
+SSTO
+=
+SSA+SSB+SSAB+SSW.
+\]</span></p>
+<p>Under normality, <span class="math display">\[
+SSA,\quad SSB,\quad SSAB,\quad SSW
+\]</span> are mutually independent, and <span class="math display">\[
+\frac{SSA}{\sigma^2}\sim\chi^2_{I-1},
+\qquad
+\frac{SSB}{\sigma^2}\sim\chi^2_{J-1},
+\]</span></p>
+<p><span class="math display">\[
+\frac{SSAB}{\sigma^2}
+\sim
+\chi^2_{(I-1)(J-1)},
+\qquad
+\frac{SSW}{\sigma^2}
+\sim
+\chi^2_{IJ(K-1)}.
+\]</span></p>
+<p>Corresponding F-tests:</p>
+<p><span class="math display">\[
+F_A
+=
+\frac{SSA/(I-1)}{SSW/[IJ(K-1)]},
+\]</span></p>
+<p><span class="math display">\[
+F_B
+=
+\frac{SSB/(J-1)}{SSW/[IJ(K-1)]},
+\]</span></p>
+<p><span class="math display">\[
+F_{AB}
+=
+\frac{SSAB/[(I-1)(J-1)]}{SSW/[IJ(K-1)]}.
+\]</span></p>
+</div>
+<section id="proof-of-the-sum-of-squares-decomposition-in-two-way-anova" class="level4" data-number="2.5.3.1">
+<h4 data-number="2.5.3.1" class="anchored" data-anchor-id="proof-of-the-sum-of-squares-decomposition-in-two-way-anova"><span class="header-section-number">2.5.3.1</span> Proof of the Sum-of-Squares Decomposition in Two-Way ANOVA</h4>
+<p>Consider the balanced two-way ANOVA model <span class="math display">\[Y_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk},\]</span> where <span class="math display">\[i=1,\dots,I,\qquad j=1,\dots,J,\qquad k=1,\dots,K,\]</span> and <span class="math display">\[\varepsilon_{ijk}\overset{\text{iid}}{\sim}N(0,\sigma^2).\]</span></p>
+<p>Assume the identifiability constraints <span class="math display">\[\sum_{i=1}^I \alpha_i=0,\qquad \sum_{j=1}^J \beta_j=0,\]</span> and <span class="math display">\[\sum_{i=1}^I \gamma_{ij}=0,\qquad \sum_{j=1}^J \gamma_{ij}=0.\]</span></p>
+<p>Define the sample means <span class="math display">\[\bar Y_{ij\cdot}=\frac1K\sum_{k=1}^K Y_{ijk},\]</span></p>
+<p><span class="math display">\[\bar Y_{i\cdot\cdot}=\frac1J\sum_{j=1}^J \bar Y_{ij\cdot},\]</span></p>
+<p><span class="math display">\[\bar Y_{\cdot j\cdot}=\frac1I\sum_{i=1}^I \bar Y_{ij\cdot},\]</span></p>
+<p><span class="math display">\[\bar Y_{\cdot\cdot\cdot}=\frac1{IJ}\sum_{i,j}\bar Y_{ij\cdot}.\]</span></p>
+<p>The least squares estimators are <span class="math display">\[\hat\mu=\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[\hat\alpha_i=\bar Y_{i\cdot\cdot}-\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[\hat\beta_j=\bar Y_{\cdot j\cdot}-\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[\hat\gamma_{ij}=\bar Y_{ij\cdot}-\bar Y_{i\cdot\cdot}-\bar Y_{\cdot j\cdot}+\bar Y_{\cdot\cdot\cdot}.\]</span></p>
+<p>Hence the fitted value is <span class="math display">\[\hat Y_{ijk}=\hat\mu+\hat\alpha_i+\hat\beta_j+\hat\gamma_{ij}=\bar Y_{ij\cdot}.\]</span></p>
+<p>Therefore, <span class="math display">\[Y_{ijk}=m+a_i+b_j+(ab)_{ij}+e_{ijk},\]</span> where <span class="math display">\[m=\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[a_i=\bar Y_{i\cdot\cdot}-\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[b_j=\bar Y_{\cdot j\cdot}-\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[(ab)_{ij}=\bar Y_{ij\cdot}-\bar Y_{i\cdot\cdot}-\bar Y_{\cdot j\cdot}+\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[e_{ijk}=Y_{ijk}-\bar Y_{ij\cdot}.\]</span></p>
+<section id="a-effect-orthogonal-to-b-effect" class="level5" data-number="2.5.3.1.1">
+<h5 data-number="2.5.3.1.1" class="anchored" data-anchor-id="a-effect-orthogonal-to-b-effect"><span class="header-section-number">2.5.3.1.1</span> A-effect orthogonal to B-effect</h5>
+<p>Consider <span class="math display">\[\sum_{i,j,k} a_i b_j.\]</span></p>
+<p>Since neither term depends on (k), <span class="math display">\[\sum_{i,j,k} a_i b_j=K\sum_i a_i\sum_j b_j.\]</span></p>
+<p>But <span class="math display">\[\sum_i a_i=\sum_i(\bar Y_{i\cdot\cdot}-\bar Y_{\cdot\cdot\cdot})=0,\]</span> and similarly <span class="math display">\[\sum_j b_j=0.\]</span></p>
+<p>Hence <span class="math display">\[\sum_{i,j,k} a_i b_j=0.\]</span></p>
+<p>Thus the A and B effects are orthogonal.</p>
+</section>
+<section id="interaction-orthogonal-to-a-effect" class="level5" data-number="2.5.3.1.2">
+<h5 data-number="2.5.3.1.2" class="anchored" data-anchor-id="interaction-orthogonal-to-a-effect"><span class="header-section-number">2.5.3.1.2</span> Interaction orthogonal to A-effect</h5>
+<p>Consider <span class="math display">\[\sum_{i,j,k} (ab)_{ij}a_i.\]</span></p>
+<p>Since the terms do not depend on (k), <span class="math display">\[\sum_{i,j,k} (ab)_{ij}a_i=K\sum_i a_i\sum_j (ab)_{ij}.\]</span></p>
+<p>Now <span class="math display">\[\sum_j (ab)_{ij}=\sum_j\left(\bar Y_{ij\cdot}-\bar Y_{i\cdot\cdot}-\bar Y_{\cdot j\cdot}+\bar Y_{\cdot\cdot\cdot}\right).\]</span></p>
+<p>Compute term-by-term: <span class="math display">\[\sum_j \bar Y_{ij\cdot}=J\bar Y_{i\cdot\cdot},\]</span></p>
+<p><span class="math display">\[\sum_j \bar Y_{i\cdot\cdot}=J\bar Y_{i\cdot\cdot},\]</span></p>
+<p><span class="math display">\[\sum_j \bar Y_{\cdot j\cdot}=J\bar Y_{\cdot\cdot\cdot},\]</span></p>
+<p><span class="math display">\[\sum_j \bar Y_{\cdot\cdot\cdot}=J\bar Y_{\cdot\cdot\cdot}.\]</span></p>
+<p>Therefore, <span class="math display">\[\sum_j (ab)_{ij}=0.\]</span></p>
+<p>Hence <span class="math display">\[\sum_{i,j,k}(ab)_{ij}a_i=0.\]</span></p>
+<p>Thus the interaction effect is orthogonal to the A main effect.</p>
+<p>Similarly, <span class="math display">\[\sum_{i,j,k}(ab)_{ij}b_j=0.\]</span></p>
+</section>
+<section id="residual-orthogonal-to-all-fitted-effects" class="level5" data-number="2.5.3.1.3">
+<h5 data-number="2.5.3.1.3" class="anchored" data-anchor-id="residual-orthogonal-to-all-fitted-effects"><span class="header-section-number">2.5.3.1.3</span> Residual orthogonal to all fitted effects</h5>
+<p>Since <span class="math display">\[e_{ijk}=Y_{ijk}-\bar Y_{ij\cdot},\]</span> we have <span class="math display">\[\sum_{k=1}^K e_{ijk}=0 \quad \text{for every } i,j.\]</span></p>
+<p>Hence <span class="math display">\[\sum_{i,j,k} e_{ijk}a_i=0,\]</span></p>
+<p><span class="math display">\[\sum_{i,j,k} e_{ijk}b_j=0,\]</span></p>
+<p>and <span class="math display">\[\sum_{i,j,k} e_{ijk}(ab)_{ij}=0.\]</span></p>
+<p>Thus the residual component is orthogonal to all fitted effects.</p>
+</section>
+<section id="sum-of-squares-decomposition" class="level5" data-number="2.5.3.1.4">
+<h5 data-number="2.5.3.1.4" class="anchored" data-anchor-id="sum-of-squares-decomposition"><span class="header-section-number">2.5.3.1.4</span> Sum-of-Squares Decomposition</h5>
+<p>Since all components are orthogonal, <span class="math display">\[\sum_{i,j,k}(Y_{ijk}-\bar Y_{\cdot\cdot\cdot})^2\]</span> equals the sum of squared norms of the orthogonal pieces: <span class="math display">\[SSTO = SSA + SSB + SSAB + SSW,\]</span> where <span class="math display">\[SSA=JK\sum_i a_i^2,\]</span></p>
+<p><span class="math display">\[SSB=IK\sum_j b_j^2,\]</span></p>
+<p><span class="math display">\[SSAB=K\sum_{i,j}(ab)_{ij}^2,\]</span></p>
+<p><span class="math display">\[SSW=\sum_{i,j,k} e_{ijk}^2.\]</span></p>
+<p>This is exactly the ANOVA decomposition from a linear algebra viewpoint.</p>
+</section>
+<section id="degrees-of-freedom" class="level5" data-number="2.5.3.1.5">
+<h5 data-number="2.5.3.1.5" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">2.5.3.1.5</span> Degrees of Freedom</h5>
+</section>
+</section>
+</section>
+<section id="example-4-compare-k-straight-lines" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="example-4-compare-k-straight-lines"><span class="header-section-number">2.5.4</span> Example 4: Compare <span class="math inline">\(K\)</span> Straight Lines</h3>
+<p><span class="math display">\[Y_{ki}=\alpha_k + \beta_k x_i + \varepsilon_{ki},\]</span> where <span class="math inline">\(k=1,\cdots,K\)</span>, <span class="math inline">\(i=1,\cdots,n_k\)</span>, and <span class="math inline">\(\epsilon_{ki} \overset{iid}\sim N(0, \sigma^2)\)</span>. We want to test</p>
+<ol type="a">
+<li><p><span class="math display">\[H_{01}: \alpha_1=\cdots=\alpha_K\]</span></p></li>
+<li><p><span class="math display">\[H_{02}: \beta_1=\cdots=\beta_K\]</span></p></li>
+<li><p><span class="math display">\[H_{03}: \alpha_1=\cdots=\alpha_K, \beta_1=\cdots=\beta_K\]</span></p></li>
+</ol>
+<p><strong>Full Model</strong>:</p>
+<p>Let <span class="math inline">\(\mathbf \beta=(\alpha_1, \cdots, \alpha_K, \beta_1, \cdots, \beta_K)^T\)</span>. We can write the model in a matrix form <span class="math inline">\(Y=X\mathbf \beta +\epsilon\)</span>. The design matrix <span class="math inline">\(X\)</span> is <span class="math display">\[\begin{pmatrix}
+\mathbf 1&amp;0&amp;\cdots&amp;0&amp;x_1&amp;0&amp;\cdots&amp;0\\
+0&amp;\mathbf 1&amp;\cdots&amp;0&amp;0&amp;x_2&amp;\cdots&amp;0\\
+\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots\\
+0&amp;0&amp;\cdots&amp;\mathbf 1&amp;0&amp;0&amp;\cdots&amp;x_K\\
+\end{pmatrix}
+\]</span></p>
+<section id="reduced-models" class="level4" data-number="2.5.4.1">
+<h4 data-number="2.5.4.1" class="anchored" data-anchor-id="reduced-models"><span class="header-section-number">2.5.4.1</span> Reduced Models:</h4>
+<ul>
+<li><p>For <span class="math inline">\(H_{01}\)</span>, the design matrix is <span class="math display">\[\begin{pmatrix}
+\mathbf 1&amp;x_1\\
+\mathbf 1&amp;x_2\\
+\cdots&amp;\cdots\\
+\mathbf 1&amp;x_K\\
+\end{pmatrix}\]</span></p></li>
+<li><p>For <span class="math inline">\(H_{02}\)</span>, the design matrix is <span class="math display">\[\begin{pmatrix}
+\mathbf 1&amp;0&amp;\cdots&amp;0\\
+0&amp;\mathbf 1&amp;\cdots&amp;0\\
+\cdots&amp;\cdots&amp;\cdots&amp;\cdots\\
+0&amp;0&amp;\cdots&amp;\mathbf 1\\
+\end{pmatrix}\]</span></p></li>
+<li><p>For <span class="math inline">\(H_{03}\)</span>, the design matrix is <span class="math display">\[\begin{pmatrix}
+\mathbf 1&amp;x_1\\
+\mathbf 1&amp;x_2\\
+\cdots&amp;\cdots\\
+\mathbf 1&amp;x_K\\
+\end{pmatrix}\]</span></p></li>
+</ul>
+</section>
+<section id="f-tests" class="level4" data-number="2.5.4.2">
+<h4 data-number="2.5.4.2" class="anchored" data-anchor-id="f-tests"><span class="header-section-number">2.5.4.2</span> F-tests</h4>
+<ul>
+<li>For <span class="math inline">\(H_{01}\)</span>, the F-test statistic is <span class="math display">\[F_1=\frac{(RSS_{H_{01}}-RSS)/K}{RSS/(n-2K)}\]</span></li>
+<li>For <span class="math inline">\(H_{02}\)</span>, the F-test statistic is <span class="math display">\[F_2=\frac{(RSS_{H_{02}}-RSS)/K}{RSS/(n-2K)}\]</span></li>
+<li>For <span class="math inline">\(H_{03}\)</span>, the F-test statistic is <span class="math display">\[F_3=\frac{(RSS_{H_{03}}-RSS)/2K}{RSS/(n-2K)}\]</span></li>
+</ul>
+</section>
+</section>
 </section>
 </section>
 <section id="confidence-intervals-and-regions" class="level1" data-number="3">
