@@ -837,7 +837,7 @@ X_A^TX_B \neq 0
 </section>
 <section id="example-4-compare-k-straight-lines" class="level3" data-number="2.5.4">
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="example-4-compare-k-straight-lines"><span class="header-section-number">2.5.4</span> Example 4: Compare <span class="math inline">\(K\)</span> Straight Lines</h3>
-<p><span class="math display">\[Y_{ki}=\alpha_k + \beta_k x_i + \varepsilon_{ki},\]</span> where <span class="math inline">\(k=1,\cdots,K\)</span>, <span class="math inline">\(i=1,\cdots,n_k\)</span>, and <span class="math inline">\(\epsilon_{ki} \overset{iid}\sim N(0, \sigma^2)\)</span>. We want to test</p>
+<p><span class="math display">\[Y_{ki}=\alpha_k + \beta_k x_{ki} + \varepsilon_{ki},\]</span> where <span class="math inline">\(k=1,\cdots,K\)</span>, <span class="math inline">\(i=1,\cdots,n_k\)</span>, and <span class="math inline">\(\epsilon_{ki} \overset{iid}\sim N(0, \sigma^2)\)</span>. We want to test</p>
 <ol type="a">
 <li><p><span class="math display">\[H_{01}: \alpha_1=\cdots=\alpha_K\]</span></p></li>
 <li><p><span class="math display">\[H_{02}: \beta_1=\cdots=\beta_K\]</span></p></li>
@@ -845,32 +845,33 @@ X_A^TX_B \neq 0
 </ol>
 <p><strong>Full Model</strong>:</p>
 <p>Let <span class="math inline">\(\mathbf \beta=(\alpha_1, \cdots, \alpha_K, \beta_1, \cdots, \beta_K)^T\)</span>. We can write the model in a matrix form <span class="math inline">\(Y=X\mathbf \beta +\epsilon\)</span>. The design matrix <span class="math inline">\(X\)</span> is <span class="math display">\[\begin{pmatrix}
-\mathbf 1&amp;0&amp;\cdots&amp;0&amp;x_1&amp;0&amp;\cdots&amp;0\\
-0&amp;\mathbf 1&amp;\cdots&amp;0&amp;0&amp;x_2&amp;\cdots&amp;0\\
+\mathbf 1&amp;0&amp;\cdots&amp;0&amp;\mathbf x_1&amp;0&amp;\cdots&amp;0\\
+0&amp;\mathbf 1&amp;\cdots&amp;0&amp;0&amp;\mathbf x_2&amp;\cdots&amp;0\\
 \cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots\\
-0&amp;0&amp;\cdots&amp;\mathbf 1&amp;0&amp;0&amp;\cdots&amp;x_K\\
+0&amp;0&amp;\cdots&amp;\mathbf 1&amp;0&amp;0&amp;\cdots&amp;\mathbf x_K\\
 \end{pmatrix}
 \]</span></p>
+<p>where <span class="math inline">\(\mathbf x_k=(x_{k1},\cdots,x_{k,n_k})^T\)</span>.</p>
 <section id="reduced-models" class="level4" data-number="2.5.4.1">
 <h4 data-number="2.5.4.1" class="anchored" data-anchor-id="reduced-models"><span class="header-section-number">2.5.4.1</span> Reduced Models:</h4>
 <ul>
 <li><p>For <span class="math inline">\(H_{01}\)</span>, the design matrix is <span class="math display">\[\begin{pmatrix}
-\mathbf 1&amp;x_1\\
-\mathbf 1&amp;x_2\\
-\cdots&amp;\cdots\\
-\mathbf 1&amp;x_K\\
+\mathbf 1&amp;\mathbf x_1&amp;0&amp;\cdots&amp;0\\
+\mathbf 1&amp;0&amp;\mathbf x_2&amp;\cdots&amp;0\\
+\cdots&amp;\cdots&amp;\cdots&amp;\cdots&amp;\cdots\\
+\mathbf 1&amp;0&amp;0&amp;\cdots&amp;\mathbf x_K\\
 \end{pmatrix}\]</span></p></li>
 <li><p>For <span class="math inline">\(H_{02}\)</span>, the design matrix is <span class="math display">\[\begin{pmatrix}
-\mathbf 1&amp;0&amp;\cdots&amp;0\\
-0&amp;\mathbf 1&amp;\cdots&amp;0\\
-\cdots&amp;\cdots&amp;\cdots&amp;\cdots\\
-0&amp;0&amp;\cdots&amp;\mathbf 1\\
+\mathbf 1&amp;0&amp;\cdots&amp;0&amp;\mathbf x_1\\
+0&amp;\mathbf 1&amp;\cdots&amp;0&amp;\mathbf x_2\\
+\cdots&amp;\cdots&amp;\cdots&amp;\cdots$\cdots\\
+0&amp;0&amp;\cdots&amp;\mathbf 1&amp;\mathbf x_K\\
 \end{pmatrix}\]</span></p></li>
 <li><p>For <span class="math inline">\(H_{03}\)</span>, the design matrix is <span class="math display">\[\begin{pmatrix}
-\mathbf 1&amp;x_1\\
-\mathbf 1&amp;x_2\\
+\mathbf 1&amp;\mathbf x_1\\
+\mathbf 1&amp;\mathbf x_2\\
 \cdots&amp;\cdots\\
-\mathbf 1&amp;x_K\\
+\mathbf 1&amp;\mathbf x_K\\
 \end{pmatrix}\]</span></p></li>
 </ul>
 </section>
@@ -879,7 +880,7 @@ X_A^TX_B \neq 0
 <ul>
 <li>For <span class="math inline">\(H_{01}\)</span>, the F-test statistic is <span class="math display">\[F_1=\frac{(RSS_{H_{01}}-RSS)/K}{RSS/(n-2K)}\]</span></li>
 <li>For <span class="math inline">\(H_{02}\)</span>, the F-test statistic is <span class="math display">\[F_2=\frac{(RSS_{H_{02}}-RSS)/K}{RSS/(n-2K)}\]</span></li>
-<li>For <span class="math inline">\(H_{03}\)</span>, the F-test statistic is <span class="math display">\[F_3=\frac{(RSS_{H_{03}}-RSS)/2K}{RSS/(n-2K)}\]</span></li>
+<li>For <span class="math inline">\(H_{03}\)</span>, the F-test statistic is <span class="math display">\[F_3=\frac{(RSS_{H_{03}}-RSS)/(2K)}{RSS/(n-2K)}\]</span></li>
 </ul>
 </section>
 </section>
