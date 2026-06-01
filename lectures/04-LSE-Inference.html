@@ -932,13 +932,13 @@ deno&amp;=&amp;\sum (\lambda_i^{1/2}x_i)^2\\
 num&amp;=&amp;(\sum x_iy_i)^2=(\sum ((\lambda_i)^{1/2}x_i)(\lambda_i)^{-1/2}y_i))^2
 \end{eqnarray*}\]</span> respectively. Using the Cauchy-Schwartz inequality (<span class="math inline">\((\sum x_iy_i)^2\le \sum x_i^2\sum y_i^2\)</span>), we have <span class="math display">\[\frac{(\sum (\lambda_i^{1/2}x_i )(\lambda_i^{-1/2}y_i))^2}{\sum (\lambda_i^{1/2}x_i)}\le \sum (\lambda_i^{-1/2}y_i)^2\]</span> which proves the theorem.</p>
 </div>
-<p>In this method, let <span class="math inline">\(b=A\hat\beta-A\beta_0\)</span> and <span class="math inline">\(L=A(X^TX)^{-1}A^T\)</span>. Then <span class="math display">\[\frac{Q}{qs^2}=\frac{b^TL^{-1}b}{qs^2}\sim F_{q,n-p}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
+<p>In this method, let <span class="math inline">\(b=A\hat\beta-A\beta\)</span> and <span class="math inline">\(L=A(X^TX)^{-1}A^T\)</span>. Then <span class="math display">\[\frac{Q}{qs^2}=\frac{b^TL^{-1}b}{qs^2}\sim F_{q,n-p}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
 1-\alpha &amp;=&amp; P(\frac{Q}{qs^2}\le F_{q, n-p,1-\alpha})\\
 &amp;=&amp;P(Q\le qs^2F_{q,n-p,1-\alpha})\\
 &amp;=&amp;P(b^TL^{-1}b\le qs^2F_{q,n-p,1-\alpha})\\
 &amp;=&amp;P(max_{h,h\not=0} \frac{(h^t)^2}{h^TLh}\le qs^2F_{q,n-p,1-\alpha})\\
 &amp;=&amp; P(\frac{(h^Tb)^2}{h^TLh}\le qs^2F_{q,n-p,1-\alpha}, \vee h\not=0)\\
-&amp;=&amp; P(\frac{|h^TA\hat\beta-h^TA\beta_0|}{(h^TLh)^{1/2}}\le s\sqrt{qF_{q,n-p,1-\alpha}}, \vee h\not=0)
+&amp;=&amp; P(\frac{|h^TA\hat\beta-h^TA\beta|}{(h^TLh)^{1/2}}\le s\sqrt{qF_{q,n-p,1-\alpha}}, \vee h\not=0)
 \end{eqnarray*}\]</span> Thus, a c.i. for any linear function <span class="math inline">\(h^TA\beta\)</span> is <span class="math display">\[h^TA\hat\beta\pm (qF_{q,n-p,1-\alpha})^{1/2}s(h^TLh)^{1/2}\]</span> Note here <span class="math inline">\(s(h^TLh)^{1/2}=\hat{s.e.}(h^TA\hat\beta)\)</span> This C.I. is usually wide because it works for any linear function <span class="math inline">\(h\)</span>.</p>
 </section>
 </section>
