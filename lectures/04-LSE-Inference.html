@@ -163,9 +163,26 @@ window.Quarto = {
   <li><a href="#example-4-compare-k-straight-lines" id="toc-example-4-compare-k-straight-lines" class="nav-link" data-scroll-target="#example-4-compare-k-straight-lines"><span class="header-section-number">2.5.4</span> Example 4: Compare <span class="math inline">\(K\)</span> Straight Lines</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#confidence-intervals-and-regions" id="toc-confidence-intervals-and-regions" class="nav-link" data-scroll-target="#confidence-intervals-and-regions"><span class="header-section-number">3</span> Confidence Intervals and Regions</a></li>
-  <li><a href="#confidence-bands-for-the-regression-surface" id="toc-confidence-bands-for-the-regression-surface" class="nav-link" data-scroll-target="#confidence-bands-for-the-regression-surface"><span class="header-section-number">4</span> Confidence bands for the regression surface</a></li>
-  <li><a href="#prediction-intervals-and-bands-for-the-response" id="toc-prediction-intervals-and-bands-for-the-response" class="nav-link" data-scroll-target="#prediction-intervals-and-bands-for-the-response"><span class="header-section-number">5</span> Prediction intervals and bands for the response</a></li>
+  <li><a href="#confidence-intervals-and-regions" id="toc-confidence-intervals-and-regions" class="nav-link" data-scroll-target="#confidence-intervals-and-regions"><span class="header-section-number">3</span> Confidence Intervals and Regions</a>
+  <ul class="collapse">
+  <li><a href="#confidence-regions" id="toc-confidence-regions" class="nav-link" data-scroll-target="#confidence-regions"><span class="header-section-number">3.1</span> Confidence Regions</a></li>
+  <li><a href="#simultaneous-confidence-intervals-for-abeta" id="toc-simultaneous-confidence-intervals-for-abeta" class="nav-link" data-scroll-target="#simultaneous-confidence-intervals-for-abeta"><span class="header-section-number">3.2</span> Simultaneous confidence intervals for <span class="math inline">\(A\beta\)</span></a>
+  <ul class="collapse">
+  <li><a href="#bonferroni-t-intervals" id="toc-bonferroni-t-intervals" class="nav-link" data-scroll-target="#bonferroni-t-intervals"><span class="header-section-number">3.2.1</span> Bonferroni t-intervals</a></li>
+  <li><a href="#maximum-modules-t-intervals" id="toc-maximum-modules-t-intervals" class="nav-link" data-scroll-target="#maximum-modules-t-intervals"><span class="header-section-number">3.2.2</span> Maximum Modules t-intervals</a></li>
+  <li><a href="#scheffes-s-method" id="toc-scheffes-s-method" class="nav-link" data-scroll-target="#scheffes-s-method"><span class="header-section-number">3.2.3</span> Scheffe’s S-Method</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#confidence-bands-for-the-regression-surface" id="toc-confidence-bands-for-the-regression-surface" class="nav-link" data-scroll-target="#confidence-bands-for-the-regression-surface"><span class="header-section-number">4</span> Confidence bands for the regression surface</a>
+  <ul class="collapse">
+  <li><a href="#confidence-intervals-for-eyx_0x_0tbeta" id="toc-confidence-intervals-for-eyx_0x_0tbeta" class="nav-link" data-scroll-target="#confidence-intervals-for-eyx_0x_0tbeta"><span class="header-section-number">4.1</span> Confidence intervals for <span class="math inline">\(E[Y|x_0]=x_0^T\beta\)</span></a></li>
+  <li><a href="#confidence-bands-simultaneous-bands" id="toc-confidence-bands-simultaneous-bands" class="nav-link" data-scroll-target="#confidence-bands-simultaneous-bands"><span class="header-section-number">4.2</span> Confidence bands (simultaneous bands)</a></li>
+  </ul></li>
+  <li><a href="#prediction-intervals-and-bands-for-the-response" id="toc-prediction-intervals-and-bands-for-the-response" class="nav-link" data-scroll-target="#prediction-intervals-and-bands-for-the-response"><span class="header-section-number">5</span> Prediction intervals and bands for the response</a>
+  <ul class="collapse">
+  <li><a href="#prediction-intervals-for-y_0x_0tbetaepsilon_0" id="toc-prediction-intervals-for-y_0x_0tbetaepsilon_0" class="nav-link" data-scroll-target="#prediction-intervals-for-y_0x_0tbetaepsilon_0"><span class="header-section-number">5.1</span> Prediction intervals for <span class="math inline">\(Y_0=x_0^T\beta+\epsilon_0\)</span></a></li>
+  <li><a href="#prediction-bands" id="toc-prediction-bands" class="nav-link" data-scroll-target="#prediction-bands"><span class="header-section-number">5.2</span> Prediction bands</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -234,7 +251,7 @@ H_0: A\beta=c \quad \text{v.s.} \quad H_1: A\beta \neq c
 </ol>
 <p><span class="math display">\[\begin{eqnarray*}
 F &amp;=&amp; \frac{(RSS_H-RSS)/q}{RSS/(n-p)}\\
-&amp;=&amp; \frac{(A\hat{\beta}-c)^T[A(XX^T)^{-1}A^T]^{-1}(A\hat{\beta}-c)}{qS^2}\overset{H_0}\sim F_{q,n-p}.
+&amp;=&amp; \frac{(A\hat{\beta}-c)^T[A(XX^T)^{-1}A^T]^{-1}(A\hat{\beta}-c)}{qs^2}\overset{H_0}\sim F_{q,n-p}.
 \end{eqnarray*}\]</span></p>
 <ol start="4" type="a">
 <li>Projection Matrix Representation:</li>
@@ -379,7 +396,7 @@ V_1-\bar{V}\\
 \cdots\\
 V_n-\bar{V}
 \end{pmatrix}
-\]</span> Also, <span class="math inline">\(A(X^TX)^{-1}A^T=\frac{1}{m}+\frac{1}{n}\)</span> The F statistic is <span class="math display">\[F=\frac{(A\hat\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)}{qS^2}=\frac{(\bar U-\bar V)^2}{S^2 (1/m+1/n)}
+\]</span> Also, <span class="math inline">\(A(X^TX)^{-1}A^T=\frac{1}{m}+\frac{1}{n}\)</span> The F statistic is <span class="math display">\[F=\frac{(A\hat\beta-c)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-c)}{qs^2}=\frac{(\bar U-\bar V)^2}{s^2 (1/m+1/n)}
 \]</span> Here <span class="math inline">\(n=m+n-2\)</span>, <span class="math inline">\(q=1\)</span>, <span class="math inline">\(p=2\)</span>. Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(F\sim F_{1,m+n-2}\)</span>. Note, <span class="math inline">\(t^2=F\)</span>.</p>
 <strong>Method 2</strong>
 <span class="math display">\[\begin{aligned}
@@ -870,14 +887,85 @@ X_A^TX_B \neq 0
 </section>
 <section id="confidence-intervals-and-regions" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Confidence Intervals and Regions</h1>
+<section id="confidence-regions" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="confidence-regions"><span class="header-section-number">3.1</span> Confidence Regions</h2>
+<p>Let <span class="math inline">\(Q=(A\hat\beta-A\beta)^T[A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-A\beta)\)</span>, <span class="math inline">\(s^2=RSS/(n-p)\)</span>, and let <span class="math inline">\(\beta\)</span> denote the true value of <span class="math inline">\(\beta\)</span>. By we learned in last section, we know that <span class="math display">\[\frac{Q}{qs^2}\sim F_{q,n-p}.\]</span> Recall that</p>
+<ul>
+<li><p><span class="math inline">\(\hat\beta\sim N(\beta,\sigma^2(X^TX)^{-1}) \Rightarrow A\hat\beta\sim N(A\beta,\sigma^2A(X^TX)^{-1}A^T)\Rightarrow \frac{Q}{\sigma^2}\sim\chi_q^2\)</span>,</p></li>
+<li><p><span class="math inline">\(RSS=(n-p)s^2\sim /\sigma^2 \chi_{n-p}^2\)</span>, and</p></li>
+<li><p><span class="math inline">\(RSS \perp Q\)</span>. The <span class="math inline">\(\perp\)</span> is true because <span class="math inline">\(RRS\)</span> is a function of <span class="math inline">\(I-P_X\)</span> and <span class="math inline">\(Q\)</span> is a function of <span class="math inline">\(\hat\beta=(X^TX)^{-1}X^TY\)</span>.]</p></li>
+</ul>
+<p>Therefore, a <span class="math inline">\(100(1-\alpha)\%\)</span> confidence region for <span class="math inline">\(A\beta\)</span> is</p>
+<p><span class="math display">\[\{A\beta: (A\hat\beta-A\beta)^T[\sigma^2A(X^TX)^{-1}A^T]^{-1}(A\hat\beta-A\beta)\le F_{q,n-p,1-\alpha}qs^2 \}\]</span></p>
+<p>Note,</p>
+<ul>
+<li>This confidence region is optimal in the sense of having the smallest area among other <span class="math inline">\(1-\alpha\)</span> confidence regions.</li>
+<li>If <span class="math inline">\(q=1\)</span>, the confidence region becomes a confidence interval: <span class="math display">\[\{ a^t\beta: |\frac{a^T\hat\beta - a^T\beta}{\sqrt{\hat\sigma^2a^T(X^TX)^{-1}a}}|&lt;t_{n-p,1-\alpha/2} \}\]</span> i.e., <span class="math inline">\(a^T\hat\beta \pm t_{n-p,1-\alpha/2}\sqrt{\hat\sigma^2a^T(X^TX)^{-1}a}\)</span>.</li>
+<li>If <span class="math inline">\(q=2\)</span>, we have a confidence ellipse.</li>
+<li>When <span class="math inline">\(q\le 3\)</span>, confidence regions can be visualized using contour plots. When <span class="math inline">\(q&gt;4\)</span>, it is difficult to visualize results.</li>
+</ul>
+<p>For <span class="math inline">\(q&gt;1\)</span>, the confidence region defines an ellipse. Although the elliptical confidence region is optimal, it is not easily understood by an applied scientist. Rectangular confidence regions of the form <span class="math display">\[\{ A\beta: a_i^T\beta\in (L_i,U_i) \vee i \}\]</span> are more attracting.</p>
+<p>It is not difficult to see that the following confidence region (rectangular) <span class="math display">\[\{ A\beta: a_i^T\beta\in (a_i^T\hat\beta \pm t_{n-p,1-\alpha/2}\sqrt{[\hat\sigma^2A(X^TX)^{-1}A^T]_{i,i}})   \}\]</span> guarantees <span class="math inline">\(100(1-\alpha)\%\)</span> confidence. However, this confidence region is too small. To see this, we notice that <span class="math display">\[Pr(a_i^T\beta\in (a_i^T\hat\beta \pm t_{n-p,1-\alpha/2}\sqrt{[\hat\sigma^2A(X^TX)^{-1}A^T]_{i,i}} )=1-\alpha\]</span> i.e., <span class="math display">\[Pr(a_i^T\beta\in (a_i^T\hat\beta \pm z_{1-\alpha/2}s.e.(a_i^T\hat\beta)=1-\alpha\]</span> for all <span class="math inline">\(i\)</span>. Here <span class="math inline">\(s.e.(a_i^T\hat\beta)=\sqrt{\hat\sigma^2a_i^T(X^TX)^{-1}a_i}\)</span>. Thus <span class="math display">\[P(\{ A\beta: a_i^T\beta\in (a_i^T\hat\beta \pm t_{n-p,1-\alpha/2}\sqrt{[\hat\sigma^2A(X^TX)^{-1}A^T]_{i,i}}) \})=P(\cap E_i)\]</span> with <span class="math inline">\(P(E_i)=1-\alpha\)</span> for all <span class="math inline">\(i\)</span>. And when the dependence between the events <span class="math inline">\(_i\)</span> is mall, <span class="math inline">\(P(\cap E_i)\simeq (1-\alpha)^q\)</span>. Thus, the probability of the confidence region tends to be too small.</p>
+<p>Because confidence regions in the form of <span class="math inline">\(\{ A\beta: a_i^T\hat\beta\pm \theta s.e.(a_i^T\hat\beta) \vee i \}\)</span> is attracting, We introduce several methods to determine <span class="math inline">\(\theta\)</span> to ensure at least <span class="math inline">\(1-\alpha\)</span> coverage.</p>
+</section>
+<section id="simultaneous-confidence-intervals-for-abeta" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="simultaneous-confidence-intervals-for-abeta"><span class="header-section-number">3.2</span> Simultaneous confidence intervals for <span class="math inline">\(A\beta\)</span></h2>
+<section id="bonferroni-t-intervals" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="bonferroni-t-intervals"><span class="header-section-number">3.2.1</span> Bonferroni t-intervals</h3>
+<p>Here we firs present the Bonferroni’s inequality: <span class="math display">\[1-\delta = P[\cap E_i]=1-Pr(\bar{\cap E_i}=1-P(\cup \bar {E}_i) \ge 1-\sum P(\bar{E}_i)=1-q\alpha\]</span> Here <span class="math inline">\(\delta\)</span> is the probability of getting at least one statement wrong and it is known as the familywise error rate. The inequality tells us that if restrict <span class="math inline">\(E_i\)</span> to have probability <span class="math inline">\(\alpha/q\)</span>, then the probability of the joint confidence region is guaranteed to have a coverage of at least <span class="math inline">\(1-\alpha\)</span>. This gives the idea of Bonferroni’s CI, which simply replaces the <span class="math inline">\(\alpha\)</span> in <span class="math display">\[P(\{ A\beta: a_i^T\beta\in (a_i^T\hat\beta \pm t_{n-p,1-\alpha/2}\sqrt{[\hat\sigma^2A(X^TX)^{-1}A^T]_{i,i}}) \})\]</span> by <span class="math inline">\(\alpha/q\)</span>. In summary, the Bonferroni t-intervals are given below: <span class="math display">\[P(\{ A\beta: a_i^T\beta\in (a_i^T\hat\beta \pm t_{n-p,1-\alpha/(2q)}\sqrt{[\hat\sigma^2A(X^TX)^{-1}A^T]_{i,i}}) \})\]</span></p>
+</section>
+<section id="maximum-modules-t-intervals" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="maximum-modules-t-intervals"><span class="header-section-number">3.2.2</span> Maximum Modules t-intervals</h3>
+<p>This method is based upon the extreme value distribution. Suppose <span class="math inline">\(a_i^T\hat\beta\)</span> are mutually independent and also independent of <span class="math inline">\(s^2\)</span>. Then the pairwise covariances of the <span class="math inline">\(t\)</span>-variables <span class="math display">\[T_i=\frac{a_i^T\hat\beta-a_i^T\beta}{s.e.(a_i^T\hat\beta)}=\frac{a_i^T\hat\beta-a_i^T\beta}{S\{z_i^T(X^TX)^{-1}a_i\}^{1/2}}\]</span> conditional on <span class="math inline">\(s^2\)</span> are zero. Hence <span class="math display">\[1-\alpha=P[max|T_i|\le u_{k,n-p}^a]=P[|T_i|\le u_{q,n-p,1-\alpha} for all i]\]</span> and the set of <span class="math inline">\(q\)</span> intervals <span class="math display">\[a_i^T\hat\beta\pm u_{q,n-p,1-\alpha}s.e.(a_i^T\hat\beta)\]</span> where <span class="math inline">\(u_{q,n-p,1-\alpha}\)</span> is the upper <span class="math inline">\(\alpha\)</span> significance point of the distribution of the maximum absolute value of <span class="math inline">\(q\)</span> Student-t variables, each with <span class="math inline">\(n-p\)</span> degrees of freedom. The confidence intervals will have an overall confidence probability of exactly <span class="math inline">\(1-\alpha\)</span>. However, the <span class="math inline">\(a_i^T\hat\beta\)</span> are usually not independent, indicating the obtained intervals are conservative and the true coverage is greater than equal to <span class="math inline">\(1-\alpha\)</span>.</p>
+<p>If the correlations between <span class="math inline">\(a_i^T\hat\beta\)</span> can be assumed, we can replace <span class="math inline">\(u_{q,n-p, 1-\alpha}\)</span> by <span class="math inline">\(u_{q,n-p, \rho, 1-\alpha}\)</span>, which is the upper <span class="math inline">\(\alpha\)</span> significance point of the distribution of the maximum value of the <span class="math inline">\(q\)</span> Student <span class="math inline">\(t\)</span>-variables, each with <span class="math inline">\(n-p\)</span> degrees of freedom and a common pairwise correlation <span class="math inline">\(rho\)</span>. This is practical for <span class="math inline">\(q=2\)</span> as there is only one pair, thus only one correlation. For <span class="math inline">\(q=2\)</span>, we compute <span class="math inline">\(\rho\)</span> using <span class="math display">\[\rho=\frac{a_1^T(Z^TX)^{-1}a_2}{\{a_1^T(Z^TX)^{-1}a_1a_2^T(Z^TX)^{-1}a_2\}^{1/2}}\]</span></p>
+</section>
+<section id="scheffes-s-method" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="scheffes-s-method"><span class="header-section-number">3.2.3</span> Scheffe’s S-Method</h3>
+<p>To present Scheffe’s S-Method, we first review the following theorem:</p>
+<div id="thm-Scheffe" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2</strong></span> Suppose <span class="math inline">\(L\)</span> is p.d., then for any <span class="math inline">\(b\)</span> we have <span class="math display">\[max_{h,h\not=0}\left\{ \frac{(h^Tb)^2}{h^tLh} \right\} = b^TL^{-1}b\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>The spectral decomposition of a p.d. matrix gives <span class="math display">\[L=\Gamma \Lambda \Gamma^T\]</span> with <span class="math inline">\(\Lambda&gt;0\)</span>. Let <span class="math inline">\(x=\Gamma^Th\)</span>, <span class="math inline">\(y=\Gamma^Tb\)</span>, then the denominator and the numerator are <span class="math display">\[\begin{eqnarray*}
+deno&amp;=&amp;\sum (\lambda_i^{1/2}x_i)^2\\
+num&amp;=&amp;(\sum x_iy_i)^2=(\sum ((\lambda_i)^{1/2}x_i)(\lambda_i)^{-1/2}y_i))^2
+\end{eqnarray*}\]</span> respectively. Using the Cauchy-Schwartz inequality (<span class="math inline">\((\sum x_iy_i)^2\le \sum x_i^2\sum y_i^2\)</span>), we have <span class="math display">\[\frac{(\sum (\lambda_i^{1/2}x_i )(\lambda_i^{-1/2}y_i))^2}{\sum (\lambda_i^{1/2}x_i)}\le \sum (\lambda_i^{-1/2}y_i)^2\]</span> which proves the theorem.</p>
+</div>
+<p>In this method, let <span class="math inline">\(b=A\hat\beta-A\beta_0\)</span> and <span class="math inline">\(L=A(X^TX)^{-1}A^T\)</span>. Then <span class="math display">\[\frac{Q}{qs^2}=\frac{b^TL^{-1}b}{qs^2}\sim F_{q,n-p}\]</span> Thus, <span class="math display">\[\begin{eqnarray*}
+1-\alpha &amp;=&amp; P(\frac{Q}{qs^2}\le F_{q, n-p,1-\alpha})\\
+&amp;=&amp;P(Q\le qs^2F_{q,n-p,1-\alpha})\\
+&amp;=&amp;P(b^TL^{-1}b\le qs^2F_{q,n-p,1-\alpha})\\
+&amp;=&amp;P(max_{h,h\not=0} \frac{(h^t)^2}{h^TLh}\le qs^2F_{q,n-p,1-\alpha})\\
+&amp;=&amp; P(\frac{(h^Tb)^2}{h^TLh}\le qs^2F_{q,n-p,1-\alpha}, \vee h\not=0)\\
+&amp;=&amp; P(\frac{|h^TA\hat\beta-h^TA\beta_0|}{(h^TLh)^{1/2}}\le s\sqrt{qF_{q,n-p,1-\alpha}}, \vee h\not=0)
+\end{eqnarray*}\]</span> Thus, a c.i. for any linear function <span class="math inline">\(h^TA\beta\)</span> is <span class="math display">\[h^TA\hat\beta\pm (qF_{q,n-p,1-\alpha})^{1/2}s(h^TLh)^{1/2}\]</span> Note here <span class="math inline">\(s(h^TLh)^{1/2}=\hat{s.e.}(h^TA\hat\beta)\)</span> This C.I. is usually wide because it works for any linear function <span class="math inline">\(h\)</span>.</p>
+</section>
+</section>
 </section>
 <section id="confidence-bands-for-the-regression-surface" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Confidence bands for the regression surface</h1>
+<section id="confidence-intervals-for-eyx_0x_0tbeta" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="confidence-intervals-for-eyx_0x_0tbeta"><span class="header-section-number">4.1</span> Confidence intervals for <span class="math inline">\(E[Y|x_0]=x_0^T\beta\)</span></h2>
+<p>Recall that we use <span class="math inline">\(\hat Y_0=x_0^T\hat\beta\)</span> to estimate <span class="math inline">\(x_0^T\beta\)</span>, and we know the estimate is unbiased. A <span class="math inline">\(100(1-\alpha)\%\)</span> C.I. for <span class="math inline">\(x_0^T\beta\)</span> for <span class="math inline">\(x_0^T\beta\)</span> is <span class="math display">\[\hat Y_0\pm t_{n-p,1-\alpha/2}s.e.(\hat Y_0)\]</span> where <span class="math inline">\(s.e.(\hat Y_0)=s\sqrt{x_0^T(X^TX)^{-1}x_0}\)</span>.</p>
+</section>
+<section id="confidence-bands-simultaneous-bands" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="confidence-bands-simultaneous-bands"><span class="header-section-number">4.2</span> Confidence bands (simultaneous bands)</h2>
+<p>If we are interested in all values of <span class="math inline">\(x\)</span>, we can use Scheffe’s method: <span class="math display">\[x^T\hat\beta \pm (pF_{p,n-p,1-\alpha})^{1/2}s.e.(\hat Y_0)\]</span></p>
+</section>
 </section>
 <section id="prediction-intervals-and-bands-for-the-response" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Prediction intervals and bands for the response</h1>
+<section id="prediction-intervals-for-y_0x_0tbetaepsilon_0" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="prediction-intervals-for-y_0x_0tbetaepsilon_0"><span class="header-section-number">5.1</span> Prediction intervals for <span class="math inline">\(Y_0=x_0^T\beta+\epsilon_0\)</span></h2>
+<p>We use <span class="math inline">\(\hat Y_0=x_0^T\hat\beta\)</span> to estimate <span class="math inline">\(Y_0=x_0^T\beta+\epsilon_0\)</span>. Clearly the estimate is unbiased. <span class="math display">\[Var[\hat Y_0-Y_0]=Var[\hat Y_0] + Var[Y_0] = Var[\hat Y_0] + \sigma^2=\sigma^2[x_0^T(X^TX)^{-1}x_0+1]\]</span> Thus a <span class="math inline">\(100(1-\alpha)\%\)</span> C.I. for <span class="math inline">\(Y_0\)</span> is <span class="math display">\[\hat Y_0\pm t_{n-p,1-\alpha/2}s.e.(\hat Y_0 -Y0)\]</span> where <span class="math inline">\(s.e.(\hat Y_0 -Y0)=s\sqrt{x_0^T(X^TX)^{-1}x_0+1}\)</span></p>
+</section>
+<section id="prediction-bands" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="prediction-bands"><span class="header-section-number">5.2</span> Prediction bands</h2>
+<p><span class="math display">\[x^T\hat\beta \pm (pF_{p,n-p,1-\alpha})^{1/2}s.e.(\hat Y_0-Y_0)\]</span></p>
+<p>Note, other methods can also be used.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
